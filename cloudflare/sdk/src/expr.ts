@@ -11,6 +11,7 @@ export interface DeviceVars {
   tz: string;
   battery: number;
   charging: boolean;
+  /** Wi-Fi signal in dBm; `-100` when offline. */
   rssi: number;
   name: string;
   online: boolean;

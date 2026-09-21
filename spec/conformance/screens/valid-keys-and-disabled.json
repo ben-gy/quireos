@@ -1,0 +1,70 @@
+{
+  "spec_version": 1,
+  "id": "keys",
+  "vars": {
+    "busy": "1",
+    "page": "1"
+  },
+  "keys": {
+    "short": {
+      "type": "navigate",
+      "url": "/screens/next.json"
+    },
+    "double": {
+      "type": "submit",
+      "event": "toggle",
+      "args": {
+        "page": "{{vars.page}}"
+      }
+    }
+  },
+  "widgets": [
+    {
+      "type": "button",
+      "x": 24,
+      "y": 24,
+      "w": 200,
+      "h": 80,
+      "label": "Save",
+      "disabled": "vars.busy",
+      "on_tap": {
+        "type": "refresh"
+      }
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 120,
+      "w": 400,
+      "text": "Offline",
+      "disabled": "device.rssi <= -100",
+      "when": "device.online != true"
+    },
+    {
+      "type": "icon",
+      "x": 24,
+      "y": 200,
+      "name": "star",
+      "disabled": "vars.page == 1"
+    },
+    {
+      "type": "grid",
+      "x": 24,
+      "y": 300,
+      "cols": 2,
+      "rows": 1,
+      "cell_w": 100,
+      "cell_h": 100,
+      "gap": 8,
+      "disabled": "vars.busy",
+      "children": [
+        {
+          "type": "rect",
+          "cell": 0,
+          "fill": 8,
+          "disabled": "vars.page != 1"
+        }
+      ]
+    }
+  ]
+}

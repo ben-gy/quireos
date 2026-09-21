@@ -323,7 +323,7 @@
     {
       "file": "invalid-grid-cell-pair-out-of-range.json",
       "valid": false,
-      "rule": "[col,row] must be within cols×rows",
+      "rule": "[col,row] must be within cols\u00d7rows",
       "path": "/widgets/0/children/0/cell",
       "schema": false
     },
@@ -337,7 +337,7 @@
     {
       "file": "invalid-grid-cols-zero.json",
       "valid": false,
-      "rule": "cols must be ≥ 1",
+      "rule": "cols must be \u2265 1",
       "path": "/widgets/0/cols",
       "schema": true
     },
@@ -655,6 +655,24 @@
       "rule": "documents are at most 32 kB",
       "path": "",
       "schema": false
+    },
+    {
+      "file": "valid-keys-and-disabled.json",
+      "valid": true
+    },
+    {
+      "file": "invalid-keys-long.json",
+      "valid": false,
+      "rule": "keys.long is not allowed (long press is always Home)",
+      "path": "/keys/long",
+      "schema": true
+    },
+    {
+      "file": "invalid-disabled-not-string.json",
+      "valid": false,
+      "rule": "disabled is a condition string",
+      "path": "/widgets/0/disabled",
+      "schema": true
     }
   ]
 }

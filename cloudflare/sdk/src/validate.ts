@@ -573,6 +573,7 @@ function checkWidget(v: unknown, path: string, e: Errors, scope: Scope, counts: 
   checkInt(v.w, `${path}/w`, e, 0, 32767, needW);
   checkInt(v.h, `${path}/h`, e, 0, 32767, needH);
   if (v.when !== undefined) checkCondString(v.when, `${path}/when`, e, scope);
+  if (v.disabled !== undefined) checkCondString(v.disabled, `${path}/disabled`, e, scope);
   checkAction(v.on_tap, `${path}/on_tap`, e, scope);
   checkAction(v.on_hold, `${path}/on_hold`, e, scope);
   checkValue(v.feedback, `${path}/feedback`, e, scope, { kind: "enum", values: ["invert", "none"] });
@@ -712,6 +713,15 @@ export function validateScreen(doc: unknown, opts: ValidateOptions = {}): Valida
   }
 
   checkValueMap(d.vars, "/vars", e, scope, { keys: ID_RE, limit: LIMITS.VARS });
+
+  if (d.keys !== undefined) {
+    if (!isObj(d.keys)) e.err("/keys", "must be an object of { short?, double? } actions");
+    else {
+      checkAction(d.keys.short, "/keys/short", e, scope);
+      checkAction(d.keys.double, "/keys/double", e, scope);
+      if (d.keys.long !== undefined) e.err("/keys/long", "long press is always Home and cannot be bound");
+    }
+  }
 
   if (!Array.isArray(d.widgets)) e.err("/widgets", "widgets array is required");
   else {

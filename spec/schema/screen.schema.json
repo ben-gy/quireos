@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://quireos.org/spec/1/screen.schema.json",
-  "title": "QuireOS screen document (spec_version 1, §6)",
+  "title": "QuireOS screen document (spec_version 1, \u00a76)",
   "description": "Structural rules only. Template syntax, template roots, secret placement, network policy, the 32 kB / 512-byte size limits, image counts and grid-child widget counts are checked by @quireos/sdk validateScreen.",
   "type": "object",
   "required": [
@@ -57,6 +57,18 @@
       "maxItems": 96,
       "items": {
         "$ref": "#/$defs/widget"
+      }
+    },
+    "keys": {
+      "type": "object",
+      "properties": {
+        "short": {
+          "$ref": "#/$defs/action"
+        },
+        "double": {
+          "$ref": "#/$defs/action"
+        },
+        "long": false
       }
     }
   },
@@ -1888,7 +1900,10 @@
           "minimum": 0,
           "maximum": 32767
         },
-        "cell": false
+        "cell": false,
+        "disabled": {
+          "type": "string"
+        }
       }
     },
     "text_child": {
@@ -1977,6 +1992,9 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 32767
+        },
+        "disabled": {
+          "type": "string"
         }
       }
     },
@@ -2045,7 +2063,10 @@
           "minimum": 0,
           "maximum": 32767
         },
-        "cell": false
+        "cell": false,
+        "disabled": {
+          "type": "string"
+        }
       }
     },
     "rect_child": {
@@ -2126,6 +2147,9 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 32767
+        },
+        "disabled": {
+          "type": "string"
         }
       }
     },
@@ -2206,7 +2230,10 @@
           "minimum": 0,
           "maximum": 32767
         },
-        "cell": false
+        "cell": false,
+        "disabled": {
+          "type": "string"
+        }
       }
     },
     "line_child": {
@@ -2303,6 +2330,9 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 32767
+        },
+        "disabled": {
+          "type": "string"
         }
       }
     },
@@ -2363,7 +2393,10 @@
           "minimum": 0,
           "maximum": 32767
         },
-        "cell": false
+        "cell": false,
+        "disabled": {
+          "type": "string"
+        }
       }
     },
     "icon_child": {
@@ -2438,6 +2471,9 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 32767
+        },
+        "disabled": {
+          "type": "string"
         }
       }
     },
@@ -2499,7 +2535,10 @@
           "minimum": 0,
           "maximum": 32767
         },
-        "cell": false
+        "cell": false,
+        "disabled": {
+          "type": "string"
+        }
       }
     },
     "image_child": {
@@ -2573,6 +2612,9 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 32767
+        },
+        "disabled": {
+          "type": "string"
         }
       }
     },
@@ -2662,7 +2704,10 @@
           "minimum": 0,
           "maximum": 32767
         },
-        "cell": false
+        "cell": false,
+        "disabled": {
+          "type": "string"
+        }
       }
     },
     "button_child": {
@@ -2764,6 +2809,9 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 32767
+        },
+        "disabled": {
+          "type": "string"
         }
       }
     },
@@ -2841,7 +2889,10 @@
             "$ref": "#/$defs/grid_child"
           }
         },
-        "cell": false
+        "cell": false,
+        "disabled": {
+          "type": "string"
+        }
       }
     },
     "widget": {

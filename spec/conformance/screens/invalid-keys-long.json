@@ -1,0 +1,21 @@
+{
+  "spec_version": 1,
+  "id": "keys",
+  "keys": {
+    "short": {
+      "type": "back"
+    },
+    "long": {
+      "type": "home"
+    }
+  },
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "text": "Hello"
+    }
+  ]
+}

@@ -290,3 +290,20 @@ describe("helpers", () => {
     expect(classifyUrl("//x")).toBeUndefined();
   });
 });
+
+describe("disabled and keys", () => {
+  const base = (over: Record<string, unknown>) => ({ spec_version: 1, id: "k", widgets: [{ type: "text", x: 0, y: 0, w: 1, text: "x" }], ...over });
+  it("validates disabled like when", () => {
+    expect(validateScreen(base({ widgets: [{ type: "text", x: 0, y: 0, w: 1, text: "x", disabled: "vars.busy == 1" }] })).ok).toBe(true);
+    const r = validateScreen(base({ widgets: [{ type: "text", x: 0, y: 0, w: 1, text: "x", disabled: "{{vars.busy}}" }] }));
+    expect(r.errors.map((e) => e.path)).toEqual(["/widgets/0/disabled"]);
+    expect(validateScreen(base({ widgets: [{ type: "text", x: 0, y: 0, w: 1, text: "x", disabled: "nope.x" }] })).errors[0]?.message).toMatch(/unknown template root/);
+  });
+  it("validates keys actions and rejects long", () => {
+    expect(validateScreen(base({ keys: {} })).ok).toBe(true);
+    expect(validateScreen(base({ keys: { short: { type: "refresh" }, double: { type: "navigate", url: "/x.json" } } })).ok).toBe(true);
+    expect(validateScreen(base({ keys: { short: { type: "navigate" } } })).errors.map((e) => e.path)).toEqual(["/keys/short/url"]);
+    expect(validateScreen(base({ keys: { long: { type: "home" } } })).errors.map((e) => e.path)).toEqual(["/keys/long"]);
+    expect(validateScreen(base({ keys: [] })).errors.map((e) => e.path)).toEqual(["/keys"]);
+  });
+});

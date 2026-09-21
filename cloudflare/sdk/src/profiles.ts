@@ -4,7 +4,7 @@
  * (falling back to the sample fixture until that file is published).
  */
 import fonts, { FONTS_SOURCE } from "./profiles/fonts.generated.js";
-import type { Profile, ProfilesDocument } from "./types.js";
+import type { FontFace, Profile, ProfilesDocument } from "./types.js";
 
 export { FONTS_SOURCE };
 
@@ -36,4 +36,19 @@ export const t5pro: Profile = loadProfile(profilesDocument, "t5pro");
 /** Returns a bundled profile by name, or `t5pro` when the name is unknown. */
 export function profile(name: string): Profile {
   return profilesDocument.profiles?.[name] ?? t5pro;
+}
+
+/**
+ * Derives a profile whose text metrics are scaled by `lineHeightRatio` (line heights, ascents
+ * and glyph advances, rounded to whole pixels); icon sizes and panel data are unchanged.
+ */
+export function scaleProfile(base: Profile, lineHeightRatio: number): Profile {
+  const r = (n: number) => Math.round(n * lineHeightRatio);
+  const face = (f: FontFace): FontFace => ({ default_advance: r(f.default_advance), advance: Object.fromEntries(Object.entries(f.advance).map(([k, v]) => [k, r(v)])) });
+  const sizes: Profile["sizes"] = {};
+  for (const [name, s] of Object.entries(base.sizes)) {
+    if (!s) continue;
+    sizes[name as keyof Profile["sizes"]] = { ...s, line_height: r(s.line_height), ascent: r(s.ascent), regular: face(s.regular), ...(s.bold ? { bold: face(s.bold) } : {}) };
+  }
+  return { ...base, sizes };
 }

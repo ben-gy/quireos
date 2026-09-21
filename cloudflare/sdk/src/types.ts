@@ -168,7 +168,14 @@ export interface Screen {
   refresh?: RefreshMode;
   data?: DataSource[];
   vars?: Record<string, Value>;
+  /** Hardware-key bindings for this screen (§6). Long press is always Home and cannot be bound. */
+  keys?: ScreenKeys;
   widgets: Widget[];
+}
+
+export interface ScreenKeys {
+  short?: Action;
+  double?: Action;
 }
 
 export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
@@ -205,6 +212,8 @@ export interface WidgetBase {
   w?: number;
   h?: number;
   when?: Condition;
+  /** Truthy: drawn dimmed, not hit-tested, `feedback` ignored (§6.1). */
+  disabled?: Condition;
   on_tap?: Action;
   on_hold?: Action;
   feedback?: Value<Feedback>;
@@ -410,7 +419,10 @@ export interface ErrorBody {
   error: { code: string; message: string };
 }
 
-/** §2 request headers, parsed. */
+/**
+ * §2 request headers, parsed. Note that the template variable `device.rssi` (see `DeviceVars`)
+ * is `-100` when the device is offline; the headers below carry no signal information.
+ */
 export interface DeviceContext {
   /** `X-Device-Id`; empty when absent (e.g. a browser). */
   id: string;

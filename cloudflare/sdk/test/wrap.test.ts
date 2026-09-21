@@ -97,15 +97,29 @@ const fontsFile = new URL("../../../spec/fonts.json", import.meta.url);
 const haveWrapFixture = existsSync(wrapFixture) && existsSync(fontsFile);
 describe.skipIf(!haveWrapFixture)("spec/conformance/wrap.json", () => {
   if (!haveWrapFixture) return;
-  const fx = JSON.parse(readFileSync(wrapFixture, "utf8")) as {
-    profile?: string;
-    cases: { name?: string; text: string; w: number; lines: number; size?: string; weight?: string; profile?: string; expect: string[] }[];
-  };
+  interface WrapCase { name?: string; text: string; w: number; lines: number; size?: string; weight?: string; profile?: string; expect?: string[]; expected?: string[] }
+  const raw = JSON.parse(readFileSync(wrapFixture, "utf8")) as WrapCase[] | { profile?: string; cases: WrapCase[] };
+  const cases = Array.isArray(raw) ? raw : raw.cases;
+  const defaultProfile = Array.isArray(raw) ? "t5pro" : (raw.profile ?? "t5pro");
   const fonts = JSON.parse(readFileSync(fontsFile, "utf8"));
-  for (const [i, c] of fx.cases.entries()) {
-    it(c.name ?? `case ${i}`, () => {
-      const prof = loadProfile(fonts, c.profile ?? fx.profile ?? "t5pro");
-      expect(wrap(c.text, { w: c.w, lines: c.lines, size: (c.size ?? "md") as never, weight: (c.weight ?? "regular") as never, profile: prof })).toEqual(c.expect);
+  it("has cases", () => expect(cases.length).toBeGreaterThan(0));
+  for (const [i, c] of cases.entries()) {
+    it(c.name ?? `case ${i}: ${JSON.stringify(c.text).slice(0, 40)} w=${c.w} lines=${c.lines}`, () => {
+      const prof = loadProfile(fonts, c.profile ?? defaultProfile);
+      expect(wrap(c.text, { w: c.w, lines: c.lines, size: (c.size ?? "md") as never, weight: (c.weight ?? "regular") as never, profile: prof })).toEqual(c.expected ?? c.expect);
     });
   }
+});
+
+describe("scaleProfile", () => {
+  it("scales text metrics and keeps icons", async () => {
+    const { scaleProfile } = await import("../src/profiles.js");
+    const big = scaleProfile(p, 1.5);
+    expect(lineHeight("md", big)).toBe(54);
+    expect(big.sizes.md?.ascent).toBe(41);
+    expect(measure("A", "md", "regular", big)).toBe(27);
+    expect(measure("é", "md", "bold", big)).toBe(26);
+    expect(big.icons).toEqual(p.icons);
+    expect(lineHeight("md", p)).toBe(36); // base untouched
+  });
 });

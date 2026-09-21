@@ -41,6 +41,13 @@ export default createApp({
 
 `apps/_template` is a complete Worker; `apps/hello` is a static bundle.
 
+Every widget takes `when` (falsy: not drawn) and `disabled` (truthy: drawn dimmed, not
+hit-tested, `feedback` ignored); both are §3 condition strings. A screen may bind the hardware
+key with `keys: { short?: Action, double?: Action }`; long press is always Home and cannot be
+bound. Among the `device.*` template variables, `device.rssi` is the Wi-Fi signal in dBm and is
+`-100` when the device is offline. `scaleProfile(t5pro, 1.25)` derives a profile with all text
+metrics scaled, for layouts designed at a different line height.
+
 Server-side pagination uses the same wrap as the device:
 
 ```ts
