@@ -86,8 +86,9 @@ Resolution rules:
   yyyy EEE EEEE`; any other character is copied.
 - Roots: `settings.<key>` (this app's settings; list rows as `settings.<key>.<index>.<field>`),
   `vars.<name>` (screen variables), `device.time` (epoch seconds), `device.tz`, `device.battery`
-  (0-100 or -1), `device.charging`, `device.rssi`, `device.name`, `device.online`, `device.w`,
-  `device.h`, `device.greys`, `device.dpi`, and `<data id>.<path>` into a data source's JSON.
+  (0-100 or -1), `device.charging`, `device.rssi` (dBm; **-100 whenever `device.online` is false**),
+  `device.name`, `device.online`, `device.w`, `device.h`, `device.greys`, `device.dpi`, and
+  `<data id>.<path>` into a data source's JSON.
 - A screen that references `device.time` is re-evaluated once a minute with no network traffic; if any
   rendered value changed, the affected widgets are redrawn. This is how clocks work.
 
@@ -289,9 +290,15 @@ Top-level fields:
 | `data` | DataSource[] | no | ≤ 8 (§6.3) |
 | `vars` | map id → value | no | ≤ 16. Initialised from their templates after data loads, on every (re)load and `refresh`; `set` overrides until then |
 | `widgets` | Widget[] | yes | ≤ 96 including grid children. Array order is draw order and z-order; hit-testing picks the topmost |
+| `keys` | map | no | Actions for the device's app-assignable button: `{"short": Action, "double": Action}`. A **long press is always Home** and cannot be claimed. When a screen does not claim `short`, a short press is Home too. Devices without an app-assignable button ignore the field |
 
 Limits: target under 8 kB, hard limit **32 kB** (larger documents are rejected with an error screen).
 Any single string ≤ 512 bytes.
+
+**The OS corner.** The device draws its own status glyphs (offline, alert, update available,
+charging, low battery, busy) in a square of `corner` px whose right edge is `margin` px from the
+screen's right edge and whose top is `(nav − corner) / 2` px from the top; `corner`, `margin` and
+`nav` are published per device profile (§10). Apps should keep interactive widgets out of that square.
 
 ### 6.1 Common widget fields
 
@@ -302,6 +309,7 @@ Any single string ≤ 512 bytes.
 | `x`, `y` | int | yes | May be negative |
 | `w`, `h` | int | mostly | See each type |
 | `when` | condition | no | Falsy: not drawn, not hit-tested |
+| `disabled` | condition | no | Truthy: drawn dimmed (ink at the profile's tertiary tone, colour 9 on 16-grey panels), not hit-tested, `feedback` ignored. Default false |
 | `on_tap` | Action | no | |
 | `on_hold` | Action | no | Press ≥ 800 ms. Optional for devices |
 | `feedback` | `invert` \| `none` | no | Default `invert` for `button`, `none` otherwise. `invert` flips the widget's rectangle as soon as a tap is accepted, until the next render |
@@ -531,7 +539,13 @@ A device profile describes what a board can display. The reference profile `t5pr
 | Partial updates | yes |
 | Text sizes (line height px) | `xs` 24 · `sm` 29 · `md` 36 · `lg` 44 · `xl` 56 · `2xl` 72 · `3xl` 96 · `digits` 150 |
 | Icon sizes (px) | `sm` 32 · `md` 48 · `lg` 96 |
+| Chrome (px) | `margin` 24 · `nav` 56 · `toolbar` 56 · `status` 44 · `corner` 48 |
 | Touch | 5-point capacitive |
+| Buttons | one app-assignable function button (§6 `keys`); long press is always Home |
+
+Icons compiled into a device come from the design library's tiers (`design/icons/icons.json`): the
+`core` tier at `sm` and `md`, the `display` subset also at `lg`. `spec/icons.json` lists what a
+firmware build actually contains.
 
 Profiles, including per-glyph advances for every size and weight, are published in `spec/fonts.json`
 and `spec/icons.json`. Apps that hard-code coordinates should declare `screens` in their manifest and
