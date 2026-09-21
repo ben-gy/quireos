@@ -1,0 +1,33 @@
+// QuireOS store service. See README.md for local dev and deploy steps.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "quireos-store",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+
+  // Static files (CSS). Requests that match a file in ./public are served
+  // directly; everything else reaches the Worker.
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+
+  // Replace database_id with the id printed by `wrangler d1 create quireos-store`.
+  // The placeholder is fine for `wrangler dev` (local D1).
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "quireos-store",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  "r2_buckets": [{ "binding": "BUNDLES", "bucket_name": "quireos-bundles" }],
+
+  "vars": {
+    "STORE_NAME": "QuireOS Store"
+    // "PUBLIC_URL": "https://store.quireos.dev"  // optional: force the origin used in absolute URLs
+  }
+
+  // Secrets (wrangler secret put …, or .dev.vars locally):
+  //   GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, SESSION_SECRET
+}

@@ -1,0 +1,5 @@
+# Copy to .dev.vars (git-ignored) for `wrangler dev`.
+GITHUB_CLIENT_ID=your_github_oauth_app_client_id
+GITHUB_CLIENT_SECRET=your_github_oauth_app_client_secret
+# 32+ random bytes, e.g. `openssl rand -base64 32`
+SESSION_SECRET=change-me-to-a-long-random-string

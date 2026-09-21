@@ -160,9 +160,13 @@ The device's store screen (and the store website) read one document:
 | `apps[].visibility` | `public` \| `unlisted` \| `private` | no | Present only in authenticated responses |
 | `apps[].installs` | int | no | |
 
-The index is served with a strong `ETag`, `Cache-Control: public, max-age=300` and
-`Access-Control-Allow-Origin: *`. The device re-fetches it when the store screen opens and at most once
-a day for update checks.
+The index is served with a strong `ETag` and `Access-Control-Allow-Origin: *`. Anonymous responses
+carry `Cache-Control: public, max-age=300`; responses to a paired device (which can include that
+account's private apps) carry `Cache-Control: private, max-age=300` and `Vary: Authorization`. The
+device re-fetches the index when the store screen opens and at most once a day for update checks.
+
+`tagline` comes from the store listing, not the manifest, and may be empty. `icon` is the icon
+uploaded to the store listing when present, otherwise the manifest `icon`.
 
 ## 5. App manifest
 
@@ -478,20 +482,34 @@ Base path `/api/v1`. Devices send `Authorization: Bearer <device token>` once re
 
 | Method and path | Auth | Purpose |
 |---|---|---|
-| `POST /devices` `{hw_id, os_version, screen}` | none | Register; returns `{device_id, token}`. Idempotent per `hw_id` |
-| `POST /pair` | device | Returns `{code, expires_in}`; the device shows the code and the pairing URL |
-| `GET /pair/:code` | device | `202` while unclaimed; `200 {user}` once a signed-in user claimed it on the website; `410` when expired |
+| `POST /devices` `{hw_id, os_version, screen}` | none | Register; returns `{device_id, token}`. Re-registering the same `hw_id` keeps the `device_id`, issues a **new** token, invalidates the old one and **drops any account pairing** (the hardware id is not a secret: every app server sees it as `X-Device-Id`). `screen` is the `WxH` part of `X-Screen` |
+| `POST /pair` | device | Returns `{code, expires_in, url}`; the device shows the code and `url` (the store's pairing page). Codes are 6 characters from `ABCDEFGHJKLMNPQRSTUVWXYZ23456789`, valid for 10 minutes, matched case-insensitively |
+| `GET /pair/:code` | device | `202 {"status":"pending"}` while unclaimed; `200 {"status":"paired","user":{"login","name"}}` once a signed-in user claimed it on the website; `410` when expired; `404` when the code belongs to another device |
 | `GET /index` | optional device | The §4 document: public apps, plus the paired user's `unlisted` and `private` apps. Strong ETag |
-| `GET /apps/:slug` | optional device | Index entry plus `description`, `screenshots[]`, `changelog[]`, `versions[]`. `404` for private apps the caller cannot see |
-| `POST /installs` `{app, version, action: install\|uninstall\|update}` | device | Counts and update badges |
+| `GET /apps/:slug` | optional device | Index entry plus `description` (string), `screenshots` (URL[]), `changelog` (`[{version, published_at, notes}]`, newest first) and `versions` (`[{version, min_os, manifest, published_at}]`, newest first). `404` for private apps the caller cannot see; `unlisted` apps are readable by anyone who knows the slug |
+| `POST /installs` `{app, version, action: install\|uninstall\|update}` | device | `204`. `installs` in the index counts devices whose latest report for the app is not `uninstall` |
 
-Hosted bundles are served immutably at `/a/:slug/:version/<file>`; the bundle root must contain
-`manifest.json` and all URLs inside the bundle are origin-relative to the store. Visibility: `private`
-(owner's paired devices only), `unlisted` (installable by URL or slug, not listed), `public` (listed).
-Versions are immutable; publishing a new version bumps the manifest `version`.
+**Hosted bundles.** A bundle is a zip with `manifest.json` at its root plus its screens, images, an
+optional 96×96 `icon.png` and an optional `store.json`; ≤ 5 MB, validated with the same rules as
+`tools/validate` before it is accepted. Inside a bundle, `entry` must be origin-relative and its
+directory is the bundle's **mount** (`/home.json` → mount is the bundle root, so the entry file sits
+at the root); every other origin-relative URL in the bundle must resolve under that mount to a file in
+the bundle. When the store publishes a version it rewrites those URLs to the version's prefix and
+serves the files immutably at `/a/:slug/:version/<file>` (`Cache-Control: public, max-age=31536000,
+immutable`); the index then points at `/a/:slug/:version/manifest.json`. Absolute URLs, templates and
+`hosts` are left untouched. Files of `private` apps require the device token of a device paired to
+the owner; `unlisted` and `public` files are open.
 
-Bundle format for uploads: a zip containing `manifest.json` at the root plus any screens, images and a
-96×96 `icon.png`; ≤ 5 MB; validated with the same rules as `tools/validate` before it is accepted.
+`store.json` (optional, bundle root) carries listing metadata the manifest does not: `tagline`,
+`description`, `categories`, `screenshots` (absolute URLs), `changelog` (`[{version, notes}]`).
+Publishing merges it into the listing.
+
+**External apps** are listed by manifest URL. At publish time the store fetches the manifest (no
+redirects), requires `200` with an `ETag`, validates it, and snapshots it; the manifest `id` must equal
+the slug and `version` must be greater than the last published version. Versions are immutable.
+
+Visibility: `private` (owner's paired devices only), `unlisted` (installable by URL or slug, not
+listed), `public` (listed and browsable).
 
 ## 10. Device profiles
 
