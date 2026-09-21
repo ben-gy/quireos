@@ -1,0 +1,14 @@
+# firmware
+firmware/.pio/
+firmware/emu/build/
+firmware/secrets.h
+firmware/*.bin
+# node
+node_modules/
+cloudflare/**/dist/
+cloudflare/**/.wrangler/
+cloudflare/**/.dev.vars
+# misc
+.DS_Store
+*.log
+.venv/
