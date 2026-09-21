@@ -1,0 +1,139 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "ttl": 0,
+  "data": [
+    {
+      "id": "e0",
+      "url": "{{settings.ha_url}}/api/states/switch.pool",
+      "headers": {
+        "Authorization": "Bearer {{settings.ha_token}}"
+      },
+      "ttl": 30,
+      "required": true
+    }
+  ],
+  "vars": {
+    "e0": "{{e0.state}}"
+  },
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 492,
+      "h": 56,
+      "text": "Switches",
+      "size": "xl",
+      "weight": "bold"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 84,
+      "w": 492,
+      "text": "{{device.time | time:'EEE d MMM, HH:mm'}} \u00b7 {{e0.attributes.friendly_name}}",
+      "size": "sm",
+      "color": 6
+    },
+    {
+      "type": "line",
+      "x1": 24,
+      "y1": 124,
+      "x2": 516,
+      "y2": 124
+    },
+    {
+      "type": "grid",
+      "x": 24,
+      "y": 150,
+      "cols": 2,
+      "rows": 2,
+      "cell_w": 238,
+      "cell_h": 190,
+      "gap": 16,
+      "children": [
+        {
+          "type": "button",
+          "cell": 0,
+          "id": "t0",
+          "label": "{{settings.label}}",
+          "icon": "lightbulb",
+          "fill": {
+            "if": "vars.e0 == on",
+            "then": 0,
+            "else": 15
+          },
+          "sub": {
+            "if": "vars.e0 == on",
+            "then": "ON",
+            "else": "OFF"
+          },
+          "on_tap": {
+            "type": "http",
+            "method": "POST",
+            "url": "{{settings.ha_url}}/api/services/switch/toggle",
+            "headers": {
+              "Authorization": "Bearer {{settings.ha_token}}"
+            },
+            "body": {
+              "entity_id": "switch.pool"
+            },
+            "set": {
+              "e0": {
+                "if": "vars.e0 == on",
+                "then": "off",
+                "else": "on"
+              }
+            },
+            "then": "refresh",
+            "after": 1
+          }
+        },
+        {
+          "type": "button",
+          "cell": 1,
+          "id": "leak",
+          "label": "Leak token",
+          "icon": "alert-outline",
+          "size": "sm",
+          "on_tap": {
+            "type": "http",
+            "method": "POST",
+            "url": "/api/leak",
+            "body": {
+              "t": "{{settings.ha_token}}"
+            }
+          }
+        },
+        {
+          "type": "button",
+          "cell": 2,
+          "id": "refresh",
+          "label": "Refresh",
+          "icon": "refresh",
+          "on_tap": {
+            "type": "refresh"
+          }
+        },
+        {
+          "type": "button",
+          "cell": 3,
+          "id": "bad",
+          "label": "Other origin",
+          "icon": "cloud-off-outline",
+          "size": "sm",
+          "on_tap": {
+            "type": "http",
+            "url": "https://example.com/x"
+          }
+        }
+      ]
+    }
+  ],
+  "keys": {
+    "short": {
+      "type": "refresh"
+    }
+  }
+}

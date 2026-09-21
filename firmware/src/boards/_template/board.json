@@ -1,0 +1,10 @@
+{
+  "name": "template",
+  "profile": "t5pro",
+  "display": { "native_w": 800, "native_h": 480, "bpp": 1, "greys": 2, "dpi": 125, "partial_update": false },
+  "default_orientation": "landscape",
+  "input": { "touch": false, "buttons": [{ "id": 1, "label": "S3" }] },
+  "power": { "battery": false, "frontlight": false, "deep_sleep": true },
+  "fonts": { "profile": "t5pro", "sizes": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "digits"] },
+  "icons": { "sm": 32, "md": 48, "lg": 96 }
+}

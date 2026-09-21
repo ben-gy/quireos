@@ -3,6 +3,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#ifndef QUIREOS_VERSION
+#define QUIREOS_VERSION "0.1.0"
+#endif
+
 namespace quire {
 namespace os {
 

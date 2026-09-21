@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuireOS</title>
+<style>
+:root{--ink:#111;--paper:#fff;--mute:#666;--line:#ddd;--acc:#111}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.45 -apple-system,system-ui,Segoe UI,Roboto,sans-serif;color:var(--ink);background:#f4f4f2}
+header{background:var(--ink);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+header h1{margin:0;font-size:18px;font-weight:600}
+header span{opacity:.7;font-size:13px}
+main{max-width:860px;margin:0 auto;padding:16px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+h2{margin:0 0 10px;font-size:16px}
+h3{margin:14px 0 6px;font-size:15px}
+.kv{display:grid;grid-template-columns:160px 1fr;gap:4px 12px;font-size:14px}
+.kv b{color:var(--mute);font-weight:500}
+label{display:block;margin:10px 0 4px;font-size:13px;color:var(--mute)}
+input[type=text],input[type=password],input[type=url],input[type=number],select{width:100%;padding:8px 10px;border:1px solid #bbb;border-radius:6px;font:inherit}
+input[type=checkbox]{transform:scale(1.2);margin-right:6px}
+button{font:inherit;padding:8px 14px;border-radius:6px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;margin:8px 8px 0 0}
+button.sec{background:#fff;color:var(--ink)}
+button.danger{border-color:#a00;color:#a00;background:#fff}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:180px}
+.help{font-size:12px;color:var(--mute)}
+.app{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.app:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.badge{display:inline-block;font-size:12px;padding:2px 8px;border-radius:10px;background:#eee;margin-left:8px}
+.badge.upd{background:#111;color:#fff}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left}
+td input{padding:5px 7px}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:8px;display:none}
+code{background:#eee;padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<header><h1>QuireOS</h1><span id="hdr">connecting…</span></header>
+<main>
+<section id="device"><h2>Device</h2><div class="kv" id="devkv"></div>
+ <div class="row">
+  <div><label>Name</label><input type="text" id="p_name"></div>
+  <div><label>Time zone (IANA)</label><input type="text" id="p_tz" placeholder="Australia/Sydney"></div>
+ </div>
+ <div class="row">
+  <div><label>Sleep after (seconds, 0 = never)</label><input type="number" id="p_sleep" min="0" step="30"></div>
+  <div><label>Frontlight (0–3)</label><input type="number" id="p_fl" min="0" max="3"></div>
+  <div><label>Refresh policy</label><select id="p_refresh"><option value="0">Auto</option><option value="1">Prefer partial</option><option value="2">Always full</option></select></div>
+ </div>
+ <div class="row"><div><label>Settings page password (blank = none)</label><input type="password" id="p_pw" placeholder="unchanged"></div></div>
+ <button onclick="savePrefs()">Save device settings</button>
+ <button class="sec" onclick="post('/os/api/refresh')">Refresh screen</button>
+ <button class="sec" onclick="post('/os/api/home')">Home</button>
+ <button class="sec" onclick="post('/os/api/updates')">Check for updates</button>
+ <button class="danger" onclick="if(confirm('Forget Wi-Fi and start the setup portal?'))post('/os/api/wifi/forget')">Forget Wi-Fi</button>
+ <button class="danger" onclick="if(confirm('Reboot the device?'))post('/os/api/reboot')">Reboot</button>
+</section>
+<section id="apps"><h2>Apps</h2><div id="applist"></div></section>
+<section id="store"><h2>Store</h2>
+ <div class="kv" id="storekv"></div>
+ <div class="row">
+  <div><label>Store URL</label><input type="url" id="s_url"></div>
+ </div>
+ <button onclick="post('/os/api/store',{store_url:v('s_url')})">Save store URL</button>
+ <button class="sec" onclick="pair()">Pair with account</button>
+ <div id="pairbox"></div>
+ <h3>Install from URL</h3>
+ <div class="row"><div><input type="url" id="i_url" placeholder="https://…/manifest.json"></div></div>
+ <button onclick="post('/os/api/app/install',{manifest_url:v('i_url')})">Install</button>
+ <p class="help">The device fetches the manifest, checks <code>spec_version</code> and <code>min_os</code>, and adds the app to the launcher.</p>
+</section>
+</main>
+<div id="toast"></div>
+<script>
+let S=null;
+const $=id=>document.getElementById(id), v=id=>$(id).value.trim();
+function toast(t){const e=$('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500)}
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+async function post(path,body){
+  try{const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok||j.ok===false){toast('Error: '+(j.error||r.status));return false}
+      toast('OK');setTimeout(load,800);return true}
+  catch(e){toast('Device not reachable');return false}
+}
+async function load(){
+  try{const r=await fetch('/os/api/state');S=await r.json();render()}catch(e){$('hdr').textContent='not reachable'}
+}
+function kv(el,rows){el.innerHTML=rows.map(([k,x])=>`<b>${esc(k)}</b><span>${esc(x)}</span>`).join('')}
+function render(){
+  const d=S.device||{};
+  $('hdr').textContent=`${d.name||'QuireOS'} · ${d.os_version||''} · ${d.mode||''}`;
+  kv($('devkv'),[['Hardware id',d.hw_id],['Board',d.profile+' · '+d.screen],['Wi-Fi',(d.wifi&&d.wifi.connected)?`${d.wifi.ssid} · ${d.wifi.ip} · ${d.wifi.rssi} dBm`:'not connected'],
+    ['Battery',d.battery<0?'n/a':d.battery+'%'+(d.charging?' charging':'')],['Memory',`${Math.round(d.heap/1024)} kB heap, ${Math.round(d.psram/1024)} kB PSRAM`],['Uptime',Math.round(d.uptime_s/60)+' min']]);
+  if(document.activeElement.tagName!=='INPUT'){
+    $('p_name').value=d.name||'';$('p_tz').value=d.tz||'';$('p_sleep').value=d.sleep_s??300;$('p_fl').value=d.frontlight??0;$('p_refresh').value=d.refresh_policy??0;$('s_url').value=d.store_url||'';
+  }
+  $('p_fl').disabled=!d.frontlight_supported;
+  const st=S.store||{};
+  kv($('storekv'),[['Account',d.paired_user||'not paired'],['Status',st.status||'']]);
+  const p=st.pairing||{};
+  $('pairbox').innerHTML=p.active?(p.done?`<p>Paired with <b>${esc(p.user||'account')}</b>.</p>`:p.code?`<p>Enter code <b style="font-size:22px;letter-spacing:3px">${esc(p.code)}</b> at <a href="${esc(p.url)}" target="_blank">${esc(p.url)}</a></p>`:`<p>${esc(p.error||'Requesting a code…')}</p>`):'';
+  const apps=S.apps||[];
+  $('applist').innerHTML=apps.length?apps.map(appHtml).join(''):'<p class="help">No apps installed. Use the Store on the device or install from a manifest URL below.</p>';
+}
+function appHtml(a){
+  let h=`<div class="app"><h3>${esc(a.name)} <span class="badge">${esc(a.version)}</span>${a.update_version?`<span class="badge upd">update ${esc(a.update_version)}</span>`:''}</h3>
+  <div class="help">${esc(a.id)} · ${esc(a.orientation)} · <a href="${esc(a.manifest_url)}" target="_blank">manifest</a> · install ${esc(a.install_id)}</div>`;
+  const s=a.settings||[];
+  if(s.length){h+=`<form id="f_${a.id}" onsubmit="return saveApp('${a.id}')">`;
+    for(const f of s){h+=fieldHtml(a.id,f)}
+    h+=`<button type="submit">Save settings</button></form>`}
+  if(a.warn_secrets)h+=`<p class="help">This app declares its own origin in <code>hosts</code>, so its secret settings are sent to ${esc(a.warn_secrets)}.</p>`;
+  h+=`<button class="sec" onclick="post('/os/api/app/${a.id}/open')">Open on device</button><button class="danger" onclick="if(confirm('Uninstall ${esc(a.name)}?'))post('/os/api/app/${a.id}/uninstall')">Uninstall</button></div>`;
+  return h;
+}
+function fieldHtml(app,f){
+  const id=`${app}__${f.key}`,req=f.required?' *':'',help=f.help?`<div class="help">${esc(f.help)}</div>`:'';
+  let inp='';
+  switch(f.type){
+    case 'secret':inp=`<input type="password" id="${id}" placeholder="${f.set?'(set — leave blank to keep)':'not set'}" autocomplete="new-password">`;break;
+    case 'url':inp=`<input type="url" id="${id}" value="${esc(f.value)}">`;break;
+    case 'number':inp=`<input type="number" id="${id}" value="${esc(f.value)}" ${f.min!=null?`min="${f.min}"`:''} ${f.max!=null?`max="${f.max}"`:''} step="any">`;break;
+    case 'bool':inp=`<label><input type="checkbox" id="${id}" ${f.value?'checked':''}> ${esc(f.label)}</label>`;return `<div>${inp}${help}</div>`;
+    case 'select':inp=`<select id="${id}">`+(f.options||[]).map(o=>`<option value="${esc(o.value)}" ${o.value==f.value?'selected':''}>${esc(o.label||o.value)}</option>`).join('')+'</select>';break;
+    case 'list':return listHtml(app,f,id,req,help);
+    default:inp=`<input type="text" id="${id}" value="${esc(f.value)}">`;
+  }
+  return `<label>${esc(f.label)}${req}</label>${inp}${help}`;
+}
+function listHtml(app,f,id,req,help){
+  const rows=Array.isArray(f.value)?f.value:[];const cols=f.item||[];
+  let h=`<label>${esc(f.label)}${req} <span class="help">(up to ${f.max||16})</span></label><table id="${id}" data-app="${app}" data-key="${f.key}"><thead><tr>${cols.map(c=>`<th>${esc(c.label)}</th>`).join('')}<th></th></tr></thead><tbody>`;
+  for(const r of rows)h+=rowHtml(cols,r);
+  h+=`</tbody></table><button type="button" class="sec" onclick="addRow('${id}')">Add row</button>${help}`;
+  return h;
+}
+function rowHtml(cols,r){return `<tr>${cols.map(c=>`<td><input type="${c.type==='number'?'number':'text'}" data-k="${esc(c.key)}" data-t="${esc(c.type)}" value="${esc(r?r[c.key]??'':'')}"></td>`).join('')}<td><button type="button" class="sec" onclick="this.closest('tr').remove()">×</button></td></tr>`}
+function addRow(id){const t=$(id);const app=S.apps.find(a=>a.id===t.dataset.app);const f=app.settings.find(x=>x.key===t.dataset.key);t.querySelector('tbody').insertAdjacentHTML('beforeend',rowHtml(f.item||[],null))}
+function saveApp(id){
+  const a=S.apps.find(x=>x.id===id);const values={};
+  for(const f of a.settings){const el=$(`${id}__${f.key}`);if(!el)continue;
+    if(f.type==='bool')values[f.key]=el.checked;
+    else if(f.type==='number')values[f.key]=el.value===''?null:Number(el.value);
+    else if(f.type==='list'){values[f.key]=[...el.querySelectorAll('tbody tr')].map(tr=>{const o={};tr.querySelectorAll('input').forEach(i=>{o[i.dataset.k]=i.dataset.t==='number'?Number(i.value):i.dataset.t==='bool'?i.value==='true':i.value});return o})}
+    else values[f.key]=el.value;}
+  post(`/os/api/app/${id}/settings`,{values});return false;
+}
+function savePrefs(){const b={name:v('p_name'),tz:v('p_tz'),sleep_s:Number(v('p_sleep')),frontlight:Number(v('p_fl')),refresh_policy:Number($('p_refresh').value)};if(v('p_pw'))b.web_password=v('p_pw');post('/os/api/prefs',b)}
+async function pair(){if(await post('/os/api/pair')){let n=0;const t=setInterval(async()=>{await load();if(++n>60||(S.store.pairing&&S.store.pairing.done))clearInterval(t)},3000)}}
+load();setInterval(load,15000);
+</script>
+</body>
+</html>

@@ -29,11 +29,24 @@ struct Response {
   size_t len = 0;
   bool gzip = false;              // body is gzip-compressed; listener adds Content-Encoding: gzip
   bool must_free = false;         // listener calls release() after sending
+  const char *extra_header = nullptr;   // one extra "Name: value" header (e.g. WWW-Authenticate) or null
 };
 
 // Handle one request. Returns a complete response; call release() afterwards.
 Response handle(const Request &req);
 void release(Response &res);
+
+// ---- OS side (called from quire::os::loop(), never from the listener) ----
+struct Command {
+  enum Type : uint8_t { NONE = 0, STORE_URL, APP_SETTINGS, INSTALL, UNINSTALL, PAIR, REFRESH, REBOOT, WIFI_FORGET,
+                        PREFS, OPEN_APP, CHECK_UPDATES, HOME } type = NONE;
+  char a[512] = {0};        // id or URL
+  char *b = nullptr;        // JSON payload (heap, freed by take_command's caller via free_command)
+};
+bool take_command(Command &out);
+void free_command(Command &c);
+// Publish the read-only state snapshot and the per-app settings schemas (JSON) for validation.
+void publish(const char *state_json, const char *schemas_json);
 
 }  // namespace web
 }  // namespace os
