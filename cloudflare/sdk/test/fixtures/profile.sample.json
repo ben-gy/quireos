@@ -1,0 +1,37 @@
+{
+  "spec_version": 1,
+  "profiles": {
+    "t5pro": {
+      "dpi": 235,
+      "native": [960, 540],
+      "default_orientation": "portrait",
+      "greys": 16,
+      "sizes": {
+        "xs": { "line_height": 24, "ascent": 18,
+          "regular": { "default_advance": 11, "advance": { " ": 5, "i": 5, "l": 5, "m": 17, "w": 15, "W": 19, "M": 17, "…": 14 } },
+          "bold":    { "default_advance": 12, "advance": { " ": 5, "i": 6, "l": 6, "m": 18, "w": 16, "W": 20, "M": 18, "…": 14 } } },
+        "sm": { "line_height": 29, "ascent": 22,
+          "regular": { "default_advance": 13, "advance": { " ": 6, "i": 6, "l": 6, "m": 20, "w": 18, "W": 23, "M": 21, "…": 17 } },
+          "bold":    { "default_advance": 14, "advance": { " ": 6, "i": 7, "l": 7, "m": 21, "w": 19, "W": 24, "M": 22, "…": 17 } } },
+        "md": { "line_height": 36, "ascent": 27,
+          "regular": { "default_advance": 16, "advance": { " ": 8, "A": 18, "i": 7, "l": 7, "m": 25, "w": 22, "W": 28, "M": 26, "…": 21, "." : 8, ",": 8 } },
+          "bold":    { "default_advance": 17, "advance": { " ": 8, "A": 19, "i": 8, "l": 8, "m": 26, "w": 23, "W": 29, "M": 27, "…": 21, ".": 9, ",": 9 } } },
+        "lg": { "line_height": 44, "ascent": 33,
+          "regular": { "default_advance": 20, "advance": { " ": 10, "i": 9, "l": 9, "m": 31, "w": 27, "W": 35, "M": 32, "…": 26 } },
+          "bold":    { "default_advance": 21, "advance": { " ": 10, "i": 10, "l": 10, "m": 32, "w": 28, "W": 36, "M": 33, "…": 26 } } },
+        "xl": { "line_height": 56, "ascent": 42,
+          "regular": { "default_advance": 25, "advance": { " ": 12, "i": 11, "l": 11, "m": 39, "w": 34, "W": 44, "M": 41, "…": 33 } },
+          "bold":    { "default_advance": 26, "advance": { " ": 12, "i": 12, "l": 12, "m": 40, "w": 35, "W": 45, "M": 42, "…": 33 } } },
+        "2xl": { "line_height": 72, "ascent": 54,
+          "regular": { "default_advance": 32, "advance": { " ": 16, "i": 14, "l": 14, "m": 50, "w": 44, "W": 56, "M": 52, "…": 42 } },
+          "bold":    { "default_advance": 34, "advance": { " ": 16, "i": 16, "l": 16, "m": 52, "w": 46, "W": 58, "M": 54, "…": 42 } } },
+        "3xl": { "line_height": 96, "ascent": 72,
+          "regular": { "default_advance": 43, "advance": { " ": 21, "i": 19, "l": 19, "m": 67, "w": 59, "W": 75, "M": 70, "…": 56 } },
+          "bold":    { "default_advance": 45, "advance": { " ": 21, "i": 21, "l": 21, "m": 69, "w": 61, "W": 77, "M": 72, "…": 56 } } },
+        "digits": { "line_height": 150, "ascent": 112,
+          "regular": { "default_advance": 68, "advance": { " ": 30, ":": 30, ".": 30, "-": 40, "°": 40, "%": 90 } } }
+      },
+      "icons": { "sm": 32, "md": 48, "lg": 96 }
+    }
+  }
+}

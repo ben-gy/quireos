@@ -1,0 +1,88 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "url": "/screens/home.json",
+  "ttl": 0,
+  "refresh": "auto",
+  "data": [
+    {
+      "id": "e0",
+      "url": "{{settings.ha_url}}/api/states/switch.pool_lights",
+      "headers": {
+        "Authorization": "Bearer {{settings.ha_token}}"
+      },
+      "ttl": 30
+    }
+  ],
+  "vars": {
+    "e0": "{{e0.state}}"
+  },
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "h": 44,
+      "text": "Lights",
+      "size": "xl",
+      "weight": "bold"
+    },
+    {
+      "type": "line",
+      "x1": 24,
+      "y1": 80,
+      "x2": 516,
+      "y2": 80,
+      "color": 0
+    },
+    {
+      "type": "grid",
+      "x": 24,
+      "y": 100,
+      "cols": 2,
+      "rows": 4,
+      "cell_w": 238,
+      "cell_h": 190,
+      "gap": 16,
+      "children": [
+        {
+          "type": "button",
+          "cell": 0,
+          "id": "t0",
+          "label": "Pool Lights",
+          "fill": {
+            "if": "vars.e0 == on",
+            "then": 0,
+            "else": 15
+          },
+          "sub": {
+            "if": "vars.e0 == on",
+            "then": "ON",
+            "else": "OFF"
+          },
+          "on_tap": {
+            "type": "http",
+            "method": "POST",
+            "url": "{{settings.ha_url}}/api/services/switch/toggle",
+            "headers": {
+              "Authorization": "Bearer {{settings.ha_token}}"
+            },
+            "body": {
+              "entity_id": "switch.pool_lights"
+            },
+            "set": {
+              "e0": {
+                "if": "vars.e0 == on",
+                "then": "off",
+                "else": "on"
+              }
+            },
+            "then": "refresh",
+            "after": 1
+          }
+        }
+      ]
+    }
+  ]
+}

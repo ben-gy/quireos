@@ -1,0 +1,30 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "text": "Row 0",
+      "color": {
+        "if": "vars.a",
+        "then": 0,
+        "else": {
+          "if": "vars.b",
+          "then": 1,
+          "else": {
+            "if": "vars.c",
+            "then": 2,
+            "else": {
+              "if": "vars.d",
+              "then": 3,
+              "else": 4
+            }
+          }
+        }
+      }
+    }
+  ]
+}

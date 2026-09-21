@@ -112,6 +112,15 @@ void handle_os() {
   web::Response res = web::handle(req);
   g_srv->setContentLength(res.len);
   if (res.gzip) g_srv->sendHeader("Content-Encoding", "gzip");
+  if (res.extra_header) {                                  // one "Name: value" header from the OS
+    const char *colon = strchr(res.extra_header, ':');
+    if (colon) {
+      String name(res.extra_header, colon - res.extra_header);
+      const char *v = colon + 1;
+      while (*v == ' ') v++;
+      g_srv->sendHeader(name, v);
+    }
+  }
   g_srv->send(res.status, res.content_type ? res.content_type : "application/octet-stream", "");
   if (res.len && res.body) g_srv->sendContent((const char *)res.body, res.len);
   web::release(res);

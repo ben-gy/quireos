@@ -1,0 +1,121 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 540,
+      "h": 960,
+      "fill": {
+        "if": "vars.mode == dark",
+        "then": 0,
+        "else": 15
+      }
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 492,
+      "text": {
+        "if": "vars.n > 2",
+        "then": "Many ({{vars.n}})",
+        "else": {
+          "if": "vars.n > 0",
+          "then": "Some",
+          "else": {
+            "if": "vars.n == 0",
+            "then": "None",
+            "else": "Unknown"
+          }
+        }
+      },
+      "color": {
+        "if": "vars.mode == dark",
+        "then": 15,
+        "else": 0
+      },
+      "size": {
+        "if": "device.w > 600",
+        "then": "3xl",
+        "else": "2xl"
+      },
+      "weight": "{{vars.weight | default:'bold'}}",
+      "align": {
+        "if": "vars.mode == dark",
+        "then": "center"
+      }
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 100,
+      "w": 492,
+      "text": "Only when online",
+      "when": "device.online"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 140,
+      "w": 492,
+      "text": "Low battery",
+      "when": "device.battery < 20"
+    },
+    {
+      "type": "icon",
+      "x": 24,
+      "y": 200,
+      "name": {
+        "if": "device.charging",
+        "then": "battery-charging",
+        "else": "battery"
+      },
+      "color": {
+        "if": "device.battery < 20",
+        "then": 8,
+        "else": 0
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 300,
+      "w": 200,
+      "h": 80,
+      "label": "{{vars.mode | upper}}",
+      "fill": {
+        "if": "vars.mode == dark",
+        "then": null,
+        "else": 15
+      },
+      "stroke": {
+        "if": "vars.mode == dark",
+        "then": 15,
+        "else": null
+      },
+      "feedback": {
+        "if": "vars.mode == dark",
+        "then": "none",
+        "else": "invert"
+      },
+      "when": "vars.mode != ''",
+      "on_tap": {
+        "type": "set",
+        "vars": {
+          "mode": {
+            "if": "vars.mode == dark",
+            "then": "light",
+            "else": "dark"
+          }
+        }
+      }
+    }
+  ],
+  "vars": {
+    "mode": "dark",
+    "n": "3"
+  }
+}

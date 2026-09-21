@@ -1,0 +1,1523 @@
+{
+  "spec_version": 1,
+  "description": "Conformance cases for §3 templates, conditions and conditional values. Each case has one of `template` (→ evaluate), `cond` (→ evaluateCond) or `value` (→ resolveValue) and an `expect`. `ctx` at the top level applies unless the case carries its own `ctx` (full replacement). Time zone comes from ctx.device.tz (UTC when absent).",
+  "ctx": {
+    "device": {
+      "time": 1758441600,
+      "tz": "Australia/Sydney",
+      "battery": 73,
+      "charging": false,
+      "rssi": -61,
+      "name": "Kitchen",
+      "online": true,
+      "w": 540,
+      "h": 960,
+      "greys": 16,
+      "dpi": 235
+    },
+    "settings": {
+      "ha_url": "http://homeassistant.local:8123",
+      "ha_token": "secret-token",
+      "units": "C",
+      "count": 3,
+      "dark": false,
+      "entities": [
+        {
+          "id": "switch.pool",
+          "label": "Pool"
+        },
+        {
+          "id": "light.deck",
+          "label": "Deck"
+        }
+      ]
+    },
+    "vars": {
+      "pool": "on",
+      "page": "2",
+      "empty": "",
+      "zero": "0",
+      "off": "off",
+      "f": "false",
+      "n": 0,
+      "b": false,
+      "t": true,
+      "temp": 21.456,
+      "big": 12345.6789,
+      "neg": -3.5,
+      "str": "Hello World",
+      "mixed": "MiXeD 123 ÄÖ",
+      "when": "2026-07-04T14:05:00",
+      "date": "2026-02-28",
+      "isoz": "2026-03-15T09:30:00-07:00",
+      "epochStr": "1767225600",
+      "frac": 1758441600.9,
+      "ten": "10",
+      "nine": "9",
+      "list": [
+        1,
+        2
+      ],
+      "obj": {
+        "a": 1
+      }
+    },
+    "data": {
+      "e0": {
+        "state": "on",
+        "attributes": {
+          "brightness": 128,
+          "friendly_name": "Pool Lights",
+          "tags": [
+            "a",
+            "b"
+          ]
+        },
+        "last_changed": "2025-09-21T08:00:00+00:00"
+      },
+      "wx": {
+        "current": {
+          "temperature_2m": 18.3,
+          "is_day": 1,
+          "time": "2026-06-10T12:00"
+        },
+        "hourly": {
+          "temperature_2m": [
+            17.1,
+            18.3,
+            19.9
+          ]
+        }
+      },
+      "arr": [
+        {
+          "id": "first"
+        },
+        {
+          "id": "second"
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "name": "plain text is unchanged",
+      "template": "Hello",
+      "expect": "Hello"
+    },
+    {
+      "name": "var lookup",
+      "template": "{{vars.pool}}",
+      "expect": "on"
+    },
+    {
+      "name": "whitespace inside braces is ignored",
+      "template": "{{   vars.pool   }}",
+      "expect": "on"
+    },
+    {
+      "name": "several templates in one string",
+      "template": "Pool is {{vars.pool}}, page {{vars.page}}",
+      "expect": "Pool is on, page 2"
+    },
+    {
+      "name": "missing var is empty",
+      "template": "[{{vars.nope}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "missing nested path is empty",
+      "template": "[{{e0.attributes.nope.deeper}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "unknown root is empty",
+      "template": "[{{nothing.x}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "object renders empty",
+      "template": "[{{e0.attributes}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "array renders empty",
+      "template": "[{{e0.attributes.tags}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "array index",
+      "template": "{{e0.attributes.tags.1}}",
+      "expect": "b"
+    },
+    {
+      "name": "array index out of range is empty",
+      "template": "[{{e0.attributes.tags.7}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "array of objects",
+      "template": "{{arr.1.id}}",
+      "expect": "second"
+    },
+    {
+      "name": "non-numeric segment on array is empty",
+      "template": "[{{arr.first}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "list setting row field",
+      "template": "{{settings.entities.0.id}} / {{settings.entities.1.label}}",
+      "expect": "switch.pool / Deck"
+    },
+    {
+      "name": "integer renders shortest",
+      "template": "{{settings.count}}",
+      "expect": "3"
+    },
+    {
+      "name": "float renders shortest",
+      "template": "{{vars.temp}}",
+      "expect": "21.456"
+    },
+    {
+      "name": "negative number",
+      "template": "{{vars.neg}}",
+      "expect": "-3.5"
+    },
+    {
+      "name": "zero renders as 0",
+      "template": "{{vars.n}}",
+      "expect": "0"
+    },
+    {
+      "name": "true renders as true",
+      "template": "{{vars.t}}",
+      "expect": "true"
+    },
+    {
+      "name": "false renders as false",
+      "template": "{{settings.dark}}",
+      "expect": "false"
+    },
+    {
+      "name": "device fields",
+      "template": "{{device.battery}}% {{device.name}} {{device.online}} {{device.w}}x{{device.h}} {{device.greys}}@{{device.dpi}} {{device.rssi}} {{device.charging}}",
+      "expect": "73% Kitchen true 540x960 16@235 -61 false"
+    },
+    {
+      "name": "device.tz and device.time",
+      "template": "{{device.tz}} {{device.time}}",
+      "expect": "Australia/Sydney 1758441600"
+    },
+    {
+      "name": "data float and nested array",
+      "template": "{{wx.current.temperature_2m}}° / {{wx.hourly.temperature_2m.2}}",
+      "expect": "18.3° / 19.9"
+    },
+    {
+      "name": "unclosed braces are literal text",
+      "template": "{{vars.pool",
+      "expect": "{{vars.pool"
+    },
+    {
+      "name": "single braces are literal text",
+      "template": "{vars.pool}",
+      "expect": "{vars.pool}"
+    },
+    {
+      "name": "empty expression renders empty",
+      "template": "[{{}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "malformed path renders empty",
+      "template": "[{{vars..x}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "unknown filter renders empty",
+      "template": "[{{vars.pool | nope}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "path root alone (object) renders empty",
+      "template": "[{{vars}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "fixed:1",
+      "template": "{{vars.temp | fixed:1}}",
+      "expect": "21.5"
+    },
+    {
+      "name": "fixed:0",
+      "template": "{{vars.temp | fixed:0}}",
+      "expect": "21"
+    },
+    {
+      "name": "fixed pads integers",
+      "template": "{{settings.count | fixed:2}}",
+      "expect": "3.00"
+    },
+    {
+      "name": "fixed passes non-numbers through",
+      "template": "{{vars.str | fixed:1}}",
+      "expect": "Hello World"
+    },
+    {
+      "name": "fixed applies to numeric strings",
+      "template": "{{vars.epochStr | fixed:1}}",
+      "expect": "1767225600.0"
+    },
+    {
+      "name": "fixed on empty is empty",
+      "template": "[{{vars.empty | fixed:2}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "fixed on negative",
+      "template": "{{vars.neg | fixed:2}}",
+      "expect": "-3.50"
+    },
+    {
+      "name": "fixed rounds",
+      "template": "{{vars.big | fixed:3}}",
+      "expect": "12345.679"
+    },
+    {
+      "name": "fixed on boolean passes through",
+      "template": "{{vars.t | fixed:1}}",
+      "expect": "true"
+    },
+    {
+      "name": "default on empty string",
+      "template": "{{vars.empty | default:'n/a'}}",
+      "expect": "n/a"
+    },
+    {
+      "name": "default on missing",
+      "template": "{{vars.nope | default:'-'}}",
+      "expect": "-"
+    },
+    {
+      "name": "default not applied when set",
+      "template": "{{vars.pool | default:'x'}}",
+      "expect": "on"
+    },
+    {
+      "name": "default not applied to \"0\"",
+      "template": "{{vars.zero | default:'x'}}",
+      "expect": "0"
+    },
+    {
+      "name": "default not applied to 0",
+      "template": "{{vars.n | default:'x'}}",
+      "expect": "0"
+    },
+    {
+      "name": "default not applied to false",
+      "template": "{{vars.b | default:'x'}}",
+      "expect": "false"
+    },
+    {
+      "name": "default with bare word",
+      "template": "{{vars.nope | default:none}}",
+      "expect": "none"
+    },
+    {
+      "name": "default with number",
+      "template": "{{vars.nope | default:5}}",
+      "expect": "5"
+    },
+    {
+      "name": "default with quoted spaces",
+      "template": "{{vars.nope | default:'no data yet'}}",
+      "expect": "no data yet"
+    },
+    {
+      "name": "default applies to objects",
+      "template": "{{e0.attributes | default:'obj'}}",
+      "expect": "obj"
+    },
+    {
+      "name": "filters chain left to right",
+      "template": "{{vars.nope | default:'abc' | upper}}",
+      "expect": "ABC"
+    },
+    {
+      "name": "empty quoted default",
+      "template": "[{{vars.nope | default:''}}]",
+      "expect": "[]"
+    },
+    {
+      "name": "upper",
+      "template": "{{vars.str | upper}}",
+      "expect": "HELLO WORLD"
+    },
+    {
+      "name": "lower",
+      "template": "{{vars.str | lower}}",
+      "expect": "hello world"
+    },
+    {
+      "name": "upper is ASCII only",
+      "template": "{{vars.mixed | upper}}",
+      "expect": "MIXED 123 ÄÖ"
+    },
+    {
+      "name": "lower is ASCII only",
+      "template": "{{vars.mixed | lower}}",
+      "expect": "mixed 123 ÄÖ"
+    },
+    {
+      "name": "upper on number",
+      "template": "{{vars.temp | upper}}",
+      "expect": "21.456"
+    },
+    {
+      "name": "upper on boolean",
+      "template": "{{vars.t | upper}}",
+      "expect": "TRUE"
+    },
+    {
+      "name": "time HH:mm",
+      "template": "{{device.time | time:'HH:mm'}}",
+      "expect": "18:00"
+    },
+    {
+      "name": "time h:mm a",
+      "template": "{{device.time | time:'h:mm a'}}",
+      "expect": "6:00 pm"
+    },
+    {
+      "name": "time long date",
+      "template": "{{device.time | time:'EEEE d MMMM yyyy'}}",
+      "expect": "Sunday 21 September 2025"
+    },
+    {
+      "name": "time short date",
+      "template": "{{device.time | time:'EEE dd MMM'}}",
+      "expect": "Sun 21 Sep"
+    },
+    {
+      "name": "time ISO date",
+      "template": "{{device.time | time:'yyyy-MM-dd'}}",
+      "expect": "2025-09-21"
+    },
+    {
+      "name": "time single tokens",
+      "template": "{{device.time | time:'H'}}|{{device.time | time:'M'}}|{{device.time | time:'MM'}}|{{device.time | time:'d'}}|{{device.time | time:'hh'}}",
+      "expect": "18|9|09|21|06"
+    },
+    {
+      "name": "time literal characters copied",
+      "template": "{{device.time | time:'HH:mm on EEE'}}",
+      "expect": "18:00 on Sun"
+    },
+    {
+      "name": "time non-token letters copied",
+      "template": "{{device.time | time:'H m E yy'}}",
+      "expect": "18 m E yy"
+    },
+    {
+      "name": "time epoch as numeric string (AEDT)",
+      "template": "{{vars.epochStr | time:'d/M/yyyy HH:mm:ss EEEE'}}",
+      "expect": "1/1/2026 11:00:00 Thursday"
+    },
+    {
+      "name": "time ISO with offset",
+      "template": "{{vars.isoz | time:'EEE HH:mm'}}",
+      "expect": "Mon 03:30"
+    },
+    {
+      "name": "time ISO +00:00",
+      "template": "{{e0.last_changed | time:'HH:mm'}}",
+      "expect": "18:00"
+    },
+    {
+      "name": "time ISO without zone is local",
+      "template": "{{vars.when | time:'h:mm a EEE'}}",
+      "expect": "2:05 pm Sat"
+    },
+    {
+      "name": "time ISO date only",
+      "template": "{{vars.date | time:'EEEE d MMMM yyyy HH:mm'}}",
+      "expect": "Saturday 28 February 2026 00:00"
+    },
+    {
+      "name": "time ISO without seconds",
+      "template": "{{wx.current.time | time:'HH:mm'}}",
+      "expect": "12:00"
+    },
+    {
+      "name": "time fractional epoch floors",
+      "template": "{{vars.frac | time:'HH:mm:ss'}}",
+      "expect": "18:00:00"
+    },
+    {
+      "name": "time passes non-times through",
+      "template": "{{vars.str | time:'HH'}}",
+      "expect": "Hello World"
+    },
+    {
+      "name": "time on empty then default",
+      "template": "{{vars.empty | time:'HH' | default:'--'}}",
+      "expect": "--"
+    },
+    {
+      "name": "time on missing then default",
+      "template": "{{vars.nope | time:'HH' | default:'--'}}",
+      "expect": "--"
+    },
+    {
+      "name": "time midnight",
+      "template": "{{device.time | time:'HH:mm'}} {{device.time | time:'h a'}} {{device.time | time:'hh'}} {{device.time | time:'EEE'}}",
+      "expect": "00:00 12 am 12 Fri",
+      "ctx": {
+        "device": {
+          "time": 1767272400,
+          "tz": "Australia/Sydney",
+          "battery": 73,
+          "charging": false,
+          "rssi": -61,
+          "name": "Kitchen",
+          "online": true,
+          "w": 540,
+          "h": 960,
+          "greys": 16,
+          "dpi": 235
+        },
+        "settings": {
+          "ha_url": "http://homeassistant.local:8123",
+          "ha_token": "secret-token",
+          "units": "C",
+          "count": 3,
+          "dark": false,
+          "entities": [
+            {
+              "id": "switch.pool",
+              "label": "Pool"
+            },
+            {
+              "id": "light.deck",
+              "label": "Deck"
+            }
+          ]
+        },
+        "vars": {
+          "pool": "on",
+          "page": "2",
+          "empty": "",
+          "zero": "0",
+          "off": "off",
+          "f": "false",
+          "n": 0,
+          "b": false,
+          "t": true,
+          "temp": 21.456,
+          "big": 12345.6789,
+          "neg": -3.5,
+          "str": "Hello World",
+          "mixed": "MiXeD 123 ÄÖ",
+          "when": "2026-07-04T14:05:00",
+          "date": "2026-02-28",
+          "isoz": "2026-03-15T09:30:00-07:00",
+          "epochStr": "1767225600",
+          "frac": 1758441600.9,
+          "ten": "10",
+          "nine": "9",
+          "list": [
+            1,
+            2
+          ],
+          "obj": {
+            "a": 1
+          }
+        },
+        "data": {
+          "e0": {
+            "state": "on",
+            "attributes": {
+              "brightness": 128,
+              "friendly_name": "Pool Lights",
+              "tags": [
+                "a",
+                "b"
+              ]
+            },
+            "last_changed": "2025-09-21T08:00:00+00:00"
+          },
+          "wx": {
+            "current": {
+              "temperature_2m": 18.3,
+              "is_day": 1,
+              "time": "2026-06-10T12:00"
+            },
+            "hourly": {
+              "temperature_2m": [
+                17.1,
+                18.3,
+                19.9
+              ]
+            }
+          },
+          "arr": [
+            {
+              "id": "first"
+            },
+            {
+              "id": "second"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "time noon",
+      "template": "{{device.time | time:'h a'}} {{device.time | time:'HH'}} {{device.time | time:'H'}}",
+      "expect": "12 pm 12 12",
+      "ctx": {
+        "device": {
+          "time": 1781056800,
+          "tz": "Australia/Sydney",
+          "battery": 73,
+          "charging": false,
+          "rssi": -61,
+          "name": "Kitchen",
+          "online": true,
+          "w": 540,
+          "h": 960,
+          "greys": 16,
+          "dpi": 235
+        },
+        "settings": {
+          "ha_url": "http://homeassistant.local:8123",
+          "ha_token": "secret-token",
+          "units": "C",
+          "count": 3,
+          "dark": false,
+          "entities": [
+            {
+              "id": "switch.pool",
+              "label": "Pool"
+            },
+            {
+              "id": "light.deck",
+              "label": "Deck"
+            }
+          ]
+        },
+        "vars": {
+          "pool": "on",
+          "page": "2",
+          "empty": "",
+          "zero": "0",
+          "off": "off",
+          "f": "false",
+          "n": 0,
+          "b": false,
+          "t": true,
+          "temp": 21.456,
+          "big": 12345.6789,
+          "neg": -3.5,
+          "str": "Hello World",
+          "mixed": "MiXeD 123 ÄÖ",
+          "when": "2026-07-04T14:05:00",
+          "date": "2026-02-28",
+          "isoz": "2026-03-15T09:30:00-07:00",
+          "epochStr": "1767225600",
+          "frac": 1758441600.9,
+          "ten": "10",
+          "nine": "9",
+          "list": [
+            1,
+            2
+          ],
+          "obj": {
+            "a": 1
+          }
+        },
+        "data": {
+          "e0": {
+            "state": "on",
+            "attributes": {
+              "brightness": 128,
+              "friendly_name": "Pool Lights",
+              "tags": [
+                "a",
+                "b"
+              ]
+            },
+            "last_changed": "2025-09-21T08:00:00+00:00"
+          },
+          "wx": {
+            "current": {
+              "temperature_2m": 18.3,
+              "is_day": 1,
+              "time": "2026-06-10T12:00"
+            },
+            "hourly": {
+              "temperature_2m": [
+                17.1,
+                18.3,
+                19.9
+              ]
+            }
+          },
+          "arr": [
+            {
+              "id": "first"
+            },
+            {
+              "id": "second"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "time seconds and year",
+      "template": "{{device.time | time:'HH:mm:ss EEEE yyyy'}}",
+      "expect": "10:59:59 Wednesday 2025",
+      "ctx": {
+        "device": {
+          "time": 1735689599,
+          "tz": "Australia/Sydney",
+          "battery": 73,
+          "charging": false,
+          "rssi": -61,
+          "name": "Kitchen",
+          "online": true,
+          "w": 540,
+          "h": 960,
+          "greys": 16,
+          "dpi": 235
+        },
+        "settings": {
+          "ha_url": "http://homeassistant.local:8123",
+          "ha_token": "secret-token",
+          "units": "C",
+          "count": 3,
+          "dark": false,
+          "entities": [
+            {
+              "id": "switch.pool",
+              "label": "Pool"
+            },
+            {
+              "id": "light.deck",
+              "label": "Deck"
+            }
+          ]
+        },
+        "vars": {
+          "pool": "on",
+          "page": "2",
+          "empty": "",
+          "zero": "0",
+          "off": "off",
+          "f": "false",
+          "n": 0,
+          "b": false,
+          "t": true,
+          "temp": 21.456,
+          "big": 12345.6789,
+          "neg": -3.5,
+          "str": "Hello World",
+          "mixed": "MiXeD 123 ÄÖ",
+          "when": "2026-07-04T14:05:00",
+          "date": "2026-02-28",
+          "isoz": "2026-03-15T09:30:00-07:00",
+          "epochStr": "1767225600",
+          "frac": 1758441600.9,
+          "ten": "10",
+          "nine": "9",
+          "list": [
+            1,
+            2
+          ],
+          "obj": {
+            "a": 1
+          }
+        },
+        "data": {
+          "e0": {
+            "state": "on",
+            "attributes": {
+              "brightness": 128,
+              "friendly_name": "Pool Lights",
+              "tags": [
+                "a",
+                "b"
+              ]
+            },
+            "last_changed": "2025-09-21T08:00:00+00:00"
+          },
+          "wx": {
+            "current": {
+              "temperature_2m": 18.3,
+              "is_day": 1,
+              "time": "2026-06-10T12:00"
+            },
+            "hourly": {
+              "temperature_2m": [
+                17.1,
+                18.3,
+                19.9
+              ]
+            }
+          },
+          "arr": [
+            {
+              "id": "first"
+            },
+            {
+              "id": "second"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "time in UTC",
+      "template": "{{device.time | time:'HH:mm EEE'}}",
+      "expect": "08:00 Sun",
+      "ctx": {
+        "device": {
+          "time": 1758441600,
+          "tz": "UTC",
+          "battery": 73,
+          "charging": false,
+          "rssi": -61,
+          "name": "Kitchen",
+          "online": true,
+          "w": 540,
+          "h": 960,
+          "greys": 16,
+          "dpi": 235
+        },
+        "settings": {
+          "ha_url": "http://homeassistant.local:8123",
+          "ha_token": "secret-token",
+          "units": "C",
+          "count": 3,
+          "dark": false,
+          "entities": [
+            {
+              "id": "switch.pool",
+              "label": "Pool"
+            },
+            {
+              "id": "light.deck",
+              "label": "Deck"
+            }
+          ]
+        },
+        "vars": {
+          "pool": "on",
+          "page": "2",
+          "empty": "",
+          "zero": "0",
+          "off": "off",
+          "f": "false",
+          "n": 0,
+          "b": false,
+          "t": true,
+          "temp": 21.456,
+          "big": 12345.6789,
+          "neg": -3.5,
+          "str": "Hello World",
+          "mixed": "MiXeD 123 ÄÖ",
+          "when": "2026-07-04T14:05:00",
+          "date": "2026-02-28",
+          "isoz": "2026-03-15T09:30:00-07:00",
+          "epochStr": "1767225600",
+          "frac": 1758441600.9,
+          "ten": "10",
+          "nine": "9",
+          "list": [
+            1,
+            2
+          ],
+          "obj": {
+            "a": 1
+          }
+        },
+        "data": {
+          "e0": {
+            "state": "on",
+            "attributes": {
+              "brightness": 128,
+              "friendly_name": "Pool Lights",
+              "tags": [
+                "a",
+                "b"
+              ]
+            },
+            "last_changed": "2025-09-21T08:00:00+00:00"
+          },
+          "wx": {
+            "current": {
+              "temperature_2m": 18.3,
+              "is_day": 1,
+              "time": "2026-06-10T12:00"
+            },
+            "hourly": {
+              "temperature_2m": [
+                17.1,
+                18.3,
+                19.9
+              ]
+            }
+          },
+          "arr": [
+            {
+              "id": "first"
+            },
+            {
+              "id": "second"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "time in another zone",
+      "template": "{{device.time | time:'HH:mm'}}",
+      "expect": "04:00",
+      "ctx": {
+        "device": {
+          "time": 1758441600,
+          "tz": "America/New_York",
+          "battery": 73,
+          "charging": false,
+          "rssi": -61,
+          "name": "Kitchen",
+          "online": true,
+          "w": 540,
+          "h": 960,
+          "greys": 16,
+          "dpi": 235
+        },
+        "settings": {
+          "ha_url": "http://homeassistant.local:8123",
+          "ha_token": "secret-token",
+          "units": "C",
+          "count": 3,
+          "dark": false,
+          "entities": [
+            {
+              "id": "switch.pool",
+              "label": "Pool"
+            },
+            {
+              "id": "light.deck",
+              "label": "Deck"
+            }
+          ]
+        },
+        "vars": {
+          "pool": "on",
+          "page": "2",
+          "empty": "",
+          "zero": "0",
+          "off": "off",
+          "f": "false",
+          "n": 0,
+          "b": false,
+          "t": true,
+          "temp": 21.456,
+          "big": 12345.6789,
+          "neg": -3.5,
+          "str": "Hello World",
+          "mixed": "MiXeD 123 ÄÖ",
+          "when": "2026-07-04T14:05:00",
+          "date": "2026-02-28",
+          "isoz": "2026-03-15T09:30:00-07:00",
+          "epochStr": "1767225600",
+          "frac": 1758441600.9,
+          "ten": "10",
+          "nine": "9",
+          "list": [
+            1,
+            2
+          ],
+          "obj": {
+            "a": 1
+          }
+        },
+        "data": {
+          "e0": {
+            "state": "on",
+            "attributes": {
+              "brightness": 128,
+              "friendly_name": "Pool Lights",
+              "tags": [
+                "a",
+                "b"
+              ]
+            },
+            "last_changed": "2025-09-21T08:00:00+00:00"
+          },
+          "wx": {
+            "current": {
+              "temperature_2m": 18.3,
+              "is_day": 1,
+              "time": "2026-06-10T12:00"
+            },
+            "hourly": {
+              "temperature_2m": [
+                17.1,
+                18.3,
+                19.9
+              ]
+            }
+          },
+          "arr": [
+            {
+              "id": "first"
+            },
+            {
+              "id": "second"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "time without device.tz uses UTC",
+      "template": "{{device.time | time:'HH:mm'}}",
+      "expect": "08:00",
+      "ctx": {
+        "device": {
+          "time": 1758441600
+        },
+        "settings": {
+          "ha_url": "http://homeassistant.local:8123",
+          "ha_token": "secret-token",
+          "units": "C",
+          "count": 3,
+          "dark": false,
+          "entities": [
+            {
+              "id": "switch.pool",
+              "label": "Pool"
+            },
+            {
+              "id": "light.deck",
+              "label": "Deck"
+            }
+          ]
+        },
+        "vars": {
+          "pool": "on",
+          "page": "2",
+          "empty": "",
+          "zero": "0",
+          "off": "off",
+          "f": "false",
+          "n": 0,
+          "b": false,
+          "t": true,
+          "temp": 21.456,
+          "big": 12345.6789,
+          "neg": -3.5,
+          "str": "Hello World",
+          "mixed": "MiXeD 123 ÄÖ",
+          "when": "2026-07-04T14:05:00",
+          "date": "2026-02-28",
+          "isoz": "2026-03-15T09:30:00-07:00",
+          "epochStr": "1767225600",
+          "frac": 1758441600.9,
+          "ten": "10",
+          "nine": "9",
+          "list": [
+            1,
+            2
+          ],
+          "obj": {
+            "a": 1
+          }
+        },
+        "data": {
+          "e0": {
+            "state": "on",
+            "attributes": {
+              "brightness": 128,
+              "friendly_name": "Pool Lights",
+              "tags": [
+                "a",
+                "b"
+              ]
+            },
+            "last_changed": "2025-09-21T08:00:00+00:00"
+          },
+          "wx": {
+            "current": {
+              "temperature_2m": 18.3,
+              "is_day": 1,
+              "time": "2026-06-10T12:00"
+            },
+            "hourly": {
+              "temperature_2m": [
+                17.1,
+                18.3,
+                19.9
+              ]
+            }
+          },
+          "arr": [
+            {
+              "id": "first"
+            },
+            {
+              "id": "second"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "time greedy token match",
+      "template": "{{device.time | time:'HHH'}}",
+      "expect": "1818"
+    },
+    {
+      "name": "truthy string",
+      "cond": "vars.pool",
+      "expect": true
+    },
+    {
+      "name": "truthy number string",
+      "cond": "vars.page",
+      "expect": true
+    },
+    {
+      "name": "empty string is falsy",
+      "cond": "vars.empty",
+      "expect": false
+    },
+    {
+      "name": "\"0\" is falsy",
+      "cond": "vars.zero",
+      "expect": false
+    },
+    {
+      "name": "\"off\" is falsy",
+      "cond": "vars.off",
+      "expect": false
+    },
+    {
+      "name": "\"false\" is falsy",
+      "cond": "vars.f",
+      "expect": false
+    },
+    {
+      "name": "0 is falsy",
+      "cond": "vars.n",
+      "expect": false
+    },
+    {
+      "name": "false is falsy",
+      "cond": "vars.b",
+      "expect": false
+    },
+    {
+      "name": "missing is falsy",
+      "cond": "vars.nope",
+      "expect": false
+    },
+    {
+      "name": "true is truthy",
+      "cond": "vars.t",
+      "expect": true
+    },
+    {
+      "name": "object is falsy",
+      "cond": "e0.attributes",
+      "expect": false
+    },
+    {
+      "name": "text is truthy",
+      "cond": "vars.str",
+      "expect": true
+    },
+    {
+      "name": "\"Off\" is truthy (case-sensitive)",
+      "cond": "vars.mixed",
+      "expect": true
+    },
+    {
+      "name": "setting bool false is falsy",
+      "cond": "settings.dark",
+      "expect": false
+    },
+    {
+      "name": "device bool true is truthy",
+      "cond": "device.online",
+      "expect": true
+    },
+    {
+      "name": "filter output decides truthiness",
+      "cond": "vars.nope | default:'x'",
+      "expect": true
+    },
+    {
+      "name": "negative number is truthy",
+      "cond": "vars.neg",
+      "expect": true
+    },
+    {
+      "name": "== string",
+      "cond": "vars.pool == on",
+      "expect": true
+    },
+    {
+      "name": "== string false",
+      "cond": "vars.pool == off",
+      "expect": false
+    },
+    {
+      "name": "!= string",
+      "cond": "vars.pool != off",
+      "expect": true
+    },
+    {
+      "name": "== is case-sensitive",
+      "cond": "vars.pool == ON",
+      "expect": false
+    },
+    {
+      "name": "no spaces around operator",
+      "cond": "vars.pool==on",
+      "expect": true
+    },
+    {
+      "name": "extra whitespace",
+      "cond": "   vars.pool   ==   on   ",
+      "expect": true
+    },
+    {
+      "name": "quoted literal with spaces",
+      "cond": "vars.str == 'Hello World'",
+      "expect": true
+    },
+    {
+      "name": "bare literal with space is malformed",
+      "cond": "vars.str == Hello World",
+      "expect": false
+    },
+    {
+      "name": "numeric <",
+      "cond": "device.battery < 20",
+      "expect": false
+    },
+    {
+      "name": "numeric >=",
+      "cond": "device.battery >= 73",
+      "expect": true
+    },
+    {
+      "name": "numeric > with float literal",
+      "cond": "device.battery > 72.5",
+      "expect": true
+    },
+    {
+      "name": "numeric <=",
+      "cond": "device.battery <= 73",
+      "expect": true
+    },
+    {
+      "name": "numeric compare of numeric strings",
+      "cond": "vars.ten > 9",
+      "expect": true
+    },
+    {
+      "name": "quoted numbers still compare numerically",
+      "cond": "vars.ten > '9'",
+      "expect": true
+    },
+    {
+      "name": "string compare when lhs not numeric",
+      "cond": "vars.str > 'Hello'",
+      "expect": true
+    },
+    {
+      "name": "string ordering",
+      "cond": "vars.pool < 'zz'",
+      "expect": true
+    },
+    {
+      "name": "string ordering is byte order",
+      "cond": "vars.pool > 'Zebra'",
+      "expect": true
+    },
+    {
+      "name": "numeric equality across forms",
+      "cond": "vars.page == 2.0",
+      "expect": true
+    },
+    {
+      "name": "numeric equality float",
+      "cond": "vars.temp == 21.456",
+      "expect": true
+    },
+    {
+      "name": "number setting == quoted",
+      "cond": "settings.count == '3'",
+      "expect": true
+    },
+    {
+      "name": "0 == 0",
+      "cond": "vars.n == 0",
+      "expect": true
+    },
+    {
+      "name": "empty is not 0",
+      "cond": "vars.empty == 0",
+      "expect": false
+    },
+    {
+      "name": "empty == ''",
+      "cond": "vars.empty == ''",
+      "expect": true
+    },
+    {
+      "name": "missing == ''",
+      "cond": "vars.nope == ''",
+      "expect": true
+    },
+    {
+      "name": "missing != ''",
+      "cond": "vars.nope != ''",
+      "expect": false
+    },
+    {
+      "name": "missing < 5 is a string compare",
+      "cond": "vars.nope < 5",
+      "expect": true
+    },
+    {
+      "name": "bool == true",
+      "cond": "device.online == true",
+      "expect": true
+    },
+    {
+      "name": "bool == false",
+      "cond": "settings.dark == false",
+      "expect": true
+    },
+    {
+      "name": "bool != true",
+      "cond": "device.charging != true",
+      "expect": true
+    },
+    {
+      "name": "filter before comparison",
+      "cond": "vars.nope | default:'on' == on",
+      "expect": true
+    },
+    {
+      "name": "fixed before comparison",
+      "cond": "vars.temp | fixed:0 == 21",
+      "expect": true
+    },
+    {
+      "name": "upper before comparison",
+      "cond": "vars.str | upper == 'HELLO WORLD'",
+      "expect": true
+    },
+    {
+      "name": "device.time compare",
+      "cond": "device.time > 1758441599",
+      "expect": true
+    },
+    {
+      "name": "data path compare",
+      "cond": "e0.attributes.brightness >= 128",
+      "expect": true
+    },
+    {
+      "name": "list setting compare",
+      "cond": "settings.entities.1.id == light.deck",
+      "expect": true
+    },
+    {
+      "name": "malformed: missing lhs",
+      "cond": "== on",
+      "expect": false
+    },
+    {
+      "name": "malformed: missing rhs",
+      "cond": "vars.pool ==",
+      "expect": false
+    },
+    {
+      "name": "malformed: empty",
+      "cond": "",
+      "expect": false
+    },
+    {
+      "name": "malformed: braces in condition",
+      "cond": "{{vars.pool}} == on",
+      "expect": false
+    },
+    {
+      "name": "object == '' (object renders empty)",
+      "cond": "e0.attributes == ''",
+      "expect": true
+    },
+    {
+      "name": "cond then",
+      "value": {
+        "if": "vars.pool == on",
+        "then": 0,
+        "else": 15
+      },
+      "expect": 0
+    },
+    {
+      "name": "cond else",
+      "value": {
+        "if": "vars.pool == off",
+        "then": 0,
+        "else": 15
+      },
+      "expect": 15
+    },
+    {
+      "name": "cond with template branch",
+      "value": {
+        "if": "vars.pool",
+        "then": "{{vars.pool | upper}}",
+        "else": "OFF"
+      },
+      "expect": "ON"
+    },
+    {
+      "name": "cond missing else is null",
+      "value": {
+        "if": "vars.empty",
+        "then": 1
+      },
+      "expect": null
+    },
+    {
+      "name": "cond boolean branch",
+      "value": {
+        "if": "device.online",
+        "then": true,
+        "else": false
+      },
+      "expect": true
+    },
+    {
+      "name": "cond string branches",
+      "value": {
+        "if": "device.battery < 20",
+        "then": "Low",
+        "else": "OK"
+      },
+      "expect": "OK"
+    },
+    {
+      "name": "nested depth 2",
+      "value": {
+        "if": "vars.empty",
+        "then": 1,
+        "else": {
+          "if": "vars.page == 2",
+          "then": 2,
+          "else": 3
+        }
+      },
+      "expect": 2
+    },
+    {
+      "name": "nested depth 3",
+      "value": {
+        "if": "vars.empty",
+        "then": 1,
+        "else": {
+          "if": "vars.empty",
+          "then": 2,
+          "else": {
+            "if": "vars.page == 2",
+            "then": 3,
+            "else": 4
+          }
+        }
+      },
+      "expect": 3
+    },
+    {
+      "name": "nested depth 4 resolves to null",
+      "value": {
+        "if": "vars.empty",
+        "then": 1,
+        "else": {
+          "if": "vars.empty",
+          "then": 2,
+          "else": {
+            "if": "vars.empty",
+            "then": 3,
+            "else": {
+              "if": "vars.t",
+              "then": 4,
+              "else": 5
+            }
+          }
+        }
+      },
+      "expect": null
+    },
+    {
+      "name": "nested in then",
+      "value": {
+        "if": "vars.t",
+        "then": {
+          "if": "vars.b",
+          "then": "a",
+          "else": "b"
+        },
+        "else": "c"
+      },
+      "expect": "b"
+    },
+    {
+      "name": "scalar number passes through",
+      "value": 7,
+      "expect": 7
+    },
+    {
+      "name": "scalar boolean passes through",
+      "value": true,
+      "expect": true
+    },
+    {
+      "name": "null passes through",
+      "value": null,
+      "expect": null
+    },
+    {
+      "name": "plain string passes through",
+      "value": "plain",
+      "expect": "plain"
+    },
+    {
+      "name": "template string is evaluated",
+      "value": "{{vars.page}}",
+      "expect": "2"
+    },
+    {
+      "name": "malformed if is falsy",
+      "value": {
+        "if": "==",
+        "then": 1,
+        "else": 2
+      },
+      "expect": 2
+    }
+  ]
+}

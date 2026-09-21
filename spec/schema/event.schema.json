@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quireos.org/spec/1/event.schema.json",
+  "title": "QuireOS submit event body (spec_version 1, §8.3)",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "event",
+    "screen",
+    "widget"
+  ],
+  "properties": {
+    "spec_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "event": {
+      "type": "string",
+      "minLength": 1
+    },
+    "screen": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+    },
+    "widget": {
+      "type": "string",
+      "pattern": "^([a-z][a-z0-9_-]{0,31}|#\\d+)$"
+    },
+    "args": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "vars": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "x": {
+      "type": "integer"
+    },
+    "y": {
+      "type": "integer"
+    },
+    "ts": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

@@ -107,8 +107,17 @@ are falsy; everything else is truthy.
 { "if": "vars.pool == on", "then": 0, "else": 15 }
 ```
 
-`then`/`else` may be scalars, templates or another conditional (depth ≤ 3). There is no `&&`/`||`;
-nest conditionals or compute in the app.
+`then`/`else` may be scalars, templates or another conditional (depth ≤ 3). An object is a
+conditional exactly when it has a string `if` and a `then` key; `else` is optional and resolves to
+"not set" (empty text, a colour's default). There is no `&&`/`||`; nest conditionals or compute in
+the app. Colour properties (`color`, `fill`, `stroke`) accept conditionals but not bare templates.
+
+Details both implementations follow (pinned by `spec/conformance/expr.json`): a malformed
+expression, unknown filter or bad filter argument renders as `""`; an unclosed `{{` is literal text;
+numbers render in shortest round-trip form; `fixed:n` also applies to numeric strings and rounds half
+away from zero; the numeric test for comparisons is `^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$`;
+non-numeric comparisons order by UTF-16 code units; a missing value compares as `""`; malformed
+conditions are falsy and a missing `when` is truthy.
 
 Where templates may appear: any string-typed widget property, `vars` values, action `url`, `headers`,
 `body` string values, `args` values, data-source `url`/`headers`/`body`. Where they may **not** appear:
@@ -389,8 +398,8 @@ Optional fields on `http`, `submit` and `set`:
 
 - `set` (map var → value/template/conditional): applied **immediately, before the request**
   (optimistic update).
-- `then`: `none` (default) \| `refresh` \| `back` \| `home` \| `navigate` (with `url`). Runs when the
-  request completes.
+- `then`: `none` (default) \| `refresh` \| `back` \| `home` \| `navigate` (with `then_url`; on `http`
+  the `url` field is the request URL). Runs when the request completes.
 - `after`: seconds to wait before `then` (default 0). `1` is a good value after commands that take a
   moment to be reflected by the data source.
 

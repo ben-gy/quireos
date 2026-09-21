@@ -1,0 +1,23 @@
+{
+  "name": "@quireos/validate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "quireos-validate: validate QuireOS index, manifest and screen documents, directories and bundle zips.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "quireos-validate": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "prepare": "tsc -b",
+    "validate": "node dist/cli.js",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  }
+}

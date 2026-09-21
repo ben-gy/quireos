@@ -1,0 +1,14 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 100,
+      "h": 100,
+      "stroke_w": 0
+    }
+  ]
+}

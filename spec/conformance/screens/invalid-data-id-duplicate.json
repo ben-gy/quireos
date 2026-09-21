@@ -1,0 +1,23 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "text": "Hello"
+    }
+  ],
+  "data": [
+    {
+      "id": "a",
+      "url": "/1.json"
+    },
+    {
+      "id": "a",
+      "url": "/2.json"
+    }
+  ]
+}

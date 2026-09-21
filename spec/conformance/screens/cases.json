@@ -1,0 +1,660 @@
+{
+  "spec_version": 1,
+  "description": "Index of the screen conformance documents. valid=true documents must validate; valid=false documents break exactly the named rule and a conforming validator reports an error whose JSON pointer equals `path` (an empty path means the document as a whole). schema=false marks rules the JSON schema cannot express (semantic checks).",
+  "cases": [
+    {
+      "file": "valid-minimal.json",
+      "valid": true
+    },
+    {
+      "file": "valid-spec-example.json",
+      "valid": true
+    },
+    {
+      "file": "valid-all-widgets.json",
+      "valid": true
+    },
+    {
+      "file": "valid-actions.json",
+      "valid": true
+    },
+    {
+      "file": "valid-conditionals.json",
+      "valid": true
+    },
+    {
+      "file": "valid-limits-max.json",
+      "valid": true
+    },
+    {
+      "file": "valid-clock.json",
+      "valid": true
+    },
+    {
+      "file": "valid-data-sources.json",
+      "valid": true
+    },
+    {
+      "file": "valid-negative-and-optional-geometry.json",
+      "valid": true
+    },
+    {
+      "file": "valid-text-sizes.json",
+      "valid": true
+    },
+    {
+      "file": "valid-empty-collections.json",
+      "valid": true
+    },
+    {
+      "file": "valid-unknown-fields-ignored.json",
+      "valid": true
+    },
+    {
+      "file": "valid-urls.json",
+      "valid": true
+    },
+    {
+      "file": "invalid-spec-version-missing.json",
+      "valid": false,
+      "rule": "spec_version is required",
+      "path": "/spec_version",
+      "schema": true
+    },
+    {
+      "file": "invalid-spec-version-unsupported.json",
+      "valid": false,
+      "rule": "spec_version must be 1",
+      "path": "/spec_version",
+      "schema": true
+    },
+    {
+      "file": "invalid-spec-version-type.json",
+      "valid": false,
+      "rule": "spec_version must be an integer",
+      "path": "/spec_version",
+      "schema": true
+    },
+    {
+      "file": "invalid-id-missing.json",
+      "valid": false,
+      "rule": "id is required",
+      "path": "/id",
+      "schema": true
+    },
+    {
+      "file": "invalid-id-pattern.json",
+      "valid": false,
+      "rule": "id must match ^[a-z][a-z0-9_-]{0,31}$",
+      "path": "/id",
+      "schema": true
+    },
+    {
+      "file": "invalid-widgets-missing.json",
+      "valid": false,
+      "rule": "widgets is required",
+      "path": "/widgets",
+      "schema": true
+    },
+    {
+      "file": "invalid-widgets-not-array.json",
+      "valid": false,
+      "rule": "widgets must be an array",
+      "path": "/widgets",
+      "schema": true
+    },
+    {
+      "file": "invalid-ttl-negative.json",
+      "valid": false,
+      "rule": "ttl must be a non-negative integer",
+      "path": "/ttl",
+      "schema": true
+    },
+    {
+      "file": "invalid-refresh-enum.json",
+      "valid": false,
+      "rule": "refresh must be auto, partial or full",
+      "path": "/refresh",
+      "schema": true
+    },
+    {
+      "file": "invalid-url-scheme.json",
+      "valid": false,
+      "rule": "url must be absolute http(s) or origin-relative",
+      "path": "/url",
+      "schema": true
+    },
+    {
+      "file": "invalid-widget-type-unknown.json",
+      "valid": false,
+      "rule": "unknown widget type",
+      "path": "/widgets/0/type",
+      "schema": true
+    },
+    {
+      "file": "invalid-widget-x-missing.json",
+      "valid": false,
+      "rule": "x is required",
+      "path": "/widgets/0/x",
+      "schema": true
+    },
+    {
+      "file": "invalid-widget-x-not-integer.json",
+      "valid": false,
+      "rule": "x must be an integer",
+      "path": "/widgets/0/x",
+      "schema": true
+    },
+    {
+      "file": "invalid-widget-x-string.json",
+      "valid": false,
+      "rule": "geometry cannot be templated",
+      "path": "/widgets/0/x",
+      "schema": true
+    },
+    {
+      "file": "invalid-text-missing-text.json",
+      "valid": false,
+      "rule": "text is required",
+      "path": "/widgets/0/text",
+      "schema": true
+    },
+    {
+      "file": "invalid-text-w-missing.json",
+      "valid": false,
+      "rule": "text needs w",
+      "path": "/widgets/0/w",
+      "schema": true
+    },
+    {
+      "file": "invalid-text-lines-range.json",
+      "valid": false,
+      "rule": "lines must be 1-8",
+      "path": "/widgets/0/lines",
+      "schema": true
+    },
+    {
+      "file": "invalid-text-size-enum.json",
+      "valid": false,
+      "rule": "size must be one of the text sizes",
+      "path": "/widgets/0/size",
+      "schema": true
+    },
+    {
+      "file": "invalid-text-align-enum.json",
+      "valid": false,
+      "rule": "align enum",
+      "path": "/widgets/0/align",
+      "schema": true
+    },
+    {
+      "file": "invalid-color-range.json",
+      "valid": false,
+      "rule": "color must be 0-15",
+      "path": "/widgets/0/color",
+      "schema": true
+    },
+    {
+      "file": "invalid-color-template.json",
+      "valid": false,
+      "rule": "templates are not allowed in colour properties",
+      "path": "/widgets/0/color",
+      "schema": true
+    },
+    {
+      "file": "invalid-rect-h-missing.json",
+      "valid": false,
+      "rule": "rect needs h",
+      "path": "/widgets/0/h",
+      "schema": true
+    },
+    {
+      "file": "invalid-rect-radius-range.json",
+      "valid": false,
+      "rule": "radius must be 0-64",
+      "path": "/widgets/0/radius",
+      "schema": true
+    },
+    {
+      "file": "invalid-rect-stroke-w-range.json",
+      "valid": false,
+      "rule": "stroke_w must be 1-8",
+      "path": "/widgets/0/stroke_w",
+      "schema": true
+    },
+    {
+      "file": "invalid-rect-fill-not-null-or-int.json",
+      "valid": false,
+      "rule": "fill must be 0-15 or null",
+      "path": "/widgets/0/fill",
+      "schema": true
+    },
+    {
+      "file": "invalid-line-missing-x2.json",
+      "valid": false,
+      "rule": "line needs x1 y1 x2 y2",
+      "path": "/widgets/0/x2",
+      "schema": true
+    },
+    {
+      "file": "invalid-line-width-range.json",
+      "valid": false,
+      "rule": "width must be 1-8",
+      "path": "/widgets/0/width",
+      "schema": true
+    },
+    {
+      "file": "invalid-icon-missing-name.json",
+      "valid": false,
+      "rule": "icon needs name",
+      "path": "/widgets/0/name",
+      "schema": true
+    },
+    {
+      "file": "invalid-icon-size-enum.json",
+      "valid": false,
+      "rule": "icon size must be sm, md or lg",
+      "path": "/widgets/0/size",
+      "schema": true
+    },
+    {
+      "file": "invalid-image-missing-src.json",
+      "valid": false,
+      "rule": "image needs src",
+      "path": "/widgets/0/src",
+      "schema": true
+    },
+    {
+      "file": "invalid-image-src-dot-relative.json",
+      "valid": false,
+      "rule": "./ URLs are not supported",
+      "path": "/widgets/0/src",
+      "schema": true
+    },
+    {
+      "file": "invalid-image-ttl-negative.json",
+      "valid": false,
+      "rule": "ttl must be a non-negative integer",
+      "path": "/widgets/0/ttl",
+      "schema": true
+    },
+    {
+      "file": "invalid-image-limit.json",
+      "valid": false,
+      "rule": "at most 2 images per screen",
+      "path": "/widgets",
+      "schema": false
+    },
+    {
+      "file": "invalid-button-missing-label.json",
+      "valid": false,
+      "rule": "button needs label",
+      "path": "/widgets/0/label",
+      "schema": true
+    },
+    {
+      "file": "invalid-button-h-missing.json",
+      "valid": false,
+      "rule": "button needs h",
+      "path": "/widgets/0/h",
+      "schema": true
+    },
+    {
+      "file": "invalid-grid-nested.json",
+      "valid": false,
+      "rule": "grids cannot be nested",
+      "path": "/widgets/0/children/0/type",
+      "schema": true
+    },
+    {
+      "file": "invalid-grid-child-missing-cell.json",
+      "valid": false,
+      "rule": "grid children need cell",
+      "path": "/widgets/0/children/0/cell",
+      "schema": true
+    },
+    {
+      "file": "invalid-grid-cell-out-of-range.json",
+      "valid": false,
+      "rule": "cell must be < cols*rows",
+      "path": "/widgets/0/children/0/cell",
+      "schema": false
+    },
+    {
+      "file": "invalid-grid-cell-pair-out-of-range.json",
+      "valid": false,
+      "rule": "[col,row] must be within cols×rows",
+      "path": "/widgets/0/children/0/cell",
+      "schema": false
+    },
+    {
+      "file": "invalid-grid-missing-gap.json",
+      "valid": false,
+      "rule": "grid needs gap",
+      "path": "/widgets/0/gap",
+      "schema": true
+    },
+    {
+      "file": "invalid-grid-cols-zero.json",
+      "valid": false,
+      "rule": "cols must be ≥ 1",
+      "path": "/widgets/0/cols",
+      "schema": true
+    },
+    {
+      "file": "invalid-grid-children-missing.json",
+      "valid": false,
+      "rule": "grid needs children",
+      "path": "/widgets/0/children",
+      "schema": true
+    },
+    {
+      "file": "invalid-cell-outside-grid.json",
+      "valid": false,
+      "rule": "cell is only valid inside a grid",
+      "path": "/widgets/0/cell",
+      "schema": true
+    },
+    {
+      "file": "invalid-widgets-limit.json",
+      "valid": false,
+      "rule": "at most 96 widgets",
+      "path": "/widgets",
+      "schema": true
+    },
+    {
+      "file": "invalid-widgets-limit-grid-children.json",
+      "valid": false,
+      "rule": "grid children count towards the 96 widget limit",
+      "path": "/widgets",
+      "schema": false
+    },
+    {
+      "file": "invalid-data-limit.json",
+      "valid": false,
+      "rule": "at most 8 data sources",
+      "path": "/data",
+      "schema": true
+    },
+    {
+      "file": "invalid-data-id-reserved.json",
+      "valid": false,
+      "rule": "data ids cannot be settings, vars or device",
+      "path": "/data/0/id",
+      "schema": true
+    },
+    {
+      "file": "invalid-data-id-duplicate.json",
+      "valid": false,
+      "rule": "data ids are unique",
+      "path": "/data/1/id",
+      "schema": false
+    },
+    {
+      "file": "invalid-data-id-pattern.json",
+      "valid": false,
+      "rule": "data id must match the id pattern",
+      "path": "/data/0/id",
+      "schema": true
+    },
+    {
+      "file": "invalid-data-missing-url.json",
+      "valid": false,
+      "rule": "data source needs url",
+      "path": "/data/0/url",
+      "schema": true
+    },
+    {
+      "file": "invalid-data-method-enum.json",
+      "valid": false,
+      "rule": "data method must be GET or POST",
+      "path": "/data/0/method",
+      "schema": true
+    },
+    {
+      "file": "invalid-data-ttl-negative.json",
+      "valid": false,
+      "rule": "ttl must be a non-negative integer",
+      "path": "/data/0/ttl",
+      "schema": true
+    },
+    {
+      "file": "invalid-data-headers-not-strings.json",
+      "valid": false,
+      "rule": "header values are strings",
+      "path": "/data/0/headers/X-N",
+      "schema": true
+    },
+    {
+      "file": "invalid-vars-limit.json",
+      "valid": false,
+      "rule": "at most 16 vars",
+      "path": "/vars",
+      "schema": true
+    },
+    {
+      "file": "invalid-vars-key-pattern.json",
+      "valid": false,
+      "rule": "var names match the id pattern",
+      "path": "/vars/Page",
+      "schema": true
+    },
+    {
+      "file": "invalid-vars-value-object.json",
+      "valid": false,
+      "rule": "var values are scalars, templates or conditionals",
+      "path": "/vars/page",
+      "schema": true
+    },
+    {
+      "file": "invalid-action-type-unknown.json",
+      "valid": false,
+      "rule": "unknown action type",
+      "path": "/widgets/0/on_tap/type",
+      "schema": true
+    },
+    {
+      "file": "invalid-action-not-object.json",
+      "valid": false,
+      "rule": "actions are objects",
+      "path": "/widgets/0/on_tap",
+      "schema": true
+    },
+    {
+      "file": "invalid-navigate-missing-url.json",
+      "valid": false,
+      "rule": "navigate needs url",
+      "path": "/widgets/0/on_tap/url",
+      "schema": true
+    },
+    {
+      "file": "invalid-navigate-replace-not-bool.json",
+      "valid": false,
+      "rule": "replace is a boolean",
+      "path": "/widgets/0/on_tap/replace",
+      "schema": true
+    },
+    {
+      "file": "invalid-submit-missing-event.json",
+      "valid": false,
+      "rule": "submit needs event",
+      "path": "/widgets/0/on_tap/event",
+      "schema": true
+    },
+    {
+      "file": "invalid-http-missing-url.json",
+      "valid": false,
+      "rule": "http needs url",
+      "path": "/widgets/0/on_tap/url",
+      "schema": true
+    },
+    {
+      "file": "invalid-http-method-enum.json",
+      "valid": false,
+      "rule": "http method must be GET, POST, PUT or DELETE",
+      "path": "/widgets/0/on_tap/method",
+      "schema": true
+    },
+    {
+      "file": "invalid-http-body-type.json",
+      "valid": false,
+      "rule": "body is an object, array or string",
+      "path": "/widgets/0/on_tap/body",
+      "schema": true
+    },
+    {
+      "file": "invalid-set-missing-vars.json",
+      "valid": false,
+      "rule": "set needs vars",
+      "path": "/widgets/0/on_tap/vars",
+      "schema": true
+    },
+    {
+      "file": "invalid-then-enum.json",
+      "valid": false,
+      "rule": "then must be none, refresh, back, home or navigate",
+      "path": "/widgets/0/on_tap/then",
+      "schema": true
+    },
+    {
+      "file": "invalid-then-navigate-missing-then-url.json",
+      "valid": false,
+      "rule": "then: navigate needs then_url",
+      "path": "/widgets/0/on_tap/then_url",
+      "schema": true
+    },
+    {
+      "file": "invalid-after-negative.json",
+      "valid": false,
+      "rule": "after is a non-negative integer",
+      "path": "/widgets/0/on_tap/after",
+      "schema": true
+    },
+    {
+      "file": "invalid-feedback-enum.json",
+      "valid": false,
+      "rule": "feedback must be invert or none",
+      "path": "/widgets/0/feedback",
+      "schema": true
+    },
+    {
+      "file": "invalid-when-not-string.json",
+      "valid": false,
+      "rule": "when is a condition string",
+      "path": "/widgets/0/when",
+      "schema": true
+    },
+    {
+      "file": "invalid-cond-depth.json",
+      "valid": false,
+      "rule": "conditional values nest at most 3 deep",
+      "path": "/widgets/0/color/else/else/else",
+      "schema": true
+    },
+    {
+      "file": "invalid-cond-missing-then.json",
+      "valid": false,
+      "rule": "conditional needs then",
+      "path": "/widgets/0/text",
+      "schema": true
+    },
+    {
+      "file": "invalid-cond-if-not-string.json",
+      "valid": false,
+      "rule": "if is a condition string",
+      "path": "/widgets/0/text",
+      "schema": true
+    },
+    {
+      "file": "invalid-cond-branch-wrong-type.json",
+      "valid": false,
+      "rule": "branches match the property type",
+      "path": "/widgets/0/color/then",
+      "schema": true
+    },
+    {
+      "file": "invalid-template-malformed.json",
+      "valid": false,
+      "rule": "malformed template",
+      "path": "/widgets/0/text",
+      "schema": false
+    },
+    {
+      "file": "invalid-template-unknown-root.json",
+      "valid": false,
+      "rule": "template root must be settings, vars, device or a data id",
+      "path": "/widgets/0/text",
+      "schema": false
+    },
+    {
+      "file": "invalid-template-unknown-filter.json",
+      "valid": false,
+      "rule": "unknown filter",
+      "path": "/widgets/0/text",
+      "schema": false
+    },
+    {
+      "file": "invalid-template-fixed-arg.json",
+      "valid": false,
+      "rule": "fixed needs an integer argument",
+      "path": "/widgets/0/text",
+      "schema": false
+    },
+    {
+      "file": "invalid-device-field-unknown.json",
+      "valid": false,
+      "rule": "unknown device field",
+      "path": "/widgets/0/text",
+      "schema": false
+    },
+    {
+      "file": "invalid-when-malformed.json",
+      "valid": false,
+      "rule": "malformed condition",
+      "path": "/widgets/0/when",
+      "schema": false
+    },
+    {
+      "file": "invalid-url-origin-template.json",
+      "valid": false,
+      "rule": "only {{settings.<key>}} may appear in the origin position",
+      "path": "/widgets/0/on_tap/url",
+      "schema": true
+    },
+    {
+      "file": "invalid-url-http-public.json",
+      "valid": false,
+      "rule": "plain http only to private-network hosts",
+      "path": "/widgets/0/on_tap/url",
+      "schema": false
+    },
+    {
+      "file": "invalid-url-settings-filter.json",
+      "valid": false,
+      "rule": "origin position is exactly {{settings.<key>}}",
+      "path": "/widgets/0/on_tap/url",
+      "schema": true
+    },
+    {
+      "file": "invalid-string-too-long.json",
+      "valid": false,
+      "rule": "strings are at most 512 bytes",
+      "path": "/widgets/0/text",
+      "schema": false
+    },
+    {
+      "file": "invalid-string-too-long-utf8.json",
+      "valid": false,
+      "rule": "the 512-byte limit counts UTF-8 bytes",
+      "path": "/widgets/0/text",
+      "schema": false
+    },
+    {
+      "file": "invalid-document-too-large.json",
+      "valid": false,
+      "rule": "documents are at most 32 kB",
+      "path": "",
+      "schema": false
+    }
+  ]
+}

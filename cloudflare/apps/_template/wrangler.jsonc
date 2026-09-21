@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Rename this (it becomes <name>.<account>.workers.dev) and set `id` in src/manifest.ts.
+  "name": "quireos-app-template",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "vars": {
+    // "1" turns on screen validation on every request; `npm run dev` passes --var DEV:1.
+    "DEV": "0"
+  },
+  "observability": { "enabled": true }
+}

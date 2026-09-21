@@ -1,0 +1,16 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "text": "Hello"
+    }
+  ],
+  "vars": {
+    "Page": "1"
+  }
+}

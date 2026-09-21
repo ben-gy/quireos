@@ -1,0 +1,15 @@
+{
+  "name": "@quireos/app-hello",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hello: the static tutorial app (no Worker). `npm run bundle` zips it for upload to the store.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "icon": "node scripts/make-icon.mjs",
+    "bundle": "node scripts/bundle.mjs"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  }
+}

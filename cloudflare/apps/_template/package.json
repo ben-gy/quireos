@@ -1,0 +1,19 @@
+{
+  "name": "@quireos/app-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal QuireOS app on Cloudflare Workers. Copy this folder to start a new app.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --var DEV:1",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250921.0"
+  }
+}

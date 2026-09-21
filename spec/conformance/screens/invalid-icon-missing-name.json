@@ -1,0 +1,11 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "icon",
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

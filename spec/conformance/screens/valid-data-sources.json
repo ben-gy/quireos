@@ -1,0 +1,70 @@
+{
+  "spec_version": 1,
+  "id": "data",
+  "ttl": 120,
+  "data": [
+    {
+      "id": "a",
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=-33.9&longitude=151.2&current=temperature_2m"
+    },
+    {
+      "id": "b",
+      "url": "{{settings.ha_url}}/api/states/sensor.temp",
+      "headers": {
+        "Authorization": "Bearer {{settings.ha_token}}"
+      },
+      "ttl": 30,
+      "required": true
+    },
+    {
+      "id": "c",
+      "url": "{{settings.ha_url}}/api/template",
+      "method": "POST",
+      "body": "{{ states('sensor.x') }}",
+      "body_raw": true
+    },
+    {
+      "id": "d",
+      "url": "{{settings.ha_url}}/api/template",
+      "method": "POST",
+      "body": {
+        "template": "{{settings.units}}",
+        "n": 1
+      }
+    },
+    {
+      "id": "e",
+      "url": "/api/local.json",
+      "ttl": 0
+    },
+    {
+      "id": "f",
+      "url": "http://10.0.0.5/status",
+      "method": "GET"
+    },
+    {
+      "id": "g",
+      "url": "http://printer.local/api/job",
+      "headers": {
+        "X-Api-Key": "{{settings.key}}"
+      }
+    },
+    {
+      "id": "h",
+      "url": "https://example.org/x.json",
+      "required": false
+    }
+  ],
+  "vars": {
+    "t": "{{a.current.temperature_2m | fixed:1}}"
+  },
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "text": "{{vars.t}}° {{b.state}} {{c.x}} {{d.y}} {{e.z}} {{f.q}} {{g.r}} {{h.s}}"
+    }
+  ]
+}

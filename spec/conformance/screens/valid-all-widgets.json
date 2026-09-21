@@ -1,0 +1,185 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "rect",
+      "id": "bg",
+      "x": 0,
+      "y": 0,
+      "w": 540,
+      "h": 960,
+      "fill": 15,
+      "stroke": null
+    },
+    {
+      "type": "rect",
+      "x": 24,
+      "y": 24,
+      "w": 492,
+      "h": 120,
+      "fill": null,
+      "stroke": 0,
+      "stroke_w": 3,
+      "radius": 12
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "x": 40,
+      "y": 40,
+      "w": 460,
+      "h": 88,
+      "text": "Everything",
+      "size": "2xl",
+      "weight": "bold",
+      "align": "center",
+      "valign": "middle",
+      "color": 0,
+      "lines": 2
+    },
+    {
+      "type": "line",
+      "x1": 24,
+      "y1": 160,
+      "x2": 516,
+      "y2": 160,
+      "color": 8,
+      "width": 2
+    },
+    {
+      "type": "line",
+      "x1": 24,
+      "y1": 170,
+      "x2": 516,
+      "y2": 200
+    },
+    {
+      "type": "icon",
+      "x": 24,
+      "y": 180,
+      "name": "star",
+      "size": "lg",
+      "color": 0
+    },
+    {
+      "type": "icon",
+      "x": 140,
+      "y": 180,
+      "name": "weather-sunny"
+    },
+    {
+      "type": "image",
+      "x": 24,
+      "y": 300,
+      "w": 240,
+      "h": 160,
+      "src": "/img/chart.png",
+      "ttl": 60
+    },
+    {
+      "type": "image",
+      "x": 276,
+      "y": 300,
+      "w": 240,
+      "h": 160,
+      "src": "https://img.example.com/{{vars.day}}.png"
+    },
+    {
+      "type": "button",
+      "id": "go",
+      "x": 24,
+      "y": 500,
+      "w": 240,
+      "h": 96,
+      "label": "Go",
+      "sub": "now",
+      "icon": "arrow-right",
+      "size": "lg",
+      "lines": 1,
+      "fill": 15,
+      "stroke": 0,
+      "stroke_w": 2,
+      "radius": 8,
+      "color": 0,
+      "feedback": "invert",
+      "on_tap": {
+        "type": "navigate",
+        "url": "/screens/next.json"
+      }
+    },
+    {
+      "type": "button",
+      "x": 276,
+      "y": 500,
+      "w": 240,
+      "h": 96,
+      "label": "Dark",
+      "fill": 0,
+      "feedback": "none",
+      "on_tap": {
+        "type": "back"
+      }
+    },
+    {
+      "type": "grid",
+      "x": 24,
+      "y": 620,
+      "cols": 3,
+      "rows": 2,
+      "cell_w": 150,
+      "cell_h": 100,
+      "gap": 21,
+      "children": [
+        {
+          "type": "text",
+          "cell": 0,
+          "text": "cell 0"
+        },
+        {
+          "type": "text",
+          "cell": [
+            1,
+            0
+          ],
+          "x": 8,
+          "y": 8,
+          "w": 134,
+          "text": "cell [1,0]"
+        },
+        {
+          "type": "rect",
+          "cell": 2,
+          "fill": 8
+        },
+        {
+          "type": "icon",
+          "cell": [
+            0,
+            1
+          ],
+          "name": "home"
+        },
+        {
+          "type": "button",
+          "cell": 4,
+          "label": "B",
+          "on_tap": {
+            "type": "home"
+          }
+        },
+        {
+          "type": "line",
+          "cell": 5,
+          "x1": 0,
+          "y1": 0,
+          "x2": 150,
+          "y2": 100
+        }
+      ]
+    }
+  ],
+  "vars": {
+    "day": "mon"
+  }
+}

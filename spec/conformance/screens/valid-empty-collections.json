@@ -1,0 +1,19 @@
+{
+  "spec_version": 1,
+  "id": "empty",
+  "data": [],
+  "vars": {},
+  "widgets": [
+    {
+      "type": "grid",
+      "x": 0,
+      "y": 0,
+      "cols": 2,
+      "rows": 2,
+      "cell_w": 100,
+      "cell_h": 100,
+      "gap": 0,
+      "children": []
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "spec_version": 1,
+  "id": "about",
+  "ttl": 0,
+  "widgets": [
+    { "type": "text", "x": 24, "y": 40, "w": 492, "text": "About Hello", "size": "xl", "weight": "bold" },
+    { "type": "line", "x1": 24, "y1": 110, "x2": 516, "y2": 110 },
+    { "type": "text", "x": 24, "y": 140, "w": 492, "lines": 6,
+      "text": "Hello is the tutorial app for QuireOS. It is four files: a manifest, two screens and an icon, zipped and uploaded to the store.\nScreens are JSON: absolute coordinates, a handful of widget types, and templates the device fills in. Text wraps to the number of lines you allow and ends with an ellipsis when it runs out of room, exactly like this paragraph would if it went on for much longer than it does." },
+    { "type": "text", "x": 24, "y": 420, "w": 492, "text": "Screen {{device.w}}×{{device.h}}, {{device.greys}} greys, {{device.dpi}} dpi", "size": "sm", "color": 5 },
+    { "type": "button", "id": "back", "x": 150, "y": 800, "w": 240, "h": 88, "label": "Back", "icon": "arrow-left",
+      "on_tap": { "type": "back" } }
+  ]
+}

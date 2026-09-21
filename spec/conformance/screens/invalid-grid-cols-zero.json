@@ -1,0 +1,17 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "grid",
+      "x": 0,
+      "y": 0,
+      "cols": 0,
+      "rows": 1,
+      "cell_w": 10,
+      "cell_h": 10,
+      "gap": 0,
+      "children": []
+    }
+  ]
+}

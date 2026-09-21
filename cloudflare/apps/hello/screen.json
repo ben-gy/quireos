@@ -1,0 +1,16 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "ttl": 0,
+  "widgets": [
+    { "type": "icon", "x": 222, "y": 200, "name": "star", "size": "lg" },
+    { "type": "text", "x": 24, "y": 330, "w": 492, "h": 144, "text": "Hello, {{device.name | default:'there'}}",
+      "size": "2xl", "weight": "bold", "align": "center", "lines": 2 },
+    { "type": "text", "x": 48, "y": 490, "w": 444, "text": "This screen is a static JSON file. The device draws it and handles taps; there is no server.",
+      "size": "sm", "align": "center", "color": 5, "lines": 3 },
+    { "type": "button", "id": "about", "x": 150, "y": 640, "w": 240, "h": 88, "label": "About",
+      "on_tap": { "type": "navigate", "url": "/apps/hello/about.json" } },
+    { "type": "text", "x": 24, "y": 900, "w": 492, "text": "{{device.time | time:'EEE d MMM, h:mm a'}}",
+      "size": "xs", "align": "center", "color": 8 }
+  ]
+}

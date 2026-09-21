@@ -1,0 +1,13 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "image",
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10
+    }
+  ]
+}

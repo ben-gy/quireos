@@ -1,0 +1,36 @@
+{
+  "spec_version": 1,
+  "id": "clock",
+  "ttl": 0,
+  "refresh": "partial",
+  "widgets": [
+    {
+      "type": "text",
+      "x": 0,
+      "y": 200,
+      "w": 540,
+      "h": 150,
+      "text": "{{device.time | time:'HH:mm'}}",
+      "size": "digits",
+      "align": "center"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 380,
+      "w": 540,
+      "text": "{{device.time | time:'EEEE d MMMM'}}",
+      "size": "lg",
+      "align": "center"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 900,
+      "w": 540,
+      "text": "{{device.battery}}% {{device.name}} {{device.tz}}",
+      "size": "xs",
+      "align": "center"
+    }
+  ]
+}

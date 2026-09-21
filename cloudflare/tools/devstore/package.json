@@ -1,0 +1,23 @@
+{
+  "name": "@quireos/devstore",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local development store: serves an index.json built from every manifest.json found under the given directories, plus the files themselves.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "quireos-devstore": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "prepare": "tsc -b",
+    "devstore": "node dist/server.js",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  }
+}

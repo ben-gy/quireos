@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quireos.org/spec/1/error.schema.json",
+  "title": "QuireOS error body (spec_version 1, §8.2)",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "error"
+  ],
+  "properties": {
+    "spec_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,63}$"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 120
+        }
+      }
+    }
+  }
+}

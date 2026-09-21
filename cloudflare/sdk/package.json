@@ -1,0 +1,52 @@
+{
+  "name": "@quireos/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for QuireOS apps: types, builders, template evaluator, word wrap, validators, Workers helpers and a 16-grey PNG encoder.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./png": {
+      "types": "./dist/png/index.d.ts",
+      "import": "./dist/png/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "sync-profiles": "node scripts/sync-profiles.mjs",
+    "build": "node scripts/sync-profiles.mjs && tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "@resvg/resvg-wasm": "2.6.2",
+    "satori": "0.32.0"
+  },
+  "peerDependenciesMeta": {
+    "@resvg/resvg-wasm": {
+      "optional": true
+    },
+    "satori": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250921.0",
+    "@resvg/resvg-wasm": "2.6.2",
+    "@types/node": "^22.0.0",
+    "@types/pngjs": "^6.0.5",
+    "ajv": "^8.17.0",
+    "pngjs": "^7.0.0",
+    "satori": "0.32.0"
+  }
+}

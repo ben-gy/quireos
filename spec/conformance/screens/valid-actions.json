@@ -1,0 +1,178 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "button",
+      "x": 24,
+      "y": 24,
+      "w": 200,
+      "h": 80,
+      "label": "Navigate",
+      "on_tap": {
+        "type": "navigate",
+        "url": "/screens/detail.json",
+        "replace": true
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 124,
+      "w": 200,
+      "h": 80,
+      "label": "Submit",
+      "on_tap": {
+        "type": "submit",
+        "event": "next",
+        "args": {
+          "seed": 5,
+          "page": "{{vars.page}}",
+          "flag": true,
+          "when": {
+            "if": "vars.pool == on",
+            "then": "a",
+            "else": "b"
+          }
+        },
+        "set": {
+          "page": "2"
+        },
+        "then": "none"
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 224,
+      "w": 200,
+      "h": 80,
+      "label": "HTTP GET",
+      "on_tap": {
+        "type": "http",
+        "url": "https://api.example.com/ping?p={{vars.page}}",
+        "then": "refresh",
+        "after": 2
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 324,
+      "w": 200,
+      "h": 80,
+      "label": "HTTP POST",
+      "on_tap": {
+        "type": "http",
+        "method": "POST",
+        "url": "http://192.168.1.10:8123/api/services/light/turn_on",
+        "headers": {
+          "Content-Type": "application/json",
+          "X-Page": "{{vars.page}}"
+        },
+        "body": {
+          "entity_id": "light.deck",
+          "brightness": 200,
+          "nested": {
+            "list": [
+              "{{vars.page}}",
+              1
+            ]
+          }
+        },
+        "set": {
+          "pool": {
+            "if": "vars.pool == on",
+            "then": "off",
+            "else": "on"
+          }
+        },
+        "then": "navigate",
+        "then_url": "/screens/done.json",
+        "after": 1
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 424,
+      "w": 200,
+      "h": 80,
+      "label": "HTTP raw",
+      "on_tap": {
+        "type": "http",
+        "method": "PUT",
+        "url": "http://homeassistant.local:8123/api/template",
+        "body": "{{ states('sensor.x') }}",
+        "body_raw": true,
+        "then": "back"
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 524,
+      "w": 200,
+      "h": 80,
+      "label": "Delete",
+      "on_tap": {
+        "type": "http",
+        "method": "DELETE",
+        "url": "/api/item/1",
+        "then": "home"
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 624,
+      "w": 200,
+      "h": 80,
+      "label": "Set",
+      "on_tap": {
+        "type": "set",
+        "vars": {
+          "page": "2",
+          "pool": "{{vars.pool}}"
+        }
+      },
+      "on_hold": {
+        "type": "set",
+        "vars": {
+          "page": "1"
+        },
+        "then": "navigate",
+        "then_url": "/screens/home.json"
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 724,
+      "w": 200,
+      "h": 80,
+      "label": "Refresh",
+      "on_tap": {
+        "type": "refresh"
+      }
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 824,
+      "w": 200,
+      "h": 80,
+      "label": "Back",
+      "on_tap": {
+        "type": "back"
+      },
+      "on_hold": {
+        "type": "home"
+      }
+    }
+  ],
+  "vars": {
+    "page": "1",
+    "pool": "off"
+  }
+}

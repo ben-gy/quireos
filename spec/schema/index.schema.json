@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quireos.org/spec/1/index.schema.json",
+  "title": "QuireOS store index (spec_version 1, §4)",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "store",
+    "apps"
+  ],
+  "properties": {
+    "spec_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "store": {
+      "type": "object",
+      "required": [
+        "name",
+        "updated"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "updated": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2}(\\.\\d+)?)?(Z|[+-]\\d{2}:?\\d{2})$"
+        }
+      }
+    },
+    "apps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/app"
+      }
+    }
+  },
+  "$defs": {
+    "app": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "tagline",
+        "icon",
+        "version",
+        "manifest",
+        "min_os"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,31}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 24
+        },
+        "tagline": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "icon": {
+          "type": "string",
+          "pattern": "^([a-z0-9][a-z0-9_-]{0,63}|https?://.+|/.+)$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "manifest": {
+          "type": "string",
+          "pattern": "^https?://[^/?#\\s]+.*$"
+        },
+        "min_os": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "screens": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{1,4}x[1-9]\\d{1,4}$"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "author": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "hosted",
+            "external"
+          ]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public",
+            "unlisted",
+            "private"
+          ]
+        },
+        "installs": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

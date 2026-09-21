@@ -1,0 +1,11 @@
+{
+  "spec_version": 1,
+  "id": "hello",
+  "name": "Hello",
+  "version": "1.0.0",
+  "min_os": "0.1.0",
+  "icon": "star",
+  "orientation": "portrait",
+  "screens": ["540x960"],
+  "entry": "/apps/hello/screen.json"
+}

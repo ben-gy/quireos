@@ -1,0 +1,2984 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quireos.org/spec/1/screen.schema.json",
+  "title": "QuireOS screen document (spec_version 1, §6)",
+  "description": "Structural rules only. Template syntax, template roots, secret placement, network policy, the 32 kB / 512-byte size limits, image counts and grid-child widget counts are checked by @quireos/sdk validateScreen.",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "id",
+    "widgets"
+  ],
+  "properties": {
+    "spec_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^(https?://[^/?#\\s]+.*|/[^/].*|/)$"
+    },
+    "ttl": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "refresh": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "partial",
+        "full"
+      ]
+    },
+    "data": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "$ref": "#/$defs/data_source"
+      }
+    },
+    "vars": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/value"
+      },
+      "maxProperties": 16
+    },
+    "widgets": {
+      "type": "array",
+      "maxItems": 96,
+      "items": {
+        "$ref": "#/$defs/widget"
+      }
+    }
+  },
+  "$defs": {
+    "scalar": {
+      "type": [
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "value": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/scalar"
+        },
+        {
+          "$ref": "#/$defs/cond"
+        }
+      ]
+    },
+    "cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/value2"
+        },
+        "else": {
+          "$ref": "#/$defs/value2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "value2": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/scalar"
+        },
+        {
+          "$ref": "#/$defs/cond2"
+        }
+      ]
+    },
+    "cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/value3"
+        },
+        "else": {
+          "$ref": "#/$defs/value3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "value3": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/scalar"
+        },
+        {
+          "$ref": "#/$defs/cond3"
+        }
+      ]
+    },
+    "cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/scalar"
+        },
+        "else": {
+          "$ref": "#/$defs/scalar"
+        }
+      },
+      "additionalProperties": false
+    },
+    "string": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/string_cond"
+        }
+      ]
+    },
+    "string_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/string_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/string_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "string_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/string_cond2"
+        }
+      ]
+    },
+    "string_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/string_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/string_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "string_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/string_cond3"
+        }
+      ]
+    },
+    "string_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "color": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15
+        },
+        {
+          "$ref": "#/$defs/color_cond"
+        }
+      ]
+    },
+    "color_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/color_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/color_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "color_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/color_cond2"
+        }
+      ]
+    },
+    "color_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/color_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/color_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "color_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/color_cond3"
+        }
+      ]
+    },
+    "color_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "color_null": {
+      "anyOf": [
+        {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 15
+        },
+        {
+          "$ref": "#/$defs/color_null_cond"
+        }
+      ]
+    },
+    "color_null_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/color_null_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/color_null_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "color_null_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/color_null_cond2"
+        }
+      ]
+    },
+    "color_null_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/color_null_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/color_null_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "color_null_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/color_null_cond3"
+        }
+      ]
+    },
+    "color_null_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 15
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "text_size": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "2xl",
+                "3xl",
+                "digits"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/text_size_cond"
+        }
+      ]
+    },
+    "text_size_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/text_size_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/text_size_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "text_size_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "2xl",
+                "3xl",
+                "digits"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/text_size_cond2"
+        }
+      ]
+    },
+    "text_size_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/text_size_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/text_size_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "text_size_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "2xl",
+                "3xl",
+                "digits"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/text_size_cond3"
+        }
+      ]
+    },
+    "text_size_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "2xl",
+                "3xl",
+                "digits"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "2xl",
+                "3xl",
+                "digits"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "icon_size": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/icon_size_cond"
+        }
+      ]
+    },
+    "icon_size_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/icon_size_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/icon_size_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "icon_size_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/icon_size_cond2"
+        }
+      ]
+    },
+    "icon_size_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/icon_size_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/icon_size_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "icon_size_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/icon_size_cond3"
+        }
+      ]
+    },
+    "icon_size_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "weight": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "regular",
+                "bold"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/weight_cond"
+        }
+      ]
+    },
+    "weight_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/weight_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/weight_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "weight_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "regular",
+                "bold"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/weight_cond2"
+        }
+      ]
+    },
+    "weight_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/weight_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/weight_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "weight_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "regular",
+                "bold"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/weight_cond3"
+        }
+      ]
+    },
+    "weight_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "regular",
+                "bold"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "regular",
+                "bold"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "align": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/align_cond"
+        }
+      ]
+    },
+    "align_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/align_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/align_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "align_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/align_cond2"
+        }
+      ]
+    },
+    "align_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/align_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/align_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "align_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/align_cond3"
+        }
+      ]
+    },
+    "align_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "valign": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "top",
+                "middle",
+                "bottom"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/valign_cond"
+        }
+      ]
+    },
+    "valign_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/valign_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/valign_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "valign_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "top",
+                "middle",
+                "bottom"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/valign_cond2"
+        }
+      ]
+    },
+    "valign_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/valign_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/valign_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "valign_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "top",
+                "middle",
+                "bottom"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/valign_cond3"
+        }
+      ]
+    },
+    "valign_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "top",
+                "middle",
+                "bottom"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "top",
+                "middle",
+                "bottom"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "feedback": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "invert",
+                "none"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/feedback_cond"
+        }
+      ]
+    },
+    "feedback_cond": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/feedback_v2"
+        },
+        "else": {
+          "$ref": "#/$defs/feedback_v2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "feedback_v2": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "invert",
+                "none"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/feedback_cond2"
+        }
+      ]
+    },
+    "feedback_cond2": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "$ref": "#/$defs/feedback_v3"
+        },
+        "else": {
+          "$ref": "#/$defs/feedback_v3"
+        }
+      },
+      "additionalProperties": false
+    },
+    "feedback_v3": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "invert",
+                "none"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        {
+          "$ref": "#/$defs/feedback_cond3"
+        }
+      ]
+    },
+    "feedback_cond3": {
+      "type": "object",
+      "required": [
+        "if",
+        "then"
+      ],
+      "properties": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "invert",
+                "none"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        },
+        "else": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "invert",
+                "none"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "\\{\\{"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "navigate",
+            "submit",
+            "http",
+            "set",
+            "refresh",
+            "back",
+            "home"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/navigate"
+        },
+        {
+          "$ref": "#/$defs/submit"
+        },
+        {
+          "$ref": "#/$defs/http"
+        },
+        {
+          "$ref": "#/$defs/set"
+        },
+        {
+          "$ref": "#/$defs/refresh"
+        },
+        {
+          "$ref": "#/$defs/back"
+        },
+        {
+          "$ref": "#/$defs/home"
+        }
+      ]
+    },
+    "navigate": {
+      "type": "object",
+      "required": [
+        "type",
+        "url"
+      ],
+      "properties": {
+        "type": {
+          "const": "navigate"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "replace": {
+          "type": "boolean"
+        }
+      }
+    },
+    "submit": {
+      "type": "object",
+      "required": [
+        "type",
+        "event"
+      ],
+      "properties": {
+        "type": {
+          "const": "submit"
+        },
+        "event": {
+          "type": "string",
+          "minLength": 1
+        },
+        "args": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/value"
+          }
+        },
+        "then": {
+          "type": "string",
+          "enum": [
+            "none",
+            "refresh",
+            "back",
+            "home",
+            "navigate"
+          ]
+        },
+        "then_url": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "after": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3600
+        },
+        "set": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/value"
+          },
+          "maxProperties": 16
+        }
+      },
+      "if": {
+        "properties": {
+          "then": {
+            "const": "navigate"
+          }
+        },
+        "required": [
+          "then"
+        ]
+      },
+      "then": {
+        "properties": {
+          "then_url": {
+            "type": "string",
+            "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+          }
+        },
+        "required": [
+          "then_url"
+        ]
+      }
+    },
+    "http": {
+      "type": "object",
+      "required": [
+        "type",
+        "url"
+      ],
+      "properties": {
+        "type": {
+          "const": "http"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "body": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "body_raw": {
+          "type": "boolean"
+        },
+        "then": {
+          "type": "string",
+          "enum": [
+            "none",
+            "refresh",
+            "back",
+            "home",
+            "navigate"
+          ]
+        },
+        "then_url": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "after": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3600
+        },
+        "set": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/value"
+          },
+          "maxProperties": 16
+        }
+      },
+      "if": {
+        "properties": {
+          "then": {
+            "const": "navigate"
+          }
+        },
+        "required": [
+          "then"
+        ]
+      },
+      "then": {
+        "properties": {
+          "then_url": {
+            "type": "string",
+            "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+          }
+        },
+        "required": [
+          "then_url"
+        ]
+      }
+    },
+    "set": {
+      "type": "object",
+      "required": [
+        "type",
+        "vars"
+      ],
+      "properties": {
+        "type": {
+          "const": "set"
+        },
+        "vars": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/value"
+          },
+          "maxProperties": 16
+        },
+        "then": {
+          "type": "string",
+          "enum": [
+            "none",
+            "refresh",
+            "back",
+            "home",
+            "navigate"
+          ]
+        },
+        "then_url": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "after": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3600
+        },
+        "set": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/value"
+          },
+          "maxProperties": 16
+        }
+      },
+      "if": {
+        "properties": {
+          "then": {
+            "const": "navigate"
+          }
+        },
+        "required": [
+          "then"
+        ]
+      },
+      "then": {
+        "properties": {
+          "then_url": {
+            "type": "string",
+            "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+          }
+        },
+        "required": [
+          "then_url"
+        ]
+      }
+    },
+    "refresh": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "refresh"
+        }
+      }
+    },
+    "back": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "back"
+        }
+      }
+    },
+    "home": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "home"
+        }
+      }
+    },
+    "text": {
+      "type": "object",
+      "required": [
+        "type",
+        "x",
+        "y",
+        "w",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "text"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "text": {
+          "$ref": "#/$defs/string"
+        },
+        "size": {
+          "$ref": "#/$defs/text_size"
+        },
+        "weight": {
+          "$ref": "#/$defs/weight"
+        },
+        "align": {
+          "$ref": "#/$defs/align"
+        },
+        "valign": {
+          "$ref": "#/$defs/valign"
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "cell": false
+      }
+    },
+    "text_child": {
+      "type": "object",
+      "required": [
+        "type",
+        "cell",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "text"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "text": {
+          "$ref": "#/$defs/string"
+        },
+        "size": {
+          "$ref": "#/$defs/text_size"
+        },
+        "weight": {
+          "$ref": "#/$defs/weight"
+        },
+        "align": {
+          "$ref": "#/$defs/align"
+        },
+        "valign": {
+          "$ref": "#/$defs/valign"
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        }
+      }
+    },
+    "rect": {
+      "type": "object",
+      "required": [
+        "type",
+        "x",
+        "y",
+        "w",
+        "h"
+      ],
+      "properties": {
+        "type": {
+          "const": "rect"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "fill": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke_w": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "cell": false
+      }
+    },
+    "rect_child": {
+      "type": "object",
+      "required": [
+        "type",
+        "cell"
+      ],
+      "properties": {
+        "type": {
+          "const": "rect"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "fill": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke_w": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        }
+      }
+    },
+    "line": {
+      "type": "object",
+      "required": [
+        "type",
+        "x1",
+        "y1",
+        "x2",
+        "y2"
+      ],
+      "properties": {
+        "type": {
+          "const": "line"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "x1": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y1": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "x2": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y2": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "cell": false
+      }
+    },
+    "line_child": {
+      "type": "object",
+      "required": [
+        "type",
+        "cell",
+        "x1",
+        "y1",
+        "x2",
+        "y2"
+      ],
+      "properties": {
+        "type": {
+          "const": "line"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "x1": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y1": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "x2": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y2": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "required": [
+        "type",
+        "x",
+        "y",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "icon"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "name": {
+          "$ref": "#/$defs/string"
+        },
+        "size": {
+          "$ref": "#/$defs/icon_size"
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "cell": false
+      }
+    },
+    "icon_child": {
+      "type": "object",
+      "required": [
+        "type",
+        "cell",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "const": "icon"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "name": {
+          "$ref": "#/$defs/string"
+        },
+        "size": {
+          "$ref": "#/$defs/icon_size"
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "required": [
+        "type",
+        "x",
+        "y",
+        "w",
+        "h",
+        "src"
+      ],
+      "properties": {
+        "type": {
+          "const": "image"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "src": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "ttl": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "cell": false
+      }
+    },
+    "image_child": {
+      "type": "object",
+      "required": [
+        "type",
+        "cell",
+        "src"
+      ],
+      "properties": {
+        "type": {
+          "const": "image"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "src": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "ttl": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        }
+      }
+    },
+    "button": {
+      "type": "object",
+      "required": [
+        "type",
+        "x",
+        "y",
+        "w",
+        "h",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "button"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "label": {
+          "$ref": "#/$defs/string"
+        },
+        "sub": {
+          "$ref": "#/$defs/string"
+        },
+        "icon": {
+          "$ref": "#/$defs/string"
+        },
+        "size": {
+          "$ref": "#/$defs/text_size"
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "fill": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke_w": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "cell": false
+      }
+    },
+    "button_child": {
+      "type": "object",
+      "required": [
+        "type",
+        "cell",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "const": "button"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "cell": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/string"
+        },
+        "sub": {
+          "$ref": "#/$defs/string"
+        },
+        "icon": {
+          "$ref": "#/$defs/string"
+        },
+        "size": {
+          "$ref": "#/$defs/text_size"
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "fill": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke": {
+          "$ref": "#/$defs/color_null"
+        },
+        "stroke_w": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        }
+      }
+    },
+    "grid": {
+      "type": "object",
+      "required": [
+        "type",
+        "x",
+        "y",
+        "cols",
+        "rows",
+        "cell_w",
+        "cell_h",
+        "gap",
+        "children"
+      ],
+      "properties": {
+        "type": {
+          "const": "grid"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "when": {
+          "type": "string"
+        },
+        "on_tap": {
+          "$ref": "#/$defs/action"
+        },
+        "on_hold": {
+          "$ref": "#/$defs/action"
+        },
+        "feedback": {
+          "$ref": "#/$defs/feedback"
+        },
+        "x": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "y": {
+          "type": "integer",
+          "minimum": -32768,
+          "maximum": 32767
+        },
+        "cols": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "cell_w": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32767
+        },
+        "cell_h": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32767
+        },
+        "gap": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32767
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/grid_child"
+          }
+        },
+        "cell": false
+      }
+    },
+    "widget": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "rect",
+            "line",
+            "icon",
+            "image",
+            "button",
+            "grid"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/text"
+        },
+        {
+          "$ref": "#/$defs/rect"
+        },
+        {
+          "$ref": "#/$defs/line"
+        },
+        {
+          "$ref": "#/$defs/icon"
+        },
+        {
+          "$ref": "#/$defs/image"
+        },
+        {
+          "$ref": "#/$defs/button"
+        },
+        {
+          "$ref": "#/$defs/grid"
+        }
+      ]
+    },
+    "grid_child": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "rect",
+            "line",
+            "icon",
+            "image",
+            "button"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/text_child"
+        },
+        {
+          "$ref": "#/$defs/rect_child"
+        },
+        {
+          "$ref": "#/$defs/line_child"
+        },
+        {
+          "$ref": "#/$defs/icon_child"
+        },
+        {
+          "$ref": "#/$defs/image_child"
+        },
+        {
+          "$ref": "#/$defs/button_child"
+        }
+      ]
+    },
+    "data_source": {
+      "type": "object",
+      "required": [
+        "id",
+        "url"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{0,31}$",
+          "not": {
+            "enum": [
+              "settings",
+              "vars",
+              "device"
+            ]
+          }
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^(https?://[^/?#\\s{]+.*|/[^/].*|/|\\{\\{\\s*settings\\.[a-z][a-z0-9_-]{0,31}\\s*\\}\\}.*)$"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST"
+          ]
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "body": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ]
+        },
+        "body_raw": {
+          "type": "boolean"
+        },
+        "ttl": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

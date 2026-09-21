@@ -1,0 +1,51 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "text": "Hello"
+    }
+  ],
+  "data": [
+    {
+      "id": "d0",
+      "url": "/d0.json"
+    },
+    {
+      "id": "d1",
+      "url": "/d1.json"
+    },
+    {
+      "id": "d2",
+      "url": "/d2.json"
+    },
+    {
+      "id": "d3",
+      "url": "/d3.json"
+    },
+    {
+      "id": "d4",
+      "url": "/d4.json"
+    },
+    {
+      "id": "d5",
+      "url": "/d5.json"
+    },
+    {
+      "id": "d6",
+      "url": "/d6.json"
+    },
+    {
+      "id": "d7",
+      "url": "/d7.json"
+    },
+    {
+      "id": "d8",
+      "url": "/d8.json"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "w": 400,
+      "text": "Row 0",
+      "on_tap": {
+        "type": "http",
+        "url": "/x",
+        "body": 42
+      }
+    }
+  ]
+}

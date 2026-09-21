@@ -1,0 +1,19 @@
+{
+  "spec_version": 1,
+  "id": "extra",
+  "notes": "ignored by devices",
+  "widgets": [
+    {
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "w": 100,
+      "text": "hi",
+      "colour": 3,
+      "on_tap": {
+        "type": "refresh",
+        "hard": true
+      }
+    }
+  ]
+}

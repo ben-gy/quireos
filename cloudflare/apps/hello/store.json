@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "tagline": "The ten-line tutorial app",
+  "description": "Hello is the smallest possible QuireOS app: a manifest, two static screens and an icon. Install it to see templates, navigation and the built-in clock refresh in action, then copy it to start your own.",
+  "categories": ["demo"],
+  "screenshots": [],
+  "changelog": [
+    { "version": "1.0.0", "notes": "First release." }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "spec_version": 1,
+  "id": "home",
+  "widgets": [
+    {
+      "type": "button",
+      "x": 0,
+      "y": 0,
+      "w": 100,
+      "h": 50,
+      "label": "abs",
+      "on_tap": {
+        "type": "navigate",
+        "url": "https://other.example.com/screens/x.json?a=1&b={{vars.x}}"
+      }
+    },
+    {
+      "type": "button",
+      "x": 0,
+      "y": 60,
+      "w": 100,
+      "h": 50,
+      "label": "private http",
+      "on_tap": {
+        "type": "http",
+        "url": "http://192.168.0.1/api"
+      }
+    },
+    {
+      "type": "button",
+      "x": 0,
+      "y": 120,
+      "w": 100,
+      "h": 50,
+      "label": "settings origin",
+      "on_tap": {
+        "type": "http",
+        "url": "{{ settings.base }}/api/{{vars.x}}"
+      }
+    },
+    {
+      "type": "button",
+      "x": 0,
+      "y": 180,
+      "w": 100,
+      "h": 50,
+      "label": "relative",
+      "on_tap": {
+        "type": "navigate",
+        "url": "/screens/y.json#frag"
+      }
+    },
+    {
+      "type": "image",
+      "x": 0,
+      "y": 240,
+      "w": 100,
+      "h": 100,
+      "src": "https://img.example.com/x.png"
+    }
+  ],
+  "vars": {
+    "x": "1"
+  }
+}
