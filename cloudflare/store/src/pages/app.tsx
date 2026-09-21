@@ -1,12 +1,12 @@
 import type { FC } from "hono/jsx";
 import type { AppListing, VersionRow } from "../db";
 import { formatDate } from "../util";
-import type { StoreIndexApp } from "../validate";
+import type { StoreApp } from "../validate";
 import { Csrf, Icon, Layout, type PageProps } from "./layout";
 
 export type AppPageProps = PageProps & {
   app: AppListing;
-  entry: StoreIndexApp | null;
+  entry: StoreApp | null;
   versions: VersionRow[];
   screenshots: string[];
   manifestFor: (v: string) => string | null;

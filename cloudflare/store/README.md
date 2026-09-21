@@ -16,7 +16,8 @@ src/auth.ts         cookie sessions in D1, GitHub OAuth, CSRF tokens
 src/device_auth.ts  bearer device tokens (SHA-256 hashed in D1)
 src/db.ts           typed D1 queries
 src/index_doc.ts    builds the §4 index document, visibility rules
-src/validate.ts     single import point for validation (→ @quireos/sdk; stub until then)
+src/validate.ts     single import point for validation and bundle helpers (re-exports @quireos/sdk)
+src/icons.ts        icon names from spec/icons.json, passed to the SDK validators
 migrations/         D1 migrations (wrangler d1 migrations …)
 public/style.css    the only static asset
 test/               vitest suites with a node:sqlite-backed fake D1 and an in-memory R2
@@ -156,10 +157,10 @@ Secure on https.
 
 ## SDK dependency
 
-`src/validate.ts` is the only place that imports validation and bundle helpers
-(`validateBundle`, `validateManifest`, `validateIndex`, `validateScreen`, `bundleMount`,
-`rebaseBundle`, `classifyUrl`, types `Manifest`, `StoreIndex`, `StoreMeta`). It currently
-re-exports a stub (`src/validate_stub.ts`) that mirrors the SDK's semantics, because
-`@quireos/sdk` had no build when the store was written. When `cloudflare/sdk` builds, change that
-one line to `export * from "@quireos/sdk"`, add `"@quireos/sdk": "*"` to `dependencies`, run
-`npm install` in `cloudflare/`, and delete the stub.
+`src/validate.ts` is the only place that imports validation and bundle helpers, and it simply
+re-exports `@quireos/sdk` (`validateBundle`, `validateManifest`, `validateIndex`, `bundleMount`,
+`rebaseBundle`, types `Manifest`, `StoreApp`, `StoreIndex`, `StoreMeta`). Uploads are checked with
+exactly the rules `tools/validate` applies, including icon names from `spec/icons.json`
+(`src/icons.ts`), declared `hosts`/`settings` for every origin and template a screen uses, and the
+bundle mount rule. The SDK is a workspace package: after changing `cloudflare/sdk`, run its build
+(`npm run build -w sdk`) so `dist/` is current before running the store's tests.

@@ -106,7 +106,7 @@ describe("publishing a hosted bundle", () => {
     };
     expect(await bad(zipSync({ "readme.txt": strToU8("hi") }))).toContain("must contain manifest.json at its root");
     expect(await bad(bundleZip(manifestFor("other")))).toContain('manifest.id is "other"');
-    expect(await bad(bundleZip(manifestFor("hello", "1.0")))).toContain("manifest.json.version");
+    expect(await bad(bundleZip(manifestFor("hello", "1.0")))).toContain("manifest.json#/version");
     expect(await bad(bundleZip({ ...manifestFor("hello"), entry: "/missing.json" }))).toContain("does not exist in the bundle (expected file missing.json)");
     // SDK rule: the entry's directory is the mount, so the entry file must sit at the bundle root.
     expect(await bad(bundleZip({ ...manifestFor("hello"), entry: "/screens/two.json" }))).toContain("expected file two.json");
@@ -114,6 +114,11 @@ describe("publishing a hosted bundle", () => {
     expect(await bad(bundleZip(manifestFor("hello"), { "screens/broken.json": strToU8("{oops") }))).toContain("invalid JSON");
     expect(await bad(bundleZip(manifestFor("hello"), { "evil/../../x.json": strToU8("{}") }))).toContain("unsafe path");
     expect(await bad(strToU8("definitely not a zip"))).toContain("not a valid zip");
+    // SDK semantics reach the store unweakened: icon names are checked against spec/icons.json,
+    // and templates/origins used by screens must be declared in the manifest.
+    expect(await bad(bundleZip(manifestFor("hello", "1.0.0", { icon: "definitely-not-an-icon" })))).toMatch(/icon/);
+    expect(await bad(bundleZip(manifestFor("hello", "1.0.0", { settings: [] })))).toContain("ha_url");
+    expect(await bad(bundleZip(manifestFor("hello", "1.0.0", { hosts: ["{{settings.ha_url}}"] })))).toContain("api.example.com");
   });
 
   it("requires a strictly greater version and keeps versions immutable", async () => {
@@ -253,6 +258,6 @@ describe("helpers", () => {
     expect(validateManifest(manifestFor("ok")).ok).toBe(true);
     const bad = validateManifest({ ...manifestFor("Bad_Id", "1"), name: "x".repeat(30), settings: [{ key: "t", label: "T", type: "secret", default: "x" }], hosts: ["example.com"] });
     expect(bad.ok).toBe(false);
-    expect(bad.errors.map((e) => e.path).sort()).toEqual(["hosts[0]", "id", "name", "settings[0].default", "version"]);
+    expect(bad.errors.map((e) => e.path).sort()).toEqual(["/hosts/0", "/id", "/name", "/settings/0/default", "/version"]);
   });
 });

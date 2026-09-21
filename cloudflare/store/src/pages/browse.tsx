@@ -1,9 +1,9 @@
 import type { FC } from "hono/jsx";
-import type { StoreIndexApp } from "../validate";
+import type { StoreApp } from "../validate";
 import { Icon, Layout, type PageProps } from "./layout";
 
 export type BrowseProps = PageProps & {
-  apps: StoreIndexApp[];
+  apps: StoreApp[];
   categories: string[];
   active: string | null;
 };

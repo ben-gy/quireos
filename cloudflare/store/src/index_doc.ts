@@ -3,7 +3,7 @@ import type { AppListing } from "./db";
 import { installCounts, listIndexApps } from "./db";
 import type { Device, User } from "./env";
 import { parseJsonArray, sha256Hex } from "./util";
-import type { Manifest, StoreIndex, StoreIndexApp } from "./validate";
+import type { Manifest, StoreIndex, StoreApp } from "./validate";
 
 export function parseManifest(json: string | null): Manifest | null {
   if (!json) return null;
@@ -58,13 +58,13 @@ export function isListedFor(app: AppListing, userId: number | null): boolean {
   return app.visibility === "public" && !app.unlisted_by_admin;
 }
 
-export function indexEntry(app: AppListing, origin: string, installs: number, authed: boolean): StoreIndexApp | null {
+export function indexEntry(app: AppListing, origin: string, installs: number, authed: boolean): StoreApp | null {
   const manifest = manifestUrl(app, origin);
   if (!app.latest_version || !manifest) return null;
   const m = parseManifest(app.latest_manifest_json);
   const screens = parseJsonArray(app.screens);
   const categories = parseJsonArray(app.categories);
-  const entry: StoreIndexApp = {
+  const entry: StoreApp = {
     id: app.slug,
     name: app.name,
     tagline: app.tagline,
@@ -89,7 +89,7 @@ export async function buildIndex(
   const userId = opts.device?.user_id ?? null;
   const authed = opts.device !== null;
   const [apps, counts] = await Promise.all([listIndexApps(db, userId), installCounts(db)]);
-  const entries: StoreIndexApp[] = [];
+  const entries: StoreApp[] = [];
   let updated = "";
   for (const app of apps) {
     if (!isListedFor(app, userId)) continue;

@@ -179,8 +179,23 @@ export async function createAppRow(
     .run();
 }
 
+/**
+ * A spec-valid manifest. The fixture screens (test/publish.test.ts) fetch `https://api.example.com`
+ * and `{{settings.ha_url}}`, so those are declared here as `hosts` and a `url` setting.
+ */
 export function manifestFor(slug: string, version = "1.0.0", extra: Record<string, unknown> = {}) {
-  return { spec_version: 1, id: slug, name: slug.slice(0, 24), version, min_os: "0.1.0", icon: "star", entry: "/home.json", ...extra };
+  return {
+    spec_version: 1,
+    id: slug,
+    name: slug.slice(0, 24),
+    version,
+    min_os: "0.1.0",
+    icon: "star",
+    entry: "/home.json",
+    hosts: ["https://api.example.com", "{{settings.ha_url}}"],
+    settings: [{ key: "ha_url", label: "Home Assistant URL", type: "url", required: true }],
+    ...extra,
+  };
 }
 
 export async function publishRow(env: TestEnv, slug: string, version = "1.0.0", opts: { hosted?: boolean; manifest?: Record<string, unknown> } = {}): Promise<void> {

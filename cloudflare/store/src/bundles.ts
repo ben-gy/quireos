@@ -8,6 +8,7 @@ import { deviceAuth } from "./device_auth";
 import type { Bindings, Env } from "./env";
 import { canSee } from "./index_doc";
 import { compareVersions, contentTypeFor, etagMatches, parseCategories, parseUrlList, SLUG_RE, VERSION_RE } from "./util";
+import { ICON_NAMES } from "./icons";
 import { bundleMount, rebaseBundle, validateBundle, validateManifest, type Manifest, type StoreMeta } from "./validate";
 
 export const MAX_BUNDLE_BYTES = 5 * 1024 * 1024;
@@ -112,7 +113,7 @@ export async function publishHostedBundle(env: Bindings, app: AppListing, zip: U
   const { files, errors } = unzipBundle(zip);
   if (errors.length) return { ok: false, errors };
 
-  const v = validateBundle(files);
+  const v = validateBundle(files, { icons: ICON_NAMES });
   if (!v.ok) return { ok: false, errors: v.errors.map((e) => `${e.path}: ${e.message}`) };
   const manifest = JSON.parse(dec.decode(files.get("manifest.json")!)) as Manifest;
   const versions = await listVersions(env.DB, app.slug);
@@ -180,7 +181,7 @@ export async function publishExternal(env: Bindings, app: AppListing, changelog:
   } catch (err) {
     return { ok: false, errors: [`manifest is not valid JSON: ${(err as Error).message}`] };
   }
-  const v = validateManifest(manifest);
+  const v = validateManifest(manifest, { icons: ICON_NAMES });
   if (!v.ok) return { ok: false, errors: v.errors.map((e) => `${e.path}: ${e.message}`) };
   const versions = await listVersions(env.DB, app.slug);
   const gate = versionGate(app, versions, manifest);
