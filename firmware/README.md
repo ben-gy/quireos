@@ -9,7 +9,9 @@ PlatformIO project (espressif32@6.12.0, Arduino framework). Layout:
 - `src/runtime/` — screen JSON parser, widget tree, renderer, expression evaluator, PNG decoding, fonts, icons.
 - `emu/` — builds `src/os` + `src/runtime` + `boards/host` into a macOS binary with an HTTP frame server.
 - `test/host/` — conformance and HAL contract tests (plain clang, no Arduino).
-- `lib/` — vendored libraries (see ../THIRD_PARTY.md). `_from_hn_t5/` holds reference sources from
+- `src/runtime/third_party/` — vendored ArduinoJson, pngle and miniz (see `third_party/README.md`).
+- `tools/` — `gen_fonts.py` (Roboto tables + `spec/fonts.json` for every profile in `design/profiles.json`), `gen_icons.py` (icon tiers from `design/icons/icons.json`), `gen_www.py` (gzips the settings page).
+- `lib/` — vendored board libraries (see ../THIRD_PARTY.md). `_from_hn_t5/` holds reference sources from
   ben-gy/hn-t5-epaper used while porting the t5pro board; delete once the port is complete.
 
 Rules: no pin numbers, I2C addresses, vendor driver calls or RTOS calls outside `src/boards/`. The
