@@ -1,0 +1,36 @@
+{
+  "name": "t5pro",
+  "title": "LilyGo T5 E-Paper S3 Pro",
+  "profile": "t5pro",
+  "platformio_env": "t5pro",
+  "default_rotation": "R90",
+  "screen": {
+    "native_w": 960,
+    "native_h": 540,
+    "logical_w": 540,
+    "logical_h": 960,
+    "bpp": 4,
+    "greys": 16,
+    "dpi": 235,
+    "partial_update": true,
+    "fast_update": true,
+    "full_ms": 1200,
+    "partial_ms": 400,
+    "rotations": ["R0", "R90", "R180", "R270"],
+    "screen_string": "540x960x16@235"
+  },
+  "text_sizes_px": { "xs": 24, "sm": 29, "md": 36, "lg": 44, "xl": 56, "2xl": 72, "3xl": 96, "digits": 150 },
+  "icon_sizes_px": { "sm": 32, "md": 48, "lg": 96 },
+  "input": {
+    "touch": true,
+    "touch_points": 5,
+    "buttons": [
+      { "id": 1, "label": "S3", "wake": false },
+      { "id": 2, "label": "BOOT", "wake": true }
+    ]
+  },
+  "power": { "battery": true, "charging": true, "frontlight": true, "deep_sleep": true, "touch_wake": true },
+  "clock": "PCF8563",
+  "storage": { "kv": "nvs", "fs": "littlefs", "fs_bytes": 8257536 },
+  "net": { "wifi": true, "provisioning": "captive-portal", "hostname": "quireos", "ota": "espota" }
+}

@@ -1,6 +1,9 @@
+# QuireOS 16 MB layout: two 4 MB app slots so ArduinoOTA (espota) has a partition to write into,
+# ~7.9 MB LittleFS for caches, NVS 20 kB. See spec/NOTES-t5pro.md.
 # Name,     Type, SubType,  Offset,   Size,     Flags
 nvs,        data, nvs,      0x9000,   0x5000,
 otadata,    data, ota,      0xe000,   0x2000,
 app0,       app,  ota_0,    0x10000,  0x400000,
-spiffs,     data, spiffs,   0x410000, 0xBE0000,
+app1,       app,  ota_1,    0x410000, 0x400000,
+spiffs,     data, spiffs,   0x810000, 0x7E0000,
 coredump,   data, coredump, 0xFF0000, 0x10000,
