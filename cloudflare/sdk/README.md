@@ -9,7 +9,7 @@ TypeScript SDK for writing QuireOS apps and tooling. Implements `spec/SPEC.md` (
 | `expr` | The reference §3 evaluator: `evaluate(template, ctx)`, `evaluateCond(cond, ctx)`, `resolveValue(value, ctx)`, `resolveDeep`, `tokenize`, `parseTime`/`formatTime` |
 | `wrap` | §6.4 `measure(text, size, weight, profile)` and `wrap(text, { w, lines, size, weight, profile })`, byte-identical to the device |
 | `profiles` | `t5pro`, `loadProfile(json, name)`, `scaleProfile`, and `ICON_NAMES` (the icon names the reference firmware compiles); `npm run sync-profiles` refreshes both from `spec/fonts.json` and `spec/icons.json` |
-| `validate` | `validateIndex`, `validateManifest`, `validateScreen`, `validateBundle` (+ `rebaseBundle`, `LIMITS`, the id/version regexes). Every limit in the spec is enforced |
+| `validate` | `validateIndex`, `validateManifest`, `validateScreen`, `validateBundle` (+ `rebaseBundle`, `LIMITS`, the id/version regexes). Every limit in the spec is enforced. Icon names are checked against `ICON_NAMES` unless you pass your own `icons` list, or `[]` to skip |
 | `request` | `parseDevice(req)` → `DeviceContext` from the §2 headers (`X-Screen`, `X-App-Settings`, …) |
 | `response` | `json(doc, req)` (canonical JSON, strong ETag, `304`), `png(bytes, req, seed)`, `error(code, message, status)`, `AppError` |
 | `app` | `createApp({ manifest, screens, onEvent, images })` → a Workers `fetch` handler with `/manifest.json`, `/screens/:id.json`, `/event`, `/img/:name.png` |

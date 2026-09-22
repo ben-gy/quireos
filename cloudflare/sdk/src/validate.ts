@@ -14,8 +14,18 @@ import {
   tokenize,
 } from "./expr.js";
 import type { Expr } from "./expr.js";
-import { ICON_NAMES_UNCOMPILED } from "./profiles/icons.generated.js";
+import { ICON_NAMES, ICON_NAMES_UNCOMPILED } from "./profiles/icons.generated.js";
 import type { Manifest, Setting, ValidationError, ValidationResult } from "./types.js";
+
+/**
+ * The icon names to check against. Omitting `icons` checks against the reference firmware's
+ * compiled set, because the alternative silently skips the check and ships blanks to glass; pass
+ * a wider list for a board that compiles more, or `[]` to skip deliberately.
+ */
+function iconsFor(icons: Iterable<string> | undefined): Set<string> | undefined {
+  const set = new Set(icons ?? ICON_NAMES);
+  return set.size ? set : undefined;
+}
 
 /**
  * An icon name the caller's set does not contain. A name the design library knows but this
@@ -65,7 +75,10 @@ export interface ValidateOptions {
   manifest?: Manifest;
   /** The app's own origin (`https://app.example.com`), allowed in addition to `manifest.hosts`. */
   origin?: string;
-  /** Known icon names (`spec/icons.json`); when given, icon names are checked against it. */
+  /**
+   * Icon names the target firmware compiles. Defaults to the reference build's set
+   * (`ICON_NAMES`); pass a wider list for a board that compiles more, or `[]` to skip the check.
+   */
   icons?: Iterable<string>;
   /** Byte size of the original document text, when the caller has it. */
   bytes?: number;
@@ -676,7 +689,7 @@ export function validateScreen(doc: unknown, opts: ValidateOptions = {}): Valida
   const parsed = parseInput(doc, e);
   const d = requireObject(parsed, e, "screen");
   if (!d) return e.result();
-  iconSet = opts.icons ? new Set(opts.icons) : undefined;
+  iconSet = iconsFor(opts.icons);
 
   const bytes = opts.bytes ?? parsed!.bytes ?? utf8Length(JSON.stringify(d));
   if (bytes > LIMITS.DOC_BYTES) e.err("", `document is ${bytes} bytes; the limit is ${LIMITS.DOC_BYTES}`);
@@ -853,7 +866,7 @@ export function validateManifest(doc: unknown, opts: ValidateOptions = {}): Vali
   if (!isStr(d.icon) || d.icon === "") e.err("/icon", "is required");
   else if (/^(https?:\/\/|\/)/.test(d.icon)) checkUrl(d.icon, "/icon", e, scope, {});
   else {
-    const icons = opts.icons ? new Set(opts.icons) : undefined;
+    const icons = iconsFor(opts.icons);
     if (!ICON_NAME_RE.test(d.icon)) e.err("/icon", "must be an icon name or a PNG URL");
     else if (icons && !icons.has(d.icon)) e.err("/icon", unknownIcon(d.icon));
   }
@@ -901,7 +914,7 @@ export function validateIndex(doc: unknown, opts: ValidateOptions = {}): Validat
     e.err("/apps", "apps array is required");
     return e.result();
   }
-  const icons = opts.icons ? new Set(opts.icons) : undefined;
+  const icons = iconsFor(opts.icons);
   const ids = new Set<string>();
   d.apps.forEach((a, i) => {
     const p = `/apps/${i}`;

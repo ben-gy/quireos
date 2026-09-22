@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { encodePng4 } from "../src/png/encode.js";
 import { bundleMount, rebaseBundle, validateBundle, validateIndex, validateManifest, validateScreen, compareVersions, isPrivateHost, classifyUrl } from "../src/validate.js";
+import { ICON_NAMES } from "../src/profiles/icons.generated.js";
 import type { Manifest } from "../src/types.js";
 import { countWidgets } from "../src/screen.js";
 
@@ -305,5 +306,32 @@ describe("disabled and keys", () => {
     expect(validateScreen(base({ keys: { short: { type: "navigate" } } })).errors.map((e) => e.path)).toEqual(["/keys/short/url"]);
     expect(validateScreen(base({ keys: { long: { type: "home" } } })).errors.map((e) => e.path)).toEqual(["/keys/long"]);
     expect(validateScreen(base({ keys: [] })).errors.map((e) => e.path)).toEqual(["/keys"]);
+  });
+});
+
+describe("the icon set defaults", () => {
+  const withIcon = (name: string) => ({
+    spec_version: 1 as const,
+    id: "home",
+    widgets: [{ type: "icon" as const, x: 0, y: 0, w: 36, h: 36, name }],
+  });
+
+  it("checks against the compiled set when the caller forgets to pass one", () => {
+    // The old behaviour skipped the check silently, which shipped blanks to glass.
+    const r = validateScreen(withIcon("airplane"));
+    expect(r.ok).toBe(false);
+    expect(r.errors[0]!.message).toContain("not compiled");
+  });
+
+  it("still accepts a compiled name with no options at all", () => {
+    expect(validateScreen(withIcon("star")).ok).toBe(true);
+  });
+
+  it("skips only when the caller says so with an empty list", () => {
+    expect(validateScreen(withIcon("anything-at-all"), { icons: [] }).ok).toBe(true);
+  });
+
+  it("honours a wider list", () => {
+    expect(validateScreen(withIcon("airplane"), { icons: [...ICON_NAMES, "airplane"] }).ok).toBe(true);
   });
 });

@@ -75,8 +75,9 @@ export function completeManifest(manifest: Manifest, screens: string[], hasEvent
 
 export function createApp<Env = unknown>(opts: AppOptions<Env>): Handler<Env> {
   const manifest = completeManifest(opts.manifest, Object.keys(opts.screens), Boolean(opts.onEvent));
-  const icons = opts.icons ?? ICON_NAMES;
-  const iconList = icons.length ? (icons as string[]) : undefined;
+  // Passed through as-is: validateScreen defaults to the compiled set, and an empty list means
+  // the caller deliberately skipped the check.
+  const iconList = (opts.icons ?? ICON_NAMES) as string[];
   const screenRe = /^\/screens\/([a-z][a-z0-9_-]{0,31})\.json$/;
   const imageRe = /^\/img\/([a-z0-9][a-z0-9_-]{0,63})\.png$/;
 
