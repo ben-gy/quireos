@@ -383,11 +383,18 @@ export class Kit {
   private offGlass(screen: Screen): Problem[] {
     const out: Problem[] = [];
     const SIZES: TextSize[] = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "digits"];
-    // A literal size gives the exact value; anything else gives the largest this profile can draw.
+    // Three cases, not two. An ABSENT size is `md`, which the spec pins exactly; a literal size is
+    // itself; only a size the device resolves later is unknown and takes this profile's largest.
+    // Treating absent as unknown is sound but blind: it quietly stops reporting every widget that
+    // did not state a size, which is most of them.
     const iconPx = (w: { size?: unknown }): number =>
-      w.size === "sm" || w.size === "md" || w.size === "lg" ? this.t.icon[w.size] : this.t.icon.lg;
+      w.size === undefined ? this.t.icon.md
+        : w.size === "sm" || w.size === "md" || w.size === "lg" ? this.t.icon[w.size]
+        : this.t.icon.lg;
     const textLh = (w: { size?: unknown }): number =>
-      typeof w.size === "string" && (SIZES as string[]).includes(w.size) ? this.lh(w.size as TextSize) : this.lh("digits");
+      w.size === undefined ? this.lh("md")
+        : typeof w.size === "string" && (SIZES as string[]).includes(w.size) ? this.lh(w.size as TextSize)
+        : this.lh("digits");
     // The invariant applies to every input, not only the result: an absent `lines` is one line, a
     // number is that number, and anything the device resolves later could be as many as the spec
     // allows. Leaning on NaN to fall through would give the same answer today and silently stop

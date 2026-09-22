@@ -223,13 +223,18 @@ describe("components", () => {
     // The invariant this check lives by: it may be too quiet, but it must never be wrong. Stated
     // as a property rather than prose, because prose is what kept having to be re-derived by hand.
     //
-    // Verified by mutation rather than trusted: each of the three bugs this check has actually had
-    // was reintroduced and confirmed to fail this suite —
-    //   1. testing only the right and bottom edges, so x = -200 w = 100 passed
-    //   2. a conditional `size` falling back to md, when it may resolve to digits
-    //   3. a non-numeric `lines` falling back to one line, when it may resolve to eight
-    // The third is the one worth keeping in mind: before this rewrite it gave the right answer
-    // only because the arithmetic produced NaN and every comparison against NaN is false.
+    // Verified by mutation rather than trusted, and aimed at each half separately, because a
+    // mutation that only probes soundness says nothing about the half that can quietly stop
+    // checking. Every one of these was reintroduced and confirmed to fail this suite:
+    //   soundness     a conditional `size` falling back to md, or an icon's to md
+    //                 a non-numeric `lines` falling back to one line
+    //   completeness  dropping the left edge, or the top edge
+    //                 skipping grid children, or only the `line` ones among them
+    //                 treating an ABSENT size as unknown rather than as the spec's default
+    // Two of those are worth remembering. The `lines` one gave the right answer before this
+    // rewrite only because the arithmetic produced NaN and every comparison against NaN is false.
+    // The absent-size one is sound and still blind: it stops reporting every widget that did not
+    // state a size, which is most of them, and only the completeness half sees it.
     const ui = createKit({ profile: "t5pro" });
     const BIGGEST_LINE = ui.lh("digits"), BIGGEST_ICON = ui.t.icon.lg, MAX_LINES = 8;
     const coords = [-2000, -400, -150, -40, -1, 0, 1, 100, ui.W - 1, ui.W, ui.W + 1, ui.H - 1, ui.H, ui.H + 400];
@@ -249,7 +254,9 @@ describe("components", () => {
         // document states literally at its word, and a field the device resolves later at its
         // maximum — then assert that even at that size it cannot touch the panel.
         const d = w as { type: string; x: number; y: number; w?: number; h?: number; size?: unknown; lines?: unknown };
-        const literalSize = typeof d.size === "string" ? d.size : null;
+        // Three cases, matching the spec: absent means the default `md`, a literal means itself,
+        // and only something the device resolves later is unknown and takes the largest.
+        const literalSize = d.size === undefined ? "md" : typeof d.size === "string" ? d.size : null;
         const lineH = literalSize ? ui.lh(literalSize as never) : BIGGEST_LINE;
         const nLines = d.lines === undefined ? 1 : typeof d.lines === "number" ? d.lines : MAX_LINES;
         const iconPx = literalSize === "sm" || literalSize === "md" || literalSize === "lg" ? ui.t.icon[literalSize] : BIGGEST_ICON;
@@ -270,6 +277,48 @@ describe("components", () => {
     expect(checked).toBeGreaterThan(500);
     expect(flagged).toBeGreaterThan(20);   // the check is doing something, not vacuously passing
     expect(missed).toBe(0);
+  });
+  it("holds the same rule for grid children, in both directions", () => {
+    // Soundness alone would be satisfied by a check that skips every grid child, which is a whole
+    // class of widgets going unchecked with nothing to say so. Inside a grid a child that omits
+    // w/h fills its cell, so no dimension is ever estimated and completeness applies everywhere.
+    const ui = createKit({ profile: "t5pro" });
+    const cellW = 200, cellH = 100, gap = 8, cols = 2, rows = 3;
+    const offsets = [-600, -250, -40, 0, 40, 300, 900];
+    let flagged = 0, missed = 0, checked = 0;
+    for (const gy of [-400, -80, 0, 300, ui.H - 40, ui.H + 40]) {
+      for (const gx of [-500, -40, 0, ui.margin, ui.W - 20, ui.W + 40]) {
+        for (const off of offsets) {
+          for (let cell = 0; cell < cols * rows; cell++) {
+            const kids = [
+              { type: "rect" as const, x: off, y: off, w: 60, h: 30, fill: 0, cell },
+              { type: "icon" as const, x: off, y: off, name: "home-outline", cell },
+              { type: "text" as const, x: off, y: off, w: 80, text: "t", size: "md" as const, cell },
+              { type: "line" as const, x1: off, y1: off, x2: off + 40, y2: off, cell },
+              { type: "rect" as const, w: 10, h: 10, fill: 0, cell },   // no x/y: fills the cell
+            ];
+            const grid = { type: "grid" as const, x: gx, y: gy, cols, rows, cell_w: cellW, cell_h: cellH, gap, children: kids };
+            const problems = ui.validate({ spec_version: 1 as const, id: "g", widgets: [grid as never] });
+            kids.forEach((c, j) => {
+              checked++;
+              const cx = gx + (cell % cols) * (cellW + gap), cy = gy + Math.floor(cell / cols) * (cellH + gap);
+              const b = c.type === "line"
+                ? { x: cx + Math.min(c.x1!, c.x2!), y: cy + Math.min(c.y1!, c.y2!), w: Math.abs(c.x2! - c.x1!) + 1, h: 1 }
+                : { x: cx + (c.x ?? 0), y: cy + (c.y ?? 0),
+                    w: c.type === "icon" ? ui.t.icon.md : (c.w ?? cellW),
+                    h: c.type === "icon" ? ui.t.icon.md : c.type === "text" ? ui.lh("md") : (c.h ?? cellH) };
+              const reaches = b.x < ui.W && b.y < ui.H && b.x + b.w > 0 && b.y + b.h > 0;
+              const said = problems.some((p) => p.path === `/widgets/0/children/${j}` && p.message.includes("never be seen"));
+              if (said) { flagged++; expect(reaches, `flagged child ${j} of ${JSON.stringify(grid)} but it reaches the panel`).toBe(false); }
+              else if (!reaches) { missed++; }
+            });
+          }
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(500);
+    expect(flagged).toBeGreaterThan(20);
+    expect(missed, "a grid child that cannot reach the panel went unreported").toBe(0);
   });
   it("collects button-only keys from the pager", () => {
     const ui = createKit({ profile: "panel75" });

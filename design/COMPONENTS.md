@@ -95,9 +95,11 @@ is just as invisible.
 
 The rule it holds to is **too quiet rather than wrong**: a widget is never larger than the size the
 check estimates for it, so it can miss an invisible widget but can never fail a build over a
-visible one. That applies to every input, not just the result — a field stated literally is taken
-at its word, a field the device resolves later is taken at its maximum (`digits` for a size, eight
-for `lines`), and a field that is not a finite number leaves that axis alone. A property test
+visible one. That applies to every input, not just the result, in three cases rather than two: a field the
+document omits takes the spec's default (`md` for a size, one for `lines`), a field stated
+literally is taken at its word, and only a field the device resolves at render time is unknown and
+takes its maximum. Collapsing the first case into the third is sound and still blind — it stops
+reporting every widget that did not state a size, which is most of them. A property test
 generates several hundred documents and asserts the rule in both directions: what the check rejects
 must really be unreachable, and where nothing had to be estimated, what is unreachable must be
 rejected. Each of the three bugs this check has had was reintroduced to confirm the test catches
