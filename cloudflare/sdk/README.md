@@ -8,7 +8,7 @@ TypeScript SDK for writing QuireOS apps and tooling. Implements `spec/SPEC.md` (
 | `screen`, `actions` | Thin builders: `screen() text() rect() line() icon() image() button() grid() cell()` and `navigate() submit() http() set() refresh() back() home()`, plus `bind("e0.state", f.upper)` → `"{{e0.state | upper}}"` and `cond(test, then, else)` |
 | `expr` | The reference §3 evaluator: `evaluate(template, ctx)`, `evaluateCond(cond, ctx)`, `resolveValue(value, ctx)`, `resolveDeep`, `tokenize`, `parseTime`/`formatTime` |
 | `wrap` | §6.4 `measure(text, size, weight, profile)` and `wrap(text, { w, lines, size, weight, profile })`, byte-identical to the device |
-| `profiles` | `t5pro` and `loadProfile(json, name)`; `npm run sync-profiles` refreshes the bundled copy from `spec/fonts.json` |
+| `profiles` | `t5pro`, `loadProfile(json, name)`, `scaleProfile`, and `ICON_NAMES` (the icon names the reference firmware compiles); `npm run sync-profiles` refreshes both from `spec/fonts.json` and `spec/icons.json` |
 | `validate` | `validateIndex`, `validateManifest`, `validateScreen`, `validateBundle` (+ `rebaseBundle`, `LIMITS`, the id/version regexes). Every limit in the spec is enforced |
 | `request` | `parseDevice(req)` → `DeviceContext` from the §2 headers (`X-Screen`, `X-App-Settings`, …) |
 | `response` | `json(doc, req)` (canonical JSON, strong ETag, `304`), `png(bytes, req, seed)`, `error(code, message, status)`, `AppError` |

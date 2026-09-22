@@ -61,7 +61,11 @@ Text sizes are tokens (`xs sm md lg xl 2xl 3xl digits`) whose pixel line heights
 device profile in `spec/fonts.json`. Use `wrap()` from the SDK when you paginate long text: it is
 byte-identical to the device's wrapping, so what you count as a page is what the device draws.
 
-Icons are the names in `spec/icons.json`. Colours are `0` (black) to `15` (white).
+Icons are the names in `spec/icons.json`, which is what a firmware build actually compiles (229 of
+the design library's 294 today). `createApp` checks every icon your screens use against that list in
+dev, so a name the device cannot draw fails in `wrangler dev` rather than silently drawing nothing
+on glass; pass `icons` to `createApp` for a board that compiles a wider set. Colours are `0` (black)
+to `15` (white).
 
 E-paper rules of thumb: a full refresh flashes and takes about a second, so change screens rarely;
 set `ttl` on screens and data sources so the device polls with `If-None-Match` and only redraws on

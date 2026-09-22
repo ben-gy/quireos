@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createApp } from "../src/app.js";
+import { ICON_NAMES } from "../src/profiles/icons.generated.js";
 import { AppError } from "../src/response.js";
 import { screen, text, button } from "../src/screen.js";
 import { navigate, submit } from "../src/actions.js";
@@ -87,5 +88,37 @@ describe("createApp", () => {
     expect(navigate("/x.json")).toEqual({ type: "navigate", url: "/x.json" });
     expect(navigate("/x.json", { replace: true })).toEqual({ type: "navigate", url: "/x.json", replace: true });
     expect(text({ x: 1, y: 2, w: 3, text: "t", size: undefined })).toEqual({ type: "text", x: 1, y: 2, w: 3, text: "t" });
+  });
+});
+
+describe("icon names", () => {
+  const iconApp = (name: string, icons?: readonly string[]) =>
+    createApp({
+      manifest: { spec_version: 1, id: "icons", name: "Icons", version: "1.0.0", min_os: "0.1.0", icon: "star", entry: "" as string },
+      screens: {
+        home: () => ({ spec_version: 1 as const, id: "home", widgets: [{ type: "icon" as const, x: 0, y: 0, w: 36, h: 36, name }] }),
+      },
+      ...(icons ? { icons } : {}),
+    });
+
+  const get = (app: ReturnType<typeof iconApp>) =>
+    app.fetch(new Request("https://app.test/screens/home.json"), { DEV: "1" });
+
+  it("accepts an icon the firmware compiles", async () => {
+    expect((await get(iconApp("star"))).status).toBe(200);
+  });
+
+  it("rejects one it does not, so it fails in dev instead of drawing nothing on glass", async () => {
+    const res = await get(iconApp("account")); // in the design library, not in the compiled set
+    expect(res.status).toBe(500);
+    expect(JSON.stringify(await res.json())).toContain("unknown icon");
+  });
+
+  it("honours a wider list for a board that compiles more", async () => {
+    expect((await get(iconApp("account", [...ICON_NAMES, "account"]))).status).toBe(200);
+  });
+
+  it("skips the check when given an empty list", async () => {
+    expect((await get(iconApp("anything-at-all", []))).status).toBe(200);
   });
 });

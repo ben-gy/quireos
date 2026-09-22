@@ -5,6 +5,7 @@
  */
 import { parseDevice } from "./request.js";
 import { AppError, error, json, png } from "./response.js";
+import { ICON_NAMES } from "./profiles/icons.generated.js";
 import { validateScreen } from "./validate.js";
 import { SPEC_VERSION } from "./types.js";
 import type { DeviceContext, Manifest, Screen, SubmitEvent } from "./types.js";
@@ -39,6 +40,12 @@ export interface AppOptions<Env = unknown> {
   images?: Record<string, ImageHandler<Env>>;
   /** Force validation of every screen (default: `env.DEV === "1"` or `import.meta.env.DEV`). */
   validate?: boolean;
+  /**
+   * Icon names the target firmware compiles. Defaults to the reference build's set, so a name the
+   * device cannot draw fails in dev instead of silently drawing nothing on glass. Pass a wider list
+   * for a board that compiles more, or `[]` to skip the check.
+   */
+  icons?: readonly string[];
   /** Extra routes: return a `Response` to handle, `undefined` to fall through to 404. */
   fallback?: (req: Request, ctx: AppContext<Env>) => Response | undefined | Promise<Response | undefined>;
 }
@@ -68,6 +75,8 @@ export function completeManifest(manifest: Manifest, screens: string[], hasEvent
 
 export function createApp<Env = unknown>(opts: AppOptions<Env>): Handler<Env> {
   const manifest = completeManifest(opts.manifest, Object.keys(opts.screens), Boolean(opts.onEvent));
+  const icons = opts.icons ?? ICON_NAMES;
+  const iconList = icons.length ? (icons as string[]) : undefined;
   const screenRe = /^\/screens\/([a-z][a-z0-9_-]{0,31})\.json$/;
   const imageRe = /^\/img\/([a-z0-9][a-z0-9_-]{0,63})\.png$/;
 
@@ -90,7 +99,7 @@ export function createApp<Env = unknown>(opts: AppOptions<Env>): Handler<Env> {
       if (!handler) return error("not_found", `No screen '${sm[1]}'`, 404);
       const screen = withDefaults(await handler(ctx, url), sm[1]!, path);
       if (validate) {
-        const r = validateScreen(screen, { manifest, origin: url.origin });
+        const r = validateScreen(screen, { manifest, origin: url.origin, icons: iconList });
         if (!r.ok) {
           const first = r.errors[0]!;
           console.error(`screen ${sm[1]} invalid:`, r.errors);
@@ -115,7 +124,7 @@ export function createApp<Env = unknown>(opts: AppOptions<Env>): Handler<Env> {
       if (result === null || result === undefined) return new Response(null, { status: 204, headers: { "Cache-Control": "no-store" } });
       const screen = withDefaults(result, result.id ?? body.screen, undefined);
       if (validate) {
-        const r = validateScreen(screen, { manifest, origin: url.origin });
+        const r = validateScreen(screen, { manifest, origin: url.origin, icons: iconList });
         if (!r.ok) {
           const first = r.errors[0]!;
           console.error(`event ${body.event} produced an invalid screen:`, r.errors);

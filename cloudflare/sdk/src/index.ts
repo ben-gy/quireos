@@ -28,6 +28,7 @@ export type { EvalContext, DeviceVars, Expr, Filter, ParsedCond, Token, Comparis
 export { measure, wrap, countLines, lineHeight, advance, ELLIPSIS } from "./wrap.js";
 export type { WrapOptions } from "./wrap.js";
 export { loadProfile, profile, profileNames, profilesDocument, scaleProfile, t5pro, FONTS_SOURCE } from "./profiles.js";
+export { ICON_NAMES } from "./profiles/icons.generated.js";
 export {
   validateIndex,
   validateManifest,
