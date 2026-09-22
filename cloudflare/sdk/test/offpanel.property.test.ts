@@ -14,11 +14,18 @@
  * it sounds: an oracle edited to agree with the code cannot find a bug in the code, and the
  * absent-size defect survived here until the oracle was rewritten from the spec.
  *
- * Fifteen mutations are known to fail this file — three that make it report something visible,
- * six that make it stay silent about something invisible, two that break grid geometry, and one
- * off-by-one per panel edge. A property is only as strong as its oracle's independence, the
- * breadth of what it generates, and whether it samples where the answer changes; each of those
- * three was missing here at some point, and each hid a real defect.
+ * Twenty-one mutations are known to fail this file: three that make it report something visible,
+ * six that make it stay silent about something invisible, one off-by-one per panel edge, and
+ * eight that break grid geometry.
+ *
+ * A property is only as strong as its oracle's independence, the breadth of what it generates,
+ * and whether it samples where the answer changes. Each of the three was missing here at some
+ * point and each hid a real defect, and they are a partition rather than three ways of saying
+ * "test harder" — the last three survivors were one of each. A [col, row] cell was never
+ * generated (breadth); losing the 16 px gap between cells could not be seen by offsets spaced 200
+ * apart (sampling); and the absent-size defect lived behind an oracle that had been edited to
+ * agree with the implementation (independence). Hence the offsets below are derived from the
+ * grid's own geometry rather than chosen, and the header says where the oracle came from.
  */
 import { describe, expect, it } from "vitest";
 import { validateScreen } from "../src/index.js";
@@ -125,45 +132,62 @@ describe("off-panel: reported exactly when unreachable", () => {
     expect(disagreed).toEqual([]);
   });
 
-  it("holds for grid children, which resolve through their cell", () => {
-    // The same equivalence, through a cell offset.
+  it("holds for grid children, in both cell forms and at every geometry boundary", () => {
+    // The same equivalence, through a cell offset. Two things this has to get right that a fixed
+    // spread of offsets cannot: `cell` has an index form and a [col, row] form, and the offsets
+    // have to be fine enough that losing the gap between cells changes an answer. So the offsets
+    // are derived from the grid's own geometry, placing each box exactly where it stops being
+    // visible and one pixel either side.
+    const GRID = { x: 24, y: 24, cols: 2, rows: 4, cell_w: 238, cell_h: 190, gap: 16 };
+    const SIZE = 100;
+    const kinds: Widget[] = [
+      { type: "rect", w: SIZE, h: SIZE },
+      { type: "text", w: SIZE, h: SIZE, text: "hi" },
+      { type: "icon", w: SIZE, h: SIZE, name: "star" },
+      { type: "button", w: SIZE, h: SIZE, label: "go" },
+      { type: "image", w: SIZE, h: SIZE, src: "/i.png" },
+      { type: "line", x1: 0, y1: 0, x2: SIZE, y2: SIZE },
+    ];
+    const cells: { form: unknown; col: number; row: number }[] = [];
+    for (let row = 0; row < GRID.rows; row++) {
+      for (let col = 0; col < GRID.cols; col++) {
+        cells.push({ form: row * GRID.cols + col, col, row });
+        cells.push({ form: [col, row], col, row }); // the pair form, which has its own branch
+      }
+    }
+
     const wrong: string[] = [];
     const missed: string[] = [];
-    // Every child type, not just rect: a check that skips one type is sound and silent.
-    const kinds: Widget[] = [
-      { type: "rect", w: 100, h: 100 },
-      { type: "text", w: 100, h: 100, text: "hi" },
-      { type: "icon", w: 100, h: 100, name: "star" },
-      { type: "button", w: 100, h: 100, label: "go" },
-      { type: "image", w: 100, h: 100, src: "/i.png" },
-      { type: "line", x1: 0, y1: 0, x2: 100, y2: 100 },
-    ];
-    for (const kind of kinds)
-    for (const cell of [0, 1, 3, 7]) {
-      for (const dx of [-5000, -200, 0, 200, 5000]) {
-        for (const dy of [-5000, -200, 0, 200, 5000]) {
-          // A line is positioned by its endpoints, not by x/y (SPEC §6.2), so offset those instead.
-          const child = (kind.type === "line"
-            ? { ...kind, cell, x1: dx, y1: dy, x2: dx + 100, y2: dy + 100 }
-            : { ...kind, cell, x: dx, y: dy }) as Widget;
-          const doc = {
-            spec_version: 1,
-            id: "home",
-            widgets: [{ type: "grid", x: 24, y: 24, cols: 2, rows: 4, cell_w: 238, cell_h: 190, gap: 16, children: [child] }],
-          };
-          const r = validateScreen(doc, { screen: PANEL });
-          const rejects = r.errors.some((e) => e.message.includes("never be seen"));
-          // Resolve the cell the way the spec says, then apply the same question.
-          const col = cell % 2;
-          const row = Math.floor(cell / 2);
-          const ox = 24 + col * (238 + 16) + dx;
-          const oy = 24 + row * (190 + 16) + dy;
-          const box = { x: ox, y: oy, w: 100, h: 100 };
-          const touches = box.x < PANEL.w && box.y < PANEL.h && box.x + box.w > 0 && box.y + box.h > 0;
-          if (rejects !== !touches) (touches ? wrong : missed).push(JSON.stringify(child));
+    let flips = 0;
+    for (const kind of kinds) {
+      for (const { form, col, row } of cells) {
+        const originX = GRID.x + col * (GRID.cell_w + GRID.gap);
+        const originY = GRID.y + row * (GRID.cell_h + GRID.gap);
+        // Where the answer changes on each axis: just off the near edge, and just past the far one.
+        const around = (v: number) => [v - 1, v, v + 1];
+        const dxs = [...around(-originX - SIZE), ...around(PANEL.w - originX), 0];
+        const dys = [...around(-originY - SIZE), ...around(PANEL.h - originY), 0];
+        for (const dx of dxs) {
+          for (const dy of dys) {
+            const child = (kind.type === "line"
+              ? { ...kind, cell: form, x1: dx, y1: dy, x2: dx + SIZE, y2: dy + SIZE }
+              : { ...kind, cell: form, x: dx, y: dy }) as Widget;
+            const doc = {
+              spec_version: 1,
+              id: "home",
+              widgets: [{ type: "grid", ...GRID, children: [child] }],
+            };
+            const r = validateScreen(doc, { screen: PANEL });
+            const rejects = r.errors.some((e) => e.message.includes("never be seen"));
+            const box = { x: originX + dx, y: originY + dy, w: SIZE, h: SIZE };
+            const touches = box.x < PANEL.w && box.y < PANEL.h && box.x + box.w > 0 && box.y + box.h > 0;
+            if (touches) flips++;
+            if (rejects !== !touches) (touches ? wrong : missed).push(JSON.stringify(child));
+          }
         }
       }
     }
+    expect(flips).toBeGreaterThan(50); // both outcomes have to occur, or the equivalence is vacuous
     expect(wrong).toEqual([]);
     expect(missed).toEqual([]);
   });
