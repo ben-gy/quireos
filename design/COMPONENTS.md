@@ -104,9 +104,10 @@ generates a few thousand documents and asserts the rule as an equivalence: the c
 widget exactly when that widget cannot reach the panel. Its oracle is written from the spec's
 defaults rather than from the implementation, because an oracle derived from the code agrees with
 the code including its bugs, and it samples coordinates derived from the sizes themselves, so every
-edge is crossed by one pixel in both directions. Thirteen mutations of the check were reintroduced
-to confirm the test catches each, since a property test that passes the moment it is written is
-indistinguishable from one that tests nothing.
+edge is crossed by one pixel in both directions. The same equivalence holds inside a grid, through a cell
+offset. Nineteen mutations of the check were reintroduced to confirm the test catches each, since a
+property test that passes the moment it is written is indistinguishable from one that tests
+nothing.
 
 Use `ui.validate()` rather than the standalone `validateScreen()`, which checks the spec alone.
 

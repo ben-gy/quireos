@@ -226,12 +226,22 @@ describe("components", () => {
     // implementation — an oracle derived from the code agrees with the code, including its bugs,
     // and that is precisely how the absent-size bug survived the earlier version of this test.
     //
-    // Verified by mutation rather than trusted. Thirteen were reintroduced and every one fails
-    // this suite: three that would reject a visible widget (a conditional text or icon `size`
-    // falling back to md, a non-numeric `lines` falling back to one line), six that would quietly
-    // stop checking (dropping the left or the top edge, skipping grid children or only the `line`
-    // ones among them, treating an ABSENT size as unknown for text or for icons), and four
-    // off-by-ones, one per edge — none of which the earlier fixed coordinate spread caught.
+    // Verified by mutation rather than trusted. Nineteen were reintroduced and every one fails
+    // this suite, in four groups:
+    //   reports something visible   a conditional text or icon `size` falling back to md
+    //                               a non-numeric `lines` falling back to one line
+    //   stays silent about          dropping the left edge, or the top edge
+    //   something invisible         an ABSENT size taken as unknown, for text or for icons
+    //   boundary                    one off-by-one per edge
+    //   grid geometry               column and row swapped; the gap dropped from the row offset
+    //                               or from the column offset; [col, row] read as [row, col];
+    //                               the grid's own extent taken as one cell; children skipped
+    //                               entirely or only the `line` ones; a child without w/h no
+    //                               longer filling its cell
+    // Seven of those nineteen survived an earlier version of this test. Each survived for one of
+    // the three reasons a property goes weak: an oracle edited to agree with the code, a shape the
+    // generator never produced ([col, row] was never generated at all), or coordinates that never
+    // crossed the boundary the mutation moved.
     //
     // Two are worth remembering. The `lines` one gave the right answer before this rewrite only
     // because the arithmetic produced NaN and every comparison against NaN is false. The
@@ -289,48 +299,61 @@ describe("components", () => {
     expect(disagreed).toBe(0);
   });
 
-  it("holds the same rule for grid children, in both directions", () => {
-    // Soundness alone would be satisfied by a check that skips every grid child, which is a whole
-    // class of widgets going unchecked with nothing to say so. Inside a grid a child that omits
-    // w/h fills its cell, so no dimension is ever estimated and completeness applies everywhere.
+  it("holds the same rule inside a grid, for the grid and for every child", () => {
+    // Same equivalence as for a whole screen, reached through a cell offset. The oracle is the
+    // spec's: a child's x/y default to 0 and its w/h to the cell, and `cell` may be an index or a
+    // [col, row] pair. Coordinates are derived from the geometry — cell size, gap, the span of the
+    // whole grid — so a mutation that drops a gap or transposes a pair changes an answer somewhere.
     const ui = createKit({ profile: "t5pro" });
-    const cellW = 200, cellH = 100, gap = 8, cols = 2, rows = 3;
-    const offsets = [-600, -250, -40, 0, 40, 300, 900];
-    let flagged = 0, missed = 0, checked = 0;
-    for (const gy of [-400, -80, 0, 300, ui.H - 40, ui.H + 40]) {
-      for (const gx of [-500, -40, 0, ui.margin, ui.W - 20, ui.W + 40]) {
-        for (const off of offsets) {
-          for (let cell = 0; cell < cols * rows; cell++) {
-            const kids = [
-              { type: "rect" as const, x: off, y: off, w: 60, h: 30, fill: 0, cell },
-              { type: "icon" as const, x: off, y: off, name: "home-outline", cell },
-              { type: "text" as const, x: off, y: off, w: 80, text: "t", size: "md" as const, cell },
-              { type: "line" as const, x1: off, y1: off, x2: off + 40, y2: off, cell },
-              { type: "rect" as const, w: 10, h: 10, fill: 0, cell },   // no x/y: fills the cell
-            ];
-            const grid = { type: "grid" as const, x: gx, y: gy, cols, rows, cell_w: cellW, cell_h: cellH, gap, children: kids };
-            const problems = ui.validate({ spec_version: 1 as const, id: "g", widgets: [grid as never] });
-            kids.forEach((c, j) => {
-              checked++;
-              const cx = gx + (cell % cols) * (cellW + gap), cy = gy + Math.floor(cell / cols) * (cellH + gap);
-              const b = c.type === "line"
-                ? { x: cx + Math.min(c.x1!, c.x2!), y: cy + Math.min(c.y1!, c.y2!), w: Math.abs(c.x2! - c.x1!) + 1, h: 1 }
-                : { x: cx + (c.x ?? 0), y: cy + (c.y ?? 0),
-                    w: c.type === "icon" ? ui.t.icon.md : (c.w ?? cellW),
-                    h: c.type === "icon" ? ui.t.icon.md : c.type === "text" ? ui.lh("md") : (c.h ?? cellH) };
-              const reaches = b.x < ui.W && b.y < ui.H && b.x + b.w > 0 && b.y + b.h > 0;
-              const said = problems.some((p) => p.path === `/widgets/0/children/${j}` && p.message.includes("never be seen"));
-              if (said) { flagged++; expect(reaches, `flagged child ${j} of ${JSON.stringify(grid)} but it reaches the panel`).toBe(false); }
-              else if (!reaches) { missed++; }
-            });
-          }
-        }
-      }
+    const cellW = 120, cellH = 60, gap = 8, cols = 3, rows = 3;
+    const spanW = cols * cellW + (cols - 1) * gap, spanH = rows * cellH + (rows - 1) * gap;
+    const iconMd = ui.t.icon.md, lineMd = ui.lh("md");
+    const near = (e: number) => [-e - 1, -e, -e + 1];
+    const gxs = [...new Set([...near(spanW), ...near(cellW), ...near(cellW + gap), ...near(2 * (cellW + gap)), 0, ui.W - 1, ui.W])];
+    const gys = [...new Set([...near(spanH), ...near(cellH), ...near(cellH + gap), ...near(2 * (cellH + gap)), 0, ui.H - 1, ui.H])];
+    const offs = [0, -cellW, -iconMd, 40];
+    const cells: (number | [number, number])[] = [0, 4, 8, [2, 0], [0, 2], [2, 2]];
+
+    let checked = 0, flagged = 0, disagreed = 0;
+    for (const gx of gxs) for (const gy of gys) for (const off of offs) for (const cell of cells) {
+      const kids = [
+        { type: "rect" as const, x: off, y: off, w: 30, h: 20, fill: 0, cell },
+        { type: "icon" as const, x: off, y: off, name: "home-outline", cell },
+        { type: "text" as const, x: off, y: off, w: 50, text: "t", cell },
+        { type: "line" as const, x1: off, y1: off, x2: off + 20, y2: off, cell },
+        { type: "rect" as const, fill: 0, cell },                      // no x/y/w/h: fills the cell
+      ];
+      const grid = { type: "grid" as const, x: gx, y: gy, cols, rows, cell_w: cellW, cell_h: cellH, gap, children: kids };
+      const problems = ui.validate({ spec_version: 1 as const, id: "g", widgets: [grid as never] });
+      const off_ = (path: string) => problems.some((p) => p.path === path && p.message.includes("never be seen"));
+      const reaches = (x: number, y: number, w: number, h: number) => x < ui.W && y < ui.H && x + w > 0 && y + h > 0;
+
+      // The grid's own box spans every cell and every gap between them.
+      checked++;
+      if (off_("/widgets/0")) flagged++;
+      if (off_("/widgets/0") === reaches(gx, gy, spanW, spanH)) { disagreed++; expect(off_("/widgets/0"), `grid at ${gx},${gy}`).toBe(!reaches(gx, gy, spanW, spanH)); }
+
+      const col = Array.isArray(cell) ? cell[0] : cell % cols;
+      const row = Array.isArray(cell) ? cell[1] : Math.floor(cell / cols);
+      const cx = gx + col * (cellW + gap), cy = gy + row * (cellH + gap);
+      kids.forEach((c, j) => {
+        checked++;
+        const b = c.type === "line"
+          ? { x: cx + Math.min(c.x1!, c.x2!), y: cy + Math.min(c.y1!, c.y2!), w: Math.abs(c.x2! - c.x1!) + 1, h: 1 }
+          : { x: cx + (c.x ?? 0), y: cy + (c.y ?? 0),
+              w: c.type === "icon" ? iconMd : (c.w ?? cellW),
+              h: c.type === "icon" ? iconMd : c.type === "text" ? lineMd : (c.h ?? cellH) };
+        const said = off_(`/widgets/0/children/${j}`);
+        if (said) flagged++;
+        const r = reaches(b.x, b.y, b.w, b.h);
+        if (said === r) { disagreed++; expect(said, `child ${j} (${c.type}) of grid ${gx},${gy} cell ${JSON.stringify(cell)} at ${b.x},${b.y} ${b.w}x${b.h}`).toBe(!r); }
+      });
     }
-    expect(checked).toBeGreaterThan(500);
-    expect(flagged).toBeGreaterThan(20);
-    expect(missed, "a grid child that cannot reach the panel went unreported").toBe(0);
+    expect(checked).toBeGreaterThan(3000);
+    expect(flagged).toBeGreaterThan(200);
+    expect(disagreed).toBe(0);
   });
+
   it("collects button-only keys from the pager", () => {
     const ui = createKit({ profile: "panel75" });
     const s = ui.page({ id: "p", toolbar: { rows: [ui.pagerRow({ page: 2, pages: 3, prev: { type: "back" }, next: { type: "home" } })], placement: "bottom" }, body: () => [] });
