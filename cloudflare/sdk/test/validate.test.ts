@@ -374,6 +374,13 @@ describe("widgets that can never be seen", () => {
     expect(one({ type: "text", x: 24, y: -10, w: 400, text: "hi" }).ok).toBe(true);
   });
 
+  it("does not claim a widget is off the panel because another field is malformed", () => {
+    // `lines` is static, so a conditional there is invalid — but assuming one line would
+    // under-estimate the height and report a widget that eight lines would make visible.
+    const r = one({ type: "text", x: 24, y: -900, w: 400, lines: { if: "v", then: 8, else: 1 }, text: "hi" });
+    expect(r.errors.map((e) => e.path)).toEqual(["/widgets/0/lines"]);
+  });
+
   it("says nothing when the caller does not know the panel", () => {
     expect(validateScreen({ spec_version: 1, id: "home", widgets: [{ type: "rect", x: 24, y: 5000, w: 10, h: 10 }] }).ok).toBe(true);
   });

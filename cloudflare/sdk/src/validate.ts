@@ -590,6 +590,7 @@ interface WidgetCounts {
  */
 const MAX_LINE_HEIGHT = 150;
 const MAX_ICON_PX = 64;
+const MAX_LINES = 8;
 
 /** A grid's own geometry, so a child's cell offset resolves to an absolute position. */
 interface GridFrame {
@@ -627,8 +628,11 @@ function originOf(v: Record<string, unknown>, type: string, grid: GridFrame | un
   // make the check quieter, while under-estimating would report a widget that is in fact visible.
   if (!grid) {
     if (h === undefined && type === "text") {
-      const lines = num(v.lines) ?? 1;
-      h = MAX_LINE_HEIGHT * Math.max(1, lines);
+      // `lines` is absent (one line) or a number. Anything else is separately invalid, and
+      // assuming one line there would under-estimate the extent and report a visible widget as
+      // off the panel, so take the most lines the spec allows.
+      const lines = v.lines === undefined ? 1 : (num(v.lines) ?? MAX_LINES);
+      h = MAX_LINE_HEIGHT * Math.min(MAX_LINES, Math.max(1, lines));
     } else if (type === "icon") {
       w = w ?? MAX_ICON_PX;
       h = h ?? MAX_ICON_PX;
