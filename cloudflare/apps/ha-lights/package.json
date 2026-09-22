@@ -1,0 +1,21 @@
+{
+  "name": "@quireos/app-ha-lights",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Home Assistant switch tiles for QuireOS. The device talks to HA on the LAN directly; the token never leaves it.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --var DEV:1",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250921.0",
+    "@types/node": "^22.0.0"
+  }
+}

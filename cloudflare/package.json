@@ -2,7 +2,13 @@
   "name": "quireos-cloudflare",
   "private": true,
   "type": "module",
-  "workspaces": ["sdk", "store", "apps/*", "tools/*"],
+  "workspaces": [
+    "sdk",
+    "ui",
+    "store",
+    "apps/*",
+    "tools/*"
+  ],
   "scripts": {
     "test": "npm run test --workspaces --if-present",
     "validate": "npm run validate -w tools/validate",

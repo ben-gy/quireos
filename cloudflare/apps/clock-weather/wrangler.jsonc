@@ -1,0 +1,11 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "quireos-app-clock-weather",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "vars": {
+    // "1" validates every screen on every request; `npm run dev` passes --var DEV:1.
+    "DEV": "0"
+  },
+  "observability": { "enabled": true }
+}

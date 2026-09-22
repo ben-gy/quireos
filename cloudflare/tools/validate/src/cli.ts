@@ -9,7 +9,7 @@
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
-import { readZip, validateBundle, validateIndex, validateManifest, validateScreen } from "@quireos/sdk";
+import { LIMITS, readZip, validateBundle, validateIndex, validateManifest, validateScreen } from "@quireos/sdk";
 import type { ValidationError } from "@quireos/sdk";
 import { lineOf, locateJson } from "./locate.js";
 import type { Located } from "./locate.js";
@@ -67,6 +67,36 @@ function kindOf(doc: unknown): "index" | "manifest" | "screen" | undefined {
   return undefined;
 }
 
+/** `store.json`: listing metadata (SPEC §9), not a screen document. */
+function validateStoreMeta(doc: unknown): { path: string; message: string }[] {
+  const errors: { path: string; message: string }[] = [];
+  if (!doc || typeof doc !== "object" || Array.isArray(doc)) return [{ path: "", message: "must be an object" }];
+  const o = doc as Record<string, unknown>;
+  const str = (k: string, max: number) => {
+    const v = o[k];
+    if (v === undefined) return;
+    if (typeof v !== "string") errors.push({ path: `/${k}`, message: "must be a string" });
+    else if ([...v].length > max) errors.push({ path: `/${k}`, message: `at most ${max} characters` });
+  };
+  str("tagline", LIMITS.TAGLINE_CHARS);
+  str("description", 4000);
+  for (const k of ["categories", "screenshots"]) {
+    const v = o[k];
+    if (v === undefined) continue;
+    if (!Array.isArray(v) || v.some((x) => typeof x !== "string")) errors.push({ path: `/${k}`, message: "must be an array of strings" });
+  }
+  const log = o.changelog;
+  if (log !== undefined) {
+    if (!Array.isArray(log)) errors.push({ path: "/changelog", message: "must be an array" });
+    else
+      log.forEach((entry, i) => {
+        if (!entry || typeof entry !== "object" || Array.isArray(entry)) errors.push({ path: `/changelog/${i}`, message: "must be an object" });
+        else if (typeof (entry as Record<string, unknown>).version !== "string") errors.push({ path: `/changelog/${i}/version`, message: "required, a version string" });
+      });
+  }
+  return errors;
+}
+
 function validateFile(file: string, icons: string[] | undefined): Report | undefined {
   const text = readFileSync(file, "utf8");
   let doc: unknown;
@@ -74,6 +104,11 @@ function validateFile(file: string, icons: string[] | undefined): Report | undef
     doc = JSON.parse(text);
   } catch (err) {
     return { file, kind: "json", errors: [{ line: 1, message: `invalid JSON: ${(err as Error).message}`, pointer: "" }] };
+  }
+  const map0 = locateJson(text);
+  if (file.split("/").pop() === "store.json") {
+    const errs = validateStoreMeta(doc);
+    return { file, kind: "store listing", errors: errs.map((e) => ({ line: lineOf(map0, e.path), message: e.message, pointer: e.path })) };
   }
   const kind = kindOf(doc);
   if (!kind) return undefined;

@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "tagline": "Home Assistant switches on your wall, token stays on the device",
+  "description": "Up to eight Home Assistant switches or lights as big tiles. The device reads each entity's state straight from your Home Assistant on the LAN and toggles it with one tap; the long-lived token is stored on the device and only ever sent to the Home Assistant URL you set. An 'All off' tile turns everything off. Optionally reads all states in a single /api/template request.",
+  "categories": ["home", "smart-home"],
+  "screenshots": [],
+  "changelog": [
+    { "version": "1.0.0", "notes": "First release: 2×4 tile grid, toggle with optimistic update, All off, single-request mode, landscape layout." }
+  ]
+}

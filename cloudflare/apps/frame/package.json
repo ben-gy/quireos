@@ -1,0 +1,25 @@
+{
+  "name": "@quireos/app-frame",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Picture frame for QuireOS: a server-rendered PNG (typeset quote or dithered photo) with tap zones to step through.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --var DEV:1",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*",
+    "@resvg/resvg-wasm": "2.6.2",
+    "satori": "0.32.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250921.0",
+    "@types/node": "^22.0.0",
+    "pngjs": "^7.0.0",
+    "@types/pngjs": "^6.0.5"
+  }
+}

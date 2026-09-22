@@ -1,0 +1,21 @@
+{
+  "name": "@quireos/app-hn",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hacker News reader for QuireOS: feeds, foldable comment threads, reader mode, bookmarks and read tracking, served by a Cloudflare Worker.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --var DEV:1",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250921.0",
+    "@types/node": "^22.0.0"
+  }
+}

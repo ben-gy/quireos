@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "tagline": "A quote or a photo, rendered for e-paper, new one every hour or tap",
+  "description": "Turns the device into a picture frame. Quote mode typesets one of twenty public-domain quotes as a full-screen card; image mode fetches a PNG or JPEG from a URL you set, crops it to the screen and dithers it to sixteen greys. The card changes every hour; tap the right half for the next one, the left half for the previous. Rendering happens on a Cloudflare Worker (satori + resvg) and is cached per card.",
+  "categories": ["art", "display"],
+  "screenshots": [],
+  "changelog": [
+    { "version": "1.0.0", "notes": "First release: quote and image modes, hourly rotation, prev/next tap zones, per-seed cache." }
+  ]
+}

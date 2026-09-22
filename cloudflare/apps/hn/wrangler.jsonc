@@ -1,0 +1,16 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "quireos-app-hn",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  // Bookmarks, read history, per-install settings and fold state. Create the namespace with
+  //   wrangler kv namespace create HN_KV
+  // and paste the printed id below. The placeholder is fine for `wrangler dev` (local KV);
+  // without the binding the Worker falls back to an in-memory map that lasts one isolate.
+  "kv_namespaces": [{ "binding": "HN_KV", "id": "00000000000000000000000000000000" }],
+  "vars": {
+    // "1" validates every screen on every request; `npm run dev` passes --var DEV:1.
+    "DEV": "0"
+  },
+  "observability": { "enabled": true }
+}

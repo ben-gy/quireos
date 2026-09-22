@@ -1,0 +1,21 @@
+{
+  "name": "@quireos/app-clock-weather",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Clock and Open-Meteo weather for QuireOS: the clock ticks on the device, the Worker fetches and caches the forecast.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --var DEV:1",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250921.0",
+    "@types/node": "^22.0.0"
+  }
+}

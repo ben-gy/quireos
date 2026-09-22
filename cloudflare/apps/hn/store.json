@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "tagline": "Hacker News: feeds, foldable threads, reader mode, bookmarks",
+  "description": "A read-only Hacker News client for e-paper. Six feeds (Top, New, Best, Ask, Show, Jobs) paged by content height, comment threads you can fold by tapping a byline, a reader mode that strips the linked article down to text, bookmarks, read/unread tracking, three text sizes and a dark theme. Everything is rendered by a Cloudflare Worker from the Algolia HN API; the device only draws.",
+  "categories": ["news", "reading"],
+  "screenshots": [],
+  "changelog": [
+    { "version": "1.0.0", "notes": "First release: feeds, comments with folding, reader mode, bookmarks, read tracking, settings, dark theme, landscape layout." }
+  ]
+}
