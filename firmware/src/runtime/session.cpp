@@ -25,6 +25,22 @@ bool value_empty(JsonVariantConst v) {
   if (v.is<JsonArrayConst>()) return v.size() == 0;
   return false;
 }
+
+// True when `name` (lower case, without the colon) is already among "Name: value" headers.
+bool has_header(const std::vector<std::string> &headers, const char *name) {
+  const size_t n = strlen(name);
+  for (const std::string &h : headers) {
+    if (h.size() <= n || h[n] != ':') continue;
+    size_t i = 0;
+    for (; i < n; i++) {
+      char c = h[i];
+      if (c >= 'A' && c <= 'Z') c = (char)(c - 'A' + 'a');
+      if (c != name[i]) break;
+    }
+    if (i == n) return true;
+  }
+  return false;
+}
 }  // namespace
 
 AppSession::AppSession() {}
@@ -261,7 +277,9 @@ bool AppSession::build_request(const std::string &url_tpl_in, JsonVariantConst h
     JsonDocument tmp;
     if (body_raw) tmp.set(body); else render_json(body, tmp.as<JsonVariant>());
     serializeJson(tmp, out.body);
-    out.headers.push_back("Content-Type: application/json");
+    // Only when the action did not declare one: a duplicate Content-Type is a 400 on strict
+    // servers (Home Assistant's aiohttp rejects it).
+    if (!has_header(out.headers, "content-type")) out.headers.push_back("Content-Type: application/json");
   }
   secret_mode_ = SecretMode::HIDDEN;
   if (secret_refused_) { err = "secret settings may not be sent to " + origin; hal::log(hal::LOG_WARN, TAG, "%s", err.c_str()); return false; }

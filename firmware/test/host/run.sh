@@ -30,7 +30,7 @@ wait
 touch "$OUT/obj/.stamp"
 
 STATUS=0
-for t in expr_test wrap_test parser_test hal_contract_test; do
+for t in expr_test wrap_test parser_test session_test hal_contract_test; do
   $CXX $CXXFLAGS "$t.cpp" $LIBOBJS -lcurl -lz -o "$OUT/$t"
   if [ "$t" = wrap_test ] && [ "$1" = "--generate" ]; then "$OUT/$t" "$ROOT" --generate || STATUS=1
   else "$OUT/$t" "$ROOT" || STATUS=1; fi
