@@ -3,7 +3,7 @@
  * minute, no network); the weather is baked in by the Worker and refreshed with the screen
  * (`ttl: 600`). Portrait stacks clock over weather; landscape puts them side by side.
  */
-import { bind, button, f, grid, icon, line, refresh, screen, text } from "@quireos/sdk";
+import { bind, button, f, grid, icon, line, refresh, screen, t5pro, text } from "@quireos/sdk";
 import type { GridChild, Screen, Widget } from "@quireos/sdk";
 import { condition, weekday } from "./weather.js";
 import type { Place, Weather } from "./weather.js";
@@ -62,7 +62,9 @@ function forecast(x: number, y: number, w: number, wx: Weather): Widget[] {
     // grid children are cell-relative and may omit x/y/w/h, so they are plain objects
     children.push({ type: "text", cell: i, y: 0, w: cellW, text: weekday(d.date), size: "sm", weight: "bold", align: "center" });
     // w/h are required: a grid child that omits them fills the cell, and an icon centres in its box.
-    children.push({ type: "icon", cell: i, x: Math.floor((cellW - 48) / 2), y: 40, w: 48, h: 48, name: c.icon, size: "md" });
+    // The pixel size of `md` comes from the device profile, so read it rather than assuming one.
+    const ip = t5pro.icons.md;
+    children.push({ type: "icon", cell: i, x: Math.floor((cellW - ip) / 2), y: 40, w: ip, h: ip, name: c.icon, size: "md" });
     children.push({ type: "text", cell: i, y: 100, w: cellW, text: `${deg(d.hi)} / ${deg(d.lo)}`, size: "sm", align: "center", color: DIM });
   });
   return [grid({ x, y, cols: days.length, rows: 1, cell_w: cellW, cell_h: cellH, gap, children })];

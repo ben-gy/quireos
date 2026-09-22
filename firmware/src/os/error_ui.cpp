@@ -22,7 +22,7 @@ void build_error(rt::WidgetTree &t, const Chrome &c, ErrorKind kind, const char 
     case ErrorKind::OFFLINE: icon = "wifi-off"; title = "Offline"; break;
     default: break;
   }
-  add_icon(t, c.w / 2 - 48, y, icon, icons::IconSize::LG);
+  add_icon(t, c.w / 2 - icons::pixels(icons::IconSize::LG) / 2, y, icon, icons::IconSize::LG);
   y += 112;
   add_text(t, pad, y, c.w - 2 * pad, 44, title, Size::LG, Weight::BOLD, Align::CENTER);
   y += 56;

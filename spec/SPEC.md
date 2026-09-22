@@ -335,9 +335,12 @@ screen's right edge and whose top is `(nav − corner) / 2` px from the top; `co
 **`line`** — `x1, y1, x2, y2` (required), `color` (default 0), `width` (1–8, default 1). Diagonals are
 drawn without anti-aliasing.
 
-**`icon`** — `name` (required; one of `spec/icons.json`), `size` (`sm` \| `md` \| `lg`, default `md`;
-pixel sizes per device profile), `color` (default 0). `w`/`h` default to the icon size. An unknown name
-draws nothing and is logged.
+**`icon`** — `name` (required; one of `spec/icons.json`), `size` (`sm` \| `md` \| `lg`, default `md`),
+`color` (default 0). Pixel sizes come from the device profile (§10) and are chosen to match the text
+beside them, so read them rather than assuming: on the reference device `sm` sits on an `xs`/`sm`
+line, `md` equals the `md` line box, and `lg` is a screen's single focal glyph. `w`/`h` default to
+the icon size, **except for a grid child, which fills its cell unless given `w`/`h`**. An unknown
+name draws nothing and is logged.
 
 **`image`** — `src` (PNG URL, required; may contain templates), `ttl` (int seconds; re-fetch with
 `If-None-Match`; `0` = only with the screen; default = the screen's `ttl`). The PNG should be exactly
@@ -538,7 +541,7 @@ A device profile describes what a board can display. The reference profile `t5pr
 | Default orientation | portrait, logical 540 × 960 |
 | Partial updates | yes |
 | Text sizes (line height px) | `xs` 24 · `sm` 29 · `md` 36 · `lg` 44 · `xl` 56 · `2xl` 72 · `3xl` 96 · `digits` 150 |
-| Icon sizes (px) | `sm` 32 · `md` 48 · `lg` 96 |
+| Icon sizes (px) | `sm` 24 · `md` 36 · `lg` 64 |
 | Chrome (px) | `margin` 24 · `nav` 56 · `toolbar` 56 · `status` 44 · `corner` 48 |
 | Touch | 5-point capacitive |
 | Buttons | one app-assignable function button (§6 `keys`); long press is always Home |

@@ -529,7 +529,8 @@ void draw_alert(const char *msg) {
   Rect r; r.w = (int16_t)tw; r.h = (int16_t)profile::TOAST; r.x = (int16_t)((g_fb.w - tw) / 2); r.y = (int16_t)(g_fb.h - profile::TOAST - profile::MARGIN);
   Rect clip; clip.w = (int16_t)g_fb.w; clip.h = (int16_t)g_fb.h;
   rt::fill_rounded(g_fb, r, profile::RADIUS_MD, 0, -1, 0, clip);
-  icons::draw(g_fb, icons::index_of("alert-circle-outline"), icons::IconSize::SM, r.x + 12, r.y + (r.h - 32) / 2, 15, clip);
+  icons::draw(g_fb, icons::index_of("alert-circle-outline"), icons::IconSize::SM, r.x + 12,
+              r.y + (r.h - icons::pixels(icons::IconSize::SM)) / 2, 15, clip);
   Rect tr; tr.x = (int16_t)(r.x + 52); tr.y = r.y; tr.w = (int16_t)(r.w - 64); tr.h = r.h;
   rt::draw_text_block(g_fb, msg, tr, fontlib::Size::SM, fontlib::Weight::BOLD, rt::Align::LEFT, rt::VAlign::MIDDLE, 1, 15, clip);
   g_alert_rect = r;

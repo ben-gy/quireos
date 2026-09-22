@@ -18,7 +18,7 @@ void build_list(rt::WidgetTree &t, const Chrome &c, int page, int &page_count) {
   if (!store::index_loaded()) {
     const std::string &err = store::index_error();
     if (!err.empty()) {
-      add_icon(t, c.w / 2 - 24, y + 40, "cloud-off-outline", icons::IconSize::MD);
+      add_icon(t, c.w / 2 - icons::pixels(icons::IconSize::MD) / 2, y + 40, "cloud-off-outline", icons::IconSize::MD);
       add_text(t, pad, y + 100, c.w - 2 * pad, 72, err.c_str(), Size::MD, Weight::REGULAR, Align::CENTER, VAlign::TOP, 0, 2);
       add_button(t, c.w / 2 - 80, y + 190, 160, 52, "Retry", A_STORE_REFRESH);
     } else {
@@ -44,7 +44,7 @@ void build_list(rt::WidgetTree &t, const Chrome &c, int page, int &page_count) {
       rt::Widget *row = add_button(t, pad, ry, c.w - 2 * pad, row_h, "", A_STORE_DETAIL, ai, nullptr, nullptr, 15, 8, Size::MD, 10);
       if (row) row->feedback = rt::Feedback::INVERT;
       const char *icon = icons::index_of(a.icon.c_str()) >= 0 ? a.icon.c_str() : "apps";
-      add_icon(t, pad + 14, ry + (row_h - 48) / 2, icon, icons::IconSize::MD);
+      add_icon(t, pad + 14, ry + (row_h - icons::pixels(icons::IconSize::MD)) / 2, icon, icons::IconSize::MD);
       int tx = pad + 76;
       int tw = c.w - 2 * pad - 76 - 130;
       add_text(t, tx, ry + 12, tw, 36, a.name.c_str(), Size::MD, Weight::BOLD);
@@ -127,7 +127,7 @@ void build_pairing(rt::WidgetTree &t, const Chrome &c) {
   const store::Pairing &p = store::pairing();
   y += 24;
   if (p.done) {
-    add_icon(t, c.w / 2 - 48, y, "check-circle-outline", icons::IconSize::LG);
+    add_icon(t, c.w / 2 - icons::pixels(icons::IconSize::LG) / 2, y, "check-circle-outline", icons::IconSize::LG);
     y += 120;
     std::string msg = "Paired with " + (p.user.empty() ? std::string("your account") : p.user);
     add_text(t, pad, y, c.w - 2 * pad, 44 * 2, msg.c_str(), Size::LG, Weight::BOLD, Align::CENTER, VAlign::TOP, 0, 2);

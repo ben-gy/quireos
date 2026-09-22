@@ -73,7 +73,7 @@ void build_setup(rt::WidgetTree &t, const Chrome &c, bool wifi_capable) {
   t.clear();
   const int pad = 32;
   int y = c.h / 5;
-  add_icon(t, c.w / 2 - 48, y, "wifi-strength-4", icons::IconSize::LG);
+  add_icon(t, c.w / 2 - icons::pixels(icons::IconSize::LG) / 2, y, "wifi-strength-4", icons::IconSize::LG);
   y += 120;
   add_text(t, pad, y, c.w - 2 * pad, 56, "Welcome to QuireOS", Size::XL, Weight::BOLD, Align::CENTER);
   y += 80;
