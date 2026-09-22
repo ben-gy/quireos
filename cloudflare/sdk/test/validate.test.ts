@@ -365,11 +365,15 @@ describe("widgets that can never be seen", () => {
   });
 
   it("derives an unknown dimension as an upper bound, so it never flags a visible widget", () => {
-    // An icon and a single-line text are small; both of these are far enough off to be certain.
+    // A size the document omits is `md` (36 px here), so these are certainly off the panel.
     expect(one({ type: "icon", x: -400, y: 100, name: "star" }).ok).toBe(false);
+    expect(one({ type: "icon", x: -60, y: 100, name: "star" }).ok).toBe(false);
     expect(one({ type: "text", x: 24, y: -500, w: 400, text: "hi" }).ok).toBe(false);
-    // ...but anything that could still reach the panel on some board is left alone.
-    expect(one({ type: "icon", x: -60, y: 100, name: "star" }).ok).toBe(true);
+    // A size the device resolves later could be the largest face, so these are left alone.
+    // Each type takes its own size vocabulary: text faces for text, icon sizes for icons.
+    expect(one({ type: "icon", x: -60, y: 100, name: "star", size: { if: "vars.big", then: "lg", else: "sm" } }).ok).toBe(true);
+    expect(one({ type: "text", x: 24, y: -100, w: 400, size: { if: "vars.big", then: "digits", else: "xs" }, text: "hi" }).ok).toBe(true);
+    // ...as is anything that reaches the panel at its declared size.
     expect(one({ type: "text", x: 24, y: -100, w: 400, lines: 8, text: "hi" }).ok).toBe(true);
     expect(one({ type: "text", x: 24, y: -10, w: 400, text: "hi" }).ok).toBe(true);
   });
@@ -377,7 +381,8 @@ describe("widgets that can never be seen", () => {
   it("does not claim a widget is off the panel because another field is malformed", () => {
     // `lines` is static, so a conditional there is invalid — but assuming one line would
     // under-estimate the height and report a widget that eight lines would make visible.
-    const r = one({ type: "text", x: 24, y: -900, w: 400, lines: { if: "v", then: 8, else: 1 }, text: "hi" });
+    // Eight `md` lines reach the panel from here, so the only complaint should be about `lines`.
+    const r = one({ type: "text", x: 24, y: -200, w: 400, lines: { if: "v", then: 8, else: 1 }, text: "hi" });
     expect(r.errors.map((e) => e.path)).toEqual(["/widgets/0/lines"]);
   });
 
