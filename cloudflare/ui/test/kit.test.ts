@@ -219,6 +219,43 @@ describe("components", () => {
     const offCells = ui.validate({ spec_version: 1 as const, id: "grid", widgets: grid.widgets });
     expect(offCells.length).toBeGreaterThan(0);
   });
+  it("never reports a widget that could be visible, across a generated space of documents", () => {
+    // The invariant this check lives by: it may be too quiet, but it must never be wrong. Stated
+    // as a property rather than prose, because prose is what both of us kept having to re-derive.
+    const ui = createKit({ profile: "t5pro" });
+    const BIGGEST_LINE = ui.lh("digits"), BIGGEST_ICON = ui.t.icon.lg, MAX_LINES = 8;
+    const coords = [-2000, -400, -150, -40, -1, 0, 1, 100, ui.W - 1, ui.W, ui.W + 1, ui.H - 1, ui.H, ui.H + 400];
+    const sizes: unknown[] = ["xs", "md", "digits", { if: "vars.b == on", then: "digits", else: "xs" }, undefined];
+    const lines: unknown[] = [undefined, 1, 8, { if: "vars.b == on", then: 8, else: 1 }];
+    let flagged = 0, checked = 0;
+    for (const x of coords) for (const y of coords) for (const size of sizes) for (const ln of lines) {
+      for (const w of [
+        { type: "text" as const, x, y, w: 200, text: "t", ...(size !== undefined ? { size } : {}), ...(ln !== undefined ? { lines: ln } : {}) },
+        { type: "icon" as const, x, y, name: "home-outline", ...(size !== undefined ? { size } : {}) },
+        { type: "rect" as const, x, y, w: 200, h: 40, fill: 0 },
+      ] as unknown[]) {
+        checked++;
+        const problems = ui.validate({ spec_version: 1 as const, id: "p", widgets: [w as never] });
+        const offPanel = problems.filter((p) => p.message.includes("never be seen"));
+        if (offPanel.length === 0) continue;
+        flagged++;
+        // Independently compute the LARGEST the widget could possibly be — taking a field the
+        // document states literally at its word, and a field the device resolves later at its
+        // maximum — then assert that even at that size it cannot touch the panel.
+        const d = w as { type: string; x: number; y: number; w?: number; h?: number; size?: unknown; lines?: unknown };
+        const literalSize = typeof d.size === "string" ? d.size : null;
+        const lineH = literalSize ? ui.lh(literalSize as never) : BIGGEST_LINE;
+        const nLines = d.lines === undefined ? 1 : typeof d.lines === "number" ? d.lines : MAX_LINES;
+        const iconPx = literalSize === "sm" || literalSize === "md" || literalSize === "lg" ? ui.t.icon[literalSize] : BIGGEST_ICON;
+        const maxW = d.type === "icon" ? iconPx : (d.w ?? ui.W);
+        const maxH = d.type === "icon" ? iconPx : d.type === "text" ? lineH * nLines : (d.h ?? ui.H);
+        const intersects = d.x < ui.W && d.y < ui.H && d.x + maxW > 0 && d.y + maxH > 0;
+        expect(intersects, `flagged ${JSON.stringify(w)} but at its largest it reaches the panel`).toBe(false);
+      }
+    }
+    expect(checked).toBeGreaterThan(500);
+    expect(flagged).toBeGreaterThan(20);   // the check is doing something, not vacuously passing
+  });
   it("collects button-only keys from the pager", () => {
     const ui = createKit({ profile: "panel75" });
     const s = ui.page({ id: "p", toolbar: { rows: [ui.pagerRow({ page: 2, pages: 3, prev: { type: "back" }, next: { type: "home" } })], placement: "bottom" }, body: () => [] });

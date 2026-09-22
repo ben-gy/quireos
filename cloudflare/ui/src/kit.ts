@@ -388,18 +388,31 @@ export class Kit {
       w.size === "sm" || w.size === "md" || w.size === "lg" ? this.t.icon[w.size] : this.t.icon.lg;
     const textLh = (w: { size?: unknown }): number =>
       typeof w.size === "string" && (SIZES as string[]).includes(w.size) ? this.lh(w.size as TextSize) : this.lh("digits");
-    const check = (path: string, x: number, y: number, w?: number, h?: number) => {
+    // The invariant applies to every input, not only the result: an absent `lines` is one line, a
+    // number is that number, and anything the device resolves later could be as many as the spec
+    // allows. Leaning on NaN to fall through would give the same answer today and silently stop
+    // doing so the moment an arithmetic step changed.
+    const MAX_LINES = 8;
+    const textLines = (w: { lines?: unknown }): number => {
+      if (w.lines === undefined || w.lines === null) return 1;
+      if (typeof w.lines === "number" && Number.isFinite(w.lines)) return Math.min(MAX_LINES, Math.max(1, w.lines));
+      return MAX_LINES;
+    };
+    // A coordinate the document does not state as a finite number is unknown, not zero.
+    const numeric = (v: unknown): number | undefined => (typeof v === "number" && Number.isFinite(v) ? v : undefined);
+    const check = (path: string, x?: number, y?: number, w?: number, h?: number) => {
+      if (x === undefined || y === undefined) return;
       const off = x >= this.W ? "past the right edge"
         : y >= this.H ? "below the bottom"
         : w !== undefined && x + w <= 0 ? "past the left edge"
-        : h !== undefined && h > 0 && y + h <= 0 ? "above the top"
+        : h !== undefined && y + h <= 0 ? "above the top"
         : null;
       if (off) out.push({ path, message: `lies ${off} of the ${this.W}x${this.H} panel, so it can never be seen` });
     };
     const measure = (c: Widget, dw?: number, dh?: number): [number | undefined, number | undefined] => {
-      if (c.type === "icon") { const px = iconPx(c); return [c.w ?? px, c.h ?? px]; }
-      if (c.type === "text") return [c.w ?? dw, c.h ?? textLh(c) * Math.max(1, c.lines ?? 1)];
-      return [c.w ?? dw, c.h ?? dh];
+      if (c.type === "icon") { const px = iconPx(c); return [numeric(c.w) ?? px, numeric(c.h) ?? px]; }
+      if (c.type === "text") return [numeric(c.w) ?? dw, numeric(c.h) ?? textLh(c) * textLines(c)];
+      return [numeric(c.w) ?? dw, numeric(c.h) ?? dh];
     };
     screen.widgets.forEach((w, i) => {
       const p = `/widgets/${i}`;
@@ -416,12 +429,12 @@ export class Kit {
           const cp = `${p}/children/${j}`;
           // A grid child that omits w/h fills its cell, so the dimension is known here (SPEC §6.2).
           if (c.type === "line") check(cp, cx + Math.min(c.x1, c.x2), cy + Math.min(c.y1, c.y2), Math.abs(c.x2 - c.x1) + 1, Math.abs(c.y2 - c.y1) + 1);
-          else { const [cw, ch] = measure(c as Widget, w.cell_w, w.cell_h); check(cp, cx + (c.x ?? 0), cy + (c.y ?? 0), cw, ch); }
+          else { const [cw, ch] = measure(c as Widget, w.cell_w, w.cell_h); check(cp, cx + (numeric(c.x) ?? 0), cy + (numeric(c.y) ?? 0), cw, ch); }
         });
         return;
       }
       const [ww, wh] = measure(w);
-      check(p, w.x ?? 0, w.y ?? 0, ww, wh);
+      check(p, numeric(w.x) ?? 0, numeric(w.y) ?? 0, ww, wh);
     });
     return out;
   }
