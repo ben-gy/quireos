@@ -364,6 +364,16 @@ describe("widgets that can never be seen", () => {
     expect(grid({ type: "rect", cell: 1, y: 1200 }).errors[0]!.message).toContain("never be seen");
   });
 
+  it("derives an unknown dimension as an upper bound, so it never flags a visible widget", () => {
+    // An icon and a single-line text are small; both of these are far enough off to be certain.
+    expect(one({ type: "icon", x: -400, y: 100, name: "star" }).ok).toBe(false);
+    expect(one({ type: "text", x: 24, y: -500, w: 400, text: "hi" }).ok).toBe(false);
+    // ...but anything that could still reach the panel on some board is left alone.
+    expect(one({ type: "icon", x: -60, y: 100, name: "star" }).ok).toBe(true);
+    expect(one({ type: "text", x: 24, y: -100, w: 400, lines: 8, text: "hi" }).ok).toBe(true);
+    expect(one({ type: "text", x: 24, y: -10, w: 400, text: "hi" }).ok).toBe(true);
+  });
+
   it("says nothing when the caller does not know the panel", () => {
     expect(validateScreen({ spec_version: 1, id: "home", widgets: [{ type: "rect", x: 24, y: 5000, w: 10, h: 10 }] }).ok).toBe(true);
   });

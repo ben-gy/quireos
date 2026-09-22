@@ -583,6 +583,14 @@ interface WidgetCounts {
   images: number;
 }
 
+/**
+ * The largest line height and icon any bundled profile uses. Deriving an unknown dimension from
+ * these keeps the check sound on every board: a real widget is never larger, so a widget this
+ * check rules out could not have reached the panel on any of them.
+ */
+const MAX_LINE_HEIGHT = 150;
+const MAX_ICON_PX = 64;
+
 /** A grid's own geometry, so a child's cell offset resolves to an absolute position. */
 interface GridFrame {
   cols: number;
@@ -614,6 +622,17 @@ function originOf(v: Record<string, unknown>, type: string, grid: GridFrame | un
     const y2 = num(v.y2);
     if (x1 !== undefined && x2 !== undefined) { x = Math.min(x1, x2); w = Math.abs(x2 - x1); }
     if (y1 !== undefined && y2 !== undefined) { y = Math.min(y1, y2); h = Math.abs(y2 - y1); }
+  }
+  // An unknown dimension is derived only as an UPPER bound: over-estimating the extent can only
+  // make the check quieter, while under-estimating would report a widget that is in fact visible.
+  if (!grid) {
+    if (h === undefined && type === "text") {
+      const lines = num(v.lines) ?? 1;
+      h = MAX_LINE_HEIGHT * Math.max(1, lines);
+    } else if (type === "icon") {
+      w = w ?? MAX_ICON_PX;
+      h = h ?? MAX_ICON_PX;
+    }
   }
   if (grid) {
     if (grid.x === undefined || grid.cellW === undefined || grid.gap === undefined) return {};
