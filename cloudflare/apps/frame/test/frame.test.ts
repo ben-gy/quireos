@@ -11,13 +11,15 @@ import { quoteFor, QUOTES } from "../src/quotes.js";
 import { cardUrl, homeScreen, hourlySeed, parseMode } from "../src/screens.js";
 
 const icons = (JSON.parse(readFileSync(new URL("../../../../spec/icons.json", import.meta.url), "utf8")) as { icons: string[] }).icons;
+const PORTRAIT = { w: 540, h: 960 };
+const LANDSCAPE = { w: 960, h: 540 };
 const ORIGIN = "https://quireos-app-frame.example.workers.dev";
 const require = createRequire(import.meta.url);
 const fontsDir = new URL("../../../../firmware/fonts/", import.meta.url);
 const haveFonts = existsSync(new URL("Roboto-Regular.ttf", fontsDir));
 
-function check(s: Screen, label: string) {
-  const r = validateScreen(s, { manifest, origin: ORIGIN, icons });
+function check(s: Screen, label: string, screen = PORTRAIT) {
+  const r = validateScreen(s, { manifest, origin: ORIGIN, icons, screen });
   expect(r.errors, `${label}: ${r.errors.map((e) => `${e.path} ${e.message}`).join("; ")}`).toEqual([]);
   expect(countWidgets(s.widgets)).toBeLessThanOrEqual(96);
   expect(new TextEncoder().encode(canonicalJson(s)).byteLength).toBeLessThan(32 * 1024);

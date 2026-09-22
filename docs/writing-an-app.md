@@ -110,6 +110,11 @@ It follows every `navigate` target from the entry screen and reports any that do
 which is how a screen that reports a page count from one place and generates pages from another
 gets caught.
 
+In dev, `createApp` also checks every widget against the panel of the device that asked. Running
+off an edge is fine, since a fill may bleed deliberately, but a widget that starts past one can
+never be seen and is an error. Pass `screen` to `validateScreen` in your own tests to get the same
+check, once per orientation you support.
+
 ## 5. Publish
 
 1. Bump `version` in the manifest (every publish must be greater than the last).

@@ -100,7 +100,7 @@ export function createApp<Env = unknown>(opts: AppOptions<Env>): Handler<Env> {
       if (!handler) return error("not_found", `No screen '${sm[1]}'`, 404);
       const screen = withDefaults(await handler(ctx, url), sm[1]!, path);
       if (validate) {
-        const r = validateScreen(screen, { manifest, origin: url.origin, icons: iconList });
+        const r = validateScreen(screen, { manifest, origin: url.origin, icons: iconList, screen: ctx.device.screen });
         if (!r.ok) {
           const first = r.errors[0]!;
           console.error(`screen ${sm[1]} invalid:`, r.errors);
@@ -125,7 +125,7 @@ export function createApp<Env = unknown>(opts: AppOptions<Env>): Handler<Env> {
       if (result === null || result === undefined) return new Response(null, { status: 204, headers: { "Cache-Control": "no-store" } });
       const screen = withDefaults(result, result.id ?? body.screen, undefined);
       if (validate) {
-        const r = validateScreen(screen, { manifest, origin: url.origin, icons: iconList });
+        const r = validateScreen(screen, { manifest, origin: url.origin, icons: iconList, screen: ctx.device.screen });
         if (!r.ok) {
           const first = r.errors[0]!;
           console.error(`event ${body.event} produced an invalid screen:`, r.errors);

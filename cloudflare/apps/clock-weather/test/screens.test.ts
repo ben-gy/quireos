@@ -7,13 +7,15 @@ import { homeScreen } from "../src/screens.js";
 import { apiUrl, clearWeatherCache, condition, parsePlace, parseWeather, weekday } from "../src/weather.js";
 
 const icons = (JSON.parse(readFileSync(new URL("../../../../spec/icons.json", import.meta.url), "utf8")) as { icons: string[] }).icons;
+const PORTRAIT = { w: 540, h: 960 };
+const LANDSCAPE = { w: 960, h: 540 };
 const ORIGIN = "https://quireos-app-clock-weather.example.workers.dev";
 const fixture = readFileSync(new URL("./fixtures/open-meteo.json", import.meta.url), "utf8");
 const weather = parseWeather(JSON.parse(fixture), "metric", 1_790_000_000)!;
 const sydney = parsePlace({});
 
-function check(s: Screen, label: string) {
-  const r = validateScreen(s, { manifest, origin: ORIGIN, icons });
+function check(s: Screen, label: string, screen = PORTRAIT) {
+  const r = validateScreen(s, { manifest, origin: ORIGIN, icons, screen });
   expect(r.errors, `${label}: ${r.errors.map((e) => `${e.path} ${e.message}`).join("; ")}`).toEqual([]);
   const widgets = countWidgets(s.widgets);
   const bytes = new TextEncoder().encode(canonicalJson(s)).byteLength;
@@ -58,7 +60,7 @@ describe("home screen", () => {
   it("validates portrait and landscape, with and without weather", () => {
     for (const screen of [{ w: 540, h: 960 }, { w: 960, h: 540 }]) {
       const s = homeScreen({ place: sydney, weather, screen });
-      const { widgets, bytes } = check(s, `home ${screen.w}x${screen.h}`);
+      const { widgets, bytes } = check(s, `home ${screen.w}x${screen.h}`, screen);
       expect(widgets).toBeLessThan(30);
       expect(bytes).toBeLessThan(4 * 1024);
       const json = JSON.stringify(s);
@@ -67,10 +69,10 @@ describe("home screen", () => {
       expect(json).toContain("Partly cloudy");
       expect(s.ttl).toBe(600);
       const fail = homeScreen({ place: sydney, error: "Open-Meteo answered 503", screen });
-      check(fail, `unavailable ${screen.w}x${screen.h}`);
+      check(fail, `unavailable ${screen.w}x${screen.h}`, screen);
       expect(JSON.stringify(fail)).toContain("Weather unavailable");
       const imperial = homeScreen({ place: { ...sydney, units: "imperial" }, weather: { ...weather, units: "imperial" }, screen });
-      check(imperial, "imperial");
+      check(imperial, "imperial", screen);
       expect(JSON.stringify(imperial)).toContain("mph");
     }
   });

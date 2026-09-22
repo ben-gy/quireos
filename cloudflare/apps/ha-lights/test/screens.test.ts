@@ -6,6 +6,8 @@ import app, { manifest } from "../src/index.js";
 import { homeScreen, parseEntities } from "../src/screens.js";
 
 const icons = (JSON.parse(readFileSync(new URL("../../../../spec/icons.json", import.meta.url), "utf8")) as { icons: string[] }).icons;
+const PORTRAIT = { w: 540, h: 960 };
+const LANDSCAPE = { w: 960, h: 540 };
 const ORIGIN = "https://quireos-app-ha-lights.example.workers.dev";
 
 const example = [
@@ -18,8 +20,8 @@ const example = [
   { id: "switch.garage_outside", label: "Garage Outside" },
 ];
 
-function check(s: Screen, label: string) {
-  const r = validateScreen(s, { manifest, origin: ORIGIN, icons });
+function check(s: Screen, label: string, screen = PORTRAIT) {
+  const r = validateScreen(s, { manifest, origin: ORIGIN, icons, screen });
   expect(r.errors, `${label}: ${r.errors.map((e) => `${e.path} ${e.message}`).join("; ")}`).toEqual([]);
   const widgets = countWidgets(s.widgets);
   const bytes = new TextEncoder().encode(canonicalJson(s)).byteLength;
@@ -72,7 +74,7 @@ describe("home screen", () => {
     const light = (s.widgets.find((w) => w.type === "grid") as { children: { on_tap: { url: string } }[] }).children[7]!;
     expect(light.on_tap.url).toBe("{{settings.ha_url}}/api/services/light/toggle");
     const land = homeScreen({ entities: eight, screen: { w: 960, h: 540 } });
-    check(land, "landscape");
+    check(land, "landscape", LANDSCAPE);
     const g = land.widgets.find((w) => w.type === "grid")!;
     expect(g.type === "grid" && g.cols).toBe(4);
     expect(g.type === "grid" && g.y + g.rows * g.cell_h + (g.rows - 1) * g.gap).toBeLessThan(540);

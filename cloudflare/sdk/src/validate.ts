@@ -82,6 +82,12 @@ export interface ValidateOptions {
   icons?: Iterable<string>;
   /** Byte size of the original document text, when the caller has it. */
   bytes?: number;
+  /**
+   * The logical panel the screen will be drawn on. When given, a widget that can never intersect
+   * it is an error: running off an edge is fine (a fill may bleed deliberately), starting past one
+   * is not, because nothing of it can ever be seen.
+   */
+  screen?: { w: number; h: number };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -246,6 +252,8 @@ interface Scope {
   origin?: string;
   /** Literal origins the app may contact (from the manifest and `origin`). */
   allowed?: Set<string>;
+  /** The logical panel, when the caller knows it. */
+  screen?: { w: number; h: number };
 }
 
 function settingOf(scope: Scope, key: string): Setting | undefined {
@@ -512,7 +520,7 @@ export function allowedOrigins(manifest: Manifest, origin?: string): Set<string>
 }
 
 function makeScope(opts: ValidateOptions, dataIds: Set<string>): Scope {
-  const scope: Scope = { dataIds, manifest: opts.manifest, origin: opts.origin };
+  const scope: Scope = { dataIds, manifest: opts.manifest, origin: opts.origin, screen: opts.screen };
   if (opts.manifest) scope.allowed = allowedOrigins(opts.manifest, opts.origin);
   return scope;
 }
@@ -575,7 +583,70 @@ interface WidgetCounts {
   images: number;
 }
 
-function checkWidget(v: unknown, path: string, e: Errors, scope: Scope, counts: WidgetCounts, grid?: { cols: number; rows: number }): void {
+/** A grid's own geometry, so a child's cell offset resolves to an absolute position. */
+interface GridFrame {
+  cols: number;
+  rows: number;
+  x?: number;
+  y?: number;
+  cellW?: number;
+  cellH?: number;
+  gap?: number;
+}
+
+function num(v: unknown): number | undefined {
+  return typeof v === "number" && Number.isFinite(v) ? v : undefined;
+}
+
+/**
+ * Where a widget starts, and how big it is when the document says. A grid child is resolved
+ * through its cell first; a line uses its top-left corner.
+ */
+function originOf(v: Record<string, unknown>, type: string, grid: GridFrame | undefined): { x?: number; y?: number; w?: number; h?: number } {
+  let x = num(v.x);
+  let y = num(v.y);
+  let w = num(v.w);
+  let h = num(v.h);
+  if (type === "line") {
+    const x1 = num(v.x1);
+    const x2 = num(v.x2);
+    const y1 = num(v.y1);
+    const y2 = num(v.y2);
+    if (x1 !== undefined && x2 !== undefined) { x = Math.min(x1, x2); w = Math.abs(x2 - x1); }
+    if (y1 !== undefined && y2 !== undefined) { y = Math.min(y1, y2); h = Math.abs(y2 - y1); }
+  }
+  if (grid) {
+    if (grid.x === undefined || grid.cellW === undefined || grid.gap === undefined) return {};
+    const cell = v.cell;
+    let col: number | undefined;
+    let row: number | undefined;
+    if (typeof cell === "number") { col = cell % grid.cols; row = Math.floor(cell / grid.cols); }
+    else if (Array.isArray(cell) && cell.length === 2 && typeof cell[0] === "number" && typeof cell[1] === "number") { col = cell[0]; row = cell[1]; }
+    if (col === undefined || row === undefined) return {};
+    x = grid.x + col * (grid.cellW + grid.gap) + (x ?? 0);
+    y = (grid.y ?? 0) + row * ((grid.cellH ?? 0) + grid.gap) + (y ?? 0);
+    // A child that omits w/h fills its cell.
+    w = w ?? grid.cellW;
+    h = h ?? grid.cellH;
+  }
+  return { x, y, w, h };
+}
+
+function checkOnScreen(v: Record<string, unknown>, type: string, path: string, e: Errors, scope: Scope, grid: GridFrame | undefined): void {
+  const s = scope.screen;
+  if (!s || type === "grid") return;
+  const { x, y, w, h } = originOf(v, type, grid);
+  if (x !== undefined) {
+    if (x >= s.w) e.err(`${path}/x`, `starts at x=${x}, past the ${s.w}px panel, so it can never be seen`);
+    else if (w !== undefined && x + w <= 0) e.err(`${path}/x`, `ends at x=${x + w}, left of the panel, so it can never be seen`);
+  }
+  if (y !== undefined) {
+    if (y >= s.h) e.err(`${path}/y`, `starts at y=${y}, below the ${s.h}px panel, so it can never be seen`);
+    else if (h !== undefined && y + h <= 0) e.err(`${path}/y`, `ends at y=${y + h}, above the panel, so it can never be seen`);
+  }
+}
+
+function checkWidget(v: unknown, path: string, e: Errors, scope: Scope, counts: WidgetCounts, grid?: GridFrame): void {
   counts.widgets++;
   if (!isObj(v)) {
     e.err(path, "must be a widget object");
@@ -596,6 +667,7 @@ function checkWidget(v: unknown, path: string, e: Errors, scope: Scope, counts: 
   const needH = (type === "rect" || type === "image" || type === "button") && !inGrid;
   checkInt(v.w, `${path}/w`, e, 0, 32767, needW);
   checkInt(v.h, `${path}/h`, e, 0, 32767, needH);
+  checkOnScreen(v, type, path, e, scope, grid);
   if (v.when !== undefined) checkCondString(v.when, `${path}/when`, e, scope);
   if (v.disabled !== undefined) checkCondString(v.disabled, `${path}/disabled`, e, scope);
   checkAction(v.on_tap, `${path}/on_tap`, e, scope);
@@ -667,7 +739,17 @@ function checkWidget(v: unknown, path: string, e: Errors, scope: Scope, counts: 
         e.err(`${path}/children`, "grid needs a children array");
         break;
       }
-      const g = ok ? { cols: v.cols as number, rows: v.rows as number } : { cols: 1e9, rows: 1e9 };
+      const g: GridFrame = ok
+        ? {
+            cols: v.cols as number,
+            rows: v.rows as number,
+            x: num(v.x),
+            y: num(v.y),
+            cellW: v.cell_w as number,
+            cellH: v.cell_h as number,
+            gap: v.gap as number,
+          }
+        : { cols: 1e9, rows: 1e9 };
       v.children.forEach((c, i) => checkWidget(c, `${path}/children/${i}`, e, scope, counts, g));
       break;
     }

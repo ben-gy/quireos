@@ -335,3 +335,36 @@ describe("the icon set defaults", () => {
     expect(validateScreen(withIcon("airplane"), { icons: [...ICON_NAMES, "airplane"] }).ok).toBe(true);
   });
 });
+
+describe("widgets that can never be seen", () => {
+  const screen = { w: 540, h: 960 };
+  const one = (w: Record<string, unknown>) => validateScreen({ spec_version: 1, id: "home", widgets: [w] }, { screen });
+
+  it("leaves a widget that bleeds off an edge alone", () => {
+    // A fill running past the bottom is a deliberate design, not a mistake.
+    expect(one({ type: "rect", x: 24, y: 900, w: 400, h: 200 }).ok).toBe(true);
+  });
+
+  it("rejects one that starts past an edge", () => {
+    expect(one({ type: "rect", x: 24, y: 1100, w: 400, h: 100 }).errors[0]!.message).toContain("never be seen");
+    expect(one({ type: "rect", x: 900, y: 24, w: 100, h: 100 }).errors[0]!.message).toContain("never be seen");
+  });
+
+  it("rejects one that ends before an edge", () => {
+    expect(one({ type: "rect", x: -200, y: 24, w: 100, h: 100 }).errors[0]!.message).toContain("never be seen");
+  });
+
+  it("resolves a grid child through its cell before judging it", () => {
+    const grid = (child: Record<string, unknown>) =>
+      validateScreen(
+        { spec_version: 1, id: "home", widgets: [{ type: "grid", x: 24, y: 24, cols: 2, rows: 4, cell_w: 238, cell_h: 190, gap: 16, children: [child] }] },
+        { screen },
+      );
+    expect(grid({ type: "rect", cell: 7 }).ok).toBe(true); // last cell is on the panel
+    expect(grid({ type: "rect", cell: 1, y: 1200 }).errors[0]!.message).toContain("never be seen");
+  });
+
+  it("says nothing when the caller does not know the panel", () => {
+    expect(validateScreen({ spec_version: 1, id: "home", widgets: [{ type: "rect", x: 24, y: 5000, w: 10, h: 10 }] }).ok).toBe(true);
+  });
+});

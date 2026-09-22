@@ -27,7 +27,7 @@ describe("list screen", () => {
         let pages = 1;
         for (let p = 0; p < pages; p++) {
           const s = listScreen({ ctx: ctx({ dark }, screen), feed: "top", stories, read: new Set([stories[0]!.id, stories[3]!.id]), page: p });
-          const { widgets, bytes } = check(s, `list ${name} dark=${dark} page ${p}`);
+          const { widgets, bytes } = check(s, `list ${name} dark=${dark} page ${p}`, screen);
           expect(widgets).toBeLessThanOrEqual(96);
           expect(bytes).toBeLessThan(16 * 1024);
           const info = (s.widgets.find((w) => w.type === "text" && typeof w.text === "object") as { text: { then: string } }).text.then;
@@ -71,8 +71,8 @@ describe("categories and settings", () => {
   it("validate in both orientations and themes", () => {
     for (const screen of Object.values(sizes)) {
       for (const dark of [false, true]) {
-        check(feedsScreen({ ctx: ctx({ dark }, screen), current: "ask", savedCount: 3 }));
-        check(settingsScreen({ ctx: ctx({ dark, text_size: "lg" }, screen), feed: "top", readCount: 12 }));
+        check(feedsScreen({ ctx: ctx({ dark }, screen), current: "ask", savedCount: 3 }), "feeds", screen);
+        check(settingsScreen({ ctx: ctx({ dark, text_size: "lg" }, screen), feed: "top", readCount: 12 }), "settings", screen);
       }
     }
   });
@@ -88,7 +88,7 @@ describe("comments screen", () => {
         let maxBytes = 0;
         for (let p = 0; p < pages; p++) {
           const s = storyScreen({ ctx: ctx({ text_size }, screen), thread, folds, page: p, saved: p % 2 === 0 });
-          const { widgets, bytes } = check(s, `story ${name} ${text_size} page ${p}`);
+          const { widgets, bytes } = check(s, `story ${name} ${text_size} page ${p}`, screen);
           maxWidgets = Math.max(maxWidgets, widgets);
           maxBytes = Math.max(maxBytes, bytes);
           const counter = s.widgets.find((w) => w.type === "text" && typeof w.text === "string" && / \/ /.test(w.text)) as { text: string };
@@ -132,7 +132,7 @@ describe("article screens", () => {
       let pages = 1;
       for (let p = 0; p < pages; p++) {
         const s = articleScreen({ ctx: ctx({ text_size: "sm" }, screen), story: thread.story, article: article.article, page: p, saved: false, from: "story" });
-        check(s, `article page ${p}`);
+        check(s, `article page ${p}`, screen);
         const counter = s.widgets.find((w) => w.type === "text" && typeof w.text === "string" && / \/ /.test(w.text)) as { text: string };
         pages = Number(counter.text.split(" / ")[1]);
       }
