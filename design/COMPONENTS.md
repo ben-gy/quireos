@@ -98,8 +98,11 @@ check estimates for it, so it can miss an invisible widget but can never fail a 
 visible one. That applies to every input, not just the result — a field stated literally is taken
 at its word, a field the device resolves later is taken at its maximum (`digits` for a size, eight
 for `lines`), and a field that is not a finite number leaves that axis alone. A property test
-generates several hundred documents and asserts the rule directly, because in practice it is the
-rule, not the code, that has to be re-checked whenever either is touched.
+generates several hundred documents and asserts the rule in both directions: what the check rejects
+must really be unreachable, and where nothing had to be estimated, what is unreachable must be
+rejected. Each of the three bugs this check has had was reintroduced to confirm the test catches
+it, since a property test that passes the moment it is written is indistinguishable from one that
+tests nothing.
 
 Use `ui.validate()` rather than the standalone `validateScreen()`, which checks the spec alone.
 

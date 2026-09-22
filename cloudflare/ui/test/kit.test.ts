@@ -221,13 +221,21 @@ describe("components", () => {
   });
   it("never reports a widget that could be visible, across a generated space of documents", () => {
     // The invariant this check lives by: it may be too quiet, but it must never be wrong. Stated
-    // as a property rather than prose, because prose is what both of us kept having to re-derive.
+    // as a property rather than prose, because prose is what kept having to be re-derived by hand.
+    //
+    // Verified by mutation rather than trusted: each of the three bugs this check has actually had
+    // was reintroduced and confirmed to fail this suite —
+    //   1. testing only the right and bottom edges, so x = -200 w = 100 passed
+    //   2. a conditional `size` falling back to md, when it may resolve to digits
+    //   3. a non-numeric `lines` falling back to one line, when it may resolve to eight
+    // The third is the one worth keeping in mind: before this rewrite it gave the right answer
+    // only because the arithmetic produced NaN and every comparison against NaN is false.
     const ui = createKit({ profile: "t5pro" });
     const BIGGEST_LINE = ui.lh("digits"), BIGGEST_ICON = ui.t.icon.lg, MAX_LINES = 8;
     const coords = [-2000, -400, -150, -40, -1, 0, 1, 100, ui.W - 1, ui.W, ui.W + 1, ui.H - 1, ui.H, ui.H + 400];
     const sizes: unknown[] = ["xs", "md", "digits", { if: "vars.b == on", then: "digits", else: "xs" }, undefined];
     const lines: unknown[] = [undefined, 1, 8, { if: "vars.b == on", then: 8, else: 1 }];
-    let flagged = 0, checked = 0;
+    let flagged = 0, checked = 0, missed = 0;
     for (const x of coords) for (const y of coords) for (const size of sizes) for (const ln of lines) {
       for (const w of [
         { type: "text" as const, x, y, w: 200, text: "t", ...(size !== undefined ? { size } : {}), ...(ln !== undefined ? { lines: ln } : {}) },
@@ -237,8 +245,6 @@ describe("components", () => {
         checked++;
         const problems = ui.validate({ spec_version: 1 as const, id: "p", widgets: [w as never] });
         const offPanel = problems.filter((p) => p.message.includes("never be seen"));
-        if (offPanel.length === 0) continue;
-        flagged++;
         // Independently compute the LARGEST the widget could possibly be — taking a field the
         // document states literally at its word, and a field the device resolves later at its
         // maximum — then assert that even at that size it cannot touch the panel.
@@ -250,11 +256,20 @@ describe("components", () => {
         const maxW = d.type === "icon" ? iconPx : (d.w ?? ui.W);
         const maxH = d.type === "icon" ? iconPx : d.type === "text" ? lineH * nLines : (d.h ?? ui.H);
         const intersects = d.x < ui.W && d.y < ui.H && d.x + maxW > 0 && d.y + maxH > 0;
-        expect(intersects, `flagged ${JSON.stringify(w)} but at its largest it reaches the panel`).toBe(false);
+        if (offPanel.length > 0) {
+          // Soundness: what it rejects must really be unreachable, even at its largest.
+          flagged++;
+          expect(intersects, `flagged ${JSON.stringify(w)} but at its largest it reaches the panel`).toBe(false);
+        } else if (!intersects && literalSize !== null && typeof d.lines !== "object") {
+          // Completeness, but only where nothing had to be estimated: with a literal size and a
+          // literal line count there is no slack left, so an unreachable widget must be reported.
+          missed++;
+        }
       }
     }
     expect(checked).toBeGreaterThan(500);
     expect(flagged).toBeGreaterThan(20);   // the check is doing something, not vacuously passing
+    expect(missed).toBe(0);
   });
   it("collects button-only keys from the pager", () => {
     const ui = createKit({ profile: "panel75" });
