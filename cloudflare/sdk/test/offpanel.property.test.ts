@@ -112,7 +112,10 @@ describe("off-panel: rejection implies certainly invisible", () => {
   });
 
   it("holds for grid children, which resolve through their cell", () => {
+    // Both directions: soundness alone is satisfied by a check that rejects nothing, which is how
+    // a whole class of widgets can quietly stop being checked at all.
     const wrong: string[] = [];
+    const missed: string[] = [];
     for (const cell of [0, 1, 3, 7]) {
       for (const dx of [-5000, -200, 0, 200, 5000]) {
         for (const dy of [-5000, -200, 0, 200, 5000]) {
@@ -123,15 +126,18 @@ describe("off-panel: rejection implies certainly invisible", () => {
             widgets: [{ type: "grid", x: 24, y: 24, cols: 2, rows: 4, cell_w: 238, cell_h: 190, gap: 16, children: [child] }],
           };
           const r = validateScreen(doc, { screen: PANEL });
-          if (!r.errors.some((e) => e.message.includes("never be seen"))) continue;
+          const rejects = r.errors.some((e) => e.message.includes("never be seen"));
           // Resolve the cell the way the spec says, then apply the same question.
           const col = cell % 2;
           const row = Math.floor(cell / 2);
           const box = { x: 24 + col * (238 + 16) + dx, y: 24 + row * (190 + 16) + dy, w: 100, h: 100 };
-          if (box.x < PANEL.w && box.y < PANEL.h && box.x + box.w > 0 && box.y + box.h > 0) wrong.push(JSON.stringify(child));
+          const touches = box.x < PANEL.w && box.y < PANEL.h && box.x + box.w > 0 && box.y + box.h > 0;
+          if (rejects && touches) wrong.push(JSON.stringify(child));
+          if (!rejects && !touches) missed.push(JSON.stringify(child));
         }
       }
     }
     expect(wrong).toEqual([]);
+    expect(missed).toEqual([]);
   });
 });
