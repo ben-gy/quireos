@@ -100,6 +100,16 @@ The store runs exactly the same checks when you publish, so fix everything here 
 that renders your screens with a fake device context and calls `validateScreen` (the example apps
 do this).
 
+If your app paginates or links between screens, walk those links too:
+
+```bash
+npm run linkcheck -- http://127.0.0.1:8787
+```
+
+It follows every `navigate` target from the entry screen and reports any that do not answer 200,
+which is how a screen that reports a page count from one place and generates pages from another
+gets caught.
+
 ## 5. Publish
 
 1. Bump `version` in the manifest (every publish must be greater than the last).

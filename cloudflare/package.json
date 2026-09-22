@@ -13,7 +13,8 @@
     "test": "npm run test --workspaces --if-present",
     "validate": "npm run validate -w tools/validate",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "devstore": "npm run devstore -w tools/devstore --"
+    "devstore": "npm run devstore -w tools/devstore --",
+    "linkcheck": "node tools/linkcheck.mjs"
   },
   "devDependencies": {
     "typescript": "^5.6.0",
