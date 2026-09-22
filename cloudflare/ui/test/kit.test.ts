@@ -191,6 +191,19 @@ describe("components", () => {
       expect(r.length, `${JSON.stringify(w)} was accepted`).toBe(1);
       expect(r[0]!.message).toContain("can never be seen");
     }
+    // A size the device resolves at render time may be far taller than it looks: the estimate has
+    // to be an upper bound, or the check rejects widgets that are in fact visible.
+    const conditional = [
+      { type: "text" as const, x: 24, y: -100, w: 400, text: "21.5", size: { if: "vars.big == on", then: "digits" as const, else: "md" as const }, lines: 1 },
+      { type: "icon" as const, x: 10, y: -50, name: "home-outline", size: { if: "vars.big == on", then: "lg" as const, else: "md" as const } },
+    ];
+    for (const w of conditional) {
+      expect(ui.validate({ spec_version: 1 as const, id: "cond", widgets: [w] }), `${w.type} with a conditional size was rejected`).toEqual([]);
+    }
+    // The bound stays tight enough to still catch what is genuinely off the panel.
+    expect(ui.validate({ spec_version: 1 as const, id: "cond2", widgets: [
+      { type: "text" as const, x: 24, y: -400, w: 400, text: "gone", size: { if: "vars.big == on", then: "digits" as const, else: "md" as const }, lines: 1 },
+    ] }).length).toBe(1);
     // A widget that overlaps an edge is clipped, which is sometimes deliberate.
     for (const w of [
       ui.rect({ x: 0, y: ui.H - 8, w: ui.W, h: 200, fill: "ink" }),

@@ -374,15 +374,20 @@ export class Kit {
    * seen, so it is always a mistake. Checking "starts beyond an edge" is not enough: a widget at
    * x = -200 with w = 100 ends before the left edge and would slip through.
    *
-   * Where a dimension is unknown the check stays quiet on that axis rather than guessing, so it
-   * never reports a widget that might in fact be visible.
+   * Every estimate here is an UPPER bound on the real size, and where even a bound is unavailable
+   * the check stays quiet on that axis. That is what keeps it sound: a widget is never larger than
+   * the estimate, so the check can be too quiet but never wrong. A `size` that is a conditional is
+   * the case that makes this matter — the device may resolve it to `digits`, four times the height
+   * of the `md` it looks like at a glance — so an unresolved size takes the profile's largest.
    */
   private offGlass(screen: Screen): Problem[] {
     const out: Problem[] = [];
-    const iconPx = (w: { size?: unknown }): number | undefined => {
-      const size = typeof w.size === "string" ? w.size : "md";
-      return size === "sm" || size === "md" || size === "lg" ? this.t.icon[size] : undefined;
-    };
+    const SIZES: TextSize[] = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "digits"];
+    // A literal size gives the exact value; anything else gives the largest this profile can draw.
+    const iconPx = (w: { size?: unknown }): number =>
+      w.size === "sm" || w.size === "md" || w.size === "lg" ? this.t.icon[w.size] : this.t.icon.lg;
+    const textLh = (w: { size?: unknown }): number =>
+      typeof w.size === "string" && (SIZES as string[]).includes(w.size) ? this.lh(w.size as TextSize) : this.lh("digits");
     const check = (path: string, x: number, y: number, w?: number, h?: number) => {
       const off = x >= this.W ? "past the right edge"
         : y >= this.H ? "below the bottom"
@@ -392,12 +397,8 @@ export class Kit {
       if (off) out.push({ path, message: `lies ${off} of the ${this.W}x${this.H} panel, so it can never be seen` });
     };
     const measure = (c: Widget, dw?: number, dh?: number): [number | undefined, number | undefined] => {
-      if (c.type === "icon") { const px = iconPx(c); return [c.w ?? px ?? dw, c.h ?? px ?? dh]; }
-      if (c.type === "text") {
-        const size = typeof c.size === "string" ? c.size : "md";
-        const lh = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "digits"].includes(size) ? this.lh(size as TextSize) : undefined;
-        return [c.w ?? dw, c.h ?? (lh !== undefined ? lh * (c.lines ?? 1) : dh)];
-      }
+      if (c.type === "icon") { const px = iconPx(c); return [c.w ?? px, c.h ?? px]; }
+      if (c.type === "text") return [c.w ?? dw, c.h ?? textLh(c) * Math.max(1, c.lines ?? 1)];
       return [c.w ?? dw, c.h ?? dh];
     };
     screen.widgets.forEach((w, i) => {

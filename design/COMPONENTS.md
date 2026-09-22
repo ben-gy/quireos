@@ -91,9 +91,11 @@ still fires for a screen assembled by hand. A widget that overlaps an edge is cl
 sometimes deliberate — a fill bleeding off the bottom, the toast band. One that **cannot intersect
 the panel at all** can never be seen and is always a mistake. The test is intersection rather than
 "starts past an edge", because a widget at `x = -200` with `w = 100` ends before the left edge and
-is just as invisible. Where a dimension is unknown the check stays quiet on that axis rather than
-guessing. Use `ui.validate()` rather than the standalone `validateScreen()`, which checks the spec
-alone.
+is just as invisible. Every size it estimates is an upper bound — a literal `size` gives the exact
+line height, anything the device resolves at render time gives the largest this profile can draw —
+and where no bound exists it stays quiet on that axis. That is what makes it safe to fail a build
+on: a widget is never larger than the estimate, so the check can be too quiet but never wrong. Use
+`ui.validate()` rather than the standalone `validateScreen()`, which checks the spec alone.
 
 `ui.columns(box, n, gap = space.gutter)` splits a box into equal columns on the unit; the remainder
 goes to the outer edges. Pass `space.section` as the gap for columns of text (a right-aligned
