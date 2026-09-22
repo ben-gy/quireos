@@ -84,6 +84,14 @@ badge.
 into an error and the gallery build fails on it. A screen that does not fit is a bug, not a
 judgement call.
 
+`ui.validate()` checks two things no spec validator can, because only a device knows them: that
+nothing was laid out past the **frame**, and that nothing was laid out past the **glass**. The
+first is precise but exists only when this kit built the page; the second reads the document, so it
+still fires for a screen assembled by hand. A widget that starts on the panel and runs over is
+clipped, which is sometimes deliberate; one that starts beyond the edge can never be seen, and is
+always a mistake. Use `ui.validate()` rather than the standalone `validateScreen()`, which checks
+the spec alone.
+
 `ui.columns(box, n, gap = space.gutter)` splits a box into equal columns on the unit; the remainder
 goes to the outer edges. Pass `space.section` as the gap for columns of text (a right-aligned
 value one gutter from the next column's key reads as one line); the default gutter is for tiles.

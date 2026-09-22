@@ -171,6 +171,23 @@ describe("components", () => {
       expect(validateScreen(screen(name)), `${name} is not compiled`).toEqual([]);
     }
   });
+  it("catches a widget laid out past the glass even when page() never ran", () => {
+    const ui = createKit({ profile: "t5pro" });
+    // Assembled by hand, the way an app author might, without going through ui.page().
+    const below = { spec_version: 1 as const, id: "hand", widgets: [ui.text({ x: 24, y: 2000, w: 400, text: "past the bottom" })] };
+    const problems = ui.validate(below);
+    expect(problems.length).toBe(1);
+    expect(problems[0]!.message).toContain("can never be seen");
+    // A widget that starts on the panel and runs over is clipped, which is allowed.
+    const bleeding = { spec_version: 1 as const, id: "bleed", widgets: [ui.rect({ x: 0, y: ui.H - 8, w: ui.W, h: 200, fill: "ink" })] };
+    expect(ui.validate(bleeding)).toEqual([]);
+    // Grid children are resolved through their cell before being judged.
+    const grid = ui.tileGrid({ x: ui.margin, y: ui.H - 40, w: ui.contentW, h: 400 }, {
+      cols: 2, rows: 4, tiles: Array.from({ length: 8 }, (_, i) => ({ label: `T${i}` })),
+    });
+    const offCells = ui.validate({ spec_version: 1 as const, id: "grid", widgets: grid.widgets });
+    expect(offCells.length).toBeGreaterThan(0);
+  });
   it("collects button-only keys from the pager", () => {
     const ui = createKit({ profile: "panel75" });
     const s = ui.page({ id: "p", toolbar: { rows: [ui.pagerRow({ page: 2, pages: 3, prev: { type: "back" }, next: { type: "home" } })], placement: "bottom" }, body: () => [] });

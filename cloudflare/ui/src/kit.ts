@@ -351,9 +351,46 @@ export class Kit {
     if (Object.keys(keys).length) screen.keys = keys;
     return screen;
   }
+  /**
+   * Spec validation, plus the two things only a device can judge: that nothing was laid out past
+   * the frame, and that nothing was laid out past the glass.
+   *
+   * The frame check is the precise one, but it only exists when this kit built the page. The glass
+   * check reads the document itself, so it still fires for a screen assembled by hand — a check
+   * that can be skipped by not calling something is a check that will be.
+   */
   validate(screen: Screen): Problem[] {
     const out = validateScreen(screen);
     if (this.overflow) out.push({ path: "/widgets", message: `content runs ${this.overflow.by} px past the ${this.overflow.frame.h} px frame; an e-paper screen cannot scroll` });
+    out.push(...this.offGlass(screen));
+    return out;
+  }
+
+  /**
+   * Widgets that begin past the edge of the panel. A widget that starts inside and runs over is
+   * clipped, which is sometimes deliberate (a fill bleeding off an edge); one that starts outside
+   * can never be seen at all, so it is always a mistake.
+   */
+  private offGlass(screen: Screen): Problem[] {
+    const out: Problem[] = [];
+    const check = (path: string, x: number, y: number) => {
+      if (y >= this.H) out.push({ path, message: `starts ${y - this.H + 1} px below the bottom of the ${this.H} px panel, so it can never be seen` });
+      else if (x >= this.W) out.push({ path, message: `starts past the right edge of the ${this.W} px panel, so it can never be seen` });
+    };
+    screen.widgets.forEach((w, i) => {
+      const p = `/widgets/${i}`;
+      if (w.type === "line") { check(p, Math.min(w.x1, w.x2), Math.min(w.y1, w.y2)); return; }
+      check(p, w.x ?? 0, w.y ?? 0);
+      if (w.type !== "grid") return;
+      w.children.forEach((c, j) => {
+        const cell = Array.isArray(c.cell) ? c.cell[1]! * w.cols + c.cell[0]! : c.cell;
+        const cx = w.x + (cell % w.cols) * (w.cell_w + w.gap);
+        const cy = w.y + Math.floor(cell / w.cols) * (w.cell_h + w.gap);
+        const cp = `${p}/children/${j}`;
+        if (c.type === "line") check(cp, cx + Math.min(c.x1, c.x2), cy + Math.min(c.y1, c.y2));
+        else check(cp, cx + (c.x ?? 0), cy + (c.y ?? 0));
+      });
+    });
     return out;
   }
   /** Strong ETag over the canonical JSON (SDK). */

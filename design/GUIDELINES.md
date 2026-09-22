@@ -31,8 +31,8 @@ pressed. A screen with no boxes on it is usually the right one.
 
 **Nothing scrolls.** A screen shows what fits and pages the rest. There is no off-screen content,
 no "scroll for more", and no clipping: a list longer than the panel is broken into pages by the
-server, exactly as body text is. The kit refuses to build a screen whose content runs past its
-frame, and the gallery build fails on one.
+server, exactly as body text is. The kit reports a screen whose content runs past its frame or past
+the panel itself, and the gallery build fails on one.
 
 **One thing per screen.** A screen answers one question or offers one action set. Depth comes from
 navigation, not density. If a screen needs a second column it needs a second screen, unless the
