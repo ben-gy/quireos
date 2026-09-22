@@ -1,0 +1,68 @@
+{
+ "spec_version": 1,
+ "id": "update-os",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 126,
+   "y": 18,
+   "name": "update",
+   "size": "lg"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 64,
+   "w": 292,
+   "text": "Update QuireOS",
+   "size": "lg",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 96,
+   "w": 292,
+   "text": "Frame needs spec version 2. This device has 1.",
+   "align": "center",
+   "color": 5,
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 142,
+   "w": 292,
+   "text": "Update from the settings page:",
+   "align": "center",
+   "color": 5
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 168,
+   "w": 292,
+   "text": "http://quireos.local/os",
+   "size": "lg",
+   "align": "center"
+  },
+  {
+   "type": "button",
+   "x": 122,
+   "y": 210,
+   "w": 58,
+   "h": 36,
+   "label": "Home",
+   "size": "sm",
+   "radius": 4,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0,
+   "on_tap": {
+    "type": "home"
+   }
+  }
+ ]
+}

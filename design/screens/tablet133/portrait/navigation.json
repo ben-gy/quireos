@@ -1,0 +1,479 @@
+{
+ "spec_version": 1,
+ "id": "navigation",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 64,
+   "w": 528,
+   "h": 56,
+   "fill": {
+    "if": "vars.tab == day",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "day"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 36,
+   "y": 64,
+   "w": 520,
+   "text": "Day",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == day",
+    "then": 15,
+    "else": 0
+   },
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 560,
+   "y": 64,
+   "w": 528,
+   "h": 56,
+   "fill": {
+    "if": "vars.tab == week",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "week"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 564,
+   "y": 64,
+   "w": 520,
+   "text": "Week",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == week",
+    "then": 15,
+    "else": 0
+   },
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 560,
+   "y1": 64,
+   "x2": 560,
+   "y2": 119,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 1088,
+   "y": 64,
+   "w": 528,
+   "h": 56,
+   "fill": {
+    "if": "vars.tab == month",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "month"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 1092,
+   "y": 64,
+   "w": 520,
+   "text": "Month",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == month",
+    "then": 15,
+    "else": 0
+   },
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 1088,
+   "y1": 64,
+   "x2": 1088,
+   "y2": 119,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 64,
+   "w": 1584,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 4
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 128,
+   "w": 1584,
+   "text": "Feed",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 1650,
+   "h": 96,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "top"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 184,
+   "w": 1548,
+   "text": "Top stories",
+   "weight": {
+    "if": "vars.feed == top",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 220,
+   "w": 1548,
+   "text": "Front page",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1596,
+   "y": 192,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == top"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 272,
+   "w": 1650,
+   "h": 96,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "new"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 288,
+   "w": 1548,
+   "text": "New",
+   "weight": {
+    "if": "vars.feed == new",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 324,
+   "w": 1548,
+   "text": "Most recent",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1596,
+   "y": 296,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == new"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 376,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "best"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 392,
+   "w": 1548,
+   "text": "Best",
+   "weight": {
+    "if": "vars.feed == best",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "icon",
+   "x": 1596,
+   "y": 400,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == best"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 448,
+   "w": 1650,
+   "h": 96,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "saved"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 464,
+   "w": 1548,
+   "text": "Saved",
+   "weight": {
+    "if": "vars.feed == saved",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 500,
+   "w": 1548,
+   "text": "Stories you saved (12)",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1596,
+   "y": 472,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == saved"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 1504,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/sheet.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1516,
+   "y": 12,
+   "name": "dots-vertical"
+  },
+  {
+   "type": "rect",
+   "x": 1448,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1460,
+   "y": 12,
+   "name": "magnify"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 1376,
+   "text": "Navigation",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 1649,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 2088,
+   "x2": 1649,
+   "y2": 2088,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 2088,
+   "w": 528,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 280,
+   "y": 2100,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 560,
+   "y": 2088,
+   "w": 528,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 808,
+   "y": 2100,
+   "name": "refresh"
+  },
+  {
+   "type": "rect",
+   "x": 1088,
+   "y": 2088,
+   "w": 528,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1336,
+   "y": 2100,
+   "name": "cog-outline"
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 2144,
+   "x2": 1615,
+   "y2": 2144,
+   "color": 12
+  },
+  {
+   "type": "icon",
+   "x": 280,
+   "y": 2156,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 804,
+   "y": 2144,
+   "w": 40,
+   "text": "1 / 1",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "icon",
+   "x": 1336,
+   "y": 2156,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "vars": {
+  "tab": "week",
+  "feed": "top"
+ }
+}

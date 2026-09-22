@@ -1,0 +1,91 @@
+{
+  "$comment": "Device classes the design system is derived for. Hand-written source of truth; design/tokens/build.mjs turns this into tokens.json. t5pro is the reference profile and must agree with spec/fonts.json. Sizes are native panel pixels; `distance` scales physical sizes for screens read from further away (desk or wall panels).",
+  "spec_version": 1,
+  "classes": {
+    "badge":    { "description": "Tiny glanceable panels on badges, sensors and shelf labels. Buttons or nothing. A screen shows one thing." },
+    "panel":    { "description": "Desk or wall panels read from about a metre away. Landscape, usually 1-bit, usually button-only, always-on with slow refresh." },
+    "handheld": { "description": "Phone-shaped or pocket readers held at reading distance. Touch, portrait first, 16 greys, deep sleep between taps." },
+    "large":    { "description": "Tablet and wall-frame panels held or mounted at reading distance. Touch, multi-column, 16 greys." }
+  },
+  "profiles": {
+    "badge29": {
+      "name": "2.9-inch badge",
+      "examples": ["Waveshare 2.9\" e-Paper", "LilyGo T5 2.13/2.9", "M5Paper-sized name badges"],
+      "class": "badge",
+      "native": [296, 128],
+      "dpi": 111,
+      "greys": 2,
+      "touch": false,
+      "buttons": 2,
+      "default_orientation": "landscape",
+      "distance": 1.0,
+      "partial_update": true
+    },
+    "badge42": {
+      "name": "4.2-inch panel",
+      "examples": ["Waveshare 4.2\" e-Paper", "Inkplate 4"],
+      "class": "badge",
+      "native": [400, 300],
+      "dpi": 119,
+      "greys": 4,
+      "touch": false,
+      "buttons": 3,
+      "default_orientation": "landscape",
+      "distance": 1.0,
+      "partial_update": true
+    },
+    "panel75": {
+      "name": "7.5-inch panel",
+      "examples": ["TRMNL", "Inkplate 7.5", "Waveshare 7.5\" e-Paper"],
+      "class": "panel",
+      "native": [800, 480],
+      "dpi": 125,
+      "greys": 2,
+      "touch": false,
+      "buttons": 1,
+      "default_orientation": "landscape",
+      "distance": 1.4,
+      "partial_update": false
+    },
+    "t5pro": {
+      "name": "4.7-inch handheld",
+      "examples": ["LilyGo T5 E-Paper S3 Pro", "LilyGo T5 4.7 S3 (V2.3)"],
+      "class": "handheld",
+      "native": [960, 540],
+      "dpi": 235,
+      "greys": 16,
+      "touch": true,
+      "buttons": 1,
+      "default_orientation": "portrait",
+      "distance": 1.0,
+      "partial_update": true,
+      "reference": true
+    },
+    "tablet103": {
+      "name": "10.3-inch tablet",
+      "examples": ["Inkplate 10", "ED103TC2-class panels"],
+      "class": "large",
+      "native": [1404, 1872],
+      "dpi": 227,
+      "greys": 16,
+      "touch": true,
+      "buttons": 0,
+      "default_orientation": "portrait",
+      "distance": 1.0,
+      "partial_update": true
+    },
+    "tablet133": {
+      "name": "13.3-inch tablet or frame",
+      "examples": ["QuirkLogic Papyr", "ED133UT2-class panels"],
+      "class": "large",
+      "native": [2200, 1650],
+      "dpi": 207,
+      "greys": 16,
+      "touch": true,
+      "buttons": 0,
+      "default_orientation": "portrait",
+      "distance": 1.0,
+      "partial_update": true
+    }
+  }
+}

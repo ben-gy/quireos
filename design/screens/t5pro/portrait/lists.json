@@ -1,0 +1,406 @@
+{
+ "spec_version": 1,
+ "id": "lists",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 64,
+   "w": 492,
+   "text": "Settings rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 96,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 116,
+   "w": 412,
+   "text": "Theme"
+  },
+  {
+   "type": "text",
+   "x": 452,
+   "y": 116,
+   "w": 64,
+   "text": "Light",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 36
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 188,
+   "w": 372,
+   "text": "Text size"
+  },
+  {
+   "type": "text",
+   "x": 412,
+   "y": 188,
+   "w": 104,
+   "text": "Medium",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 36
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 240,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 260,
+   "w": 368,
+   "text": "Wi-Fi"
+  },
+  {
+   "type": "icon",
+   "x": 492,
+   "y": 268,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 408,
+   "y": 260,
+   "w": 76,
+   "text": "Home",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 36
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 312,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 332,
+   "w": 336,
+   "text": "Clear read history"
+  },
+  {
+   "type": "text",
+   "x": 376,
+   "y": 332,
+   "w": 140,
+   "text": "142 stories",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 36
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 384,
+   "w": 492,
+   "text": "Content rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 416,
+   "w": 540,
+   "h": 136,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 436,
+   "w": 492,
+   "text": "A story title long enough to wrap onto a second line",
+   "weight": "bold",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 512,
+   "w": 492,
+   "text": "675 pts · 273 comments · 1 d · example.com",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 552,
+   "w": 540,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 568,
+   "w": 492,
+   "text": "A story you have already read",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 608,
+   "w": 492,
+   "text": "12 pts · 3 comments · 4 h",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 648,
+   "w": 540,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 664,
+   "name": "email-outline"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 664,
+   "w": 404,
+   "text": "With a leading icon and a count"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 704,
+   "w": 404,
+   "text": "Unread messages",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 492,
+   "y": 672,
+   "w": 24,
+   "h": 24,
+   "fill": 0,
+   "radius": 12
+  },
+  {
+   "type": "text",
+   "x": 492,
+   "y": 672,
+   "w": 24,
+   "text": "3",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 752,
+   "w": 540,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 768,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 768,
+   "w": 320,
+   "text": "With a status pill"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 808,
+   "w": 320,
+   "text": "Store entry",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 408,
+   "y": 772,
+   "w": 108,
+   "h": 32,
+   "stroke": 10,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "text",
+   "x": 408,
+   "y": 772,
+   "w": 108,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 392,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 539,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 904,
+   "x2": 539,
+   "y2": 904,
+   "color": 12
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 916,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 248,
+   "y": 904,
+   "w": 44,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 916,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=2"
+  }
+ }
+}

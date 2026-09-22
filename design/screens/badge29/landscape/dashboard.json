@@ -1,0 +1,27 @@
+{
+ "spec_version": 1,
+ "id": "dashboard",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 4,
+   "y": 4,
+   "w": 170,
+   "text": "{{device.time|time:'HH:mm'}}",
+   "size": "digits",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 78
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 84,
+   "w": 266,
+   "text": "{{device.time|time:'EEEE d MMMM'}}",
+   "size": "xs"
+  }
+ ],
+ "ttl": 600,
+ "refresh": "partial"
+}

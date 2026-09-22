@@ -1,0 +1,166 @@
+{
+ "spec_version": 1,
+ "id": "reading-p2",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 48,
+   "w": 776,
+   "text": "My suspicion is that the ability to provide inference to that many people is mutually\nexclusive to having a security level sufficient to stop a state actor, which is why the\nquestion keeps coming back.",
+   "lines": 3
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 135,
+   "w": 776,
+   "text": "The weights are the easy part. Serving them at that scale is what needs a building,\nand buildings are the thing you cannot hide.",
+   "lines": 2
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 720,
+   "y": 0,
+   "w": 28,
+   "text": "2 / 2",
+   "size": "xs",
+   "align": "right",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 674,
+   "text": "Hacker News",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 392,
+   "x2": 799,
+   "y2": 392
+  },
+  {
+   "type": "rect",
+   "x": 14,
+   "y": 392,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 130,
+   "y": 402,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 272,
+   "y": 392,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 388,
+   "y": 402,
+   "name": "file-document-outline"
+  },
+  {
+   "type": "rect",
+   "x": 530,
+   "y": 392,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 646,
+   "y": 402,
+   "name": "comment-multiple-outline"
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 436,
+   "x2": 787,
+   "y2": 436
+  },
+  {
+   "type": "rect",
+   "x": 14,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 130,
+   "y": 446,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 384,
+   "y": 436,
+   "w": 36,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/reading.json"
+  }
+ }
+}

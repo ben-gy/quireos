@@ -1,0 +1,289 @@
+{
+ "spec_version": 1,
+ "id": "lists-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 30,
+   "name": "email-outline"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 28,
+   "w": 347,
+   "text": "With a leading icon and a count"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 50,
+   "w": 347,
+   "text": "Unread messages",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "rect",
+   "x": 383,
+   "y": 32,
+   "w": 13,
+   "h": 13,
+   "fill": 0,
+   "radius": 6
+  },
+  {
+   "type": "text",
+   "x": 383,
+   "y": 32,
+   "w": 13,
+   "text": "3",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 13
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 70,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 78,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 76,
+   "w": 298,
+   "text": "With a status pill"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 98,
+   "w": 298,
+   "text": "Store entry",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "rect",
+   "x": 334,
+   "y": 78,
+   "w": 62,
+   "h": 16,
+   "stroke": 10,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "text",
+   "x": 334,
+   "y": 78,
+   "w": 62,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 16
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 118,
+   "w": 392,
+   "text": "Facts",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 138,
+   "w": 254,
+   "text": "Battery",
+   "valign": "middle",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 266,
+   "y": 138,
+   "w": 130,
+   "text": "{{device.battery}}%",
+   "align": "right",
+   "valign": "middle",
+   "color": 5,
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 162,
+   "w": 252,
+   "text": "Signal",
+   "valign": "middle",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 264,
+   "y": 162,
+   "w": 132,
+   "text": "{{device.rssi}} dBm",
+   "align": "right",
+   "valign": "middle",
+   "color": 5,
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 186,
+   "w": 292,
+   "text": "Storage",
+   "valign": "middle",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 304,
+   "y": 186,
+   "w": 92,
+   "text": "8.2 of 12 MB",
+   "align": "right",
+   "valign": "middle",
+   "color": 5,
+   "h": 24
+  },
+  {
+   "type": "line",
+   "x1": 4,
+   "y1": 212,
+   "x2": 395,
+   "y2": 212,
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 214,
+   "w": 392,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar · example.com",
+   "size": "xs",
+   "color": 5
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 36,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 0,
+   "w": 348,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 399,
+   "y2": 19,
+   "color": 10
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 280,
+   "x2": 399,
+   "y2": 280,
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 6,
+   "y": 280,
+   "w": 130,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 62,
+   "y": 282,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 188,
+   "y": 280,
+   "w": 26,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "icon",
+   "x": 322,
+   "y": 282,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/lists.json"
+  }
+ }
+}

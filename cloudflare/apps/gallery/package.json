@@ -1,0 +1,21 @@
+{
+  "name": "@quireos/app-gallery",
+  "version": "0.1.0",
+  "private": true,
+  "description": "QuireOS design-system gallery and starter template: every component, laid out for whatever device asks.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc -p tsconfig.build.json && node dist/scripts/build.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@quireos/ui": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250921.0",
+    "@types/node": "^22.0.0"
+  }
+}

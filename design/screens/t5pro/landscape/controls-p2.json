@@ -1,0 +1,287 @@
+{
+ "spec_version": 1,
+ "id": "controls-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 64,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 80,
+   "w": 784,
+   "text": "Toggle off"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 120,
+   "w": 784,
+   "text": "With a subtitle",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 872,
+   "y": 84,
+   "w": 64,
+   "h": 32,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 876,
+   "y": 88,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12
+  },
+  {
+   "type": "text",
+   "x": 824,
+   "y": 80,
+   "w": 40,
+   "text": "Off",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 36
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 176,
+   "w": 960,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 196,
+   "name": "checkbox-marked"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 196,
+   "w": 864,
+   "text": "Checked"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 256,
+   "w": 960,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 276,
+   "name": "checkbox-blank-outline",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 276,
+   "w": 864,
+   "text": "Unchecked"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 336,
+   "w": 912,
+   "text": "Values",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 880,
+   "y": 376,
+   "w": 56,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 892,
+   "y": 388,
+   "name": "plus"
+  },
+  {
+   "type": "text",
+   "x": 832,
+   "y": 376,
+   "w": 40,
+   "text": "3",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 768,
+   "y": 376,
+   "w": 56,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 780,
+   "y": 388,
+   "name": "minus"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 376,
+   "w": 736,
+   "text": "Frontlight",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 812,
+   "text": "Controls",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 484,
+   "x2": 959,
+   "y2": 484,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 160,
+   "y": 496,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 460,
+   "y": 484,
+   "w": 44,
+   "text": "2 / 3",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 632,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json?p=3"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 768,
+   "y": 496,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/controls.json"
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/controls.json?p=3"
+  }
+ }
+}

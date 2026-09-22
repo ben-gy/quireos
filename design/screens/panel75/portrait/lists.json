@@ -1,0 +1,455 @@
+{
+ "spec_version": 1,
+ "id": "lists",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 48,
+   "w": 456,
+   "text": "Settings rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 72,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 80,
+   "w": 400,
+   "text": "Theme"
+  },
+  {
+   "type": "text",
+   "x": 420,
+   "y": 80,
+   "w": 48,
+   "text": "Light",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 116,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 124,
+   "w": 372,
+   "text": "Text size"
+  },
+  {
+   "type": "text",
+   "x": 392,
+   "y": 124,
+   "w": 76,
+   "text": "Medium",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 160,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 168,
+   "w": 370,
+   "text": "Wi-Fi"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 172,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "text",
+   "x": 390,
+   "y": 168,
+   "w": 56,
+   "text": "Home",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 204,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 212,
+   "w": 342,
+   "text": "Clear read history"
+  },
+  {
+   "type": "text",
+   "x": 362,
+   "y": 212,
+   "w": 106,
+   "text": "142 stories",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 248,
+   "w": 456,
+   "text": "Content rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 272,
+   "w": 480,
+   "h": 92,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 282,
+   "w": 456,
+   "text": "A story title long enough to wrap onto a second line",
+   "weight": "bold",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 338,
+   "w": 456,
+   "text": "675 pts · 273 comments · 1 d · example.com",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 364,
+   "w": 480,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 372,
+   "w": 456,
+   "text": "A story you have already read"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 401,
+   "w": 456,
+   "text": "12 pts · 3 comments · 4 h",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 428,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 436,
+   "name": "email-outline"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 436,
+   "w": 398,
+   "text": "With a leading icon and a count"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 465,
+   "w": 398,
+   "text": "Unread messages",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 450,
+   "y": 440,
+   "w": 18,
+   "h": 18,
+   "fill": 0,
+   "radius": 9
+  },
+  {
+   "type": "text",
+   "x": 450,
+   "y": 440,
+   "w": 18,
+   "text": "3",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 18
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 496,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 504,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 504,
+   "w": 338,
+   "text": "With a status pill"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 533,
+   "w": 338,
+   "text": "Store entry",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 390,
+   "y": 510,
+   "w": 78,
+   "h": 16,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "text",
+   "x": 390,
+   "y": 510,
+   "w": 78,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 16
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 564,
+   "w": 456,
+   "text": "Facts",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 588,
+   "w": 274,
+   "text": "Battery",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 294,
+   "y": 588,
+   "w": 174,
+   "text": "{{device.battery}}%",
+   "align": "right",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 620,
+   "w": 272,
+   "text": "Signal",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 292,
+   "y": 620,
+   "w": 176,
+   "text": "{{device.rssi}} dBm",
+   "align": "right",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 652,
+   "w": 328,
+   "text": "Storage",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 348,
+   "y": 652,
+   "w": 120,
+   "text": "8.2 of 12 MB",
+   "align": "right",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 686,
+   "x2": 467,
+   "y2": 686
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 688,
+   "w": 456,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar · example.com",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 386,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 479,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 756,
+   "x2": 479,
+   "y2": 756
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 756,
+   "w": 456,
+   "h": 44,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 228,
+   "y": 766,
+   "name": "home-outline"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "home"
+  }
+ }
+}

@@ -1,0 +1,448 @@
+{
+ "spec_version": 1,
+ "id": "navigation",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 74,
+   "y": 48,
+   "w": 238,
+   "h": 44,
+   "fill": {
+    "if": "vars.tab == day",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "day"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 48,
+   "w": 234,
+   "text": "Day",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == day",
+    "then": 15,
+    "else": 0
+   },
+   "h": 44
+  },
+  {
+   "type": "rect",
+   "x": 312,
+   "y": 48,
+   "w": 238,
+   "h": 44,
+   "fill": {
+    "if": "vars.tab == week",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "week"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 314,
+   "y": 48,
+   "w": 234,
+   "text": "Week",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == week",
+    "then": 15,
+    "else": 0
+   },
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 312,
+   "y1": 48,
+   "x2": 312,
+   "y2": 91
+  },
+  {
+   "type": "rect",
+   "x": 550,
+   "y": 48,
+   "w": 238,
+   "h": 44,
+   "fill": {
+    "if": "vars.tab == month",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "month"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 552,
+   "y": 48,
+   "w": 234,
+   "text": "Month",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == month",
+    "then": 15,
+    "else": 0
+   },
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 550,
+   "y1": 48,
+   "x2": 550,
+   "y2": 91
+  },
+  {
+   "type": "rect",
+   "x": 74,
+   "y": 48,
+   "w": 714,
+   "h": 44,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 2
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 96,
+   "w": 716,
+   "text": "Feed",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 72,
+   "y": 124,
+   "w": 716,
+   "h": 68,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "top"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 132,
+   "w": 690,
+   "text": "Top stories",
+   "weight": {
+    "if": "vars.feed == top",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 161,
+   "w": 690,
+   "text": "Front page",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 136,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == top"
+  },
+  {
+   "type": "rect",
+   "x": 72,
+   "y": 196,
+   "w": 716,
+   "h": 68,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "new"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 204,
+   "w": 690,
+   "text": "New",
+   "weight": {
+    "if": "vars.feed == new",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 233,
+   "w": 690,
+   "text": "Most recent",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 208,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == new"
+  },
+  {
+   "type": "rect",
+   "x": 72,
+   "y": 268,
+   "w": 716,
+   "h": 44,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "best"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 276,
+   "w": 690,
+   "text": "Best",
+   "weight": {
+    "if": "vars.feed == best",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 280,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == best"
+  },
+  {
+   "type": "rect",
+   "x": 72,
+   "y": 316,
+   "w": 716,
+   "h": 68,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "saved"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 324,
+   "w": 690,
+   "text": "Saved",
+   "weight": {
+    "if": "vars.feed == saved",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 353,
+   "w": 690,
+   "text": "Stories you saved (12)",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 328,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == saved"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 704,
+   "y": 0,
+   "w": 44,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/sheet.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 714,
+   "y": 10,
+   "name": "dots-vertical"
+  },
+  {
+   "type": "rect",
+   "x": 660,
+   "y": 0,
+   "w": 44,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 670,
+   "y": 10,
+   "name": "magnify"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 618,
+   "text": "Navigation",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 59,
+   "y1": 44,
+   "x2": 59,
+   "y2": 479
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 44,
+   "w": 59,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 16,
+   "y": 54,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 88,
+   "w": 59,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 16,
+   "y": 98,
+   "name": "refresh"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 132,
+   "w": 59,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 16,
+   "y": 142,
+   "name": "cog-outline"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 220,
+   "w": 36,
+   "text": "1 / 1",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  }
+ ],
+ "vars": {
+  "tab": "week",
+  "feed": "top"
+ }
+}

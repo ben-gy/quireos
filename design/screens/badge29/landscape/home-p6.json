@@ -1,0 +1,120 @@
+{
+ "spec_version": 1,
+ "id": "home-p6",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 296,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/update-os.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 26,
+   "w": 264,
+   "text": "Update QuireOS"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 47,
+   "w": 264,
+   "text": "OS: a newer spec is needed",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 276,
+   "y": 28,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 0,
+   "w": 266,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 295,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 108,
+   "x2": 295,
+   "y2": 108
+  },
+  {
+   "type": "rect",
+   "x": 4,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json?p=5"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 44,
+   "y": 110,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 136,
+   "y": 108,
+   "w": 26,
+   "text": "6 / 9",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 196,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json?p=7"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 236,
+   "y": 110,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/home.json?p=5"
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/home.json?p=7"
+  }
+ }
+}

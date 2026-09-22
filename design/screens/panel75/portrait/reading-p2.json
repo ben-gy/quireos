@@ -1,0 +1,158 @@
+{
+ "spec_version": 1,
+ "id": "reading-p2",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 48,
+   "w": 456,
+   "text": "The weights are the easy part. Serving them at\nthat scale is what needs a building, and buildings\nare the thing you cannot hide.",
+   "lines": 3
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 400,
+   "y": 0,
+   "w": 28,
+   "text": "2 / 2",
+   "size": "xs",
+   "align": "right",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 354,
+   "text": "Hacker News",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 479,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 712,
+   "x2": 479,
+   "y2": 712
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 712,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 76,
+   "y": 722,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 164,
+   "y": 712,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 228,
+   "y": 722,
+   "name": "file-document-outline"
+  },
+  {
+   "type": "rect",
+   "x": 316,
+   "y": 712,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 722,
+   "name": "comment-multiple-outline"
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 756,
+   "x2": 467,
+   "y2": 756
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 756,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 76,
+   "y": 766,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 222,
+   "y": 756,
+   "w": 36,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/reading.json"
+  }
+ }
+}

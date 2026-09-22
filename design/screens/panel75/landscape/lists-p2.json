@@ -1,0 +1,271 @@
+{
+ "spec_version": 1,
+ "id": "lists-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 48,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 56,
+   "name": "email-outline"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 56,
+   "w": 718,
+   "text": "With a leading icon and a count"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 85,
+   "w": 718,
+   "text": "Unread messages",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 770,
+   "y": 60,
+   "w": 18,
+   "h": 18,
+   "fill": 0,
+   "radius": 9
+  },
+  {
+   "type": "text",
+   "x": 770,
+   "y": 60,
+   "w": 18,
+   "text": "3",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 18
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 116,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 124,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 124,
+   "w": 658,
+   "text": "With a status pill"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 153,
+   "w": 658,
+   "text": "Store entry",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 710,
+   "y": 130,
+   "w": 78,
+   "h": 16,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "text",
+   "x": 710,
+   "y": 130,
+   "w": 78,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 16
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 184,
+   "w": 776,
+   "text": "Facts",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 208,
+   "w": 594,
+   "text": "Battery",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 614,
+   "y": 208,
+   "w": 174,
+   "text": "{{device.battery}}%",
+   "align": "right",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 240,
+   "w": 592,
+   "text": "Signal",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 612,
+   "y": 240,
+   "w": 176,
+   "text": "{{device.rssi}} dBm",
+   "align": "right",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 272,
+   "w": 648,
+   "text": "Storage",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 668,
+   "y": 272,
+   "w": 120,
+   "text": "8.2 of 12 MB",
+   "align": "right",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 306,
+   "x2": 787,
+   "y2": 306
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 308,
+   "w": 776,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar · example.com",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 706,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 436,
+   "x2": 799,
+   "y2": 436
+  },
+  {
+   "type": "rect",
+   "x": 14,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 130,
+   "y": 446,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 384,
+   "y": 436,
+   "w": 36,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/lists.json"
+  }
+ }
+}

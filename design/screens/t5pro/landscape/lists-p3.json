@@ -1,0 +1,234 @@
+{
+ "spec_version": 1,
+ "id": "lists-p3",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 64,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 80,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 80,
+   "w": 740,
+   "text": "With a status pill"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 120,
+   "w": 740,
+   "text": "Store entry",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 828,
+   "y": 84,
+   "w": 108,
+   "h": 32,
+   "stroke": 10,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "text",
+   "x": 828,
+   "y": 84,
+   "w": 108,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 168,
+   "w": 912,
+   "text": "Facts",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 200,
+   "w": 664,
+   "text": "Battery",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 704,
+   "y": 200,
+   "w": 232,
+   "text": "{{device.battery}}%",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 248,
+   "w": 660,
+   "text": "Signal",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 700,
+   "y": 248,
+   "w": 236,
+   "text": "{{device.rssi}} dBm",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 296,
+   "w": 736,
+   "text": "Storage",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 776,
+   "y": 296,
+   "w": 160,
+   "text": "8.2 of 12 MB",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "line",
+   "x1": 24,
+   "y1": 348,
+   "x2": 935,
+   "y2": 348,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 352,
+   "w": 912,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar · example.com",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 812,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 484,
+   "x2": 959,
+   "y2": 484,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 160,
+   "y": 496,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 460,
+   "y": 484,
+   "w": 44,
+   "text": "3 / 3",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "icon",
+   "x": 768,
+   "y": 496,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=2"
+  }
+ }
+}

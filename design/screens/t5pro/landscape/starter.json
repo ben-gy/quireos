@@ -1,0 +1,417 @@
+{
+ "spec_version": 1,
+ "id": "starter",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 104,
+   "y": 64,
+   "w": 832,
+   "text": "Downstairs",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 96,
+   "w": 832,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "hall": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 116,
+   "w": 752,
+   "text": "Hallway"
+  },
+  {
+   "type": "rect",
+   "x": 872,
+   "y": 120,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.hall == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 876,
+   "y": 124,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.hall != on"
+  },
+  {
+   "type": "rect",
+   "x": 908,
+   "y": 124,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.hall == on"
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 168,
+   "w": 832,
+   "h": 104,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "kitchen": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 184,
+   "w": 752,
+   "text": "Kitchen"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 224,
+   "w": 752,
+   "text": "Two lamps",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 872,
+   "y": 188,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.kitchen == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 876,
+   "y": 192,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.kitchen != on"
+  },
+  {
+   "type": "rect",
+   "x": 908,
+   "y": 192,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.kitchen == on"
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 272,
+   "w": 832,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "verandah": "on"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 292,
+   "w": 752,
+   "text": "Verandah"
+  },
+  {
+   "type": "rect",
+   "x": 872,
+   "y": 296,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.verandah == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 876,
+   "y": 300,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.verandah != on"
+  },
+  {
+   "type": "rect",
+   "x": 908,
+   "y": 300,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.verandah == on"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 344,
+   "w": 832,
+   "text": "Upstairs",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 376,
+   "w": 832,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "office": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 396,
+   "w": 752,
+   "text": "Office"
+  },
+  {
+   "type": "rect",
+   "x": 872,
+   "y": 400,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.office == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 876,
+   "y": 404,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.office != on"
+  },
+  {
+   "type": "rect",
+   "x": 908,
+   "y": 404,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.office == on"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 824,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 836,
+   "y": 12,
+   "name": "refresh"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 756,
+   "text": "Lights",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 79,
+   "y1": 56,
+   "x2": 79,
+   "y2": 539,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 56,
+   "w": 79,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 20,
+   "y": 68,
+   "name": "home-outline"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 112,
+   "w": 79,
+   "h": 56,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "hall": "off",
+     "kitchen": "off",
+     "verandah": "off",
+     "office": "off",
+     "bedroom": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 8,
+   "y": 112,
+   "w": 60,
+   "text": "All off",
+   "size": "sm",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 79,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 20,
+   "y": 180,
+   "name": "cog-outline"
+  }
+ ],
+ "vars": {
+  "hall": "on",
+  "kitchen": "on",
+  "verandah": "off",
+  "office": "on",
+  "bedroom": "off"
+ },
+ "keys": {
+  "double": {
+   "type": "set",
+   "vars": {
+    "hall": "off",
+    "kitchen": "off",
+    "verandah": "off",
+    "office": "off",
+    "bedroom": "off"
+   }
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/controls.json"
+  }
+ }
+}

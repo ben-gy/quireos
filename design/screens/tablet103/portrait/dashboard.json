@@ -1,0 +1,220 @@
+{
+ "spec_version": 1,
+ "id": "dashboard",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 32,
+   "y": 32,
+   "w": 316,
+   "text": "{{device.time|time:'HH:mm'}}",
+   "size": "digits",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 145
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 181,
+   "w": 1284,
+   "text": "{{device.time|time:'EEEE d MMMM'}}",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 240,
+   "name": "weather-partly-cloudy"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 224,
+   "w": 108,
+   "text": "21.5",
+   "size": "2xl",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 70
+  },
+  {
+   "type": "text",
+   "x": 188,
+   "y": 224,
+   "w": 28,
+   "text": "°C",
+   "valign": "bottom",
+   "color": 6,
+   "h": 70
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 298,
+   "w": 1340,
+   "text": "Outside · feels like 19°",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 352,
+   "w": 1340,
+   "text": "Today",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 352,
+   "w": 1340,
+   "text": "3 events",
+   "size": "xs",
+   "align": "right",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 384,
+   "w": 1236,
+   "text": "09:30",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 1284,
+   "y": 384,
+   "w": 88,
+   "text": "Dentist",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 432,
+   "w": 1128,
+   "text": "12:00",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 1176,
+   "y": 432,
+   "w": 196,
+   "text": "Lunch with Sam",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 480,
+   "w": 1156,
+   "text": "15:00",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 1204,
+   "y": 480,
+   "w": 168,
+   "text": "Design review",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 552,
+   "w": 1340,
+   "text": "House",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 584,
+   "w": 1308,
+   "text": "Lights on",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 1356,
+   "y": 584,
+   "w": 16,
+   "text": "3",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 632,
+   "w": 1240,
+   "text": "Garage",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 1288,
+   "y": 632,
+   "w": 84,
+   "text": "Closed",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 680,
+   "w": 1236,
+   "text": "Pool",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 1284,
+   "y": 680,
+   "w": 88,
+   "text": "24.1 °C",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  }
+ ],
+ "ttl": 600,
+ "refresh": "partial"
+}

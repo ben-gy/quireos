@@ -1,0 +1,595 @@
+{
+ "spec_version": 1,
+ "id": "controls",
+ "widgets": [
+  {
+   "type": "button",
+   "x": 28,
+   "y": 64,
+   "w": 236,
+   "h": 64,
+   "label": "Secondary",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0
+  },
+  {
+   "type": "button",
+   "x": 280,
+   "y": 64,
+   "w": 236,
+   "h": 64,
+   "label": "Primary",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 0,
+   "stroke": 0,
+   "color": 15,
+   "on_tap": {
+    "type": "refresh"
+   }
+  },
+  {
+   "type": "button",
+   "x": 24,
+   "y": 136,
+   "w": 128,
+   "h": 64,
+   "label": "Tertiary",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": null,
+   "stroke": null,
+   "color": 0,
+   "on_tap": {
+    "type": "refresh"
+   }
+  },
+  {
+   "type": "button",
+   "x": 168,
+   "y": 136,
+   "w": 136,
+   "h": 64,
+   "label": "Disabled",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 10,
+   "color": 10,
+   "feedback": "none"
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 208,
+   "w": 144,
+   "h": 88,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 48,
+   "y": 236,
+   "name": "plus"
+  },
+  {
+   "type": "text",
+   "x": 92,
+   "y": 208,
+   "w": 51,
+   "text": "Add",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 88
+  },
+  {
+   "type": "rect",
+   "x": 184,
+   "y": 208,
+   "w": 172,
+   "h": 88,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 208,
+   "y": 236,
+   "name": "delete-outline"
+  },
+  {
+   "type": "text",
+   "x": 252,
+   "y": 208,
+   "w": 79,
+   "text": "Delete",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 88
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 304,
+   "w": 492,
+   "text": "Switches",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 344,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 364,
+   "w": 368,
+   "text": "Toggle on"
+  },
+  {
+   "type": "rect",
+   "x": 452,
+   "y": 368,
+   "w": 64,
+   "h": 32,
+   "fill": 0,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 488,
+   "y": 372,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12
+  },
+  {
+   "type": "text",
+   "x": 408,
+   "y": 364,
+   "w": 36,
+   "text": "On",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 36
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 424,
+   "w": 540,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 440,
+   "w": 364,
+   "text": "Toggle off"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 480,
+   "w": 364,
+   "text": "With a subtitle",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 452,
+   "y": 444,
+   "w": 64,
+   "h": 32,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 456,
+   "y": 448,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12
+  },
+  {
+   "type": "text",
+   "x": 404,
+   "y": 440,
+   "w": 40,
+   "text": "Off",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 36
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 536,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 556,
+   "name": "checkbox-marked"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 556,
+   "w": 444,
+   "text": "Checked"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 616,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 636,
+   "name": "checkbox-blank-outline",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 636,
+   "w": 444,
+   "text": "Unchecked"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 696,
+   "w": 492,
+   "text": "Values",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 460,
+   "y": 736,
+   "w": 56,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 472,
+   "y": 748,
+   "name": "plus"
+  },
+  {
+   "type": "text",
+   "x": 412,
+   "y": 736,
+   "w": 40,
+   "text": "3",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 348,
+   "y": 736,
+   "w": 56,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 360,
+   "y": 748,
+   "name": "minus"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 736,
+   "w": 316,
+   "text": "Frontlight",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 800,
+   "w": 492,
+   "text": "Contrast",
+   "size": "xs",
+   "color": 6,
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 800,
+   "w": 492,
+   "text": "4 of 6",
+   "size": "xs",
+   "align": "right",
+   "color": 6,
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 828,
+   "w": 76,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 852,
+   "w": 76,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 112,
+   "y": 828,
+   "w": 76,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 112,
+   "y": 852,
+   "w": 76,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 192,
+   "y": 828,
+   "w": 76,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 192,
+   "y": 852,
+   "w": 76,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 272,
+   "y": 828,
+   "w": 76,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 272,
+   "y": 852,
+   "w": 76,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 828,
+   "w": 76,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 852,
+   "w": 76,
+   "h": 8,
+   "fill": 13,
+   "stroke": 12,
+   "stroke_w": 1
+  },
+  {
+   "type": "rect",
+   "x": 432,
+   "y": 828,
+   "w": 76,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 432,
+   "y": 852,
+   "w": 76,
+   "h": 8,
+   "fill": 13,
+   "stroke": 12,
+   "stroke_w": 1
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 392,
+   "text": "Controls",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 539,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 904,
+   "x2": 539,
+   "y2": 904,
+   "color": 12
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 916,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 248,
+   "y": 904,
+   "w": 44,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 916,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/controls.json?p=2"
+  }
+ }
+}

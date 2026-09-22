@@ -1,0 +1,250 @@
+{
+ "spec_version": 1,
+ "id": "lists",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 4,
+   "y": 22,
+   "w": 120,
+   "text": "Settings rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 16
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 38,
+   "w": 128,
+   "h": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 42,
+   "w": 78,
+   "text": "Theme"
+  },
+  {
+   "type": "text",
+   "x": 90,
+   "y": 42,
+   "w": 34,
+   "text": "Light",
+   "align": "right",
+   "valign": "middle",
+   "h": 19
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 66,
+   "w": 128,
+   "h": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 70,
+   "w": 58,
+   "text": "Text size"
+  },
+  {
+   "type": "text",
+   "x": 70,
+   "y": 70,
+   "w": 54,
+   "text": "Medium",
+   "align": "right",
+   "valign": "middle",
+   "h": 19
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 94,
+   "w": 128,
+   "h": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 98,
+   "w": 50,
+   "text": "Wi-Fi"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 100,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "text",
+   "x": 62,
+   "y": 98,
+   "w": 42,
+   "text": "Home",
+   "align": "right",
+   "valign": "middle",
+   "h": 19
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 122,
+   "w": 128,
+   "h": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 126,
+   "w": 40,
+   "text": "Clear read history"
+  },
+  {
+   "type": "text",
+   "x": 52,
+   "y": 126,
+   "w": 72,
+   "text": "142 stories",
+   "align": "right",
+   "valign": "middle",
+   "h": 19
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 150,
+   "w": 120,
+   "text": "Content rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 16
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 166,
+   "w": 128,
+   "h": 80,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 170,
+   "w": 120,
+   "text": "A story title long enough to wrap onto a second line",
+   "weight": "bold",
+   "lines": 3
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 229,
+   "w": 120,
+   "text": "675 pts · 273 comments · 1 d · example.com",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 78,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 127,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 276,
+   "x2": 127,
+   "y2": 276
+  },
+  {
+   "type": "text",
+   "x": 52,
+   "y": 276,
+   "w": 26,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 84,
+   "y": 276,
+   "w": 40,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 96,
+   "y": 278,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=2"
+  }
+ }
+}

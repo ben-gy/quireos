@@ -1,0 +1,506 @@
+{
+ "spec_version": 1,
+ "id": "home",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 64,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/starter.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 84,
+   "w": 1768,
+   "text": "Starter page"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 123,
+   "w": 1768,
+   "text": "A typical app screen to copy",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 88,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 188,
+   "w": 1768,
+   "text": "Lists and rows"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 227,
+   "w": 1768,
+   "text": "Rows, sections, key-values, meta lines",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 192,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 272,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/tiles.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 292,
+   "w": 1768,
+   "text": "Tiles"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 331,
+   "w": 1768,
+   "text": "A tile board bound to device state",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 296,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 376,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 396,
+   "w": 1768,
+   "text": "Controls"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 435,
+   "w": 1768,
+   "text": "Buttons, toggles, choices, stepper, chips",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 400,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 480,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/navigation.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 500,
+   "w": 1768,
+   "text": "Navigation"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 539,
+   "w": 1768,
+   "text": "Segmented control, pager, menu rows",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 504,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 584,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 604,
+   "w": 1768,
+   "text": "Reading"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 643,
+   "w": 1768,
+   "text": "A paginated article at the reading size",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 608,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 688,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/data.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 708,
+   "w": 1768,
+   "text": "Data"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 747,
+   "w": 1768,
+   "text": "Stats, progress, charts, tables",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 712,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 792,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/feedback.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 812,
+   "w": 1768,
+   "text": "Feedback and states"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 851,
+   "w": 1768,
+   "text": "Empty, disabled, read, offline, busy",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 816,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 896,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/dialog.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 916,
+   "w": 1768,
+   "text": "Dialog"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 955,
+   "w": 1768,
+   "text": "A modal over a page",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 920,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 1000,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/sheet.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 1020,
+   "w": 1768,
+   "text": "Action sheet"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 1059,
+   "w": 1768,
+   "text": "A sheet of actions from the bottom",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 1024,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 1104,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/keypad.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 1124,
+   "w": 1768,
+   "text": "Keypad"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 1163,
+   "w": 1768,
+   "text": "The only on-device text input",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 1128,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 1208,
+   "w": 1872,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/launcher.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 1228,
+   "w": 1768,
+   "text": "Launcher"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 1267,
+   "w": 1768,
+   "text": "OS: status bar and app grid",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 1816,
+   "y": 1232,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 0,
+   "w": 1752,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 1871,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 1348,
+   "x2": 1871,
+   "y2": 1348,
+   "color": 12
+  },
+  {
+   "type": "icon",
+   "x": 320,
+   "y": 1360,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 916,
+   "y": 1348,
+   "w": 44,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 1236,
+   "y": 1348,
+   "w": 600,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1520,
+   "y": 1360,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/home.json?p=2"
+  }
+ }
+}

@@ -1,0 +1,66 @@
+{
+ "spec_version": 1,
+ "id": "error",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 1072,
+   "y": 92,
+   "name": "alert-circle-outline",
+   "size": "lg"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 188,
+   "w": 2136,
+   "text": "Something went wrong",
+   "size": "lg",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 240,
+   "w": 2136,
+   "text": "Could not reach Home Assistant. Check that this device and HA are on the same network.",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "button",
+   "x": 32,
+   "y": 320,
+   "w": 1056,
+   "h": 64,
+   "label": "Home",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0,
+   "on_tap": {
+    "type": "home"
+   }
+  },
+  {
+   "type": "button",
+   "x": 1112,
+   "y": 320,
+   "w": 1056,
+   "h": 64,
+   "label": "Retry",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 0,
+   "stroke": 0,
+   "color": 15,
+   "on_tap": {
+    "type": "refresh"
+   }
+  }
+ ]
+}

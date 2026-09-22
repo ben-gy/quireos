@@ -1,0 +1,146 @@
+{
+ "spec_version": 1,
+ "id": "home-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 300,
+   "h": 48,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/dashboard.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 28,
+   "w": 268,
+   "text": "Dashboard"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 50,
+   "w": 268,
+   "text": "A glanceable panel screen",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 280,
+   "y": 30,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 70,
+   "w": 300,
+   "h": 48,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/badge.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 76,
+   "w": 268,
+   "text": "Badge"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 98,
+   "w": 268,
+   "text": "The reduced set for tiny panels",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 280,
+   "y": 78,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 0,
+   "w": 270,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 299,
+   "y2": 19,
+   "color": 10
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 380,
+   "x2": 299,
+   "y2": 380,
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 6,
+   "y": 380,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 46,
+   "y": 382,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 138,
+   "y": 380,
+   "w": 26,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "icon",
+   "x": 238,
+   "y": 382,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/home.json"
+  }
+ }
+}

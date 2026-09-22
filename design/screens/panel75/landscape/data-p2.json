@@ -1,0 +1,293 @@
+{
+ "spec_version": 1,
+ "id": "data-p2",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 48,
+   "w": 776,
+   "text": "Rooms",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 76,
+   "w": 660,
+   "text": "Room",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 22
+  },
+  {
+   "type": "text",
+   "x": 680,
+   "y": 76,
+   "w": 42,
+   "text": "°C",
+   "size": "xs",
+   "weight": "bold",
+   "align": "right",
+   "valign": "bottom",
+   "h": 22
+  },
+  {
+   "type": "text",
+   "x": 730,
+   "y": 76,
+   "w": 58,
+   "text": "Humidity",
+   "size": "xs",
+   "weight": "bold",
+   "align": "right",
+   "valign": "bottom",
+   "h": 22
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 98,
+   "x2": 787,
+   "y2": 98
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 101,
+   "w": 660,
+   "text": "Office",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 680,
+   "y": 101,
+   "w": 42,
+   "text": "22.5",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 730,
+   "y": 101,
+   "w": 58,
+   "text": "48%",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 132,
+   "x2": 787,
+   "y2": 132
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 132,
+   "w": 660,
+   "text": "Bedroom",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 680,
+   "y": 132,
+   "w": 42,
+   "text": "20.1",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 730,
+   "y": 132,
+   "w": 58,
+   "text": "52%",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 163,
+   "x2": 787,
+   "y2": 163
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 163,
+   "w": 660,
+   "text": "Garage",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 680,
+   "y": 163,
+   "w": 42,
+   "text": "17.4",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 730,
+   "y": 163,
+   "w": 58,
+   "text": "61%",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 200,
+   "w": 776,
+   "text": "Progress",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 228,
+   "w": 4,
+   "h": 4,
+   "fill": 0,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 20,
+   "y": 228,
+   "w": 4,
+   "h": 4,
+   "fill": 0,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 28,
+   "y": 228,
+   "w": 4,
+   "h": 4,
+   "fill": 0,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 36,
+   "y": 228,
+   "w": 4,
+   "h": 4,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 44,
+   "y": 228,
+   "w": 4,
+   "h": 4,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 706,
+   "text": "Data",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 436,
+   "x2": 799,
+   "y2": 436
+  },
+  {
+   "type": "rect",
+   "x": 14,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/data.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 130,
+   "y": 446,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 384,
+   "y": 436,
+   "w": 36,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/data.json"
+  }
+ }
+}

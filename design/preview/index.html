@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuireOS emulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#eceae5; --panel:#fff; --ink:#16150f; --dim:#6b6860; --line:#dcd8d0; --accent:#16150f; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:13px/1.45 Roboto,system-ui,sans-serif; color:var(--ink); background:var(--bg);
+         display:grid; grid-template-columns:270px 1fr 200px; height:100vh; overflow:hidden; }
+  aside { background:var(--panel); border-right:1px solid var(--line); padding:14px; overflow:auto; }
+  aside.right { border-right:0; border-left:1px solid var(--line); }
+  h1 { font-size:14px; margin:0 0 2px; letter-spacing:-.01em; }
+  .gen { color:var(--dim); font-size:11px; margin-bottom:14px; }
+  h2 { font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); margin:16px 0 6px; font-weight:700; }
+  label { display:block; margin:6px 0; font-size:12px; color:var(--dim); }
+  select,button,input[type=range] { font:inherit; width:100%; }
+  select { padding:5px 7px; border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink); }
+  button { padding:6px 8px; border:1px solid var(--line); border-radius:7px; background:#fff; cursor:pointer; color:var(--ink); }
+  button:hover { border-color:#b9b4aa; }
+  button:active { background:#f2f0ec; }
+  .row { display:flex; gap:6px; }
+  .row > * { flex:1; min-width:0; }
+  .check { display:flex; align-items:center; gap:7px; color:var(--ink); font-size:12px; margin:5px 0; cursor:pointer; }
+  .check input { width:auto; margin:0; }
+  nav.screens a { display:block; padding:6px 8px; border-radius:7px; text-decoration:none; color:inherit; }
+  nav.screens a:hover { background:#f4f2ee; }
+  nav.screens a.on { background:var(--accent); color:#fff; }
+  nav.screens small { display:block; color:var(--dim); font-size:11px; }
+  nav.screens a.on small { color:#c9c6bf; }
+  main { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:20px; overflow:auto; }
+  .meta { color:var(--dim); font-size:11px; text-align:center; }
+  .stage { background:#c9c5bc; padding:18px; border-radius:16px; box-shadow:0 10px 34px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.4); }
+  canvas { display:block; background:#fff; image-rendering:pixelated; cursor:default; }
+  canvas.hot { cursor:pointer; }
+  code { background:#f2f0ec; padding:1px 5px; border-radius:5px; font-size:11px; }
+  .hist { font-size:11px; color:var(--dim); word-break:break-all; }
+  .log { font-size:11px; color:var(--dim); max-height:150px; overflow:auto; border-top:1px solid var(--line); padding-top:6px; margin-top:6px; }
+  .log b { color:var(--ink); font-weight:700; }
+  .val { color:var(--ink); float:right; font-variant-numeric:tabular-nums; }
+  .note { font-size:11px; color:var(--dim); margin-top:14px; line-height:1.5; }
+</style>
+</head>
+<body>
+<aside>
+  <h1>QuireOS emulator</h1>
+  <div class="gen" id="gen"></div>
+
+  <h2>Device</h2>
+  <label>Profile<select id="profile"></select></label>
+  <div class="row">
+    <label>Orientation<select id="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+    <label>Greys<select id="greys"><option value="auto">Panel</option><option value="16">16</option><option value="4">4</option><option value="2">1-bit</option></select></label>
+  </div>
+  <label class="check"><input type="checkbox" id="invert"> Dark theme</label>
+  <label class="check"><input type="checkbox" id="dither"> Dither fills on 1-bit</label>
+  <label class="check"><input type="checkbox" id="grid"> Grid, margins and OS corner</label>
+  <label>Zoom<select id="zoom"><option value="fit">Fit</option><option value="1">100%</option><option value="actual">Actual size</option><option value="2">200%</option></select></label>
+
+  <h2>Screens</h2>
+  <nav class="screens" id="screens"></nav>
+
+  <p class="note">Metrics are the firmware's: every profile's real line heights and advance tables,
+  so wrapping and pagination match the device exactly. Only the rasterising differs — this draws web
+  Roboto where the device draws compiled bitmaps. <code>firmware/emu</code> is the truth for pixels.</p>
+</aside>
+
+<main>
+  <div class="meta" id="info"></div>
+  <div class="stage"><canvas id="c"></canvas></div>
+  <div class="meta" id="status"></div>
+</main>
+
+<aside class="right">
+  <h2>Function button</h2>
+  <div class="row"><button id="bShort">Short</button><button id="bDouble">Double</button></div>
+  <button id="bLong" style="margin-top:6px">Long &middot; always Home</button>
+
+  <h2>Navigation</h2>
+  <div class="row"><button id="bBack">Back</button><button id="bHome">Home</button></div>
+  <div class="hist" id="hist" style="margin-top:6px"></div>
+
+  <h2>Device state</h2>
+  <label>Battery <span class="val" id="battv">72%</span><input type="range" id="batt" min="-1" max="100" value="72"></label>
+  <label>Signal <span class="val" id="rssiv">-61 dBm</span><input type="range" id="rssi" min="-100" max="-40" value="-61"></label>
+  <label class="check"><input type="checkbox" id="online" checked> Online</label>
+  <label class="check"><input type="checkbox" id="charging"> Charging</label>
+
+  <h2>Screen</h2>
+  <div class="log" id="vars"></div>
+  <h2>Events</h2>
+  <div class="log" id="log"></div>
+  <div class="row" style="margin-top:10px"><button id="export">Save PNG</button></div>
+  <button id="exportAll" style="margin-top:6px">Save every screen</button>
+</aside>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  const G = window.QUIRE_GALLERY;
+  const $ = (id) => document.getElementById(id);
+  if (!G) { document.body.innerHTML = "<p style='padding:24px;font:14px Roboto'>Run <code>npm run build -w apps/gallery</code> in <code>cloudflare/</code> to generate <code>data.js</code>.</p>"; return; }
+
+  // ---------------------------------------------------------------- state
+  const state = { profile:"t5pro", orientation:"portrait", screen:"home", greys:"auto", dither:false, invert:false, grid:false, zoom:"fit" };
+  try { Object.assign(state, JSON.parse(localStorage.getItem("quire-emu") || "{}")); } catch {}
+  const save = () => { try { localStorage.setItem("quire-emu", JSON.stringify(state)); } catch {} };
+  const device = { battery:72, rssi:-61, online:true, charging:false };
+  let session = { stack:["home"], vars:{}, pending:null, log:[] };
+
+  const prof = () => G.tokens.profiles[state.profile];
+  const dims = () => { const p = prof(); const [w,h] = state.orientation === "portrait" ? p.logical.portrait : p.logical.landscape; return { w, h }; };
+  const greys = () => state.greys === "auto" ? prof().greys : +state.greys;
+  const bank = () => (G.screens[state.profile] || {})[state.orientation] || {};
+  const docFor = (key) => bank()[key];
+  const has = (key) => !!docFor(key);
+  const current = () => session.stack[session.stack.length - 1];
+
+  // ---------------------------------------------------------------- template evaluation
+  const deviceVars = () => ({ ...device, time: Math.floor(Date.now()/1000), tz:"Australia/Sydney", name:"quireos",
+                              w: dims().w, h: dims().h, greys: greys(), dpi: prof().dpi });
+  function ctx() { return { device: deviceVars(), vars: session.vars, settings:{} }; }
+  function evalPath(path, c) {
+    const parts = String(path).split(".");
+    let v = c[parts[0]];
+    for (let i=1; i<parts.length && v!=null; i++) v = v[parts[i]];
+    return (v === undefined || v === null || typeof v === "object") ? "" : v;
+  }
+  function fmtTime(epoch, fmt) {
+    const d = new Date(epoch*1000), pad = (n)=>String(n).padStart(2,"0");
+    const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+    return fmt.replace(/yyyy|MMMM|MMM|MM|EEEE|EEE|HH|hh|H|h|mm|ss|dd|d|M|a/g, (t)=>({
+      yyyy:d.getFullYear(), MMMM:months[d.getMonth()], MMM:months[d.getMonth()].slice(0,3), MM:pad(d.getMonth()+1), M:d.getMonth()+1,
+      EEEE:days[d.getDay()], EEE:days[d.getDay()].slice(0,3), HH:pad(d.getHours()), H:d.getHours(),
+      hh:pad(d.getHours()%12||12), h:d.getHours()%12||12, mm:pad(d.getMinutes()), ss:pad(d.getSeconds()),
+      dd:pad(d.getDate()), d:d.getDate(), a:d.getHours()<12?"am":"pm" }[t]));
+  }
+  function evalExpr(expr, c) {
+    const [p, ...filters] = String(expr).split("|").map((s)=>s.trim());
+    let v = evalPath(p, c);
+    for (const f of filters) {
+      const m = /^(\w+)(?::(.*))?$/.exec(f); if (!m) continue;
+      const arg = (m[2]||"").replace(/^'(.*)'$/,"$1");
+      if (m[1]==="fixed") v = typeof v==="number" ? v.toFixed(+arg) : v;
+      else if (m[1]==="default") v = (v===""||v===null) ? arg : v;
+      else if (m[1]==="upper") v = String(v).toUpperCase();
+      else if (m[1]==="lower") v = String(v).toLowerCase();
+      else if (m[1]==="time") v = fmtTime(typeof v==="number"?v:Date.now()/1000, arg);
+    }
+    return v;
+  }
+  const tpl = (s,c) => typeof s === "string" ? s.replace(/\{\{\s*(.*?)\s*\}\}/g, (_,e)=>String(evalExpr(e,c))) : s;
+  const truthy = (v) => !(v===null||v===undefined||v===""||v==="0"||v==="false"||v==="off"||v===0||v===false);
+  function cond(str, c) {
+    const m = /^(.*?)\s*(==|!=|<=|>=|<|>)\s*(.*)$/.exec(str);
+    if (!m) return truthy(evalExpr(String(str).trim(), c));
+    let a = evalExpr(m[1].trim(), c), b = m[3].trim().replace(/^'(.*)'$/,"$1");
+    const na = Number(a), nb = Number(b);
+    if (a !== "" && !isNaN(na) && b !== "" && !isNaN(nb)) { a = na; b = nb; } else { a = String(a); b = String(b); }
+    switch (m[2]) { case "==": return a===b; case "!=": return a!==b; case "<": return a<b; case ">": return a>b; case "<=": return a<=b; default: return a>=b; }
+  }
+  function val(v, c) {
+    if (v && typeof v === "object" && "if" in v) return val(cond(v.if, c) ? v.then : v.else, c);
+    return tpl(v, c);
+  }
+
+  // ---------------------------------------------------------------- text metrics
+  const grey = (v) => { const n = Math.max(0, Math.min(15, Math.round(v))), x = n*17; return `rgb(${x},${x},${x})`; };
+  function fontFor(size) {
+    const fp = G.fonts.profiles[state.profile] || G.fonts.profiles.t5pro;
+    const ref = fp.sizes[size] || fp.sizes.md;
+    const target = prof().type[size] ? prof().type[size].line : ref.line_height;
+    const ratio = target / ref.line_height;
+    // Roboto's hhea line box is 1.1719 em, which is how the firmware's converter picks its size.
+    return { line: target, ascent: Math.round(ref.ascent*ratio), em: Math.floor((target/1.1719)*10)/10, ref, ratio };
+  }
+  function advance(text, size, weight) {
+    const f = fontFor(size), face = (weight==="bold" && f.ref.bold) ? f.ref.bold : f.ref.regular;
+    let w = 0; for (const ch of String(text)) w += (face.advance[ch] ?? face.default_advance) * f.ratio;
+    return Math.round(w);
+  }
+  function wrapText(text, size, weight, maxW, maxLines) {
+    const out = []; let overflow = false;
+    outer: for (const para of String(text).split("\n")) {
+      let line = null;
+      for (const word of para.split(" ")) {
+        const cand = line === null ? word : line + " " + word;
+        if (advance(cand,size,weight) <= maxW) { line = cand; continue; }
+        if (line !== null) { out.push(line); line = null; if (out.length > maxLines) { overflow = true; break outer; } }
+        let rest = word;
+        while (advance(rest,size,weight) > maxW && rest.length > 1) {
+          let k = 1; while (k < rest.length && advance(rest.slice(0,k+1),size,weight) <= maxW) k++;
+          out.push(rest.slice(0,k)); rest = rest.slice(k);
+        }
+        line = rest;
+      }
+      if (line !== null) out.push(line);
+      if (out.length > maxLines) { overflow = true; break; }
+    }
+    if (overflow || out.length > maxLines) {
+      out.length = maxLines;
+      let last = out[maxLines-1] || "";
+      while (last.length && advance(last+"…",size,weight) > maxW) last = last.slice(0,-1);
+      out[maxLines-1] = last + "…";
+    }
+    return out;
+  }
+  function fitText(ctx2, text, x, y, targetW) {
+    const cw = ctx2.measureText(text).width;
+    if (!cw || !targetW) { ctx2.fillText(text, x, y); return; }
+    ctx2.save(); ctx2.translate(x,y); ctx2.scale(targetW/cw, 1); ctx2.textAlign = "left"; ctx2.fillText(text,0,0); ctx2.restore();
+  }
+
+  // ---------------------------------------------------------------- drawing
+  let targets = [];   // hit rects in draw order; the topmost match wins, as on the device
+  function drawText(ctx2, w, c, X, Y, W, H) {
+    const size = val(w.size,c) || "md", weight = val(w.weight,c) || "regular";
+    const align = val(w.align,c) || "left", valign = val(w.valign,c) || "top";
+    const color = w.color === undefined ? 0 : +val(w.color,c);
+    const f = fontFor(size), lines = Math.max(1, w.lines || 1);
+    const text = val(w.text,c);
+    const ls = lines > 1 ? wrapText(text,size,weight,W,lines) : wrapText(String(text).replace(/\n/g," "),size,weight,W,1);
+    const boxH = H !== undefined ? H : f.line*lines, blockH = f.line*ls.length;
+    let top = Y + (valign==="middle" ? Math.round((boxH-blockH)/2) : valign==="bottom" ? boxH-blockH : 0);
+    ctx2.fillStyle = grey(color);
+    ctx2.font = `${weight==="bold"?700:400} ${f.em}px Roboto, sans-serif`;
+    ctx2.textBaseline = "alphabetic";
+    for (const l of ls) {
+      const tw = advance(l,size,weight);
+      const x = align==="center" ? X+Math.round((W-tw)/2) : align==="right" ? X+W-tw : X;
+      fitText(ctx2, l, x, top+f.ascent, tw);
+      top += f.line;
+    }
+  }
+  function roundRect(ctx2,x,y,w,h,r) { ctx2.beginPath(); if (ctx2.roundRect) ctx2.roundRect(x,y,w,h,Math.max(0,Math.min(r,w/2,h/2))); else ctx2.rect(x,y,w,h); }
+  function drawRect(ctx2, w, c, X, Y, W, H) {
+    const fill = w.fill===undefined?null:val(w.fill,c), stroke = w.stroke===undefined?null:val(w.stroke,c);
+    const sw = w.stroke_w || 2, r = w.radius || 0;
+    if (fill!==null && fill!=="") { ctx2.fillStyle = grey(+fill); roundRect(ctx2,X,Y,W,H,r); ctx2.fill(); }
+    if (stroke!==null && stroke!=="") { ctx2.strokeStyle = grey(+stroke); ctx2.lineWidth = sw; roundRect(ctx2,X+sw/2,Y+sw/2,W-sw,H-sw,Math.max(0,r-sw/2)); ctx2.stroke(); }
+  }
+  function drawIcon(ctx2, w, c, X, Y) {
+    const name = val(w.name,c), size = val(w.size,c) || "md", px = prof().icon[size] || prof().icon.md, d = G.icons.paths[name];
+    const color = w.color===undefined?0:+val(w.color,c);
+    if (!d) { ctx2.strokeStyle="#c00"; ctx2.lineWidth=1; ctx2.strokeRect(X+.5,Y+.5,px-1,px-1); return; }
+    ctx2.save(); ctx2.translate(X,Y); ctx2.scale(px/24,px/24); ctx2.fillStyle = grey(color); ctx2.fill(new Path2D(d)); ctx2.restore();
+  }
+  function drawButton(ctx2, w, c, X, Y, W, H) {
+    const fill = w.fill===undefined?15:val(w.fill,c), stroke = w.stroke===undefined?0:val(w.stroke,c);
+    drawRect(ctx2, { fill, stroke, stroke_w: w.stroke_w ?? 2, radius: w.radius ?? 8 }, c, X, Y, W, H);
+    const auto = (fill!==null && fill!=="" && +fill<8) ? 15 : 0;
+    const color = w.color===undefined?auto:+val(w.color,c);
+    const size = val(w.size,c) || "md", lines = w.lines || 2, f = fontFor(size);
+    const label = String(val(w.label,c) ?? ""), sub = w.sub!==undefined ? String(val(w.sub,c) ?? "") : "", icon = w.icon ? val(w.icon,c) : null;
+    const pad = 8, subF = fontFor("xs");
+    const ls = label ? wrapText(label,size,"bold",W-2*pad,lines) : [];
+    const iconPx = icon ? prof().icon.md : 0;
+    const blockH = (icon ? iconPx + (ls.length?6:0) : 0) + ls.length*f.line;
+    let top = Y + Math.round((H - blockH - (sub ? subF.line : 0))/2);
+    if (icon) { drawIcon(ctx2, { name:icon, size:"md", color }, c, X+Math.round((W-iconPx)/2), top); top += iconPx + (ls.length?6:0); }
+    ctx2.fillStyle = grey(color); ctx2.font = `700 ${f.em}px Roboto, sans-serif`;
+    for (const l of ls) { const tw = advance(l,size,"bold"); fitText(ctx2, l, X+Math.round((W-tw)/2), top+f.ascent, tw); top += f.line; }
+    if (sub) { ctx2.font = `400 ${subF.em}px Roboto, sans-serif`; const tw = advance(sub,"xs","regular"); ctx2.fillStyle = grey(color);
+               fitText(ctx2, sub, X+Math.round((W-tw)/2), Y+H-pad-subF.line+subF.ascent, tw); }
+  }
+  function drawWidget(ctx2, w, c, ox, oy, cw, ch) {
+    if (w.when !== undefined && !cond(w.when, c)) return;
+    const X = ox + (w.x ?? 0), Y = oy + (w.y ?? 0), W = w.w ?? cw, H = w.h ?? ch;
+    if (w.on_tap || w.on_hold) targets.push({ w, x:X, y:Y, width:W, height:H });
+    switch (w.type) {
+      case "text": drawText(ctx2,w,c,X,Y,W,w.h); break;
+      case "rect": drawRect(ctx2,w,c,X,Y,W,H); break;
+      case "line": {
+        ctx2.strokeStyle = grey(w.color===undefined?0:+val(w.color,c)); ctx2.lineWidth = w.width||1;
+        const o = (w.width||1)%2 ? .5 : 0;
+        ctx2.beginPath(); ctx2.moveTo(ox+w.x1+o, oy+w.y1+o); ctx2.lineTo(ox+w.x2+o, oy+w.y2+o); ctx2.stroke(); break;
+      }
+      case "icon": drawIcon(ctx2,w,c,X,Y); break;
+      case "image": {
+        ctx2.fillStyle = grey(13); ctx2.fillRect(X,Y,W,H);
+        ctx2.strokeStyle = grey(9); ctx2.lineWidth = 1; ctx2.strokeRect(X+.5,Y+.5,W-1,H-1);
+        ctx2.beginPath(); ctx2.moveTo(X,Y); ctx2.lineTo(X+W,Y+H); ctx2.moveTo(X+W,Y); ctx2.lineTo(X,Y+H); ctx2.stroke();
+        break;
+      }
+      case "button": drawButton(ctx2,w,c,X,Y,W,H); break;
+      case "grid":
+        for (const child of w.children) {
+          const i = Array.isArray(child.cell) ? child.cell[1]*w.cols + child.cell[0] : child.cell;
+          const col = i % w.cols, row = Math.floor(i / w.cols);
+          drawWidget(ctx2, child, c, X + col*(w.cell_w+w.gap), Y + row*(w.cell_h+w.gap), w.cell_w, w.cell_h);
+        }
+        break;
+    }
+  }
+  function quantise(ctx2, w, h) {
+    const g = greys(); if (g >= 16 && !state.invert) return;
+    const img = ctx2.getImageData(0,0,w,h), d = img.data;
+    const bayer = [0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
+    for (let y=0; y<h; y++) for (let x=0; x<w; x++) {
+      const i = (y*w+x)*4;
+      let v = Math.round(d[i]/17);
+      if (state.invert) v = 15 - v;
+      if (g <= 2) { if (state.dither) { const t = bayer[(y&3)*4+(x&3)]; v = v > t ? 15 : 0; } else v = v >= 8 ? 15 : 0; }
+      else if (g <= 4) v = v < 4 ? 0 : v < 8 ? 5 : v < 12 ? 10 : 15;
+      d[i] = d[i+1] = d[i+2] = v*17;
+    }
+    ctx2.putImageData(img,0,0);
+  }
+  function invertRect(ctx2, r, w, h) {
+    const x = Math.max(0,r.x), y = Math.max(0,r.y);
+    const ww = Math.min(w-x, r.width), hh = Math.min(h-y, r.height);
+    if (ww <= 0 || hh <= 0) return;
+    const img = ctx2.getImageData(x,y,ww,hh), d = img.data;
+    for (let i=0; i<d.length; i+=4) { d[i]=255-d[i]; d[i+1]=255-d[i+1]; d[i+2]=255-d[i+2]; }
+    ctx2.putImageData(img,x,y);
+  }
+  // The unit grid, drawn FROM the page margin so the margin is a grid line rather than crossing one.
+  function drawOverlay(ctx2, w, h) {
+    const p = prof(), u = p.u, m = p.space.page, cw = Math.floor((w-2*m)/u)*u;
+    ctx2.save();
+    ctx2.strokeStyle = "rgba(20,90,220,.12)"; ctx2.lineWidth = 1;
+    for (let x = m; x <= m+cw; x += u) { ctx2.beginPath(); ctx2.moveTo(x+.5,0); ctx2.lineTo(x+.5,h); ctx2.stroke(); }
+    for (let y = 0; y <= h; y += u) { ctx2.beginPath(); ctx2.moveTo(0,y+.5); ctx2.lineTo(w,y+.5); ctx2.stroke(); }
+    ctx2.strokeStyle = "rgba(20,90,220,.3)";
+    for (let x = m; x <= m+cw; x += p.space.rhythm*2) { ctx2.beginPath(); ctx2.moveTo(x+.5,0); ctx2.lineTo(x+.5,h); ctx2.stroke(); }
+    for (let y = 0; y <= h; y += p.space.rhythm) { ctx2.beginPath(); ctx2.moveTo(0,y+.5); ctx2.lineTo(w,y+.5); ctx2.stroke(); }
+    ctx2.strokeStyle = "rgba(220,30,110,.75)"; ctx2.setLineDash([5,4]);
+    ctx2.strokeRect(m+.5, m+.5, cw-1, h-2*m-1);
+    ctx2.setLineDash([]);
+    const c = p.chrome.corner;
+    ctx2.fillStyle = "rgba(220,30,110,.16)";
+    ctx2.fillRect(m+cw-c, Math.max(0, Math.round((p.chrome.nav-c)/2/u)*u), c, c);
+    ctx2.restore();
+  }
+
+  // ---------------------------------------------------------------- actions
+  function keyFor(url) {
+    const m = /\/screens\/([a-z][a-z0-9-]*)\.json(?:\?(.*))?$/.exec(String(url));
+    if (!m) return null;
+    const p = m[2] ? new URLSearchParams(m[2]).get("p") : null;
+    return p && +p > 1 ? `${m[1]}?p=${p}` : m[1];
+  }
+  function note(text) { session.log.unshift(text); session.log.length = Math.min(session.log.length, 30); }
+  function initVars(doc) {
+    const c = { device: deviceVars(), vars:{}, settings:{} };
+    const out = {};
+    for (const [k,v] of Object.entries(doc?.vars || {})) out[k] = val(v, c);
+    return out;
+  }
+  function goTo(key, { replace = false } = {}) {
+    if (!has(key)) { note(`no screen <b>${key}</b> on this device`); return; }
+    if (replace) session.stack[session.stack.length-1] = key; else session.stack.push(key);
+    session.vars = { ...session.vars, ...initVars(docFor(key)) };
+    state.screen = key.split("?")[0]; save(); renderList();
+  }
+  function runAction(a) {
+    if (!a) return;
+    switch (a.type) {
+      case "navigate": { const key = keyFor(a.url); note(`navigate <b>${key ?? a.url}</b>`); if (key) goTo(key, { replace: !!a.replace }); break; }
+      case "back": if (session.stack.length > 1) { session.stack.pop(); state.screen = current().split("?")[0]; save(); renderList(); note("back"); } else note("back at root"); break;
+      case "home": session.stack = ["home"]; session.vars = initVars(docFor("home")); state.screen = "home"; save(); renderList(); note("home"); break;
+      case "set": { const c = ctx(); for (const [k,v] of Object.entries(a.vars||{})) session.vars[k] = val(v,c); note(`set ${Object.keys(a.vars||{}).join(", ")}`); break; }
+      case "refresh": session.vars = initVars(docFor(current())); note("refresh"); break;
+      case "submit": note(`submit <b>${a.event}</b>`); break;
+      case "http": { const c = ctx(); for (const [k,v] of Object.entries(a.set||{})) session.vars[k] = val(v,c);
+                     note(`http ${a.method||"GET"} ${String(a.url).replace(/^https?:\/\//,"").slice(0,28)}`);
+                     if (a.then && a.then !== "none") setTimeout(()=>{ runAction({ type:a.then, url:a.then_url }); render(); }, (a.after||0)*1000);
+                     break; }
+      default: note(`action ${a.type}`);
+    }
+  }
+  function tapAt(px, py, hold) {
+    for (let i = targets.length - 1; i >= 0; i--) {
+      const t = targets[i];
+      if (px < t.x || py < t.y || px >= t.x+t.width || py >= t.y+t.height) continue;
+      const action = hold ? (t.w.on_hold || t.w.on_tap) : t.w.on_tap;
+      if (!action) continue;
+      const feedback = t.w.feedback ?? (t.w.type === "button" ? "invert" : "none");
+      if (feedback === "invert") { session.pending = t; render(); }
+      setTimeout(() => { session.pending = null; runAction(action); render(); }, feedback === "invert" ? 160 : 0);
+      return true;
+    }
+    return false;
+  }
+
+  // ---------------------------------------------------------------- render
+  function render() {
+    const canvas = $("c"), { w, h } = dims(), p = prof();
+    canvas.width = w; canvas.height = h;
+    const ctx2 = canvas.getContext("2d", { willReadFrequently: true });
+    ctx2.fillStyle = "#fff"; ctx2.fillRect(0,0,w,h);
+    targets = [];
+    const doc = docFor(current());
+    if (!doc) {
+      ctx2.fillStyle = "#888"; ctx2.font = "16px Roboto";
+      ctx2.fillText("this screen is not built for this device", 16, 40);
+      $("status").textContent = "";
+    } else {
+      const c = ctx();
+      for (const wd of doc.widgets) drawWidget(ctx2, wd, c, 0, 0, w, h);
+      if (session.pending) invertRect(ctx2, session.pending, w, h);
+      quantise(ctx2, w, h);
+      if (state.grid) drawOverlay(ctx2, w, h);
+      const bytes = new TextEncoder().encode(JSON.stringify(doc)).length;
+      const n = (JSON.stringify(doc).match(/"type":"/g)||[]).length;
+      $("status").innerHTML = `<code>${state.profile}/${state.orientation}/${current()}.json</code> &middot; ${n} widgets &middot; ${bytes} bytes`
+        + (doc.refresh ? ` &middot; refresh ${doc.refresh}` : "") + (doc.keys ? ` &middot; keys ${Object.keys(doc.keys).join("/")}` : "")
+        + ` &middot; ${targets.length} targets`;
+    }
+    const mmW = (w/p.dpi*25.4).toFixed(0), mmH = (h/p.dpi*25.4).toFixed(0);
+    $("info").textContent = `${p.name} · ${w}×${h} px · ${mmW}×${mmH} mm · ${greys()} greys · ${p.dpi} dpi · unit ${p.u} px · rhythm ${p.space.rhythm} px · margin ${p.space.page} px`;
+    const zoom = state.zoom === "actual" ? 96/p.dpi : state.zoom === "fit"
+      ? Math.min(1, (window.innerWidth-560)/w, (window.innerHeight-140)/h) : +state.zoom;
+    canvas.style.width = Math.round(w*zoom)+"px"; canvas.style.height = Math.round(h*zoom)+"px";
+    canvas.dataset.zoom = zoom;
+    for (const [id, key] of [["profile","profile"],["orientation","orientation"],["greys","greys"],["zoom","zoom"]]) $(id).value = state[key];
+    for (const [id, key] of [["dither","dither"],["invert","invert"],["grid","grid"]]) $(id).checked = !!state[key];
+    $("hist").textContent = session.stack.join("  ›  ");
+    $("vars").innerHTML = Object.keys(session.vars).length
+      ? Object.entries(session.vars).map(([k,v])=>`${k}<span class="val">${v}</span>`).join("<br>") : "no vars";
+    $("log").innerHTML = session.log.length ? session.log.join("<br>") : "tap the screen";
+  }
+
+  // ---------------------------------------------------------------- controls
+  for (const id of Object.keys(G.tokens.profiles)) {
+    const o = document.createElement("option"); o.value = id;
+    o.textContent = `${id} · ${G.tokens.profiles[id].name}`; $("profile").append(o);
+  }
+  $("gen").textContent = "built " + G.generated;
+  function bind(id, key, isCheck) {
+    const el = $(id);
+    if (isCheck) el.checked = !!state[key]; else el.value = state[key];
+    el.addEventListener("change", () => {
+      state[key] = isCheck ? el.checked : el.value; save();
+      if (key === "profile" || key === "orientation") { session = { stack:["home"], vars:initVars(docFor("home")), pending:null, log:[] }; if (!has("home")) session.stack = [Object.keys(bank())[0] || "home"]; }
+      renderList(); render();
+    });
+  }
+  bind("profile","profile"); bind("orientation","orientation"); bind("greys","greys"); bind("zoom","zoom");
+  bind("dither","dither",true); bind("invert","invert",true); bind("grid","grid",true);
+
+  const allScreens = [{ id:"home", title:"Home", sub:"The gallery index" }, ...G.sections];
+  function renderList() {
+    const list = $("screens"); list.innerHTML = "";
+    const here = current().split("?")[0];
+    for (const s of allScreens) {
+      if (!has(s.id)) continue;
+      const a = document.createElement("a");
+      a.href = "#" + s.id; a.className = s.id === here ? "on" : "";
+      a.innerHTML = `${s.title}<small>${s.sub}</small>`;
+      a.onclick = (e) => { e.preventDefault(); session.stack = [s.id]; session.vars = initVars(docFor(s.id)); state.screen = s.id; save(); renderList(); render(); };
+      list.append(a);
+    }
+  }
+
+  const canvas = $("c");
+  const at = (e) => { const r = canvas.getBoundingClientRect(), z = +canvas.dataset.zoom || 1;
+                      return { x: Math.round((e.clientX-r.left)/z), y: Math.round((e.clientY-r.top)/z) }; };
+  let holdTimer = null, held = false;
+  canvas.addEventListener("pointerdown", (e) => {
+    held = false;
+    const pt = at(e);
+    holdTimer = setTimeout(() => { held = true; tapAt(pt.x, pt.y, true); }, 800);
+  });
+  canvas.addEventListener("pointerup", (e) => {
+    clearTimeout(holdTimer);
+    if (held) return;
+    const pt = at(e);
+    if (!tapAt(pt.x, pt.y, false)) note(`tap ${pt.x},${pt.y} — nothing there`), render();
+  });
+  canvas.addEventListener("pointermove", (e) => {
+    const pt = at(e);
+    const hot = targets.some((t) => pt.x>=t.x && pt.y>=t.y && pt.x<t.x+t.width && pt.y<t.y+t.height && t.w.on_tap);
+    canvas.classList.toggle("hot", hot);
+  });
+  const pressKey = (which) => {
+    const doc = docFor(current());
+    if (which === "long") { runAction({ type:"home" }); note("button: long → Home"); }
+    else {
+      const a = doc?.keys?.[which];
+      if (a) { note(`button: ${which}`); runAction(a); }
+      else if (which === "short") { runAction({ type:"home" }); note("button: short → Home (screen claims no key)"); }
+      else { note("button: double → full redraw"); }
+    }
+    render();
+  };
+  $("bShort").onclick = () => pressKey("short");
+  $("bDouble").onclick = () => pressKey("double");
+  $("bLong").onclick = () => pressKey("long");
+  $("bBack").onclick = () => { runAction({ type:"back" }); render(); };
+  $("bHome").onclick = () => { runAction({ type:"home" }); render(); };
+
+  const dev = (id, key, fmt) => {
+    const el = $(id);
+    el.addEventListener("input", () => {
+      device[key] = el.type === "checkbox" ? el.checked : +el.value;
+      if (fmt) $(id+"v").textContent = fmt(device[key]);
+      render();
+    });
+  };
+  dev("batt","battery",(v)=> v<0 ? "unknown" : v+"%");
+  dev("rssi","rssi",(v)=> v+" dBm");
+  dev("online","online"); dev("charging","charging");
+
+  async function exportPng(name) {
+    const blob = await new Promise((r) => $("c").toBlob(r, "image/png"));
+    try { const res = await fetch(`/save?name=${encodeURIComponent(name)}`, { method:"POST", body:blob });
+          if (res.ok) { note(`saved ${(await res.json()).saved}`); render(); return true; } } catch {}
+    const a = document.createElement("a"); a.download = name + ".png"; a.href = URL.createObjectURL(blob); a.click();
+    return false;
+  }
+  const shotName = () => `${state.profile}-${state.orientation}-${current().replace("?p=","-p")}`;
+  $("export").onclick = () => exportPng(shotName());
+  $("exportAll").onclick = async () => {
+    const keep = session.stack.slice();
+    for (const s of allScreens) { if (!has(s.id)) continue; session.stack = [s.id]; session.vars = initVars(docFor(s.id)); render(); await new Promise((r)=>setTimeout(r,25)); await exportPng(shotName()); }
+    session.stack = keep; render();
+  };
+  window.quirePreview = { state, session, render, renderList, exportPng, shotName, has, goTo, device, initVars, docFor,
+    show(id) { session.stack = [id]; session.vars = initVars(docFor(id)); state.screen = id; renderList(); render(); } };
+
+  window.addEventListener("resize", render);
+  window.addEventListener("hashchange", () => { const id = location.hash.slice(1); if (has(id)) { session.stack = [id]; session.vars = initVars(docFor(id)); state.screen = id; save(); renderList(); render(); } });
+  if (location.hash.length > 1 && has(location.hash.slice(1))) state.screen = location.hash.slice(1);
+  if (!has(state.screen)) state.screen = "home";
+  session.stack = [state.screen];
+  session.vars = initVars(docFor(state.screen));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { renderList(); render(); });
+})();
+</script>
+</body>
+</html>

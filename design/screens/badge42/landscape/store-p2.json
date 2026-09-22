@@ -1,0 +1,191 @@
+{
+ "spec_version": 1,
+ "id": "store-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 30,
+   "name": "water-outline"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 28,
+   "w": 344,
+   "text": "Tide"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 50,
+   "w": 344,
+   "text": "Tides for one beach",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 30,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 70,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 78,
+   "name": "clock-outline"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 76,
+   "w": 344,
+   "text": "Transit"
+  },
+  {
+   "type": "text",
+   "x": 28,
+   "y": 98,
+   "w": 344,
+   "text": "Next departures from one stop",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 78,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 36,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 342,
+   "y": 0,
+   "w": 32,
+   "h": 32,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 350,
+   "y": 2,
+   "name": "cellphone-link"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 0,
+   "w": 316,
+   "text": "Store",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 399,
+   "y2": 19,
+   "color": 10
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 280,
+   "x2": 399,
+   "y2": 280,
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 6,
+   "y": 280,
+   "w": 130,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 62,
+   "y": 282,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 188,
+   "y": 280,
+   "w": 26,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "icon",
+   "x": 322,
+   "y": 282,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/store.json"
+  }
+ }
+}

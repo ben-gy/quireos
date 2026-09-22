@@ -1,0 +1,474 @@
+{
+ "spec_version": 1,
+ "id": "lists",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 32,
+   "y": 64,
+   "w": 2136,
+   "text": "Settings rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 96,
+   "w": 2200,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 112,
+   "w": 2064,
+   "text": "Theme"
+  },
+  {
+   "type": "text",
+   "x": 2112,
+   "y": 112,
+   "w": 56,
+   "text": "Light",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 160,
+   "w": 2200,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 176,
+   "w": 2028,
+   "text": "Text size"
+  },
+  {
+   "type": "text",
+   "x": 2076,
+   "y": 176,
+   "w": 92,
+   "text": "Medium",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 224,
+   "w": 2200,
+   "h": 64,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 240,
+   "w": 2024,
+   "text": "Wi-Fi"
+  },
+  {
+   "type": "icon",
+   "x": 2148,
+   "y": 248,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 2072,
+   "y": 240,
+   "w": 68,
+   "text": "Home",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 288,
+   "w": 2200,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 304,
+   "w": 1996,
+   "text": "Clear read history"
+  },
+  {
+   "type": "text",
+   "x": 2044,
+   "y": 304,
+   "w": 124,
+   "text": "142 stories",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 352,
+   "w": 2136,
+   "text": "Content rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 384,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 404,
+   "w": 2136,
+   "text": "A story title long enough to wrap onto a second line",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 440,
+   "w": 2136,
+   "text": "675 pts · 273 comments · 1 d · example.com",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 480,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 500,
+   "w": 2136,
+   "text": "A story you have already read",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 536,
+   "w": 2136,
+   "text": "12 pts · 3 comments · 4 h",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 576,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 592,
+   "name": "email-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 592,
+   "w": 2055,
+   "text": "With a leading icon and a count"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 628,
+   "w": 2055,
+   "text": "Unread messages",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 2147,
+   "y": 596,
+   "w": 21,
+   "h": 21,
+   "fill": 0,
+   "radius": 10
+  },
+  {
+   "type": "text",
+   "x": 2147,
+   "y": 596,
+   "w": 21,
+   "text": "3",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 21
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 672,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 688,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 688,
+   "w": 1976,
+   "text": "With a status pill"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 724,
+   "w": 1976,
+   "text": "Store entry",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 2068,
+   "y": 688,
+   "w": 100,
+   "h": 32,
+   "stroke": 10,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "text",
+   "x": 2068,
+   "y": 688,
+   "w": 100,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 768,
+   "w": 2136,
+   "text": "Facts",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 800,
+   "w": 1912,
+   "text": "Battery",
+   "valign": "middle",
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1960,
+   "y": 800,
+   "w": 208,
+   "text": "{{device.battery}}%",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 840,
+   "w": 1912,
+   "text": "Signal",
+   "valign": "middle",
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1960,
+   "y": 840,
+   "w": 208,
+   "text": "{{device.rssi}} dBm",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 880,
+   "w": 1976,
+   "text": "Storage",
+   "valign": "middle",
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 2024,
+   "y": 880,
+   "w": 144,
+   "text": "8.2 of 12 MB",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 924,
+   "x2": 2167,
+   "y2": 924,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 928,
+   "w": 2136,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar · example.com",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 2040,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 2199,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 1594,
+   "x2": 2199,
+   "y2": 1594,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 1594,
+   "w": 2136,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1084,
+   "y": 1606,
+   "name": "home-outline"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "home"
+  }
+ }
+}

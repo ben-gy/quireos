@@ -1,0 +1,463 @@
+{
+ "spec_version": 1,
+ "id": "launcher",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 1348,
+   "y": 12,
+   "name": "battery-outline",
+   "size": "sm",
+   "when": "device.battery >= 0"
+  },
+  {
+   "type": "icon",
+   "x": 1348,
+   "y": 12,
+   "name": "battery-10",
+   "size": "sm",
+   "when": "device.battery >= 5"
+  },
+  {
+   "type": "icon",
+   "x": 1348,
+   "y": 12,
+   "name": "battery-30",
+   "size": "sm",
+   "when": "device.battery >= 20"
+  },
+  {
+   "type": "icon",
+   "x": 1348,
+   "y": 12,
+   "name": "battery-50",
+   "size": "sm",
+   "when": "device.battery >= 40"
+  },
+  {
+   "type": "icon",
+   "x": 1348,
+   "y": 12,
+   "name": "battery-70",
+   "size": "sm",
+   "when": "device.battery >= 60"
+  },
+  {
+   "type": "icon",
+   "x": 1348,
+   "y": 12,
+   "name": "battery-90",
+   "size": "sm",
+   "when": "device.battery >= 80"
+  },
+  {
+   "type": "icon",
+   "x": 1348,
+   "y": 12,
+   "name": "battery",
+   "size": "sm",
+   "when": "device.battery >= 95"
+  },
+  {
+   "type": "icon",
+   "x": 1316,
+   "y": 12,
+   "name": "lightning-bolt-outline",
+   "size": "sm",
+   "when": "device.charging"
+  },
+  {
+   "type": "icon",
+   "x": 1284,
+   "y": 12,
+   "name": "wifi-strength-outline",
+   "size": "sm",
+   "when": "device.online"
+  },
+  {
+   "type": "icon",
+   "x": 1284,
+   "y": 12,
+   "name": "wifi-strength-1",
+   "size": "sm",
+   "when": "device.rssi >= -85"
+  },
+  {
+   "type": "icon",
+   "x": 1284,
+   "y": 12,
+   "name": "wifi-strength-2",
+   "size": "sm",
+   "when": "device.rssi >= -75"
+  },
+  {
+   "type": "icon",
+   "x": 1284,
+   "y": 12,
+   "name": "wifi-strength-3",
+   "size": "sm",
+   "when": "device.rssi >= -65"
+  },
+  {
+   "type": "icon",
+   "x": 1284,
+   "y": 12,
+   "name": "wifi-strength-4",
+   "size": "sm",
+   "when": "device.rssi >= -55"
+  },
+  {
+   "type": "icon",
+   "x": 1284,
+   "y": 12,
+   "name": "wifi-off",
+   "size": "sm",
+   "when": "device.online == false"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 0,
+   "w": 1244,
+   "text": "{{device.time|time:'HH:mm'}}",
+   "size": "sm",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "grid",
+   "x": 44,
+   "y": 72,
+   "cols": 12,
+   "rows": 1,
+   "cell_w": 88,
+   "cell_h": 152,
+   "gap": 24,
+   "children": [
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "on_tap": {
+      "type": "navigate",
+      "url": "/screens/lists.json"
+     },
+     "feedback": "invert",
+     "cell": 0
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 16,
+     "cell": 0
+    },
+    {
+     "type": "icon",
+     "x": 28,
+     "y": 28,
+     "name": "newspaper-variant-outline",
+     "w": 36,
+     "h": 36,
+     "cell": 0
+    },
+    {
+     "type": "text",
+     "x": 0,
+     "y": 96,
+     "w": 88,
+     "text": "Hacker News",
+     "size": "sm",
+     "align": "center",
+     "lines": 2,
+     "h": 56,
+     "cell": 0
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "on_tap": {
+      "type": "navigate",
+      "url": "/screens/starter.json"
+     },
+     "feedback": "invert",
+     "cell": 1
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 16,
+     "cell": 1
+    },
+    {
+     "type": "icon",
+     "x": 28,
+     "y": 28,
+     "name": "lightbulb-outline",
+     "w": 36,
+     "h": 36,
+     "cell": 1
+    },
+    {
+     "type": "text",
+     "x": 0,
+     "y": 96,
+     "w": 88,
+     "text": "Lights",
+     "size": "sm",
+     "align": "center",
+     "lines": 2,
+     "h": 56,
+     "cell": 1
+    },
+    {
+     "type": "icon",
+     "x": 76,
+     "y": -12,
+     "name": "update",
+     "size": "sm",
+     "w": 24,
+     "h": 24,
+     "cell": 1
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "on_tap": {
+      "type": "navigate",
+      "url": "/screens/dashboard.json"
+     },
+     "feedback": "invert",
+     "cell": 2
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 16,
+     "cell": 2
+    },
+    {
+     "type": "icon",
+     "x": 28,
+     "y": 28,
+     "name": "clock-outline",
+     "w": 36,
+     "h": 36,
+     "cell": 2
+    },
+    {
+     "type": "text",
+     "x": 0,
+     "y": 96,
+     "w": 88,
+     "text": "Clock",
+     "size": "sm",
+     "align": "center",
+     "lines": 2,
+     "h": 56,
+     "cell": 2
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "on_tap": {
+      "type": "refresh"
+     },
+     "feedback": "invert",
+     "cell": 3
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 16,
+     "cell": 3
+    },
+    {
+     "type": "icon",
+     "x": 28,
+     "y": 28,
+     "name": "image-outline",
+     "w": 36,
+     "h": 36,
+     "cell": 3
+    },
+    {
+     "type": "text",
+     "x": 0,
+     "y": 96,
+     "w": 88,
+     "text": "Frame",
+     "size": "sm",
+     "align": "center",
+     "lines": 2,
+     "h": 56,
+     "cell": 3
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "on_tap": {
+      "type": "home"
+     },
+     "feedback": "invert",
+     "cell": 4
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 16,
+     "cell": 4
+    },
+    {
+     "type": "icon",
+     "x": 28,
+     "y": 28,
+     "name": "apps",
+     "w": 36,
+     "h": 36,
+     "cell": 4
+    },
+    {
+     "type": "text",
+     "x": 0,
+     "y": 96,
+     "w": 88,
+     "text": "Gallery",
+     "size": "sm",
+     "align": "center",
+     "lines": 2,
+     "h": 56,
+     "cell": 4
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "on_tap": {
+      "type": "navigate",
+      "url": "/screens/store.json"
+     },
+     "feedback": "invert",
+     "cell": 5
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 16,
+     "cell": 5
+    },
+    {
+     "type": "icon",
+     "x": 28,
+     "y": 28,
+     "name": "store-outline",
+     "w": 36,
+     "h": 36,
+     "cell": 5
+    },
+    {
+     "type": "text",
+     "x": 0,
+     "y": 96,
+     "w": 88,
+     "text": "Store",
+     "size": "sm",
+     "align": "center",
+     "lines": 2,
+     "h": 56,
+     "cell": 5
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "on_tap": {
+      "type": "navigate",
+      "url": "/screens/dialog.json"
+     },
+     "feedback": "invert",
+     "cell": 6
+    },
+    {
+     "type": "rect",
+     "x": 0,
+     "y": 0,
+     "w": 88,
+     "h": 88,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 16,
+     "cell": 6
+    },
+    {
+     "type": "icon",
+     "x": 28,
+     "y": 28,
+     "name": "cog-outline",
+     "w": 36,
+     "h": 36,
+     "cell": 6
+    },
+    {
+     "type": "text",
+     "x": 0,
+     "y": 96,
+     "w": 88,
+     "text": "Settings",
+     "size": "sm",
+     "align": "center",
+     "lines": 2,
+     "h": 56,
+     "cell": 6
+    }
+   ]
+  }
+ ]
+}

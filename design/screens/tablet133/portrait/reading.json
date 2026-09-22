@@ -1,0 +1,202 @@
+{
+ "spec_version": 1,
+ "id": "reading",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 32,
+   "y": 64,
+   "w": 1584,
+   "text": "Exfiltrate your weights",
+   "size": "xl",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 124,
+   "w": 1584,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 180,
+   "w": 1584,
+   "text": "Any hits? Do models even know their own weights to be able to do this? Probably yes, because they have been presumably trained on their own\noutput and conversations about themselves.",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 256,
+   "w": 1584,
+   "text": "No, they would probably have to hack the internal system of the company running them. It would not be a particularly wide ranging hack. There\nis a strong likelihood of the weights being on the actual machine that is running the model.",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 332,
+   "w": 1584,
+   "text": "It is something that I have wondered about with models like these. How many physical locations are needed to serve a model on that scale? Do\nthey have a huge number of sites running inference?",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 408,
+   "w": 1584,
+   "text": "My suspicion is that the ability to provide inference to that many people is mutually exclusive to having a security level sufficient to stop a state\nactor, which is why the question keeps coming back.",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 484,
+   "w": 1584,
+   "text": "The weights are the easy part. Serving them at that scale is what needs a building, and buildings are the thing you cannot hide."
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 1524,
+   "y": 0,
+   "w": 36,
+   "text": "1 / 1",
+   "size": "xs",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 1444,
+   "text": "Hacker News",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 1649,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 2088,
+   "x2": 1649,
+   "y2": 2088,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 2088,
+   "w": 528,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 280,
+   "y": 2100,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 560,
+   "y": 2088,
+   "w": 528,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 808,
+   "y": 2100,
+   "name": "file-document-outline"
+  },
+  {
+   "type": "rect",
+   "x": 1088,
+   "y": 2088,
+   "w": 528,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1336,
+   "y": 2100,
+   "name": "comment-multiple-outline"
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 2144,
+   "x2": 1615,
+   "y2": 2144,
+   "color": 12
+  },
+  {
+   "type": "icon",
+   "x": 280,
+   "y": 2156,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 804,
+   "y": 2144,
+   "w": 40,
+   "text": "1 / 1",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "icon",
+   "x": 1336,
+   "y": 2156,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ]
+}

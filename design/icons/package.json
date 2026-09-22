@@ -1,0 +1,8 @@
+{
+  "name": "quireos-design-icons",
+  "private": true,
+  "type": "module",
+  "description": "Build script for the QuireOS icon library (Material Design Icons subset).",
+  "scripts": { "build": "node build.mjs" },
+  "devDependencies": { "@mdi/svg": "7.4.47" }
+}

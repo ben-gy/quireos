@@ -1,0 +1,256 @@
+{
+ "spec_version": 1,
+ "id": "home-p3",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 48,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/keypad.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 56,
+   "w": 750,
+   "text": "Keypad"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 85,
+   "w": 750,
+   "text": "The only on-device text input",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 60,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 116,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/launcher.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 124,
+   "w": 750,
+   "text": "Launcher"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 153,
+   "w": 750,
+   "text": "OS: status bar and app grid",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 128,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 184,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 192,
+   "w": 750,
+   "text": "Store"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 221,
+   "w": 750,
+   "text": "OS: the app list with badges",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 196,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 252,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/error.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 260,
+   "w": 750,
+   "text": "Error screen"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 289,
+   "w": 750,
+   "text": "OS: a failed open",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 264,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 320,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/setup.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 328,
+   "w": 750,
+   "text": "Setup screen"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 357,
+   "w": 750,
+   "text": "OS: first boot with no Wi-Fi",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 332,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 0,
+   "w": 736,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 436,
+   "x2": 799,
+   "y2": 436
+  },
+  {
+   "type": "rect",
+   "x": 14,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 130,
+   "y": 446,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 384,
+   "y": 436,
+   "w": 36,
+   "text": "3 / 4",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "rect",
+   "x": 530,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json?p=4"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 646,
+   "y": 446,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/home.json?p=2"
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/home.json?p=4"
+  }
+ }
+}

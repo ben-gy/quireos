@@ -1,0 +1,276 @@
+{
+ "spec_version": 1,
+ "id": "lists",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 48,
+   "w": 776,
+   "text": "Settings rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 72,
+   "w": 800,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 80,
+   "w": 720,
+   "text": "Theme"
+  },
+  {
+   "type": "text",
+   "x": 740,
+   "y": 80,
+   "w": 48,
+   "text": "Light",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 116,
+   "w": 800,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 124,
+   "w": 692,
+   "text": "Text size"
+  },
+  {
+   "type": "text",
+   "x": 712,
+   "y": 124,
+   "w": 76,
+   "text": "Medium",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 160,
+   "w": 800,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 168,
+   "w": 690,
+   "text": "Wi-Fi"
+  },
+  {
+   "type": "icon",
+   "x": 770,
+   "y": 172,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "text",
+   "x": 710,
+   "y": 168,
+   "w": 56,
+   "text": "Home",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 204,
+   "w": 800,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 212,
+   "w": 662,
+   "text": "Clear read history"
+  },
+  {
+   "type": "text",
+   "x": 682,
+   "y": 212,
+   "w": 106,
+   "text": "142 stories",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 248,
+   "w": 776,
+   "text": "Content rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 272,
+   "w": 800,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 280,
+   "w": 776,
+   "text": "A story title long enough to wrap onto a second line",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 309,
+   "w": 776,
+   "text": "675 pts · 273 comments · 1 d · example.com",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 336,
+   "w": 800,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 344,
+   "w": 776,
+   "text": "A story you have already read"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 373,
+   "w": 776,
+   "text": "12 pts · 3 comments · 4 h",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 706,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 436,
+   "x2": 799,
+   "y2": 436
+  },
+  {
+   "type": "text",
+   "x": 384,
+   "y": 436,
+   "w": 36,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "rect",
+   "x": 530,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 646,
+   "y": 446,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=2"
+  }
+ }
+}

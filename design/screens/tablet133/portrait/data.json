@@ -1,0 +1,637 @@
+{
+ "spec_version": 1,
+ "id": "data",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 116,
+   "name": "weather-partly-cloudy"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 64,
+   "w": 200,
+   "text": "21.5",
+   "size": "digits",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 132
+  },
+  {
+   "type": "text",
+   "x": 276,
+   "y": 64,
+   "w": 32,
+   "text": "°C",
+   "size": "lg",
+   "valign": "bottom",
+   "color": 6,
+   "h": 132
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 200,
+   "w": 1584,
+   "text": "Outside now",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 232,
+   "w": 1584,
+   "text": "Storage",
+   "size": "xs",
+   "color": 6,
+   "h": 21
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 232,
+   "w": 1584,
+   "text": "8.2 of 12 MB",
+   "size": "xs",
+   "align": "right",
+   "color": 6,
+   "h": 21
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 261,
+   "w": 1584,
+   "h": 8,
+   "fill": 13,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 4
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 261,
+   "w": 984,
+   "h": 8,
+   "fill": 0,
+   "radius": 4
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 280,
+   "w": 1584,
+   "text": "Rain, last 7 days",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 44,
+   "y": 372,
+   "w": 216,
+   "h": 12,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 492,
+   "y": 360,
+   "w": 216,
+   "h": 24,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 716,
+   "y": 324,
+   "w": 216,
+   "h": 60,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 940,
+   "y": 368,
+   "w": 216,
+   "h": 16,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 1388,
+   "y": 380,
+   "w": 216,
+   "h": 4,
+   "fill": 0
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 384,
+   "x2": 1615,
+   "y2": 384,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 389,
+   "w": 216,
+   "text": "M",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 268,
+   "y": 389,
+   "w": 216,
+   "text": "T",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 492,
+   "y": 389,
+   "w": 216,
+   "text": "W",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 716,
+   "y": 389,
+   "w": 216,
+   "text": "T",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 940,
+   "y": 389,
+   "w": 216,
+   "text": "F",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 1164,
+   "y": 389,
+   "w": 216,
+   "text": "S",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 1388,
+   "y": 389,
+   "w": 216,
+   "text": "S",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 424,
+   "w": 1584,
+   "text": "Temperature, 24 h",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 504,
+   "x2": 138,
+   "y2": 507,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 138,
+   "y1": 507,
+   "x2": 243,
+   "y2": 511,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 243,
+   "y1": 511,
+   "x2": 349,
+   "y2": 511,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 349,
+   "y1": 511,
+   "x2": 454,
+   "y2": 507,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 454,
+   "y1": 507,
+   "x2": 560,
+   "y2": 497,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 560,
+   "y1": 497,
+   "x2": 665,
+   "y2": 486,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 665,
+   "y1": 486,
+   "x2": 771,
+   "y2": 475,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 771,
+   "y1": 475,
+   "x2": 876,
+   "y2": 468,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 876,
+   "y1": 468,
+   "x2": 982,
+   "y2": 464,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 982,
+   "y1": 464,
+   "x2": 1087,
+   "y2": 464,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 1087,
+   "y1": 464,
+   "x2": 1193,
+   "y2": 468,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 1193,
+   "y1": 468,
+   "x2": 1298,
+   "y2": 475,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 1298,
+   "y1": 475,
+   "x2": 1404,
+   "y2": 486,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 1404,
+   "y1": 486,
+   "x2": 1509,
+   "y2": 493,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 1509,
+   "y1": 493,
+   "x2": 1615,
+   "y2": 497,
+   "width": 2
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 520,
+   "w": 1584,
+   "text": "Rooms",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 560,
+   "w": 1436,
+   "text": "Room",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 29
+  },
+  {
+   "type": "text",
+   "x": 1484,
+   "y": 560,
+   "w": 52,
+   "text": "°C",
+   "size": "xs",
+   "weight": "bold",
+   "align": "right",
+   "valign": "bottom",
+   "color": 6,
+   "h": 29
+  },
+  {
+   "type": "text",
+   "x": 1552,
+   "y": 560,
+   "w": 64,
+   "text": "Humidity",
+   "size": "xs",
+   "weight": "bold",
+   "align": "right",
+   "valign": "bottom",
+   "color": 6,
+   "h": 29
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 589,
+   "x2": 1615,
+   "y2": 589,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 594,
+   "w": 1436,
+   "text": "Office",
+   "valign": "middle",
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1484,
+   "y": 594,
+   "w": 52,
+   "text": "22.5",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1552,
+   "y": 594,
+   "w": 64,
+   "text": "48%",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 634,
+   "x2": 1615,
+   "y2": 634,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 634,
+   "w": 1436,
+   "text": "Bedroom",
+   "valign": "middle",
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1484,
+   "y": 634,
+   "w": 52,
+   "text": "20.1",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1552,
+   "y": 634,
+   "w": 64,
+   "text": "52%",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 674,
+   "x2": 1615,
+   "y2": 674,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 674,
+   "w": 1436,
+   "text": "Garage",
+   "valign": "middle",
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1484,
+   "y": 674,
+   "w": 52,
+   "text": "17.4",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1552,
+   "y": 674,
+   "w": 64,
+   "text": "61%",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 728,
+   "w": 1584,
+   "text": "Progress",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 768,
+   "w": 8,
+   "h": 8,
+   "fill": 0,
+   "radius": 4
+  },
+  {
+   "type": "rect",
+   "x": 48,
+   "y": 768,
+   "w": 8,
+   "h": 8,
+   "fill": 0,
+   "radius": 4
+  },
+  {
+   "type": "rect",
+   "x": 64,
+   "y": 768,
+   "w": 8,
+   "h": 8,
+   "fill": 0,
+   "radius": 4
+  },
+  {
+   "type": "rect",
+   "x": 80,
+   "y": 768,
+   "w": 8,
+   "h": 8,
+   "stroke": 10,
+   "stroke_w": 1,
+   "radius": 4
+  },
+  {
+   "type": "rect",
+   "x": 96,
+   "y": 768,
+   "w": 8,
+   "h": 8,
+   "stroke": 10,
+   "stroke_w": 1,
+   "radius": 4
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 1488,
+   "text": "Data",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 1649,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 2144,
+   "x2": 1649,
+   "y2": 2144,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 2144,
+   "w": 1584,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 808,
+   "y": 2156,
+   "name": "home-outline"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "home"
+  }
+ }
+}

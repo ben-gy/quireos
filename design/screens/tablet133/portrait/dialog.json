@@ -1,0 +1,201 @@
+{
+ "spec_version": 1,
+ "id": "dialog",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 32,
+   "y": 64,
+   "w": 1584,
+   "text": "Reading",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 96,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 112,
+   "w": 1476,
+   "text": "Text size"
+  },
+  {
+   "type": "text",
+   "x": 1524,
+   "y": 112,
+   "w": 92,
+   "text": "Medium",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 160,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 176,
+   "w": 1444,
+   "text": "Clear read history"
+  },
+  {
+   "type": "text",
+   "x": 1492,
+   "y": 176,
+   "w": 124,
+   "text": "142 stories",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 224,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 240,
+   "w": 1488,
+   "text": "Clear cached feeds"
+  },
+  {
+   "type": "text",
+   "x": 1536,
+   "y": 240,
+   "w": 80,
+   "text": "1.4 MB",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 1488,
+   "text": "Settings",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 1649,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 980,
+   "w": 1584,
+   "h": 240,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "text",
+   "x": 56,
+   "y": 1004,
+   "w": 1504,
+   "text": "Clear read history?",
+   "size": "lg",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 56,
+   "y": 1056,
+   "w": 1536,
+   "text": "142 stories will show as unread again. This cannot be undone."
+  },
+  {
+   "type": "button",
+   "x": 56,
+   "y": 1128,
+   "w": 756,
+   "h": 64,
+   "label": "Cancel",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0,
+   "on_tap": {
+    "type": "back"
+   }
+  },
+  {
+   "type": "button",
+   "x": 836,
+   "y": 1128,
+   "w": 756,
+   "h": 64,
+   "label": "Clear",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 0,
+   "stroke": 0,
+   "color": 15,
+   "on_tap": {
+    "type": "refresh"
+   }
+  }
+ ]
+}

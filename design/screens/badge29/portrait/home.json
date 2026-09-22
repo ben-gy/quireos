@@ -1,0 +1,234 @@
+{
+ "spec_version": 1,
+ "id": "home",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 26,
+   "w": 96,
+   "text": "Lists and rows"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 47,
+   "w": 96,
+   "text": "Rows, sections, key-values, meta lines",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 28,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 66,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 70,
+   "w": 96,
+   "text": "Store"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 91,
+   "w": 96,
+   "text": "OS: the app list with badges",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 72,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 110,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/error.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 114,
+   "w": 96,
+   "text": "Error screen"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 135,
+   "w": 96,
+   "text": "OS: a failed open",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 116,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 154,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/setup.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 158,
+   "w": 96,
+   "text": "Setup screen"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 179,
+   "w": 96,
+   "text": "OS: first boot with no Wi-Fi",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 160,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 198,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/needs-setup.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 202,
+   "w": 96,
+   "text": "Needs setup"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 223,
+   "w": 96,
+   "text": "OS: an app missing its settings",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 204,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 0,
+   "w": 98,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 127,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 276,
+   "x2": 127,
+   "y2": 276
+  },
+  {
+   "type": "text",
+   "x": 52,
+   "y": 276,
+   "w": 26,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 84,
+   "y": 276,
+   "w": 40,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 96,
+   "y": 278,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/home.json?p=2"
+  }
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "spec_version": 1,
+ "id": "badge",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 32,
+   "y": 32,
+   "w": 224,
+   "text": "21.5",
+   "size": "digits",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 145
+  },
+  {
+   "type": "text",
+   "x": 260,
+   "y": 32,
+   "w": 36,
+   "text": "°C",
+   "size": "lg",
+   "valign": "bottom",
+   "color": 6,
+   "h": 145
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 181,
+   "w": 1284,
+   "text": "Outside · feels like 19°",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 224,
+   "w": 1340,
+   "text": "Battery 62%",
+   "size": "xs",
+   "align": "right",
+   "color": 6,
+   "h": 23
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 255,
+   "w": 1340,
+   "h": 8,
+   "fill": 13,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 4
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 255,
+   "w": 832,
+   "h": 8,
+   "fill": 0,
+   "radius": 4
+  }
+ ],
+ "ttl": 300,
+ "refresh": "partial"
+}

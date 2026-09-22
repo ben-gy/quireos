@@ -1,0 +1,67 @@
+{
+ "spec_version": 1,
+ "id": "pair",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 4,
+   "y": 22,
+   "w": 288,
+   "text": "Enter this code at",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 46,
+   "w": 288,
+   "text": "quireos.dev/pair",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 62,
+   "w": 288,
+   "text": "K7Q 3ZD",
+   "size": "xl",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 246,
+   "text": "Pair with your account",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 295,
+   "y2": 19
+  }
+ ]
+}

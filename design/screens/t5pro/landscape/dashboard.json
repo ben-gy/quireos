@@ -1,0 +1,490 @@
+{
+ "spec_version": 1,
+ "id": "dashboard",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 24,
+   "w": 272,
+   "text": "{{device.time|time:'HH:mm'}}",
+   "size": "digits",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 150
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 178,
+   "w": 272,
+   "text": "{{device.time|time:'EEEE d MMMM'}}",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 244,
+   "name": "weather-partly-cloudy"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 224,
+   "w": 112,
+   "text": "21.5",
+   "size": "2xl",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 72
+  },
+  {
+   "type": "text",
+   "x": 184,
+   "y": 224,
+   "w": 28,
+   "text": "°C",
+   "valign": "bottom",
+   "color": 6,
+   "h": 72
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 300,
+   "w": 272,
+   "text": "Outside · feels like 19°",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 352,
+   "w": 272,
+   "text": "Rain",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 352,
+   "w": 272,
+   "text": "7 days",
+   "size": "xs",
+   "align": "right",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 64,
+   "y": 440,
+   "w": 32,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 416,
+   "w": 32,
+   "h": 32,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 144,
+   "y": 388,
+   "w": 32,
+   "h": 60,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 184,
+   "y": 432,
+   "w": 32,
+   "h": 16,
+   "fill": 0
+  },
+  {
+   "type": "line",
+   "x1": 24,
+   "y1": 448,
+   "x2": 295,
+   "y2": 448,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 453,
+   "w": 32,
+   "text": "M",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 64,
+   "y": 453,
+   "w": 32,
+   "text": "T",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 453,
+   "w": 32,
+   "text": "W",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 144,
+   "y": 453,
+   "w": 32,
+   "text": "T",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 184,
+   "y": 453,
+   "w": 32,
+   "text": "F",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 224,
+   "y": 453,
+   "w": 32,
+   "text": "S",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 264,
+   "y": 453,
+   "w": 32,
+   "text": "S",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 24,
+   "w": 272,
+   "text": "Today",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 24,
+   "w": 272,
+   "text": "3 events",
+   "size": "xs",
+   "align": "right",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 56,
+   "w": 168,
+   "text": "09:30",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 528,
+   "y": 56,
+   "w": 88,
+   "text": "Dentist",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 104,
+   "w": 72,
+   "text": "12:00",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 432,
+   "y": 104,
+   "w": 184,
+   "text": "Lunch with Sam",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 152,
+   "w": 80,
+   "text": "15:00",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 440,
+   "y": 152,
+   "w": 176,
+   "text": "Design review",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 224,
+   "w": 272,
+   "text": "Tomorrow",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 224,
+   "w": 272,
+   "text": "2 events",
+   "size": "xs",
+   "align": "right",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 256,
+   "w": 124,
+   "text": "08:00",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 484,
+   "y": 256,
+   "w": 132,
+   "text": "School run",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 344,
+   "y": 304,
+   "w": 152,
+   "text": "17:30",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 512,
+   "y": 304,
+   "w": 104,
+   "text": "Football",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 24,
+   "w": 216,
+   "text": "House",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 56,
+   "w": 240,
+   "text": "Lights on",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 920,
+   "y": 56,
+   "w": 16,
+   "text": "3",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 104,
+   "w": 168,
+   "text": "Garage",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 848,
+   "y": 104,
+   "w": 88,
+   "text": "Closed",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 152,
+   "w": 164,
+   "text": "Pool",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 844,
+   "y": 152,
+   "w": 92,
+   "text": "24.1 °C",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 224,
+   "w": 272,
+   "text": "Power",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 256,
+   "w": 168,
+   "text": "Solar",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 848,
+   "y": 256,
+   "w": 88,
+   "text": "2.4 kW",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 304,
+   "w": 156,
+   "text": "Grid",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 836,
+   "y": 304,
+   "w": 100,
+   "text": "−0.8 kW",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 352,
+   "w": 200,
+   "text": "Battery",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 880,
+   "y": 352,
+   "w": 56,
+   "text": "84%",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  }
+ ],
+ "ttl": 600,
+ "refresh": "partial"
+}

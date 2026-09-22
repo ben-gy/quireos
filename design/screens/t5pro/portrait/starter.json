@@ -1,0 +1,503 @@
+{
+ "spec_version": 1,
+ "id": "starter",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 64,
+   "w": 492,
+   "text": "Downstairs",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 96,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "hall": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 116,
+   "w": 412,
+   "text": "Hallway"
+  },
+  {
+   "type": "rect",
+   "x": 452,
+   "y": 120,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.hall == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 456,
+   "y": 124,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.hall != on"
+  },
+  {
+   "type": "rect",
+   "x": 488,
+   "y": 124,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.hall == on"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 540,
+   "h": 104,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "kitchen": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 184,
+   "w": 412,
+   "text": "Kitchen"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 224,
+   "w": 412,
+   "text": "Two lamps",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 452,
+   "y": 188,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.kitchen == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 456,
+   "y": 192,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.kitchen != on"
+  },
+  {
+   "type": "rect",
+   "x": 488,
+   "y": 192,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.kitchen == on"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 272,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "verandah": "on"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 292,
+   "w": 412,
+   "text": "Verandah"
+  },
+  {
+   "type": "rect",
+   "x": 452,
+   "y": 296,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.verandah == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 456,
+   "y": 300,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.verandah != on"
+  },
+  {
+   "type": "rect",
+   "x": 488,
+   "y": 300,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.verandah == on"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 344,
+   "w": 492,
+   "text": "Upstairs",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 376,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "office": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 396,
+   "w": 412,
+   "text": "Office"
+  },
+  {
+   "type": "rect",
+   "x": 452,
+   "y": 400,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.office == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 456,
+   "y": 404,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.office != on"
+  },
+  {
+   "type": "rect",
+   "x": 488,
+   "y": 404,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.office == on"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 448,
+   "w": 540,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "bedroom": "on"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 468,
+   "w": 412,
+   "text": "Bedroom"
+  },
+  {
+   "type": "rect",
+   "x": 452,
+   "y": 472,
+   "w": 64,
+   "h": 32,
+   "fill": {
+    "if": "vars.bedroom == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 456,
+   "y": 476,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12,
+   "when": "vars.bedroom != on"
+  },
+  {
+   "type": "rect",
+   "x": 488,
+   "y": 476,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12,
+   "when": "vars.bedroom == on"
+  },
+  {
+   "type": "line",
+   "x1": 24,
+   "y1": 524,
+   "x2": 515,
+   "y2": 524,
+   "color": 12
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 528,
+   "w": 164,
+   "text": "Last updated",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "text",
+   "x": 204,
+   "y": 528,
+   "w": 312,
+   "text": "{{device.time|time:'HH:mm'}}",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 48
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 404,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 12,
+   "name": "refresh"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 336,
+   "text": "Lights",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 539,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 904,
+   "x2": 539,
+   "y2": 904,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 916,
+   "name": "home-outline"
+  },
+  {
+   "type": "rect",
+   "x": 188,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "hall": "off",
+     "kitchen": "off",
+     "verandah": "off",
+     "office": "off",
+     "bedroom": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 240,
+   "y": 904,
+   "w": 60,
+   "text": "All off",
+   "size": "sm",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 916,
+   "name": "cog-outline"
+  }
+ ],
+ "vars": {
+  "hall": "on",
+  "kitchen": "on",
+  "verandah": "off",
+  "office": "on",
+  "bedroom": "off"
+ },
+ "keys": {
+  "double": {
+   "type": "set",
+   "vars": {
+    "hall": "off",
+    "kitchen": "off",
+    "verandah": "off",
+    "office": "off",
+    "bedroom": "off"
+   }
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/controls.json"
+  }
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "spec_version": 1,
+ "id": "pair",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 76,
+   "w": 776,
+   "text": "Enter this code at",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 108,
+   "w": 776,
+   "text": "quireos.dev/pair",
+   "size": "lg",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 162,
+   "w": 776,
+   "text": "K7Q 3ZD",
+   "size": "2xl",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 236,
+   "w": 776,
+   "text": "The code expires in ten minutes. This screen updates by itself once the device is paired.",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 706,
+   "text": "Pair with your account",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  }
+ ]
+}

@@ -1,0 +1,157 @@
+{
+ "spec_version": 1,
+ "id": "lists-p5",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 296,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 28,
+   "name": "email-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 26,
+   "w": 246,
+   "text": "With a leading icon and a count"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 47,
+   "w": 246,
+   "text": "Unread messages",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 280,
+   "y": 30,
+   "w": 12,
+   "h": 12,
+   "fill": 0,
+   "radius": 6
+  },
+  {
+   "type": "text",
+   "x": 280,
+   "y": 30,
+   "w": 12,
+   "text": "3",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 12
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 246,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 295,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 108,
+   "x2": 295,
+   "y2": 108
+  },
+  {
+   "type": "rect",
+   "x": 4,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=4"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 44,
+   "y": 110,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 136,
+   "y": 108,
+   "w": 26,
+   "text": "5 / 7",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 196,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=6"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 236,
+   "y": 110,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=4"
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=6"
+  }
+ }
+}

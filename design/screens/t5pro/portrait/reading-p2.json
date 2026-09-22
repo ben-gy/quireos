@@ -1,0 +1,185 @@
+{
+ "spec_version": 1,
+ "id": "reading-p2",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 64,
+   "w": 492,
+   "text": "inference?"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 112,
+   "w": 492,
+   "text": "My suspicion is that the ability to\nprovide inference to that many people\nis mutually exclusive to having a\nsecurity level sufficient to stop a state\nactor, which is why the question keeps\ncoming back.",
+   "lines": 6
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 340,
+   "w": 492,
+   "text": "The weights are the easy part. Serving\nthem at that scale is what needs a\nbuilding, and buildings are the thing you\ncannot hide.",
+   "lines": 4
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 420,
+   "y": 0,
+   "w": 40,
+   "text": "2 / 2",
+   "size": "xs",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 344,
+   "text": "Hacker News",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 539,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 848,
+   "x2": 539,
+   "y2": 848,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 848,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 860,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 188,
+   "y": 848,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 252,
+   "y": 860,
+   "name": "file-document-outline"
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 848,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 860,
+   "name": "comment-multiple-outline"
+  },
+  {
+   "type": "line",
+   "x1": 24,
+   "y1": 904,
+   "x2": 515,
+   "y2": 904,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 916,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 248,
+   "y": 904,
+   "w": 44,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 916,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/reading.json"
+  }
+ }
+}

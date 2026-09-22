@@ -1,0 +1,260 @@
+{
+ "spec_version": 1,
+ "id": "sheet",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 64,
+   "w": 1650,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 84,
+   "w": 1584,
+   "text": "Exfiltrate your weights",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 120,
+   "w": 1584,
+   "text": "675 pts · 273 comments · 1 d",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 160,
+   "w": 1650,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 180,
+   "w": 1584,
+   "text": "A second story, held for its actions",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 216,
+   "w": 1584,
+   "text": "204 pts · 88 comments · 3 h",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 256,
+   "w": 1650,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 276,
+   "w": 1584,
+   "text": "A third",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 312,
+   "w": 1584,
+   "text": "31 pts · 4 comments · 6 h",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 1488,
+   "text": "Top stories",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 1649,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 1864,
+   "w": 1650,
+   "h": 336,
+   "fill": 15
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 1864,
+   "x2": 1649,
+   "y2": 1864
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 1880,
+   "w": 1584,
+   "text": "Exfiltrate your weights",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 1913,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 1929,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "text",
+   "x": 80,
+   "y": 1913,
+   "w": 1584,
+   "text": "Save",
+   "valign": "middle",
+   "h": 64
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 1977,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 1993,
+   "name": "open-in-new"
+  },
+  {
+   "type": "text",
+   "x": 80,
+   "y": 1977,
+   "w": 1584,
+   "text": "Open article",
+   "valign": "middle",
+   "h": 64
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 2041,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 2057,
+   "name": "check"
+  },
+  {
+   "type": "text",
+   "x": 80,
+   "y": 2041,
+   "w": 1584,
+   "text": "Mark as read",
+   "valign": "middle",
+   "h": 64
+  },
+  {
+   "type": "line",
+   "x1": 32,
+   "y1": 2109,
+   "x2": 1615,
+   "y2": 2109,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 2113,
+   "w": 1650,
+   "h": 64,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 2113,
+   "w": 1584,
+   "text": "Cancel",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": 6,
+   "h": 64
+  }
+ ]
+}

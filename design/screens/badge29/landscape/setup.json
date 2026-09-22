@@ -1,0 +1,39 @@
+{
+ "spec_version": 1,
+ "id": "setup",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 4,
+   "y": 22,
+   "w": 288,
+   "text": "Join the Wi-Fi network"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 46,
+   "w": 288,
+   "text": "QuireOS-Setup",
+   "size": "lg"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 74,
+   "w": 288,
+   "text": "http://192.168.4.1",
+   "size": "xs"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 0,
+   "w": 266,
+   "text": "Set up Wi-Fi",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  }
+ ]
+}

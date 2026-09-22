@@ -1,0 +1,247 @@
+{
+ "spec_version": 1,
+ "id": "store-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 64,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 80,
+   "name": "image-outline"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 80,
+   "w": 824,
+   "text": "Frame"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 120,
+   "w": 824,
+   "text": "A picture a day",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 88,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 184,
+   "name": "star-outline"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 184,
+   "w": 824,
+   "text": "Hello"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 224,
+   "w": 824,
+   "text": "The ten-line tutorial app",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 192,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 272,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 288,
+   "name": "water-outline"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 288,
+   "w": 824,
+   "text": "Tide"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 328,
+   "w": 824,
+   "text": "Tides for one beach",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 296,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 824,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 836,
+   "y": 12,
+   "name": "cellphone-link"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 756,
+   "text": "Store",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 484,
+   "x2": 959,
+   "y2": 484,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 160,
+   "y": 496,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 460,
+   "y": 484,
+   "w": 44,
+   "text": "2 / 3",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 632,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json?p=3"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 768,
+   "y": 496,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/store.json"
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/store.json?p=3"
+  }
+ }
+}

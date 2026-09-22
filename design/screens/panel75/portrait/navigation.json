@@ -1,0 +1,455 @@
+{
+ "spec_version": 1,
+ "id": "navigation",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 48,
+   "w": 152,
+   "h": 44,
+   "fill": {
+    "if": "vars.tab == day",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "day"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 14,
+   "y": 48,
+   "w": 148,
+   "text": "Day",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == day",
+    "then": 15,
+    "else": 0
+   },
+   "h": 44
+  },
+  {
+   "type": "rect",
+   "x": 164,
+   "y": 48,
+   "w": 152,
+   "h": 44,
+   "fill": {
+    "if": "vars.tab == week",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "week"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 166,
+   "y": 48,
+   "w": 148,
+   "text": "Week",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == week",
+    "then": 15,
+    "else": 0
+   },
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 164,
+   "y1": 48,
+   "x2": 164,
+   "y2": 91
+  },
+  {
+   "type": "rect",
+   "x": 316,
+   "y": 48,
+   "w": 152,
+   "h": 44,
+   "fill": {
+    "if": "vars.tab == month",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "month"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 318,
+   "y": 48,
+   "w": 148,
+   "text": "Month",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == month",
+    "then": 15,
+    "else": 0
+   },
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 316,
+   "y1": 48,
+   "x2": 316,
+   "y2": 91
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 48,
+   "w": 456,
+   "h": 44,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 2
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 96,
+   "w": 456,
+   "text": "Feed",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 124,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "top"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 132,
+   "w": 430,
+   "text": "Top stories",
+   "weight": {
+    "if": "vars.feed == top",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 161,
+   "w": 430,
+   "text": "Front page",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 136,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == top"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 196,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "new"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 204,
+   "w": 430,
+   "text": "New",
+   "weight": {
+    "if": "vars.feed == new",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 233,
+   "w": 430,
+   "text": "Most recent",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 208,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == new"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 268,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "best"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 276,
+   "w": 430,
+   "text": "Best",
+   "weight": {
+    "if": "vars.feed == best",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 280,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == best"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 316,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "saved"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 324,
+   "w": 430,
+   "text": "Saved",
+   "weight": {
+    "if": "vars.feed == saved",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 353,
+   "w": 430,
+   "text": "Stories you saved (12)",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 328,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == saved"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 384,
+   "y": 0,
+   "w": 44,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/sheet.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 394,
+   "y": 10,
+   "name": "dots-vertical"
+  },
+  {
+   "type": "rect",
+   "x": 340,
+   "y": 0,
+   "w": 44,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 350,
+   "y": 10,
+   "name": "magnify"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 298,
+   "text": "Navigation",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 479,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 712,
+   "x2": 479,
+   "y2": 712
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 712,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 76,
+   "y": 722,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 164,
+   "y": 712,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 228,
+   "y": 722,
+   "name": "refresh"
+  },
+  {
+   "type": "rect",
+   "x": 316,
+   "y": 712,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 722,
+   "name": "cog-outline"
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 756,
+   "x2": 467,
+   "y2": 756
+  },
+  {
+   "type": "text",
+   "x": 222,
+   "y": 756,
+   "w": 36,
+   "text": "1 / 1",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  }
+ ],
+ "vars": {
+  "tab": "week",
+  "feed": "top"
+ }
+}

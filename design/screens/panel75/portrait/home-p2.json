@@ -1,0 +1,404 @@
+{
+ "spec_version": 1,
+ "id": "home-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 48,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/keypad.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 56,
+   "w": 430,
+   "text": "Keypad"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 85,
+   "w": 430,
+   "text": "The only on-device text input",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 60,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 116,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/launcher.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 124,
+   "w": 430,
+   "text": "Launcher"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 153,
+   "w": 430,
+   "text": "OS: status bar and app grid",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 128,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 184,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 192,
+   "w": 430,
+   "text": "Store"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 221,
+   "w": 430,
+   "text": "OS: the app list with badges",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 196,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 252,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/error.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 260,
+   "w": 430,
+   "text": "Error screen"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 289,
+   "w": 430,
+   "text": "OS: a failed open",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 264,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 320,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/setup.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 328,
+   "w": 430,
+   "text": "Setup screen"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 357,
+   "w": 430,
+   "text": "OS: first boot with no Wi-Fi",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 332,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 388,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/needs-setup.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 396,
+   "w": 430,
+   "text": "Needs setup"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 425,
+   "w": 430,
+   "text": "OS: an app missing its settings",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 400,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 456,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/update-os.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 464,
+   "w": 430,
+   "text": "Update QuireOS"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 493,
+   "w": 430,
+   "text": "OS: a newer spec is needed",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 468,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 524,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 532,
+   "w": 430,
+   "text": "Pairing"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 561,
+   "w": 430,
+   "text": "OS: pair with an account",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 536,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 592,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/dashboard.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 600,
+   "w": 430,
+   "text": "Dashboard"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 629,
+   "w": 430,
+   "text": "A glanceable panel screen",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 604,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 660,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/badge.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 668,
+   "w": 430,
+   "text": "Badge"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 697,
+   "w": 430,
+   "text": "The reduced set for tiny panels",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 450,
+   "y": 672,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 0,
+   "w": 416,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 479,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 756,
+   "x2": 479,
+   "y2": 756
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 756,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 76,
+   "y": 766,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 222,
+   "y": 756,
+   "w": 36,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/home.json"
+  }
+ }
+}

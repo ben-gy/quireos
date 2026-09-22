@@ -1,0 +1,144 @@
+{
+ "spec_version": 1,
+ "id": "feedback",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 448,
+   "y": 96,
+   "name": "bookmark-outline",
+   "size": "lg",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 192,
+   "w": 912,
+   "text": "Nothing saved yet",
+   "size": "lg",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 244,
+   "w": 912,
+   "text": "Open a story and choose Save",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "button",
+   "x": 384,
+   "y": 292,
+   "w": 196,
+   "h": 64,
+   "label": "Browse stories",
+   "size": "sm",
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json"
+   }
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "icon",
+   "x": 836,
+   "y": 12,
+   "name": "refresh",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 756,
+   "text": "States",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 484,
+   "x2": 959,
+   "y2": 484,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 484,
+   "w": 912,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 464,
+   "y": 496,
+   "name": "home-outline"
+  },
+  {
+   "type": "icon",
+   "x": 896,
+   "y": 12,
+   "name": "wifi-off"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 484,
+   "w": 960,
+   "h": 56,
+   "fill": 0
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 484,
+   "w": 912,
+   "text": "Saved",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 56
+  }
+ ]
+}

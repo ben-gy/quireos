@@ -1,0 +1,204 @@
+{
+ "spec_version": 1,
+ "id": "reading",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 64,
+   "w": 492,
+   "text": "Exfiltrate your weights",
+   "size": "xl",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 128,
+   "w": 492,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 184,
+   "w": 492,
+   "text": "Any hits? Do models even know their\nown weights to be able to do this?\nProbably yes, because they have been\npresumably trained on their own output\nand conversations about themselves.",
+   "lines": 5
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 376,
+   "w": 492,
+   "text": "No, they would probably have to hack\nthe internal system of the company\nrunning them. It would not be a\nparticularly wide ranging hack. There is\na strong likelihood of the weights being\non the actual machine that is running\nthe model.",
+   "lines": 7
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 640,
+   "w": 492,
+   "text": "It is something that I have wondered\nabout with models like these. How\nmany physical locations are needed to\nserve a model on that scale? Do they\nhave a huge number of sites running",
+   "lines": 5
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 420,
+   "y": 0,
+   "w": 40,
+   "text": "1 / 2",
+   "size": "xs",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 344,
+   "text": "Hacker News",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 539,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 848,
+   "x2": 539,
+   "y2": 848,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 848,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 860,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 188,
+   "y": 848,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 252,
+   "y": 860,
+   "name": "file-document-outline"
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 848,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 860,
+   "name": "comment-multiple-outline"
+  },
+  {
+   "type": "line",
+   "x1": 24,
+   "y1": 904,
+   "x2": 515,
+   "y2": 904,
+   "color": 12
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 916,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 248,
+   "y": 904,
+   "w": 44,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 916,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/reading.json?p=2"
+  }
+ }
+}

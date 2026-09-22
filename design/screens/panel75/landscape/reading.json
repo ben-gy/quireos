@@ -1,0 +1,191 @@
+{
+ "spec_version": 1,
+ "id": "reading",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 48,
+   "w": 776,
+   "text": "Exfiltrate your weights",
+   "size": "xl",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 94,
+   "w": 776,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar",
+   "size": "xs"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 128,
+   "w": 776,
+   "text": "Any hits? Do models even know their own weights to be able to do this? Probably\nyes, because they have been presumably trained on their own output and\nconversations about themselves.",
+   "lines": 3
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 215,
+   "w": 776,
+   "text": "No, they would probably have to hack the internal system of the company running\nthem. It would not be a particularly wide ranging hack. There is a strong likelihood\nof the weights being on the actual machine that is running the model.",
+   "lines": 3
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 302,
+   "w": 776,
+   "text": "It is something that I have wondered about with models like these. How many\nphysical locations are needed to serve a model on that scale? Do they have a huge\nnumber of sites running inference?",
+   "lines": 3
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 720,
+   "y": 0,
+   "w": 28,
+   "text": "1 / 2",
+   "size": "xs",
+   "align": "right",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 674,
+   "text": "Hacker News",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 392,
+   "x2": 799,
+   "y2": 392
+  },
+  {
+   "type": "rect",
+   "x": 14,
+   "y": 392,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 130,
+   "y": 402,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 272,
+   "y": 392,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 388,
+   "y": 402,
+   "name": "file-document-outline"
+  },
+  {
+   "type": "rect",
+   "x": 530,
+   "y": 392,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 646,
+   "y": 402,
+   "name": "comment-multiple-outline"
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 436,
+   "x2": 787,
+   "y2": 436
+  },
+  {
+   "type": "text",
+   "x": 384,
+   "y": 436,
+   "w": 36,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "rect",
+   "x": 530,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 646,
+   "y": 446,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/reading.json?p=2"
+  }
+ }
+}

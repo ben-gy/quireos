@@ -1,0 +1,234 @@
+{
+ "spec_version": 1,
+ "id": "controls-p2",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 64,
+   "w": 492,
+   "text": "Chips",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 104,
+   "w": 72,
+   "h": 56,
+   "fill": 0,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 40,
+   "y": 104,
+   "w": 40,
+   "text": "Top",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 104,
+   "w": 80,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 120,
+   "y": 104,
+   "w": 48,
+   "text": "New",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 192,
+   "y": 104,
+   "w": 76,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 208,
+   "y": 104,
+   "w": 44,
+   "text": "Best",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 276,
+   "y": 104,
+   "w": 68,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 292,
+   "y": 104,
+   "w": 36,
+   "text": "Ask",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 352,
+   "y": 104,
+   "w": 88,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 368,
+   "y": 104,
+   "w": 56,
+   "text": "Show",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 392,
+   "text": "Controls",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 539,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 904,
+   "x2": 539,
+   "y2": 904,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 904,
+   "w": 164,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 88,
+   "y": 916,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 248,
+   "y": 904,
+   "w": 44,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "icon",
+   "x": 416,
+   "y": 916,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/controls.json"
+  }
+ }
+}

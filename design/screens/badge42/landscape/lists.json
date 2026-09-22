@@ -1,0 +1,295 @@
+{
+ "spec_version": 1,
+ "id": "lists",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 4,
+   "y": 22,
+   "w": 392,
+   "text": "Settings rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 42,
+   "w": 400,
+   "h": 32,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 48,
+   "w": 348,
+   "text": "Theme"
+  },
+  {
+   "type": "text",
+   "x": 360,
+   "y": 48,
+   "w": 36,
+   "text": "Light",
+   "align": "right",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 74,
+   "w": 400,
+   "h": 32,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 80,
+   "w": 326,
+   "text": "Text size"
+  },
+  {
+   "type": "text",
+   "x": 338,
+   "y": 80,
+   "w": 58,
+   "text": "Medium",
+   "align": "right",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 106,
+   "w": 400,
+   "h": 32,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 112,
+   "w": 322,
+   "text": "Wi-Fi"
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 114,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 334,
+   "y": 112,
+   "w": 42,
+   "text": "Home",
+   "align": "right",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 138,
+   "w": 400,
+   "h": 32,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 144,
+   "w": 306,
+   "text": "Clear read history"
+  },
+  {
+   "type": "text",
+   "x": 318,
+   "y": 144,
+   "w": 78,
+   "text": "142 stories",
+   "align": "right",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 170,
+   "w": 392,
+   "text": "Content rows",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 190,
+   "w": 400,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 194,
+   "w": 392,
+   "text": "A story title long enough to wrap onto a second line",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 216,
+   "w": 392,
+   "text": "675 pts · 273 comments · 1 d · example.com",
+   "size": "xs",
+   "color": 5
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 234,
+   "w": 400,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 238,
+   "w": 392,
+   "text": "A story you have already read",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 260,
+   "w": 392,
+   "text": "12 pts · 3 comments · 4 h",
+   "size": "xs",
+   "color": 5
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 36,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 0,
+   "w": 348,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 399,
+   "y2": 19,
+   "color": 10
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 280,
+   "x2": 399,
+   "y2": 280,
+   "color": 10
+  },
+  {
+   "type": "icon",
+   "x": 62,
+   "y": 282,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 188,
+   "y": 280,
+   "w": 26,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 266,
+   "y": 280,
+   "w": 130,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 322,
+   "y": 282,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=2"
+  }
+ }
+}

@@ -1,0 +1,324 @@
+{
+ "spec_version": 1,
+ "id": "store",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 28,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 26,
+   "w": 32,
+   "text": "Hacker News"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 47,
+   "w": 32,
+   "text": "Read-only reader with comments",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 66,
+   "y": 28,
+   "w": 58,
+   "h": 16,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "text",
+   "x": 66,
+   "y": 28,
+   "w": 58,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 16
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 66,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 72,
+   "name": "lightbulb-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 70,
+   "w": 38,
+   "text": "HA Lights"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 91,
+   "w": 38,
+   "text": "Home Assistant switch panel",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 72,
+   "y": 72,
+   "w": 52,
+   "h": 16,
+   "fill": 0,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 72,
+   "w": 52,
+   "text": "Update",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 16
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 110,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 116,
+   "name": "weather-partly-cloudy"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 114,
+   "w": 74,
+   "text": "Clock & Weather"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 135,
+   "w": 74,
+   "text": "Open-Meteo forecast",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 116,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 154,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 160,
+   "name": "image-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 158,
+   "w": 74,
+   "text": "Frame"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 179,
+   "w": 74,
+   "text": "A picture a day",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 160,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 198,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 204,
+   "name": "star-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 202,
+   "w": 74,
+   "text": "Hello"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 223,
+   "w": 74,
+   "text": "The ten-line tutorial app",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 204,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 74,
+   "y": 0,
+   "w": 28,
+   "h": 28,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 80,
+   "y": 2,
+   "name": "cellphone-link"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 50,
+   "text": "Store",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 127,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 276,
+   "x2": 127,
+   "y2": 276
+  },
+  {
+   "type": "text",
+   "x": 52,
+   "y": 276,
+   "w": 26,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 84,
+   "y": 276,
+   "w": 40,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 96,
+   "y": 278,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/store.json?p=2"
+  }
+ }
+}

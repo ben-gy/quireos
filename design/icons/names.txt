@@ -1,0 +1,44 @@
+account account-circle-outline account-group-outline account-multiple-outline account-outline
+air-conditioner airplane alarm alert-circle-outline alert-outline apps arrow-down arrow-left
+arrow-right arrow-u-left-top arrow-up baby-face-outline backspace-outline battery battery-10
+battery-30 battery-50 battery-70 battery-90 battery-alert-variant-outline battery-charging
+battery-outline bed-outline bell bell-off-outline bell-outline bike bird blinds blinds-open
+bluetooth bluetooth-off book-open-page-variant-outline bookmark bookmark-outline briefcase-outline
+brightness-6 bus cake-variant-outline calendar-month-outline calendar-outline calendar-today
+camera-outline car-outline cart-outline cctv ceiling-light ceiling-light-outline cellphone
+cellphone-link chart-bar chart-line check check-circle check-circle-outline checkbox-blank-outline
+checkbox-marked chevron-double-left chevron-double-right chevron-down chevron-left chevron-right
+chevron-up chip circle circle-outline circle-small clock-outline close close-circle-outline
+cloud-off-outline cloud-outline code-tags coffee-outline cog cog-outline comment
+comment-multiple-outline comment-outline compass-outline content-copy content-save-outline
+contrast-circle credit-card-outline crosshairs-gps currency-usd delete-outline devices door-closed
+door-open dots-horizontal dots-vertical download-outline dumbbell earth email-outline
+emoticon-happy-outline emoticon-neutral-outline emoticon-sad-outline eye-off-outline eye-outline
+fan fan-off ferry file-document-outline file-outline filter-outline flag flag-outline flask-outline
+floor-lamp floor-lamp-outline flower-outline folder-outline food-apple-outline format-list-bulleted
+format-list-numbered format-quote-close format-size gamepad-variant-outline garage-open-variant
+garage-variant gauge gift-outline github glass-cocktail headphones heart heart-outline heart-pulse
+help-circle-outline history home home-battery-outline home-outline image-multiple-outline
+image-outline information-outline keyboard-return lamp lamp-outline laptop leaf light-switch
+lightbulb lightbulb-group lightbulb-group-outline lightbulb-outline lightning-bolt-outline
+link-variant lock lock-open-variant-outline lock-outline login logout magnify map-marker
+map-marker-outline map-outline medical-bag memory menu message-text-outline meter-electric-outline
+minus minus-box-outline monitor motion-sensor music-note navigation-variant-outline
+newspaper-variant-outline nfc open-in-new package-variant-closed palette-outline pause paw
+pencil-outline pill pin pin-outline play-outline plus podcast pool power power-plug
+power-plug-outline printer-outline progress-clock puzzle-outline qrcode radiator radio-tower
+radiobox-blank radiobox-marked receipt-text-outline recycle refresh restart robot-vacuum rss run
+school-outline sd send-outline share-variant-outline shield-check-outline shield-home-outline
+shower silverware-fork-knife skip-next skip-previous sleep smoke-detector-outline snowflake
+sofa-outline solar-power-variant-outline sort speaker sprinkler-variant star
+star-four-points-outline star-outline stop store store-outline sync table tablet tag-outline
+television text thermometer thermostat ticket-outline timer-outline timer-sand toggle-switch
+toggle-switch-off-outline train tram translate transmission-tower trash-can-outline trophy-outline
+tune umbrella-outline update upload-outline usb video-outline view-grid-outline view-list-outline
+volume-high volume-off walk water-boiler water-outline water-percent weather-cloudy weather-fog
+weather-hail weather-hazy weather-lightning weather-lightning-rainy weather-night
+weather-night-partly-cloudy weather-partly-cloudy weather-pouring weather-rainy weather-snowy
+weather-snowy-rainy weather-sunny weather-sunset-down weather-sunset-up weather-windy web
+white-balance-sunny wifi-off wifi-strength-1 wifi-strength-2 wifi-strength-3 wifi-strength-4
+wifi-strength-off-outline wifi-strength-outline window-closed-variant window-open-variant
+wrench-outline

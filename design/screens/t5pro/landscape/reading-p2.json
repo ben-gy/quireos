@@ -1,0 +1,200 @@
+{
+ "spec_version": 1,
+ "id": "reading-p2",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 64,
+   "w": 912,
+   "text": "running the model."
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 112,
+   "w": 912,
+   "text": "It is something that I have wondered about with models like these. How\nmany physical locations are needed to serve a model on that scale? Do\nthey have a huge number of sites running inference?",
+   "lines": 3
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 232,
+   "w": 912,
+   "text": "My suspicion is that the ability to provide inference to that many people is\nmutually exclusive to having a security level sufficient to stop a state",
+   "lines": 2
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 840,
+   "y": 0,
+   "w": 40,
+   "text": "2 / 3",
+   "size": "xs",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 764,
+   "text": "Hacker News",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 428,
+   "x2": 959,
+   "y2": 428,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 428,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 160,
+   "y": 440,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 328,
+   "y": 428,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 464,
+   "y": 440,
+   "name": "file-document-outline"
+  },
+  {
+   "type": "rect",
+   "x": 632,
+   "y": 428,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 768,
+   "y": 440,
+   "name": "comment-multiple-outline"
+  },
+  {
+   "type": "line",
+   "x1": 24,
+   "y1": 484,
+   "x2": 935,
+   "y2": 484,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 24,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 160,
+   "y": 496,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 460,
+   "y": 484,
+   "w": 44,
+   "text": "2 / 3",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 632,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/reading.json?p=3"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 768,
+   "y": 496,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/reading.json"
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/reading.json?p=3"
+  }
+ }
+}

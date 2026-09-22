@@ -1,0 +1,445 @@
+{
+ "spec_version": 1,
+ "id": "navigation",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 108,
+   "y": 64,
+   "w": 276,
+   "h": 56,
+   "fill": {
+    "if": "vars.tab == day",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "day"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 112,
+   "y": 64,
+   "w": 268,
+   "text": "Day",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == day",
+    "then": 15,
+    "else": 0
+   },
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 384,
+   "y": 64,
+   "w": 276,
+   "h": 56,
+   "fill": {
+    "if": "vars.tab == week",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "week"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 388,
+   "y": 64,
+   "w": 268,
+   "text": "Week",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == week",
+    "then": 15,
+    "else": 0
+   },
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 384,
+   "y1": 64,
+   "x2": 384,
+   "y2": 119,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 660,
+   "y": 64,
+   "w": 276,
+   "h": 56,
+   "fill": {
+    "if": "vars.tab == month",
+    "then": 0,
+    "else": 15
+   },
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "tab": "month"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 664,
+   "y": 64,
+   "w": 268,
+   "text": "Month",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": {
+    "if": "vars.tab == month",
+    "then": 15,
+    "else": 0
+   },
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 660,
+   "y1": 64,
+   "x2": 660,
+   "y2": 119,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 108,
+   "y": 64,
+   "w": 828,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 4
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 128,
+   "w": 832,
+   "text": "Feed",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 168,
+   "w": 832,
+   "h": 104,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "top"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 184,
+   "w": 792,
+   "text": "Top stories",
+   "weight": {
+    "if": "vars.feed == top",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 224,
+   "w": 792,
+   "text": "Front page",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 192,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == top"
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 280,
+   "w": 832,
+   "h": 104,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "new"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 296,
+   "w": 792,
+   "text": "New",
+   "weight": {
+    "if": "vars.feed == new",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 336,
+   "w": 792,
+   "text": "Most recent",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 304,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == new"
+  },
+  {
+   "type": "rect",
+   "x": 104,
+   "y": 392,
+   "w": 832,
+   "h": 72,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "feed": "best"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 104,
+   "y": 412,
+   "w": 792,
+   "text": "Best",
+   "weight": {
+    "if": "vars.feed == best",
+    "then": "bold",
+    "else": "regular"
+   }
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 420,
+   "name": "check",
+   "size": "sm",
+   "when": "vars.feed == best"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 824,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/sheet.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 836,
+   "y": 12,
+   "name": "dots-vertical"
+  },
+  {
+   "type": "rect",
+   "x": 768,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 780,
+   "y": 12,
+   "name": "magnify"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 700,
+   "text": "Navigation",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 79,
+   "y1": 56,
+   "x2": 79,
+   "y2": 539,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 56,
+   "w": 79,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 20,
+   "y": 68,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 112,
+   "w": 79,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 20,
+   "y": 124,
+   "name": "refresh"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 79,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 20,
+   "y": 180,
+   "name": "cog-outline"
+  },
+  {
+   "type": "icon",
+   "x": 20,
+   "y": 236,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 16,
+   "y": 280,
+   "w": 44,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 336,
+   "w": 79,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/navigation.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 20,
+   "y": 348,
+   "name": "chevron-down"
+  }
+ ],
+ "vars": {
+  "tab": "week",
+  "feed": "top"
+ },
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/navigation.json?p=2"
+  }
+ }
+}

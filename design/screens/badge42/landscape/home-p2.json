@@ -1,0 +1,218 @@
+{
+ "spec_version": 1,
+ "id": "home-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/update-os.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 28,
+   "w": 368,
+   "text": "Update QuireOS"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 50,
+   "w": 368,
+   "text": "OS: a newer spec is needed",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 30,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 70,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 76,
+   "w": 368,
+   "text": "Pairing"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 98,
+   "w": 368,
+   "text": "OS: pair with an account",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 78,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 118,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/dashboard.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 124,
+   "w": 368,
+   "text": "Dashboard"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 146,
+   "w": 368,
+   "text": "A glanceable panel screen",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 126,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 166,
+   "w": 400,
+   "h": 48,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/badge.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 172,
+   "w": 368,
+   "text": "Badge"
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 194,
+   "w": 368,
+   "text": "The reduced set for tiny panels",
+   "size": "sm",
+   "color": 5
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 174,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 0,
+   "w": 370,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 399,
+   "y2": 19,
+   "color": 10
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 280,
+   "x2": 399,
+   "y2": 280,
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 6,
+   "y": 280,
+   "w": 130,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 62,
+   "y": 282,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 188,
+   "y": 280,
+   "w": 26,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "color": 5,
+   "h": 20
+  },
+  {
+   "type": "icon",
+   "x": 322,
+   "y": 282,
+   "name": "chevron-down",
+   "color": 10
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/home.json"
+  }
+ }
+}

@@ -1,0 +1,86 @@
+{
+ "spec_version": 1,
+ "id": "setup",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 32,
+   "y": 104,
+   "w": 32,
+   "text": "1.",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 64,
+   "y": 104,
+   "w": 1308,
+   "text": "On your phone, join the network"
+  },
+  {
+   "type": "text",
+   "x": 64,
+   "y": 144,
+   "w": 1308,
+   "text": "QuireOS-Setup",
+   "size": "lg"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 216,
+   "w": 32,
+   "text": "2.",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 64,
+   "y": 216,
+   "w": 1308,
+   "text": "If no page opens by itself, go to"
+  },
+  {
+   "type": "text",
+   "x": 64,
+   "y": 256,
+   "w": 1308,
+   "text": "http://192.168.4.1",
+   "size": "lg"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 328,
+   "w": 32,
+   "text": "3.",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 64,
+   "y": 328,
+   "w": 1308,
+   "text": "Choose your home network and enter its password"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 440,
+   "w": 1340,
+   "text": "This screen changes on its own once the device is online.",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 0,
+   "w": 1284,
+   "text": "Set up Wi-Fi",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  }
+ ]
+}

@@ -1,0 +1,221 @@
+{
+ "spec_version": 1,
+ "id": "feedback",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 796,
+   "y": 96,
+   "name": "bookmark-outline",
+   "size": "lg",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 184,
+   "w": 1584,
+   "text": "Nothing saved yet",
+   "size": "lg",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 232,
+   "w": 1584,
+   "text": "Open a story and choose Save",
+   "size": "xs",
+   "align": "center",
+   "color": 6
+  },
+  {
+   "type": "button",
+   "x": 736,
+   "y": 280,
+   "w": 180,
+   "h": 64,
+   "label": "Browse stories",
+   "size": "sm",
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json"
+   }
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 344,
+   "w": 1584,
+   "text": "Inline states",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 376,
+   "w": 1650,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 396,
+   "w": 1584,
+   "text": "A read item",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 432,
+   "w": 1584,
+   "text": "tertiary tone",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 492,
+   "w": 1584,
+   "text": "A disabled row",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 528,
+   "w": 1584,
+   "text": "not hit-tested",
+   "size": "xs",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 568,
+   "w": 1436,
+   "text": "Sensor",
+   "valign": "middle",
+   "h": 40
+  },
+  {
+   "type": "text",
+   "x": 1484,
+   "y": 568,
+   "w": 132,
+   "text": "Unavailable",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 40
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "icon",
+   "x": 1516,
+   "y": 12,
+   "name": "refresh",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 1432,
+   "text": "States",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 1649,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 2144,
+   "x2": 1649,
+   "y2": 2144,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 2144,
+   "w": 1584,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 808,
+   "y": 2156,
+   "name": "home-outline"
+  },
+  {
+   "type": "icon",
+   "x": 1576,
+   "y": 12,
+   "name": "wifi-off"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 2144,
+   "w": 1650,
+   "h": 56,
+   "fill": 0
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 2144,
+   "w": 1584,
+   "text": "Saved",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 56
+  }
+ ]
+}

@@ -1,0 +1,345 @@
+{
+ "spec_version": 1,
+ "id": "controls",
+ "widgets": [
+  {
+   "type": "button",
+   "x": 12,
+   "y": 48,
+   "w": 384,
+   "h": 48,
+   "label": "Secondary",
+   "size": "sm",
+   "radius": 4,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0
+  },
+  {
+   "type": "button",
+   "x": 404,
+   "y": 48,
+   "w": 384,
+   "h": 48,
+   "label": "Primary",
+   "size": "sm",
+   "radius": 4,
+   "stroke_w": 1,
+   "fill": 0,
+   "stroke": 0,
+   "color": 15,
+   "on_tap": {
+    "type": "refresh"
+   }
+  },
+  {
+   "type": "button",
+   "x": 12,
+   "y": 100,
+   "w": 86,
+   "h": 48,
+   "label": "Tertiary",
+   "size": "sm",
+   "radius": 4,
+   "stroke_w": 1,
+   "fill": null,
+   "stroke": null,
+   "color": 0,
+   "on_tap": {
+    "type": "refresh"
+   }
+  },
+  {
+   "type": "button",
+   "x": 106,
+   "y": 100,
+   "w": 92,
+   "h": 48,
+   "label": "Disabled",
+   "size": "sm",
+   "radius": 4,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0,
+   "feedback": "none"
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 152,
+   "w": 92,
+   "h": 64,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 4,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 172,
+   "name": "plus"
+  },
+  {
+   "type": "text",
+   "x": 54,
+   "y": 152,
+   "w": 38,
+   "text": "Add",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 64
+  },
+  {
+   "type": "rect",
+   "x": 112,
+   "y": 152,
+   "w": 114,
+   "h": 64,
+   "stroke_w": 1,
+   "radius": 4,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 124,
+   "y": 172,
+   "name": "delete-outline"
+  },
+  {
+   "type": "text",
+   "x": 154,
+   "y": 152,
+   "w": 60,
+   "text": "Delete",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 64
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 220,
+   "w": 776,
+   "text": "Switches",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 248,
+   "w": 800,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 256,
+   "w": 706,
+   "text": "Toggle on"
+  },
+  {
+   "type": "rect",
+   "x": 756,
+   "y": 262,
+   "w": 32,
+   "h": 16,
+   "fill": 0,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "rect",
+   "x": 774,
+   "y": 264,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "radius": 6
+  },
+  {
+   "type": "text",
+   "x": 726,
+   "y": 256,
+   "w": 26,
+   "text": "On",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 296,
+   "w": 800,
+   "h": 68,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 304,
+   "w": 704,
+   "text": "Toggle off"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 333,
+   "w": 704,
+   "text": "With a subtitle",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 756,
+   "y": 310,
+   "w": 32,
+   "h": 16,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "rect",
+   "x": 758,
+   "y": 312,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 6
+  },
+  {
+   "type": "text",
+   "x": 724,
+   "y": 304,
+   "w": 28,
+   "text": "Off",
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 368,
+   "w": 800,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 376,
+   "name": "checkbox-marked"
+  },
+  {
+   "type": "text",
+   "x": 44,
+   "y": 376,
+   "w": 744,
+   "text": "Checked"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 706,
+   "text": "Controls",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 436,
+   "x2": 799,
+   "y2": 436
+  },
+  {
+   "type": "text",
+   "x": 384,
+   "y": 436,
+   "w": 36,
+   "text": "1 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "rect",
+   "x": 530,
+   "y": 436,
+   "w": 258,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 646,
+   "y": 446,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/controls.json?p=2"
+  }
+ }
+}

@@ -1,0 +1,718 @@
+{
+ "spec_version": 1,
+ "id": "controls",
+ "widgets": [
+  {
+   "type": "button",
+   "x": 32,
+   "y": 64,
+   "w": 1056,
+   "h": 64,
+   "label": "Secondary",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0
+  },
+  {
+   "type": "button",
+   "x": 1112,
+   "y": 64,
+   "w": 1056,
+   "h": 64,
+   "label": "Primary",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 0,
+   "stroke": 0,
+   "color": 15,
+   "on_tap": {
+    "type": "refresh"
+   }
+  },
+  {
+   "type": "button",
+   "x": 32,
+   "y": 136,
+   "w": 120,
+   "h": 64,
+   "label": "Tertiary",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": null,
+   "stroke": null,
+   "color": 0,
+   "on_tap": {
+    "type": "refresh"
+   }
+  },
+  {
+   "type": "button",
+   "x": 176,
+   "y": 136,
+   "w": 128,
+   "h": 64,
+   "label": "Disabled",
+   "size": "sm",
+   "radius": 8,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 10,
+   "color": 10,
+   "feedback": "none"
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 208,
+   "w": 136,
+   "h": 80,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 56,
+   "y": 232,
+   "name": "plus"
+  },
+  {
+   "type": "text",
+   "x": 96,
+   "y": 208,
+   "w": 45,
+   "text": "Add",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 80
+  },
+  {
+   "type": "rect",
+   "x": 192,
+   "y": 208,
+   "w": 164,
+   "h": 80,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 216,
+   "y": 232,
+   "name": "delete-outline"
+  },
+  {
+   "type": "text",
+   "x": 256,
+   "y": 208,
+   "w": 73,
+   "text": "Delete",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 80
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 296,
+   "w": 2136,
+   "text": "Switches",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 336,
+   "w": 2200,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 352,
+   "w": 2016,
+   "text": "Toggle on"
+  },
+  {
+   "type": "rect",
+   "x": 2104,
+   "y": 352,
+   "w": 64,
+   "h": 32,
+   "fill": 0,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 2140,
+   "y": 356,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "radius": 12
+  },
+  {
+   "type": "text",
+   "x": 2064,
+   "y": 352,
+   "w": 32,
+   "text": "On",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 408,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 424,
+   "w": 2012,
+   "text": "Toggle off"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 460,
+   "w": 2012,
+   "text": "With a subtitle",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 2104,
+   "y": 424,
+   "w": 64,
+   "h": 32,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "rect",
+   "x": 2108,
+   "y": 428,
+   "w": 24,
+   "h": 24,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 12
+  },
+  {
+   "type": "text",
+   "x": 2060,
+   "y": 424,
+   "w": 36,
+   "text": "Off",
+   "align": "right",
+   "valign": "middle",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 512,
+   "w": 2200,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 528,
+   "name": "checkbox-marked"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 528,
+   "w": 2092,
+   "text": "Checked"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 584,
+   "w": 2200,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 600,
+   "name": "checkbox-blank-outline",
+   "color": 6
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 600,
+   "w": 2092,
+   "text": "Unchecked"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 656,
+   "w": 2136,
+   "text": "Values",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 2112,
+   "y": 696,
+   "w": 56,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 2124,
+   "y": 708,
+   "name": "plus"
+  },
+  {
+   "type": "text",
+   "x": 2068,
+   "y": 696,
+   "w": 36,
+   "text": "3",
+   "weight": "bold",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 2004,
+   "y": 696,
+   "w": 56,
+   "h": 56,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 2016,
+   "y": 708,
+   "name": "minus"
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 696,
+   "w": 1964,
+   "text": "Frontlight",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 760,
+   "w": 2136,
+   "text": "Contrast",
+   "size": "xs",
+   "color": 6,
+   "h": 21
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 760,
+   "w": 2136,
+   "text": "4 of 6",
+   "size": "xs",
+   "align": "right",
+   "color": 6,
+   "h": 21
+  },
+  {
+   "type": "rect",
+   "x": 36,
+   "y": 785,
+   "w": 352,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 36,
+   "y": 809,
+   "w": 352,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 392,
+   "y": 785,
+   "w": 352,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 392,
+   "y": 809,
+   "w": 352,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 748,
+   "y": 785,
+   "w": 352,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 748,
+   "y": 809,
+   "w": 352,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 1104,
+   "y": 785,
+   "w": 352,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 1104,
+   "y": 809,
+   "w": 352,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 1460,
+   "y": 785,
+   "w": 352,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 1460,
+   "y": 809,
+   "w": 352,
+   "h": 8,
+   "fill": 13,
+   "stroke": 12,
+   "stroke_w": 1
+  },
+  {
+   "type": "rect",
+   "x": 1816,
+   "y": 785,
+   "w": 352,
+   "h": 56,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "rect",
+   "x": 1816,
+   "y": 809,
+   "w": 352,
+   "h": 8,
+   "fill": 13,
+   "stroke": 12,
+   "stroke_w": 1
+  },
+  {
+   "type": "text",
+   "x": 32,
+   "y": 856,
+   "w": 2136,
+   "text": "Chips",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "color": 6,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 896,
+   "w": 68,
+   "h": 56,
+   "fill": 0,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 48,
+   "y": 896,
+   "w": 36,
+   "text": "Top",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 108,
+   "y": 896,
+   "w": 72,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 124,
+   "y": 896,
+   "w": 40,
+   "text": "New",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 188,
+   "y": 896,
+   "w": 72,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 204,
+   "y": 896,
+   "w": 40,
+   "text": "Best",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 268,
+   "y": 896,
+   "w": 68,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 284,
+   "y": 896,
+   "w": 36,
+   "text": "Ask",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 344,
+   "y": 896,
+   "w": 84,
+   "h": 56,
+   "fill": 15,
+   "stroke": 12,
+   "stroke_w": 1,
+   "radius": 28,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 360,
+   "y": 896,
+   "w": 52,
+   "text": "Show",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 2040,
+   "text": "Controls",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 2199,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 1594,
+   "x2": 2199,
+   "y2": 1594,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 1594,
+   "w": 2136,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1084,
+   "y": 1606,
+   "name": "home-outline"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "home"
+  }
+ }
+}

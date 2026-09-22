@@ -1,0 +1,177 @@
+{
+ "spec_version": 1,
+ "id": "store-p2",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 28,
+   "name": "water-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 26,
+   "w": 74,
+   "text": "Tide"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 47,
+   "w": 74,
+   "text": "Tides for one beach",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 28,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 66,
+   "w": 128,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 72,
+   "name": "clock-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 70,
+   "w": 74,
+   "text": "Transit"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 91,
+   "w": 74,
+   "text": "Next departures from one stop",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 108,
+   "y": 72,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 74,
+   "y": 0,
+   "w": 28,
+   "h": 28,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 80,
+   "y": 2,
+   "name": "cellphone-link"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 50,
+   "text": "Store",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 127,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 276,
+   "x2": 127,
+   "y2": 276
+  },
+  {
+   "type": "rect",
+   "x": 4,
+   "y": 276,
+   "w": 40,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 16,
+   "y": 278,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 52,
+   "y": 276,
+   "w": 26,
+   "text": "2 / 2",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/store.json"
+  }
+ }
+}

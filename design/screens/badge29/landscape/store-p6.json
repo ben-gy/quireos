@@ -1,0 +1,160 @@
+{
+ "spec_version": 1,
+ "id": "store-p6",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 296,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 28,
+   "name": "water-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 26,
+   "w": 242,
+   "text": "Tide"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 47,
+   "w": 242,
+   "text": "Tides for one beach",
+   "size": "sm"
+  },
+  {
+   "type": "icon",
+   "x": 276,
+   "y": 28,
+   "name": "chevron-right",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 242,
+   "y": 0,
+   "w": 28,
+   "h": 28,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 248,
+   "y": 2,
+   "name": "cellphone-link"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 218,
+   "text": "Store",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 295,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 108,
+   "x2": 295,
+   "y2": 108
+  },
+  {
+   "type": "rect",
+   "x": 4,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json?p=5"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 44,
+   "y": 110,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 136,
+   "y": 108,
+   "w": 26,
+   "text": "6 / 7",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 196,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json?p=7"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 236,
+   "y": 110,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/store.json?p=5"
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/store.json?p=7"
+  }
+ }
+}

@@ -1,0 +1,404 @@
+{
+ "spec_version": 1,
+ "id": "store",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 64,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 80,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 80,
+   "w": 1976,
+   "text": "Hacker News"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 116,
+   "w": 1976,
+   "text": "Read-only reader with comments",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 2068,
+   "y": 80,
+   "w": 100,
+   "h": 32,
+   "stroke": 10,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "text",
+   "x": 2068,
+   "y": 80,
+   "w": 100,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 160,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 176,
+   "name": "lightbulb-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 176,
+   "w": 1988,
+   "text": "HA Lights"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 212,
+   "w": 1988,
+   "text": "Home Assistant switch panel",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "rect",
+   "x": 2080,
+   "y": 176,
+   "w": 88,
+   "h": 32,
+   "fill": 0,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 16
+  },
+  {
+   "type": "text",
+   "x": 2080,
+   "y": 176,
+   "w": 88,
+   "text": "Update",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "color": 15,
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 256,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 272,
+   "name": "weather-partly-cloudy"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 272,
+   "w": 2056,
+   "text": "Clock & Weather"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 308,
+   "w": 2056,
+   "text": "Open-Meteo forecast",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 2148,
+   "y": 280,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 352,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 368,
+   "name": "image-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 368,
+   "w": 2056,
+   "text": "Frame"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 404,
+   "w": 2056,
+   "text": "A picture a day",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 2148,
+   "y": 376,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 448,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 464,
+   "name": "star-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 464,
+   "w": 2056,
+   "text": "Hello"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 500,
+   "w": 2056,
+   "text": "The ten-line tutorial app",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 2148,
+   "y": 472,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 544,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 560,
+   "name": "water-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 560,
+   "w": 2056,
+   "text": "Tide"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 596,
+   "w": 2056,
+   "text": "Tides for one beach",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 2148,
+   "y": 568,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 640,
+   "w": 2200,
+   "h": 96,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 656,
+   "name": "clock-outline"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 656,
+   "w": 2056,
+   "text": "Transit"
+  },
+  {
+   "type": "text",
+   "x": 76,
+   "y": 692,
+   "w": 2056,
+   "text": "Next departures from one stop",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 2148,
+   "y": 664,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 88,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 32,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 2056,
+   "y": 0,
+   "w": 56,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 2068,
+   "y": 12,
+   "name": "cellphone-link"
+  },
+  {
+   "type": "text",
+   "x": 72,
+   "y": 0,
+   "w": 1984,
+   "text": "Store",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 2199,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 1594,
+   "x2": 2199,
+   "y2": 1594,
+   "color": 12
+  },
+  {
+   "type": "rect",
+   "x": 32,
+   "y": 1594,
+   "w": 2136,
+   "h": 56,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 1084,
+   "y": 1606,
+   "name": "home-outline"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "home"
+  }
+ }
+}

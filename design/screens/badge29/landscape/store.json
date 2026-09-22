@@ -1,0 +1,152 @@
+{
+ "spec_version": 1,
+ "id": "store",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 22,
+   "w": 296,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 28,
+   "name": "newspaper-variant-outline"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 26,
+   "w": 200,
+   "text": "Hacker News"
+  },
+  {
+   "type": "text",
+   "x": 26,
+   "y": 47,
+   "w": 200,
+   "text": "Read-only reader with comments",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 234,
+   "y": 28,
+   "w": 58,
+   "h": 16,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "text",
+   "x": 234,
+   "y": 28,
+   "w": 58,
+   "text": "Installed",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 16
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 242,
+   "y": 0,
+   "w": 28,
+   "h": 28,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/pair.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 248,
+   "y": 2,
+   "name": "cellphone-link"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 218,
+   "text": "Store",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 295,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 108,
+   "x2": 295,
+   "y2": 108
+  },
+  {
+   "type": "text",
+   "x": 136,
+   "y": 108,
+   "w": 26,
+   "text": "1 / 7",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "rect",
+   "x": 196,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/store.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 236,
+   "y": 110,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/store.json?p=2"
+  }
+ }
+}

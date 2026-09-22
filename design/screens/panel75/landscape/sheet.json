@@ -1,0 +1,253 @@
+{
+ "spec_version": 1,
+ "id": "sheet",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 48,
+   "w": 800,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 56,
+   "w": 776,
+   "text": "Exfiltrate your weights",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 85,
+   "w": 776,
+   "text": "675 pts · 273 comments · 1 d",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 112,
+   "w": 800,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 120,
+   "w": 776,
+   "text": "A second story, held for its actions",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 149,
+   "w": 776,
+   "text": "204 pts · 88 comments · 3 h",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 176,
+   "w": 800,
+   "h": 64,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 184,
+   "w": 776,
+   "text": "A third",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 213,
+   "w": 776,
+   "text": "31 pts · 4 comments · 6 h",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 706,
+   "text": "Top stories",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 799,
+   "y2": 43
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 244,
+   "w": 800,
+   "h": 236,
+   "fill": 15
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 244,
+   "x2": 799,
+   "y2": 244
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 252,
+   "w": 776,
+   "text": "Exfiltrate your weights",
+   "size": "xs",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 276,
+   "w": 800,
+   "h": 48,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 288,
+   "name": "bookmark-outline"
+  },
+  {
+   "type": "text",
+   "x": 46,
+   "y": 276,
+   "w": 776,
+   "text": "Save",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 324,
+   "w": 800,
+   "h": 48,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 336,
+   "name": "open-in-new"
+  },
+  {
+   "type": "text",
+   "x": 46,
+   "y": 324,
+   "w": 776,
+   "text": "Open article",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 372,
+   "w": 800,
+   "h": 48,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 384,
+   "name": "check"
+  },
+  {
+   "type": "text",
+   "x": 46,
+   "y": 372,
+   "w": 776,
+   "text": "Mark as read",
+   "valign": "middle",
+   "h": 48
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 422,
+   "x2": 787,
+   "y2": 422
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 424,
+   "w": 800,
+   "h": 48,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 424,
+   "w": 776,
+   "text": "Cancel",
+   "size": "sm",
+   "align": "center",
+   "valign": "middle",
+   "h": 48
+  }
+ ]
+}

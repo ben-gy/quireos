@@ -1,0 +1,312 @@
+{
+ "spec_version": 1,
+ "id": "keypad",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 24,
+   "y": 64,
+   "w": 912,
+   "text": "{{vars.code|default:'– – – –'}}",
+   "id": "code",
+   "size": "lg",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "line",
+   "x1": 24,
+   "y1": 116,
+   "x2": 935,
+   "y2": 116,
+   "color": 12
+  },
+  {
+   "type": "grid",
+   "x": 28,
+   "y": 132,
+   "cols": 3,
+   "rows": 4,
+   "cell_w": 296,
+   "cell_h": 88,
+   "gap": 8,
+   "children": [
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "1",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 0,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "1"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "2",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 1,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "2"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "3",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 2,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "3"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "4",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 3,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "4"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "5",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 4,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "5"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "6",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 5,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "6"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "7",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 6,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "7"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "8",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 7,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "8"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "9",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 8,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "9"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "",
+     "size": "md",
+     "fill": 15,
+     "stroke": null,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 9,
+     "icon": "backspace-outline",
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": ""
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "0",
+     "size": "md",
+     "fill": 15,
+     "stroke": 12,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 10,
+     "on_tap": {
+      "type": "set",
+      "vars": {
+       "code": "0"
+      }
+     }
+    },
+    {
+     "type": "button",
+     "x": 0,
+     "y": 0,
+     "w": 296,
+     "h": 88,
+     "label": "",
+     "size": "md",
+     "fill": 0,
+     "stroke": 0,
+     "stroke_w": 1,
+     "radius": 8,
+     "cell": 11,
+     "icon": "check",
+     "color": 15,
+     "on_tap": {
+      "type": "refresh"
+     }
+    }
+   ]
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 56,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 24,
+   "y": 12,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 68,
+   "y": 0,
+   "w": 812,
+   "text": "Enter code",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  }
+ ]
+}

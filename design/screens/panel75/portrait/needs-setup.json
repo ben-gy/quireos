@@ -1,0 +1,57 @@
+{
+ "spec_version": 1,
+ "id": "needs-setup",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 216,
+   "y": 42,
+   "name": "cog-outline",
+   "size": "lg"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 110,
+   "w": 456,
+   "text": "HA Lights needs setup",
+   "size": "lg",
+   "weight": "bold",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 150,
+   "w": 456,
+   "text": "Add its settings on this device's settings page:",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 184,
+   "w": 456,
+   "text": "http://quireos.local/os",
+   "size": "lg",
+   "align": "center"
+  },
+  {
+   "type": "button",
+   "x": 206,
+   "y": 242,
+   "w": 70,
+   "h": 48,
+   "label": "Home",
+   "size": "sm",
+   "radius": 4,
+   "stroke_w": 1,
+   "fill": 15,
+   "stroke": 0,
+   "color": 0,
+   "on_tap": {
+    "type": "home"
+   }
+  }
+ ]
+}

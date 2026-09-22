@@ -1,0 +1,134 @@
+{
+ "spec_version": 1,
+ "id": "lists-p7",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 4,
+   "y": 22,
+   "w": 154,
+   "text": "Signal",
+   "valign": "middle",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 166,
+   "y": 22,
+   "w": 126,
+   "text": "{{device.rssi}} dBm",
+   "align": "right",
+   "valign": "middle",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 46,
+   "w": 196,
+   "text": "Storage",
+   "valign": "middle",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 208,
+   "y": 46,
+   "w": 84,
+   "text": "8.2 of 12 MB",
+   "align": "right",
+   "valign": "middle",
+   "h": 24
+  },
+  {
+   "type": "line",
+   "x1": 4,
+   "y1": 72,
+   "x2": 291,
+   "y2": 72
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 74,
+   "w": 288,
+   "text": "675 pts · 273 comments · 1 d · RohanAdwankar · example.com",
+   "size": "xs"
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 20,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 4,
+   "y": 2,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 246,
+   "text": "Lists and rows",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 19,
+   "x2": 295,
+   "y2": 19
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 108,
+   "x2": 295,
+   "y2": 108
+  },
+  {
+   "type": "rect",
+   "x": 4,
+   "y": 108,
+   "w": 96,
+   "h": 20,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json?p=6"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 44,
+   "y": 110,
+   "name": "chevron-up"
+  },
+  {
+   "type": "text",
+   "x": 136,
+   "y": 108,
+   "w": 26,
+   "text": "7 / 7",
+   "size": "sm",
+   "valign": "middle",
+   "h": 20
+  }
+ ],
+ "keys": {
+  "double": {
+   "type": "navigate",
+   "url": "/screens/lists.json?p=6"
+  }
+ }
+}

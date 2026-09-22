@@ -1,0 +1,33 @@
+{
+  "name": "@quireos/ui",
+  "version": "0.1.0",
+  "description": "QuireOS design system kit: turns components into spec screen JSON laid out for any e-paper profile.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "sync-design": "node scripts/sync-design.mjs",
+    "build": "node scripts/sync-design.mjs && tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "test": "node scripts/sync-design.mjs && vitest run",
+    "typecheck": "node scripts/sync-design.mjs && tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  },
+  "dependencies": {
+    "@quireos/sdk": "*"
+  }
+}

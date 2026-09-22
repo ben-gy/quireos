@@ -1,0 +1,182 @@
+{
+ "spec_version": 1,
+ "id": "home",
+ "widgets": [
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 64,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/starter.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 80,
+   "w": 872,
+   "text": "Starter page"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 120,
+   "w": 872,
+   "text": "A typical app screen to copy",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 88,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 168,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/lists.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 184,
+   "w": 872,
+   "text": "Lists and rows"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 224,
+   "w": 872,
+   "text": "Rows, sections, key-values, meta lines",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 192,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 272,
+   "w": 960,
+   "h": 104,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/tiles.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 288,
+   "w": 872,
+   "text": "Tiles"
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 328,
+   "w": 872,
+   "text": "A tile board bound to device state",
+   "size": "sm",
+   "color": 6
+  },
+  {
+   "type": "icon",
+   "x": 912,
+   "y": 296,
+   "name": "chevron-right",
+   "size": "sm",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 24,
+   "y": 0,
+   "w": 856,
+   "text": "Gallery",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 56
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 55,
+   "x2": 959,
+   "y2": 55,
+   "color": 12
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 484,
+   "x2": 959,
+   "y2": 484,
+   "color": 12
+  },
+  {
+   "type": "icon",
+   "x": 160,
+   "y": 496,
+   "name": "chevron-up",
+   "color": 10
+  },
+  {
+   "type": "text",
+   "x": 460,
+   "y": 484,
+   "w": 44,
+   "text": "1 / 7",
+   "size": "sm",
+   "valign": "middle",
+   "color": 6,
+   "h": 56
+  },
+  {
+   "type": "rect",
+   "x": 632,
+   "y": 484,
+   "w": 304,
+   "h": 56,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/home.json?p=2"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 768,
+   "y": 496,
+   "name": "chevron-down"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "navigate",
+   "url": "/screens/home.json?p=2"
+  }
+ }
+}

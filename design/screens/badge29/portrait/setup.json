@@ -1,0 +1,82 @@
+{
+ "spec_version": 1,
+ "id": "setup",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 4,
+   "y": 22,
+   "w": 18,
+   "text": "1.",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 22,
+   "y": 22,
+   "w": 102,
+   "text": "On your phone, join the network",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 22,
+   "y": 62,
+   "w": 102,
+   "text": "QuireOS-Setup",
+   "size": "lg",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 114,
+   "w": 18,
+   "text": "2.",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 22,
+   "y": 114,
+   "w": 102,
+   "text": "If no page opens by itself, go to",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 22,
+   "y": 154,
+   "w": 102,
+   "text": "http://192.168.4.1",
+   "size": "lg",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 206,
+   "w": 18,
+   "text": "3.",
+   "weight": "bold"
+  },
+  {
+   "type": "text",
+   "x": 22,
+   "y": 206,
+   "w": 102,
+   "text": "Choose your home network and enter its password",
+   "lines": 2
+  },
+  {
+   "type": "text",
+   "x": 4,
+   "y": 0,
+   "w": 98,
+   "text": "Set up Wi-Fi",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 20
+  }
+ ]
+}

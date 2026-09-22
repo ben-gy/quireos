@@ -1,0 +1,566 @@
+{
+ "spec_version": 1,
+ "id": "starter",
+ "widgets": [
+  {
+   "type": "text",
+   "x": 12,
+   "y": 48,
+   "w": 456,
+   "text": "Downstairs",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 72,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "hall": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 80,
+   "w": 272,
+   "text": "Hallway"
+  },
+  {
+   "type": "rect",
+   "x": 436,
+   "y": 86,
+   "w": 32,
+   "h": 16,
+   "fill": {
+    "if": "vars.hall == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "rect",
+   "x": 438,
+   "y": 88,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 6,
+   "when": "vars.hall != on"
+  },
+  {
+   "type": "rect",
+   "x": 454,
+   "y": 88,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "radius": 6,
+   "when": "vars.hall == on"
+  },
+  {
+   "type": "text",
+   "x": 292,
+   "y": 80,
+   "w": 140,
+   "text": {
+    "if": "vars.hall == on",
+    "then": "On",
+    "else": "Off"
+   },
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 116,
+   "w": 480,
+   "h": 68,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "kitchen": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 124,
+   "w": 272,
+   "text": "Kitchen"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 153,
+   "w": 272,
+   "text": "Two lamps",
+   "size": "sm"
+  },
+  {
+   "type": "rect",
+   "x": 436,
+   "y": 130,
+   "w": 32,
+   "h": 16,
+   "fill": {
+    "if": "vars.kitchen == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "rect",
+   "x": 438,
+   "y": 132,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 6,
+   "when": "vars.kitchen != on"
+  },
+  {
+   "type": "rect",
+   "x": 454,
+   "y": 132,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "radius": 6,
+   "when": "vars.kitchen == on"
+  },
+  {
+   "type": "text",
+   "x": 292,
+   "y": 124,
+   "w": 140,
+   "text": {
+    "if": "vars.kitchen == on",
+    "then": "On",
+    "else": "Off"
+   },
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 184,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "verandah": "on"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 192,
+   "w": 272,
+   "text": "Verandah"
+  },
+  {
+   "type": "rect",
+   "x": 436,
+   "y": 198,
+   "w": 32,
+   "h": 16,
+   "fill": {
+    "if": "vars.verandah == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "rect",
+   "x": 438,
+   "y": 200,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 6,
+   "when": "vars.verandah != on"
+  },
+  {
+   "type": "rect",
+   "x": 454,
+   "y": 200,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "radius": 6,
+   "when": "vars.verandah == on"
+  },
+  {
+   "type": "text",
+   "x": 292,
+   "y": 192,
+   "w": 140,
+   "text": {
+    "if": "vars.verandah == on",
+    "then": "On",
+    "else": "Off"
+   },
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 228,
+   "w": 456,
+   "text": "Upstairs",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 252,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "office": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 260,
+   "w": 272,
+   "text": "Office"
+  },
+  {
+   "type": "rect",
+   "x": 436,
+   "y": 266,
+   "w": 32,
+   "h": 16,
+   "fill": {
+    "if": "vars.office == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "rect",
+   "x": 438,
+   "y": 268,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 6,
+   "when": "vars.office != on"
+  },
+  {
+   "type": "rect",
+   "x": 454,
+   "y": 268,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "radius": 6,
+   "when": "vars.office == on"
+  },
+  {
+   "type": "text",
+   "x": 292,
+   "y": 260,
+   "w": 140,
+   "text": {
+    "if": "vars.office == on",
+    "then": "On",
+    "else": "Off"
+   },
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 296,
+   "w": 480,
+   "h": 44,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "bedroom": "on"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 304,
+   "w": 272,
+   "text": "Bedroom"
+  },
+  {
+   "type": "rect",
+   "x": 436,
+   "y": 310,
+   "w": 32,
+   "h": 16,
+   "fill": {
+    "if": "vars.bedroom == on",
+    "then": 0,
+    "else": 15
+   },
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 8
+  },
+  {
+   "type": "rect",
+   "x": 438,
+   "y": 312,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 6,
+   "when": "vars.bedroom != on"
+  },
+  {
+   "type": "rect",
+   "x": 454,
+   "y": 312,
+   "w": 12,
+   "h": 12,
+   "fill": 15,
+   "radius": 6,
+   "when": "vars.bedroom == on"
+  },
+  {
+   "type": "text",
+   "x": 292,
+   "y": 304,
+   "w": 140,
+   "text": {
+    "if": "vars.bedroom == on",
+    "then": "On",
+    "else": "Off"
+   },
+   "align": "right",
+   "valign": "middle",
+   "h": 27
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 342,
+   "x2": 467,
+   "y2": 342
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 344,
+   "w": 182,
+   "text": "Last updated",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "text",
+   "x": 202,
+   "y": 344,
+   "w": 266,
+   "text": "{{device.time|time:'HH:mm'}}",
+   "align": "right",
+   "valign": "middle",
+   "h": 32
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "rect",
+   "x": 384,
+   "y": 0,
+   "w": 44,
+   "h": 44,
+   "on_tap": {
+    "type": "refresh"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 394,
+   "y": 10,
+   "name": "refresh"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 342,
+   "text": "Lights",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 479,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 756,
+   "x2": 479,
+   "y2": 756
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 756,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 76,
+   "y": 766,
+   "name": "home-outline"
+  },
+  {
+   "type": "rect",
+   "x": 164,
+   "y": 756,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "set",
+    "vars": {
+     "hall": "off",
+     "kitchen": "off",
+     "verandah": "off",
+     "office": "off",
+     "bedroom": "off"
+    }
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "text",
+   "x": 218,
+   "y": 756,
+   "w": 46,
+   "text": "All off",
+   "size": "sm",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "rect",
+   "x": 316,
+   "y": 756,
+   "w": 152,
+   "h": 44,
+   "on_tap": {
+    "type": "navigate",
+    "url": "/screens/controls.json"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 380,
+   "y": 766,
+   "name": "cog-outline"
+  }
+ ],
+ "vars": {
+  "hall": "on",
+  "kitchen": "on",
+  "verandah": "off",
+  "office": "on",
+  "bedroom": "off"
+ },
+ "keys": {
+  "double": {
+   "type": "set",
+   "vars": {
+    "hall": "off",
+    "kitchen": "off",
+    "verandah": "off",
+    "office": "off",
+    "bedroom": "off"
+   }
+  },
+  "short": {
+   "type": "navigate",
+   "url": "/screens/controls.json"
+  }
+ }
+}

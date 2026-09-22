@@ -1,0 +1,607 @@
+{
+ "spec_version": 1,
+ "id": "data",
+ "widgets": [
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 92,
+   "name": "weather-partly-cloudy"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 48,
+   "w": 172,
+   "text": "21.5",
+   "size": "digits",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 112
+  },
+  {
+   "type": "text",
+   "x": 216,
+   "y": 48,
+   "w": 26,
+   "text": "°C",
+   "size": "lg",
+   "valign": "bottom",
+   "h": 112
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 162,
+   "w": 456,
+   "text": "Outside now",
+   "size": "xs"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 184,
+   "w": 456,
+   "text": "Storage",
+   "size": "xs",
+   "h": 18
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 184,
+   "w": 456,
+   "text": "8.2 of 12 MB",
+   "size": "xs",
+   "align": "right",
+   "h": 18
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 206,
+   "w": 456,
+   "h": 4,
+   "fill": 15,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 206,
+   "w": 282,
+   "h": 4,
+   "fill": 0,
+   "radius": 2
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 216,
+   "w": 456,
+   "text": "Rain, last 7 days",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 18,
+   "y": 270,
+   "w": 60,
+   "h": 6,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 146,
+   "y": 264,
+   "w": 60,
+   "h": 12,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 210,
+   "y": 246,
+   "w": 60,
+   "h": 30,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 274,
+   "y": 268,
+   "w": 60,
+   "h": 8,
+   "fill": 0
+  },
+  {
+   "type": "rect",
+   "x": 402,
+   "y": 274,
+   "w": 60,
+   "h": 2,
+   "fill": 0
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 276,
+   "x2": 467,
+   "y2": 276
+  },
+  {
+   "type": "text",
+   "x": 18,
+   "y": 279,
+   "w": 60,
+   "text": "M",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 82,
+   "y": 279,
+   "w": 60,
+   "text": "T",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 146,
+   "y": 279,
+   "w": 60,
+   "text": "W",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 210,
+   "y": 279,
+   "w": 60,
+   "text": "T",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 274,
+   "y": 279,
+   "w": 60,
+   "text": "F",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 338,
+   "y": 279,
+   "w": 60,
+   "text": "S",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 402,
+   "y": 279,
+   "w": 60,
+   "text": "S",
+   "size": "xs",
+   "align": "center"
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 304,
+   "w": 456,
+   "text": "Temperature, 24 h",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 351,
+   "x2": 42,
+   "y2": 353,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 42,
+   "y1": 353,
+   "x2": 73,
+   "y2": 355,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 73,
+   "y1": 355,
+   "x2": 103,
+   "y2": 355,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 103,
+   "y1": 355,
+   "x2": 133,
+   "y2": 353,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 133,
+   "y1": 353,
+   "x2": 164,
+   "y2": 348,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 164,
+   "y1": 348,
+   "x2": 194,
+   "y2": 343,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 194,
+   "y1": 343,
+   "x2": 224,
+   "y2": 337,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 224,
+   "y1": 337,
+   "x2": 255,
+   "y2": 334,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 255,
+   "y1": 334,
+   "x2": 285,
+   "y2": 332,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 285,
+   "y1": 332,
+   "x2": 315,
+   "y2": 332,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 315,
+   "y1": 332,
+   "x2": 346,
+   "y2": 334,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 346,
+   "y1": 334,
+   "x2": 376,
+   "y2": 337,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 376,
+   "y1": 337,
+   "x2": 406,
+   "y2": 343,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 406,
+   "y1": 343,
+   "x2": 437,
+   "y2": 346,
+   "width": 2
+  },
+  {
+   "type": "line",
+   "x1": 437,
+   "y1": 346,
+   "x2": 467,
+   "y2": 348,
+   "width": 2
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 360,
+   "w": 456,
+   "text": "Rooms",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 388,
+   "w": 340,
+   "text": "Room",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 22
+  },
+  {
+   "type": "text",
+   "x": 360,
+   "y": 388,
+   "w": 42,
+   "text": "°C",
+   "size": "xs",
+   "weight": "bold",
+   "align": "right",
+   "valign": "bottom",
+   "h": 22
+  },
+  {
+   "type": "text",
+   "x": 410,
+   "y": 388,
+   "w": 58,
+   "text": "Humidity",
+   "size": "xs",
+   "weight": "bold",
+   "align": "right",
+   "valign": "bottom",
+   "h": 22
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 410,
+   "x2": 467,
+   "y2": 410
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 413,
+   "w": 340,
+   "text": "Office",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 360,
+   "y": 413,
+   "w": 42,
+   "text": "22.5",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 410,
+   "y": 413,
+   "w": 58,
+   "text": "48%",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 444,
+   "x2": 467,
+   "y2": 444
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 444,
+   "w": 340,
+   "text": "Bedroom",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 360,
+   "y": 444,
+   "w": 42,
+   "text": "20.1",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 410,
+   "y": 444,
+   "w": 58,
+   "text": "52%",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "line",
+   "x1": 12,
+   "y1": 475,
+   "x2": 467,
+   "y2": 475
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 475,
+   "w": 340,
+   "text": "Garage",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 360,
+   "y": 475,
+   "w": 42,
+   "text": "17.4",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 410,
+   "y": 475,
+   "w": 58,
+   "text": "61%",
+   "align": "right",
+   "valign": "middle",
+   "h": 31
+  },
+  {
+   "type": "text",
+   "x": 12,
+   "y": 512,
+   "w": 456,
+   "text": "Progress",
+   "size": "xs",
+   "weight": "bold",
+   "valign": "bottom",
+   "h": 24
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 540,
+   "w": 4,
+   "h": 4,
+   "fill": 0,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 20,
+   "y": 540,
+   "w": 4,
+   "h": 4,
+   "fill": 0,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 28,
+   "y": 540,
+   "w": 4,
+   "h": 4,
+   "fill": 0,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 36,
+   "y": 540,
+   "w": 4,
+   "h": 4,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 44,
+   "y": 540,
+   "w": 4,
+   "h": 4,
+   "stroke": 0,
+   "stroke_w": 1,
+   "radius": 2
+  },
+  {
+   "type": "rect",
+   "x": 0,
+   "y": 0,
+   "w": 56,
+   "h": 44,
+   "on_tap": {
+    "type": "back"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 12,
+   "y": 10,
+   "name": "chevron-left"
+  },
+  {
+   "type": "text",
+   "x": 42,
+   "y": 0,
+   "w": 386,
+   "text": "Data",
+   "weight": "bold",
+   "valign": "middle",
+   "h": 44
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 43,
+   "x2": 479,
+   "y2": 43
+  },
+  {
+   "type": "line",
+   "x1": 0,
+   "y1": 756,
+   "x2": 479,
+   "y2": 756
+  },
+  {
+   "type": "rect",
+   "x": 12,
+   "y": 756,
+   "w": 456,
+   "h": 44,
+   "on_tap": {
+    "type": "home"
+   },
+   "feedback": "invert"
+  },
+  {
+   "type": "icon",
+   "x": 228,
+   "y": 766,
+   "name": "home-outline"
+  }
+ ],
+ "keys": {
+  "short": {
+   "type": "home"
+  }
+ }
+}
