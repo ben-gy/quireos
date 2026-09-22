@@ -588,9 +588,21 @@ interface WidgetCounts {
  * these keeps the check sound on every board: a real widget is never larger, so a widget this
  * check rules out could not have reached the panel on any of them.
  */
+const MAX_LINE_HEIGHT_BY_SIZE: Record<string, number> = {
+  xs: 24, sm: 29, md: 36, lg: 44, xl: 56, "2xl": 72, "3xl": 96, digits: 150,
+};
+const MAX_ICON_PX_BY_SIZE: Record<string, number> = { sm: 24, md: 36, lg: 64 };
 const MAX_LINE_HEIGHT = 150;
 const MAX_ICON_PX = 64;
 const MAX_LINES = 8;
+
+/** The tallest a line of this size can be on any profile; the largest of all when unresolved. */
+function maxLineHeight(size: unknown): number {
+  return typeof size === "string" ? (MAX_LINE_HEIGHT_BY_SIZE[size] ?? MAX_LINE_HEIGHT) : MAX_LINE_HEIGHT;
+}
+function maxIconPx(size: unknown): number {
+  return typeof size === "string" ? (MAX_ICON_PX_BY_SIZE[size] ?? MAX_ICON_PX) : MAX_ICON_PX;
+}
 
 /** A grid's own geometry, so a child's cell offset resolves to an absolute position. */
 interface GridFrame {
@@ -632,10 +644,11 @@ function originOf(v: Record<string, unknown>, type: string, grid: GridFrame | un
       // assuming one line there would under-estimate the extent and report a visible widget as
       // off the panel, so take the most lines the spec allows.
       const lines = v.lines === undefined ? 1 : (num(v.lines) ?? MAX_LINES);
-      h = MAX_LINE_HEIGHT * Math.min(MAX_LINES, Math.max(1, lines));
+      h = maxLineHeight(v.size) * Math.min(MAX_LINES, Math.max(1, lines));
     } else if (type === "icon") {
-      w = w ?? MAX_ICON_PX;
-      h = h ?? MAX_ICON_PX;
+      const px = maxIconPx(v.size);
+      w = w ?? px;
+      h = h ?? px;
     }
   }
   if (grid) {
