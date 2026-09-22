@@ -61,7 +61,8 @@ function forecast(x: number, y: number, w: number, wx: Weather): Widget[] {
     const c = condition(d.code, true);
     // grid children are cell-relative and may omit x/y/w/h, so they are plain objects
     children.push({ type: "text", cell: i, y: 0, w: cellW, text: weekday(d.date), size: "sm", weight: "bold", align: "center" });
-    children.push({ type: "icon", cell: i, x: Math.floor((cellW - 48) / 2), y: 40, name: c.icon, size: "md" });
+    // w/h are required: a grid child that omits them fills the cell, and an icon centres in its box.
+    children.push({ type: "icon", cell: i, x: Math.floor((cellW - 48) / 2), y: 40, w: 48, h: 48, name: c.icon, size: "md" });
     children.push({ type: "text", cell: i, y: 100, w: cellW, text: `${deg(d.hi)} / ${deg(d.lo)}`, size: "sm", align: "center", color: DIM });
   });
   return [grid({ x, y, cols: days.length, rows: 1, cell_w: cellW, cell_h: cellH, gap, children })];
@@ -94,7 +95,7 @@ export function homeScreen(input: HomeInput): Screen {
       widgets.push(...current(M, wy, cw, wx));
       widgets.push(...forecast(M, wy + 200, cw, wx));
     } else widgets.push(...unavailable(M, wy, cw, input.error));
-    widgets.push(button({ id: "refresh", x: M, y: H - 24 - 64 - 40, w: cw, h: 64, label: "Refresh", icon: "refresh", size: "sm", on_tap: refresh() }));
+    widgets.push(button({ id: "refresh", x: M, y: H - 24 - 88 - 40, w: cw, h: 88, label: "Refresh", icon: "refresh", size: "sm", on_tap: refresh() }));
   } else {
     const colW = Math.floor((W - 2 * M - 32) / 2);
     const c = clock(M, 20, colW, input.place, true);
@@ -105,7 +106,7 @@ export function homeScreen(input: HomeInput): Screen {
       widgets.push(...current(rx, 24, colW, wx));
       widgets.push(...forecast(rx, 210, colW, wx));
     } else widgets.push(...unavailable(rx, 24, colW, input.error));
-    widgets.push(button({ id: "refresh", x: M, y: H - 24 - 56 - 30, w: colW, h: 56, label: "Refresh", icon: "refresh", size: "sm", on_tap: refresh() }));
+    widgets.push(button({ id: "refresh", x: M, y: H - 24 - 80 - 30, w: colW, h: 80, label: "Refresh", icon: "refresh", size: "sm", on_tap: refresh() }));
   }
   const footer = wx ? `Open-Meteo · updated ${bind("vars.updated", f.time("HH:mm"))}${input.error ? " (stale)" : ""}` : "Open-Meteo";
   widgets.push(text({ x: M, y: H - 24 - 24, w: W - 2 * M, text: footer, size: "xs", color: DIM, align: landscape ? "left" : "center" }));

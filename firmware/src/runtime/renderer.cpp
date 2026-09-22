@@ -200,8 +200,20 @@ void draw_widget(hal::Framebuffer &fb, const WidgetTree &tree, const Widget &w, 
           if (block <= w.r.h - 2 * pad - sub_h) break;
         }
         if (block > w.r.h - 2 * pad - sub_h) pad = 2;
+        // Still too tall even at the smallest icon and padding: the label carries the meaning, so
+        // drop the icon rather than overflow the button.
+        if (block > w.r.h - 2 * pad - sub_h && label_lines) {
+          icon_px = 0;
+          gap = 0;
+          block = label_lines * lf->advance_y;
+        }
       } else {
         block = label_lines * lf->advance_y;
+      }
+      // A label alone that cannot fit loses its last lines rather than spilling out.
+      while (label_lines > 1 && block > w.r.h - 2 * pad - sub_h) {
+        label_lines--;
+        block = icon_px + gap + label_lines * lf->advance_y;
       }
       int area_h = w.r.h - 2 * pad - sub_h;
       int y = w.r.y + pad + (area_h - block) / 2;
