@@ -219,65 +219,76 @@ describe("components", () => {
     const offCells = ui.validate({ spec_version: 1 as const, id: "grid", widgets: grid.widgets });
     expect(offCells.length).toBeGreaterThan(0);
   });
-  it("never reports a widget that could be visible, across a generated space of documents", () => {
-    // The invariant this check lives by: it may be too quiet, but it must never be wrong. Stated
-    // as a property rather than prose, because prose is what kept having to be re-derived by hand.
+  it("reports exactly the widgets that cannot reach the panel", () => {
+    // Three things decide whether a property is worth anything: whether its oracle is independent
+    // of the code, whether it generates the shapes the code handles, and whether it samples where
+    // the answer changes. This oracle is written from SPEC §6.2's defaults rather than from the
+    // implementation — an oracle derived from the code agrees with the code, including its bugs,
+    // and that is precisely how the absent-size bug survived the earlier version of this test.
     //
-    // Verified by mutation rather than trusted, and aimed at each half separately, because a
-    // mutation that only probes soundness says nothing about the half that can quietly stop
-    // checking. Every one of these was reintroduced and confirmed to fail this suite:
-    //   soundness     a conditional `size` falling back to md, or an icon's to md
-    //                 a non-numeric `lines` falling back to one line
-    //   completeness  dropping the left edge, or the top edge
-    //                 skipping grid children, or only the `line` ones among them
-    //                 treating an ABSENT size as unknown rather than as the spec's default
-    // Two of those are worth remembering. The `lines` one gave the right answer before this
-    // rewrite only because the arithmetic produced NaN and every comparison against NaN is false.
-    // The absent-size one is sound and still blind: it stops reporting every widget that did not
-    // state a size, which is most of them, and only the completeness half sees it.
+    // Verified by mutation rather than trusted. Thirteen were reintroduced and every one fails
+    // this suite: three that would reject a visible widget (a conditional text or icon `size`
+    // falling back to md, a non-numeric `lines` falling back to one line), six that would quietly
+    // stop checking (dropping the left or the top edge, skipping grid children or only the `line`
+    // ones among them, treating an ABSENT size as unknown for text or for icons), and four
+    // off-by-ones, one per edge — none of which the earlier fixed coordinate spread caught.
+    //
+    // Two are worth remembering. The `lines` one gave the right answer before this rewrite only
+    // because the arithmetic produced NaN and every comparison against NaN is false. The
+    // absent-size one is sound and still blind: it stops reporting every widget that did not state
+    // a size, which is most of them, and only the completeness direction can see it.
     const ui = createKit({ profile: "t5pro" });
-    const BIGGEST_LINE = ui.lh("digits"), BIGGEST_ICON = ui.t.icon.lg, MAX_LINES = 8;
-    const coords = [-2000, -400, -150, -40, -1, 0, 1, 100, ui.W - 1, ui.W, ui.W + 1, ui.H - 1, ui.H, ui.H + 400];
-    const sizes: unknown[] = ["xs", "md", "digits", { if: "vars.b == on", then: "digits", else: "xs" }, undefined];
+    const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "digits"] as const;
+    const MAX_LINES = 8;
+    const biggestLine = Math.max(...SIZES.map((z) => ui.lh(z)));
+    const biggestIcon = Math.max(ui.t.icon.sm, ui.t.icon.md, ui.t.icon.lg);
+
+    /** Largest a widget can be, from the spec: absent takes the default, a literal takes itself, anything the device resolves later takes its maximum. */
+    const oracle = (w: Record<string, unknown>): { w: number; h: number } => {
+      const literal = (v: unknown, ok: readonly string[]) => (typeof v === "string" && ok.includes(v) ? v : null);
+      if (w.type === "icon") {
+        const z = w.size === undefined ? "md" : literal(w.size, ["sm", "md", "lg"]);
+        const px = z ? ui.t.icon[z as "sm" | "md" | "lg"] : biggestIcon;
+        return { w: (w.w as number) ?? px, h: (w.h as number) ?? px };
+      }
+      if (w.type === "text") {
+        const z = w.size === undefined ? "md" : literal(w.size, SIZES as unknown as string[]);
+        const lh = z ? ui.lh(z as never) : biggestLine;
+        const n = w.lines === undefined ? 1 : typeof w.lines === "number" ? w.lines : MAX_LINES;
+        return { w: w.w as number, h: (w.h as number) ?? lh * n };
+      }
+      return { w: w.w as number, h: w.h as number };
+    };
+
+    // Sample where the answer changes: every edge, and every size the spec can produce, on both
+    // sides by one pixel. A fixed spread happens to straddle some boundaries and miss others.
+    const extents = [...new Set([...SIZES.map((z) => ui.lh(z)), ui.t.icon.sm, ui.t.icon.md, ui.t.icon.lg, 30, 40, 80])];
+    const coords = [...new Set(extents.flatMap((e) => [-e - 1, -e, -e + 1]).concat([0, 1, -1, ui.W - 1, ui.W, ui.W + 1, ui.H - 1, ui.H, ui.H + 1]))];
+    const sizes: unknown[] = [undefined, "xs", "md", "digits", { if: "vars.b == on", then: "digits", else: "xs" }];
     const lines: unknown[] = [undefined, 1, 8, { if: "vars.b == on", then: 8, else: 1 }];
-    let flagged = 0, checked = 0, missed = 0;
+
+    let checked = 0, flagged = 0, disagreed = 0;
     for (const x of coords) for (const y of coords) for (const size of sizes) for (const ln of lines) {
       for (const w of [
-        { type: "text" as const, x, y, w: 200, text: "t", ...(size !== undefined ? { size } : {}), ...(ln !== undefined ? { lines: ln } : {}) },
-        { type: "icon" as const, x, y, name: "home-outline", ...(size !== undefined ? { size } : {}) },
-        { type: "rect" as const, x, y, w: 200, h: 40, fill: 0 },
-      ] as unknown[]) {
+        { type: "text", x, y, w: 80, text: "t", ...(size !== undefined ? { size } : {}), ...(ln !== undefined ? { lines: ln } : {}) },
+        { type: "icon", x, y, name: "home-outline", ...(size !== undefined ? { size } : {}) },
+        { type: "rect", x, y, w: 40, h: 30, fill: 0 },
+      ] as Record<string, unknown>[]) {
         checked++;
-        const problems = ui.validate({ spec_version: 1 as const, id: "p", widgets: [w as never] });
-        const offPanel = problems.filter((p) => p.message.includes("never be seen"));
-        // Independently compute the LARGEST the widget could possibly be — taking a field the
-        // document states literally at its word, and a field the device resolves later at its
-        // maximum — then assert that even at that size it cannot touch the panel.
-        const d = w as { type: string; x: number; y: number; w?: number; h?: number; size?: unknown; lines?: unknown };
-        // Three cases, matching the spec: absent means the default `md`, a literal means itself,
-        // and only something the device resolves later is unknown and takes the largest.
-        const literalSize = d.size === undefined ? "md" : typeof d.size === "string" ? d.size : null;
-        const lineH = literalSize ? ui.lh(literalSize as never) : BIGGEST_LINE;
-        const nLines = d.lines === undefined ? 1 : typeof d.lines === "number" ? d.lines : MAX_LINES;
-        const iconPx = literalSize === "sm" || literalSize === "md" || literalSize === "lg" ? ui.t.icon[literalSize] : BIGGEST_ICON;
-        const maxW = d.type === "icon" ? iconPx : (d.w ?? ui.W);
-        const maxH = d.type === "icon" ? iconPx : d.type === "text" ? lineH * nLines : (d.h ?? ui.H);
-        const intersects = d.x < ui.W && d.y < ui.H && d.x + maxW > 0 && d.y + maxH > 0;
-        if (offPanel.length > 0) {
-          // Soundness: what it rejects must really be unreachable, even at its largest.
-          flagged++;
-          expect(intersects, `flagged ${JSON.stringify(w)} but at its largest it reaches the panel`).toBe(false);
-        } else if (!intersects && literalSize !== null && typeof d.lines !== "object") {
-          // Completeness, but only where nothing had to be estimated: with a literal size and a
-          // literal line count there is no slack left, so an unreachable widget must be reported.
-          missed++;
-        }
+        const said = ui.validate({ spec_version: 1 as const, id: "p", widgets: [w as never] })
+          .some((p) => p.message.includes("never be seen"));
+        const b = oracle(w);
+        const reaches = x < ui.W && y < ui.H && x + b.w > 0 && y + b.h > 0;
+        if (said) flagged++;
+        // Exactly, in both directions: nothing visible rejected, nothing invisible let through.
+        if (said === reaches) { disagreed++; expect(said, `${said ? "flagged" : "missed"} ${JSON.stringify(w)} (largest ${b.w}x${b.h})`).toBe(!reaches); }
       }
     }
-    expect(checked).toBeGreaterThan(500);
-    expect(flagged).toBeGreaterThan(20);   // the check is doing something, not vacuously passing
-    expect(missed).toBe(0);
+    expect(checked).toBeGreaterThan(2000);
+    expect(flagged).toBeGreaterThan(200);
+    expect(disagreed).toBe(0);
   });
+
   it("holds the same rule for grid children, in both directions", () => {
     // Soundness alone would be satisfied by a check that skips every grid child, which is a whole
     // class of widgets going unchecked with nothing to say so. Inside a grid a child that omits

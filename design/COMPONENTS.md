@@ -100,11 +100,13 @@ document omits takes the spec's default (`md` for a size, one for `lines`), a fi
 literally is taken at its word, and only a field the device resolves at render time is unknown and
 takes its maximum. Collapsing the first case into the third is sound and still blind — it stops
 reporting every widget that did not state a size, which is most of them. A property test
-generates several hundred documents and asserts the rule in both directions: what the check rejects
-must really be unreachable, and where nothing had to be estimated, what is unreachable must be
-rejected. Each of the three bugs this check has had was reintroduced to confirm the test catches
-it, since a property test that passes the moment it is written is indistinguishable from one that
-tests nothing.
+generates a few thousand documents and asserts the rule as an equivalence: the check reports a
+widget exactly when that widget cannot reach the panel. Its oracle is written from the spec's
+defaults rather than from the implementation, because an oracle derived from the code agrees with
+the code including its bugs, and it samples coordinates derived from the sizes themselves, so every
+edge is crossed by one pixel in both directions. Thirteen mutations of the check were reintroduced
+to confirm the test catches each, since a property test that passes the moment it is written is
+indistinguishable from one that tests nothing.
 
 Use `ui.validate()` rather than the standalone `validateScreen()`, which checks the spec alone.
 
