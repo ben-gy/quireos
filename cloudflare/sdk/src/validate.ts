@@ -596,11 +596,18 @@ const MAX_LINE_HEIGHT = 150;
 const MAX_ICON_PX = 64;
 const MAX_LINES = 8;
 
-/** The tallest a line of this size can be on any profile; the largest of all when unresolved. */
+// Three cases, not two: absent means the spec's default, a literal means itself, and anything the
+// device resolves later means the largest it could become. Treating absent as unresolved is sound
+// but blinds the check to every widget that did not state a size, which is most of them.
+const DEFAULT_SIZE = "md";
+
+/** The tallest a line of this size can be on any profile. */
 function maxLineHeight(size: unknown): number {
+  if (size === undefined) return MAX_LINE_HEIGHT_BY_SIZE[DEFAULT_SIZE]!;
   return typeof size === "string" ? (MAX_LINE_HEIGHT_BY_SIZE[size] ?? MAX_LINE_HEIGHT) : MAX_LINE_HEIGHT;
 }
 function maxIconPx(size: unknown): number {
+  if (size === undefined) return MAX_ICON_PX_BY_SIZE[DEFAULT_SIZE]!;
   return typeof size === "string" ? (MAX_ICON_PX_BY_SIZE[size] ?? MAX_ICON_PX) : MAX_ICON_PX;
 }
 

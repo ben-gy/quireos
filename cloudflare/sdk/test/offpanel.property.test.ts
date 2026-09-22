@@ -35,12 +35,13 @@ function largestBox(w: Widget): { x: number; y: number; w: number; h: number } {
   if (w.type === "text") {
     // A size the device resolves later could be the largest face; a line count that is not a
     // number could be the largest the spec allows.
-    const lh = typeof w.size === "string" ? (LINE[w.size as keyof typeof LINE] ?? MAX_LINE) : MAX_LINE;
+    // SPEC §6.2: an absent size is `md`. Only a value the device resolves later is unknown.
+    const lh = w.size === undefined ? LINE.md : typeof w.size === "string" ? (LINE[w.size as keyof typeof LINE] ?? MAX_LINE) : MAX_LINE;
     const lines = w.lines === undefined ? 1 : typeof w.lines === "number" ? w.lines : MAX_LINES;
     width = n(w.w, Number.MAX_SAFE_INTEGER);
     height = n(w.h, lh * Math.min(MAX_LINES, Math.max(1, lines)));
   } else if (w.type === "icon") {
-    const px = typeof w.size === "string" ? (ICON[w.size as keyof typeof ICON] ?? MAX_ICON) : MAX_ICON;
+    const px = w.size === undefined ? ICON.md : typeof w.size === "string" ? (ICON[w.size as keyof typeof ICON] ?? MAX_ICON) : MAX_ICON;
     width = n(w.w, px);
     height = n(w.h, px);
   } else {
@@ -62,7 +63,17 @@ function rejected(w: Widget): boolean {
 
 /** A spread of documents: on the panel, bleeding off each edge, and far beyond each edge. */
 function* widgets(): Generator<Widget> {
-  const coords = [-5000, -1200, -400, -200, -64, -24, -1, 0, 1, 100, 539, 540, 541, 959, 960, 961, 5000];
+  // Sample where the answer can change. A fixed spread is only as sensitive as its gaps: an icon
+  // bound of 36 and one of 64 agree everywhere except between them, so straddle every size the
+  // spec can produce, and every panel edge.
+  const bounds = [...new Set([...Object.values(LINE), ...Object.values(ICON)])];
+  const coords = [
+    ...new Set([
+      -5000, -1200, -400, -200, -1, 0, 1, 100, 5000,
+      ...bounds.flatMap((b) => [-b - 1, -b, -b + 1]),
+      ...[PANEL.w, PANEL.h].flatMap((e) => [e - 1, e, e + 1]),
+    ]),
+  ].sort((a, b) => a - b);
   const sizes: unknown[] = [undefined, "xs", "md", "digits", { if: "vars.b", then: "digits", else: "xs" }];
   const lineCounts: unknown[] = [undefined, 1, 8, { if: "vars.b", then: 8, else: 1 }, "8"];
   for (const x of coords) {
@@ -100,14 +111,19 @@ describe("off-panel: rejection implies certainly invisible", () => {
     expect(wrong).toEqual([]);
   });
 
-  it("does reject a widget whose largest box is entirely off the panel, when every input is known", () => {
-    // Completeness, restricted to documents where nothing has to be estimated.
+  it("does reject a widget whose largest box is entirely off the panel", () => {
+    // The converse, over every generated document including the ones whose size has to be
+    // estimated: the oracle derives its bound from the spec, so a widget it can prove invisible
+    // must be reported. Restricting this to explicit w/h would exempt exactly the widgets whose
+    // bound is estimated, which is where every bug in this check has been.
     const missed: string[] = [];
+    let proven = 0;
     for (const w of widgets()) {
-      const known = typeof w.w === "number" && typeof w.h === "number";
-      if (!known || canTouchPanel(w)) continue;
+      if (canTouchPanel(w)) continue;
+      proven++;
       if (!rejected(w)) missed.push(JSON.stringify(w));
     }
+    expect(proven).toBeGreaterThan(200);
     expect(missed).toEqual([]);
   });
 
@@ -116,10 +132,23 @@ describe("off-panel: rejection implies certainly invisible", () => {
     // a whole class of widgets can quietly stop being checked at all.
     const wrong: string[] = [];
     const missed: string[] = [];
+    // Every child type, not just rect: a check that skips one type is sound and silent.
+    const kinds: Widget[] = [
+      { type: "rect", w: 100, h: 100 },
+      { type: "text", w: 100, h: 100, text: "hi" },
+      { type: "icon", w: 100, h: 100, name: "star" },
+      { type: "button", w: 100, h: 100, label: "go" },
+      { type: "image", w: 100, h: 100, src: "/i.png" },
+      { type: "line", x1: 0, y1: 0, x2: 100, y2: 100 },
+    ];
+    for (const kind of kinds)
     for (const cell of [0, 1, 3, 7]) {
       for (const dx of [-5000, -200, 0, 200, 5000]) {
         for (const dy of [-5000, -200, 0, 200, 5000]) {
-          const child = { type: "rect", cell, x: dx, y: dy, w: 100, h: 100 };
+          // A line is positioned by its endpoints, not by x/y (SPEC §6.2), so offset those instead.
+          const child = (kind.type === "line"
+            ? { ...kind, cell, x1: dx, y1: dy, x2: dx + 100, y2: dy + 100 }
+            : { ...kind, cell, x: dx, y: dy }) as Widget;
           const doc = {
             spec_version: 1,
             id: "home",
@@ -130,7 +159,9 @@ describe("off-panel: rejection implies certainly invisible", () => {
           // Resolve the cell the way the spec says, then apply the same question.
           const col = cell % 2;
           const row = Math.floor(cell / 2);
-          const box = { x: 24 + col * (238 + 16) + dx, y: 24 + row * (190 + 16) + dy, w: 100, h: 100 };
+          const ox = 24 + col * (238 + 16) + dx;
+          const oy = 24 + row * (190 + 16) + dy;
+          const box = { x: ox, y: oy, w: 100, h: 100 };
           const touches = box.x < PANEL.w && box.y < PANEL.h && box.x + box.w > 0 && box.y + box.h > 0;
           if (rejects && touches) wrong.push(JSON.stringify(child));
           if (!rejects && !touches) missed.push(JSON.stringify(child));
