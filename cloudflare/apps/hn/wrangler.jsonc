@@ -7,7 +7,7 @@
   //   wrangler kv namespace create HN_KV
   // and paste the printed id below. The placeholder is fine for `wrangler dev` (local KV);
   // without the binding the Worker falls back to an in-memory map that lasts one isolate.
-  "kv_namespaces": [{ "binding": "HN_KV", "id": "00000000000000000000000000000000" }],
+  "kv_namespaces": [{ "binding": "HN_KV", "id": "a41d69ea5f73407585f551ce011191a7" }],
   "vars": {
     // "1" validates every screen on every request; `npm run dev` passes --var DEV:1.
     "DEV": "0"

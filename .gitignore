@@ -12,3 +12,5 @@ cloudflare/**/.dev.vars
 .DS_Store
 *.log
 .venv/
+cloudflare/tools/.seed.sql
+cloudflare/tools/.seed-bundle/

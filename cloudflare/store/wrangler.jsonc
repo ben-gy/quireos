@@ -16,7 +16,7 @@
     {
       "binding": "DB",
       "database_name": "quireos-store",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "59068200-c1d9-46f7-a67a-541ae0b2d2e4",
       "migrations_dir": "migrations"
     }
   ],

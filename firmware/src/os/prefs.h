@@ -5,7 +5,7 @@
 #include <vector>
 
 #ifndef QUIRE_STORE_URL
-#define QUIRE_STORE_URL "https://quireos-store.ben-gy.workers.dev"
+#define QUIRE_STORE_URL "https://quireos-store.bens-account-5d3.workers.dev"
 #endif
 
 namespace quire {
