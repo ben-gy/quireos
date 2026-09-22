@@ -14,7 +14,18 @@ import {
   tokenize,
 } from "./expr.js";
 import type { Expr } from "./expr.js";
+import { ICON_NAMES_UNCOMPILED } from "./profiles/icons.generated.js";
 import type { Manifest, Setting, ValidationError, ValidationResult } from "./types.js";
+
+/**
+ * An icon name the caller's set does not contain. A name the design library knows but this
+ * firmware does not compile is the case an author can act on, so say so.
+ */
+function unknownIcon(name: string): string {
+  return ICON_NAMES_UNCOMPILED.includes(name)
+    ? `icon '${name}' is not compiled into this firmware; use a core icon or a PNG`
+    : `unknown icon '${name}'`;
+}
 
 export const LIMITS = {
   DOC_BYTES: 32 * 1024,
@@ -653,7 +664,7 @@ function checkWidget(v: unknown, path: string, e: Errors, scope: Scope, counts: 
 let iconSet: Set<string> | undefined;
 function checkIconName(name: string, path: string, e: Errors, scope: Scope): void {
   if (!ICON_NAME_RE.test(name)) e.err(path, "icon names are lower-case identifiers");
-  else if (iconSet && !iconSet.has(name)) e.err(path, `unknown icon '${name}'`);
+  else if (iconSet && !iconSet.has(name)) e.err(path, unknownIcon(name));
   void scope;
 }
 
@@ -844,7 +855,7 @@ export function validateManifest(doc: unknown, opts: ValidateOptions = {}): Vali
   else {
     const icons = opts.icons ? new Set(opts.icons) : undefined;
     if (!ICON_NAME_RE.test(d.icon)) e.err("/icon", "must be an icon name or a PNG URL");
-    else if (icons && !icons.has(d.icon)) e.err("/icon", `unknown icon '${d.icon}'`);
+    else if (icons && !icons.has(d.icon)) e.err("/icon", unknownIcon(d.icon));
   }
 
   checkUrl(d.entry, "/entry", e, scope, { required: true });
@@ -907,7 +918,7 @@ export function validateIndex(doc: unknown, opts: ValidateOptions = {}): Validat
     else if (/^(https?:\/\/|\/)/.test(a.icon)) {
       if (!classifyUrl(a.icon)) e.err(`${p}/icon`, "must be an icon name or a PNG URL");
     } else if (!ICON_NAME_RE.test(a.icon)) e.err(`${p}/icon`, "must be an icon name or a PNG URL");
-    else if (icons && !icons.has(a.icon)) e.err(`${p}/icon`, `unknown icon '${a.icon}'`);
+    else if (icons && !icons.has(a.icon)) e.err(`${p}/icon`, unknownIcon(a.icon));
     checkVersion(a.version, `${p}/version`, e);
     checkVersion(a.min_os, `${p}/min_os`, e);
     if (!isStr(a.manifest) || classifyUrl(a.manifest)?.kind !== "absolute") e.err(`${p}/manifest`, "must be an absolute URL");

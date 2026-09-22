@@ -109,13 +109,19 @@ describe("icon names", () => {
   });
 
   it("rejects one it does not, so it fails in dev instead of drawing nothing on glass", async () => {
-    const res = await get(iconApp("account")); // in the design library, not in the compiled set
+    const res = await get(iconApp("airplane")); // in the design library, outside the compiled tier
+    expect(res.status).toBe(500);
+    expect(JSON.stringify(await res.json())).toContain("not compiled into this firmware");
+  });
+
+  it("says plainly when a name is not an icon at all", async () => {
+    const res = await get(iconApp("totally-made-up"));
     expect(res.status).toBe(500);
     expect(JSON.stringify(await res.json())).toContain("unknown icon");
   });
 
   it("honours a wider list for a board that compiles more", async () => {
-    expect((await get(iconApp("account", [...ICON_NAMES, "account"]))).status).toBe(200);
+    expect((await get(iconApp("airplane", [...ICON_NAMES, "airplane"]))).status).toBe(200);
   });
 
   it("skips the check when given an empty list", async () => {
