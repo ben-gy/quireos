@@ -124,6 +124,8 @@ void build_detail(rt::WidgetTree &t, const Chrome &c, int index) {
 void build_pairing(rt::WidgetTree &t, const Chrome &c) {
   const int pad = profile::MARGIN;
   int y = nav_bar(t, c, "Pair with account", A_BACK, "Back");
+  add_icon(t, c.w / 2 - icons::pixels(icons::IconSize::LG) / 2, y, "cellphone-link", icons::IconSize::LG);
+  y += icons::pixels(icons::IconSize::LG) + 16;
   const store::Pairing &p = store::pairing();
   y += 24;
   if (p.done) {
@@ -137,20 +139,25 @@ void build_pairing(rt::WidgetTree &t, const Chrome &c) {
   }
   if (!p.code.empty()) {
     add_text(t, pad, y, c.w - 2 * pad, 36, "Enter this code at", Size::MD, Weight::REGULAR, Align::CENTER);
-    add_text(t, pad, y + 40, c.w - 2 * pad, 36, p.url.c_str(), Size::MD, Weight::BOLD, Align::CENTER);
+    // Drop the scheme and wrap: a workers.dev host does not fit one line at MD, and the person
+    // has to type this.
+    std::string shown = p.url;
+    size_t scheme = shown.find("://");
+    if (scheme != std::string::npos) shown = shown.substr(scheme + 3);
+    add_text(t, pad, y + 40, c.w - 2 * pad, 2 * 36, shown.c_str(), Size::MD, Weight::BOLD, Align::CENTER, VAlign::TOP, 0, 2);
     std::string spaced;
     for (size_t i = 0; i < p.code.size(); i++) { if (i) spaced.push_back(' '); spaced.push_back(p.code[i]); }
-    add_rect(t, pad, y + 100, c.w - 2 * pad, 130, -1, 0, 3, 16);
-    add_text(t, pad, y + 100, c.w - 2 * pad, 130, spaced.c_str(), Size::XXL, Weight::BOLD, Align::CENTER, VAlign::MIDDLE);
+    add_rect(t, pad, y + 124, c.w - 2 * pad, 130, -1, 0, 3, 16);
+    add_text(t, pad, y + 124, c.w - 2 * pad, 130, spaced.c_str(), Size::XXL, Weight::BOLD, Align::CENTER, VAlign::MIDDLE);
     int left_s = (int32_t)(p.expires_ms - hal::millis()) / 1000;
     if (left_s < 0) left_s = 0;
     char b[64];
     snprintf(b, sizeof b, "Waiting… code valid for %d:%02d", left_s / 60, left_s % 60);
-    add_text(t, pad, y + 250, c.w - 2 * pad, 29, p.expired ? "Code expired" : b, Size::SM, Weight::REGULAR, Align::CENTER, VAlign::TOP, 4);
+    add_text(t, pad, y + 274, c.w - 2 * pad, 29, p.expired ? "Code expired" : b, Size::SM, Weight::REGULAR, Align::CENTER, VAlign::TOP, 4);
   } else {
     add_text(t, pad, y + 40, c.w - 2 * pad, 36 * 2, p.error.empty() ? "Requesting a pairing code…" : p.error.c_str(), Size::MD, Weight::REGULAR, Align::CENTER, VAlign::TOP, 0, 2);
   }
-  int by = y + 310;
+  int by = y + 334;
   if (p.expired || (!p.error.empty() && p.code.empty())) add_button(t, pad, by, (c.w - 2 * pad - 16) / 2, 56, "Try again", A_STORE_PAIR);
   add_button(t, c.w - pad - (c.w - 2 * pad - 16) / 2, by, (c.w - 2 * pad - 16) / 2, 56, "Cancel", A_STORE_PAIR_CANCEL);
 }

@@ -140,7 +140,9 @@ bool min_os_ok(const std::string &min_os) { return rt::compare_versions(hal::boa
 void tick(uint32_t now, int64_t epoch) {
   g_now = now;
   g_epoch = epoch;
-  if (g_pair.active && !g_pair.done && !g_pair.expired) {
+  // Only once a code exists: until the response arrives expires_ms is 0, which would read as
+  // long past and expire the code before it was ever shown.
+  if (g_pair.active && !g_pair.code.empty() && !g_pair.done && !g_pair.expired) {
     if ((int32_t)(now - g_pair.expires_ms) >= 0) { g_pair.expired = true; g_pair.error = "Code expired"; set_busy(Busy::NONE); }
     else if (g_busy != Busy::PAIR_POLL && (int32_t)(now - g_pair.next_poll_ms) >= 0) {
       g_pair.next_poll_ms = now + 5000;
@@ -343,6 +345,7 @@ bool on_response(net::Response &res) {
       g_pair.expires_ms = g_now + (uint32_t)expires * 1000u;
       g_pair.next_poll_ms = g_now + 5000;
       g_pair.url = prefs::store_url() + "/pair";
+      g_pair.expired = false;
       g_pair.error.clear();
       g_changed = true;
       break;

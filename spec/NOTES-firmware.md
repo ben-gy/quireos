@@ -20,9 +20,10 @@ plus deviations and open issues. The SDK should match the items marked **contrac
 
 - The `core` tier of `design/icons/icons.json` is compiled at `sm` and `md`; the `display` subset
   also at `lg` (`lg` array in icons.json). An `lg` request for any other icon draws its `md` bitmap
-  centred in the box. `store-outline` and `account-outline` are display icons in the *extended*
-  tier, so the launcher's Store tile uses `apps`. `gen_icons.py --extended` compiles the extended
-  tier too (about +110 kB).
+  centred in the box. Ten OS roles (store, paired, account, sign in/out, devices and
+  their filled variants) were promoted to `core` on 2026-09-22 regardless of category, because the
+  OS draws them on its own screens: core is 238 icons, extended 56. `gen_icons.py --extended`
+  compiles the extended tier too (about +110 kB).
 - `spec/icons.json` keeps the `icons` and `sizes` keys and adds `lg`, `profile` and `source`.
 
 ## Templates and expressions (§3)

@@ -50,7 +50,7 @@ void build_launcher(rt::WidgetTree &t, const Chrome &c, const std::vector<prefs:
       std::string sub = a.update_version.empty() ? "" : "Update " + a.update_version;
       add_button(t, x, ty, tile_w, tile_h, a.name.c_str(), A_OPEN_APP, idx, icon, sub.empty() ? nullptr : sub.c_str(), 15, 0, Size::MD, profile::RADIUS_LG);
     } else if (idx == (int)apps.size()) {
-      add_button(t, x, ty, tile_w, tile_h, "Store", A_OPEN_STORE, 0, "apps", nullptr, 0, 0, Size::MD, profile::RADIUS_LG);
+      add_button(t, x, ty, tile_w, tile_h, "Store", A_OPEN_STORE, 0, "store-outline", nullptr, 0, 0, Size::MD, profile::RADIUS_LG);
     } else {
       add_button(t, x, ty, tile_w, tile_h, "Settings", A_OPEN_SETTINGS, 0, "cog-outline", nullptr, 15, 0, Size::MD, profile::RADIUS_LG);
     }
