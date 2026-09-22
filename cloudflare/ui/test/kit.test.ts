@@ -155,6 +155,22 @@ describe("components", () => {
       }
     }
   });
+  it("rejects an icon this firmware cannot draw, and says which kind of mistake it is", () => {
+    const ui = createKit({ profile: "t5pro" });
+    const screen = (name: string) => ({ spec_version: 1 as const, id: "t", widgets: [ui.icon({ x: 0, y: 0, name })] });
+    // A name the library knows but the firmware does not compile: the author can pick another.
+    const extended = validateScreen(screen("airplane"));
+    expect(extended.length).toBe(1);
+    expect(extended[0]!.message).toContain("not compiled into this firmware");
+    // A name that is not an icon at all.
+    const nonsense = validateScreen(screen("totally-made-up"));
+    expect(nonsense.length).toBe(1);
+    expect(nonsense[0]!.message).toContain("unknown icon");
+    // Everything the kit itself draws must be compiled, or the OS screens ship blanks.
+    for (const name of [Icons.store, Icons.paired, Icons.account, Icons.back, Icons.settings, Icons.update_available]) {
+      expect(validateScreen(screen(name)), `${name} is not compiled`).toEqual([]);
+    }
+  });
   it("collects button-only keys from the pager", () => {
     const ui = createKit({ profile: "panel75" });
     const s = ui.page({ id: "p", toolbar: { rows: [ui.pagerRow({ page: 2, pages: 3, prev: { type: "back" }, next: { type: "home" } })], placement: "bottom" }, body: () => [] });

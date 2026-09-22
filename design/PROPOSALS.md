@@ -74,9 +74,9 @@ the intended result.
 
 | tier | count | sizes | t5pro flash (4 bpp) |
 |---|---|---|---|
-| core | 229 | sm 32, md 48 | ≈ 400 kB |
+| core | 238 | sm 24, md 36 | ≈ 217 kB |
 | display (subset of core) | 44 | also lg 96 | ≈ 200 kB |
-| extended | 65 | sm, md where flash allows | ≈ 110 kB |
+| extended | 56 | sm, md where flash allows | ≈ 51 kB |
 
 `icons/names.txt` is the full list in `gen_icons.py`'s `ICONS` layout; `icons.json` carries the
 `tier` and `display` flags so the generator can emit `lg` only for display icons. The 71 names
@@ -106,8 +106,11 @@ Flash goes **down**: about 300 kB for core at `sm` + `md` plus display at `lg`, 
 The launcher no longer needs a 96 px glyph: it draws a `md` glyph inside a rounded square, which is
 also what makes room for an app's own 96 × 96 icon PNG to sit there instead.
 
-**Shipped** in 88a3780. `gen_icons.py` reads the sizes from `design/tokens/tokens.json`, the core
-tier is 229 icons with 42 at `lg` for 293 kB of bitmaps against 561 kB before, and the t5pro
+**Shipped** in 88a3780, with the tier corrected in 57d6c7d after the icons the OS draws on its own
+screens (the launcher's Store tile, the pairing glyph, the account rows) turned out to be sitting in
+extended categories — the firmware had been silently substituting another glyph for the Store tile
+and drawing nothing on the pairing screen. `gen_icons.py` reads the sizes from `design/tokens/tokens.json`, the core
+tier is 238 icons with 44 at `lg` for 305 kB of bitmaps against 561 kB before, and the t5pro
 firmware image went from 2.86 MB to 2.59 MB. `spec/fonts.json` now carries the per-profile sizes
 and real advance tables for all six profiles, so nothing in the kit is estimated any more.
 

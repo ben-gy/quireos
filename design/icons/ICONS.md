@@ -37,15 +37,23 @@ line box, not on the baseline).
 
 Flash is finite. `icons.json` tags each icon:
 
-- **core** (229): compiled into every firmware at `sm` and `md`. Navigation, actions, selection,
-  status, time, weather, home and content.
-- **extended** (65): people, devices, places, misc. Compiled where a board's flash allows. An app
-  that needs one elsewhere falls back to a core icon or a PNG.
-- **display** (44): also compiled at `lg`. Only these may be used as a screen's single large glyph.
+- **core** (238): compiled into every firmware at `sm` and `md`. Navigation, actions, selection,
+  status, time, weather, home and content, plus the handful of icons the OS draws on its own
+  screens — the launcher's Store tile, the pairing screen, the account rows — which live in
+  otherwise-extended categories. A firmware that cannot draw its own Store tile is not a firmware,
+  so those are core wherever their category sits.
+- **extended** (56): people, places, misc, and the devices the OS does not itself need. Compiled
+  where a board's flash allows. An app that wants one elsewhere uses a core icon or its own PNG.
+- **display** (44): also compiled at `lg`. Only these may be a screen's single large glyph.
 
-On t5pro that is about **300 kB** of bitmaps for core at `sm` and `md` plus display at `lg`, and
-another 60 kB if the extended tier is compiled too — down from 570 kB before the sizes were pinned
-to the text. The sizes come from each profile's tokens, so a board with a
+On t5pro that is **305 kB** of bitmaps for core at `sm` and `md` plus display at `lg`, against
+561 kB before the sizes were pinned to the text.
+
+The firmware compiles this list, so an icon outside it draws nothing on glass. `@quireos/ui` and
+the SDK both validate against what is actually compiled: a name in the library but outside the tier
+reads "not compiled into this firmware; use a core icon or a PNG", and a name that is not an icon
+at all reads "unknown icon". Both are build errors rather than warnings, because a screen that
+ships a blank where a glyph belongs is worse than a build that stops. The sizes come from each profile's tokens, so a board with a
 different dpi gets its own.
 
 ## Style rules

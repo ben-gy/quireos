@@ -21,10 +21,7 @@ function emit(name, source, exportName) {
 }
 emit("tokens", resolve(REPO, "design/tokens/tokens.json"), "tokens");
 emit("icons", resolve(REPO, "design/icons/icons.json"), "icons");
-// What the firmware compiles, which is a subset of the library: an extended-tier name is a real
-// icon but draws nothing on a board that did not compile it.
-const specIcons = resolve(REPO, "spec/icons.json");
-if (existsSync(specIcons)) emit("spec_icons", specIcons, "specIcons");
+// What the firmware compiles comes from the SDK's ICON_NAMES, so there is one copy of that list.
 const fonts = resolve(REPO, "spec/fonts.json");
 const sample = resolve(REPO, "cloudflare/sdk/test/fixtures/profile.sample.json");
 emit("fonts", existsSync(fonts) ? fonts : sample, "fonts");

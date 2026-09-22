@@ -3,7 +3,7 @@ export * from "./types.js";
 export { parseScreen, resolveProfile, profileIds, depthOf, type Profile, type ProfileId, type ProfileTokens, type Orientation, type Depth, type ToneName, type RoleName } from "./profile.js";
 export { measure, wrap, truncate, lineHeight, hasFontTables } from "./text.js";
 export { Icons, icons, iconByRole, isIcon, filledTwin, iconTier, isDisplayIcon, batteryIconFor, wifiIconFor, type IconName, type IconRole } from "./icons.js";
-export { validateScreen, screenBytes, isPendingFirmwareIcon, PENDING_ICON, type Problem } from "./validate.js";
+export { validateScreen, screenBytes, type Problem } from "./validate.js";
 export { fontProfile } from "./text.js";
 export type { CellSpec, NavBarOptions, ToolbarOptions, RailOptions, PagerOptions, SegmentedOptions, StatusBarOptions, SystemCornerOptions, ToastOptions } from "./components/chrome.js";
 export type {
