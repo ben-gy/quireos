@@ -1,15 +1,24 @@
 /**
  * The off-panel check, as an executable property rather than an argument in a comment.
  *
- * The rule it must obey: **rejecting a widget means that widget could not have reached the panel
- * at its largest possible size.** Every unknown input (a size the device resolves at render time,
- * a malformed line count) must therefore be taken at its maximum, never at a default. That rule
- * was re-derived by hand three times while this check was being written, and was wrong twice: once
- * assuming one line where eight were possible, once assuming a medium size where a conditional
- * could resolve to the largest face. This file checks it mechanically instead.
+ * The rule it must obey: **a widget is reported exactly when it cannot reach the panel at its
+ * largest possible size.** Stated as an equivalence rather than two implications, because
+ * soundness alone is satisfied by a check that reports nothing and completeness alone by one that
+ * reports everything, and an "if and only if" leaves nowhere to exempt a case. A class of widgets
+ * quietly stopped being checked twice in this file's history.
  *
- * The oracle below is written from the spec, not from the implementation: it computes the largest
- * box a widget could occupy and asks only whether that box can touch the panel.
+ * Three cases per input, not two: a value the document omits is the spec's default, a literal is
+ * itself, and only a value the device resolves later is unknown and taken at its maximum.
+ *
+ * The oracle below is written from SPEC §6.2, not from the implementation. That matters more than
+ * it sounds: an oracle edited to agree with the code cannot find a bug in the code, and the
+ * absent-size defect survived here until the oracle was rewritten from the spec.
+ *
+ * Fifteen mutations are known to fail this file — three that make it report something visible,
+ * six that make it stay silent about something invisible, two that break grid geometry, and one
+ * off-by-one per panel edge. A property is only as strong as its oracle's independence, the
+ * breadth of what it generates, and whether it samples where the answer changes; each of those
+ * three was missing here at some point, and each hid a real defect.
  */
 import { describe, expect, it } from "vitest";
 import { validateScreen } from "../src/index.js";
@@ -95,41 +104,29 @@ function* widgets(): Generator<Widget> {
   }
 }
 
-describe("off-panel: rejection implies certainly invisible", () => {
-  it("never rejects a widget that could reach the panel at its largest", () => {
-    const wrong: string[] = [];
+describe("off-panel: reported exactly when unreachable", () => {
+  it("reports a widget exactly when it cannot reach the panel", () => {
+    // One equivalence rather than two implications. Soundness alone is satisfied by a check that
+    // reports nothing, and completeness alone by one that reports everything; stating it as "if
+    // and only if" leaves nowhere to exempt a case, which is how a class of widgets quietly
+    // stopped being checked twice in this file's history.
+    const disagreed: string[] = [];
     let count = 0;
-    let rejections = 0;
+    let unreachable = 0;
     for (const w of widgets()) {
       count++;
-      if (!rejected(w)) continue;
-      rejections++;
-      if (canTouchPanel(w)) wrong.push(JSON.stringify(w));
+      const canReach = canTouchPanel(w);
+      if (!canReach) unreachable++;
+      if (rejected(w) !== !canReach) disagreed.push(`${canReach ? "reported but reachable" : "unreachable but silent"}: ${JSON.stringify(w)}`);
     }
     expect(count).toBeGreaterThan(400);
-    expect(rejections).toBeGreaterThan(50); // the spread has to actually exercise the branch
-    expect(wrong).toEqual([]);
-  });
-
-  it("does reject a widget whose largest box is entirely off the panel", () => {
-    // The converse, over every generated document including the ones whose size has to be
-    // estimated: the oracle derives its bound from the spec, so a widget it can prove invisible
-    // must be reported. Restricting this to explicit w/h would exempt exactly the widgets whose
-    // bound is estimated, which is where every bug in this check has been.
-    const missed: string[] = [];
-    let proven = 0;
-    for (const w of widgets()) {
-      if (canTouchPanel(w)) continue;
-      proven++;
-      if (!rejected(w)) missed.push(JSON.stringify(w));
-    }
-    expect(proven).toBeGreaterThan(200);
-    expect(missed).toEqual([]);
+    expect(unreachable).toBeGreaterThan(200); // the spread has to exercise both sides
+    expect(count - unreachable).toBeGreaterThan(200);
+    expect(disagreed).toEqual([]);
   });
 
   it("holds for grid children, which resolve through their cell", () => {
-    // Both directions: soundness alone is satisfied by a check that rejects nothing, which is how
-    // a whole class of widgets can quietly stop being checked at all.
+    // The same equivalence, through a cell offset.
     const wrong: string[] = [];
     const missed: string[] = [];
     // Every child type, not just rect: a check that skips one type is sound and silent.
@@ -163,8 +160,7 @@ describe("off-panel: rejection implies certainly invisible", () => {
           const oy = 24 + row * (190 + 16) + dy;
           const box = { x: ox, y: oy, w: 100, h: 100 };
           const touches = box.x < PANEL.w && box.y < PANEL.h && box.x + box.w > 0 && box.y + box.h > 0;
-          if (rejects && touches) wrong.push(JSON.stringify(child));
-          if (!rejects && !touches) missed.push(JSON.stringify(child));
+          if (rejects !== !touches) (touches ? wrong : missed).push(JSON.stringify(child));
         }
       }
     }
