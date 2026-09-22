@@ -87,10 +87,13 @@ judgement call.
 `ui.validate()` checks two things no spec validator can, because only a device knows them: that
 nothing was laid out past the **frame**, and that nothing was laid out past the **glass**. The
 first is precise but exists only when this kit built the page; the second reads the document, so it
-still fires for a screen assembled by hand. A widget that starts on the panel and runs over is
-clipped, which is sometimes deliberate; one that starts beyond the edge can never be seen, and is
-always a mistake. Use `ui.validate()` rather than the standalone `validateScreen()`, which checks
-the spec alone.
+still fires for a screen assembled by hand. A widget that overlaps an edge is clipped, which is
+sometimes deliberate — a fill bleeding off the bottom, the toast band. One that **cannot intersect
+the panel at all** can never be seen and is always a mistake. The test is intersection rather than
+"starts past an edge", because a widget at `x = -200` with `w = 100` ends before the left edge and
+is just as invisible. Where a dimension is unknown the check stays quiet on that axis rather than
+guessing. Use `ui.validate()` rather than the standalone `validateScreen()`, which checks the spec
+alone.
 
 `ui.columns(box, n, gap = space.gutter)` splits a box into equal columns on the unit; the remainder
 goes to the outer edges. Pass `space.section` as the gap for columns of text (a right-aligned

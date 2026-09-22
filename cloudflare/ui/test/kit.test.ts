@@ -178,9 +178,27 @@ describe("components", () => {
     const problems = ui.validate(below);
     expect(problems.length).toBe(1);
     expect(problems[0]!.message).toContain("can never be seen");
-    // A widget that starts on the panel and runs over is clipped, which is allowed.
-    const bleeding = { spec_version: 1 as const, id: "bleed", widgets: [ui.rect({ x: 0, y: ui.H - 8, w: ui.W, h: 200, fill: "ink" })] };
-    expect(ui.validate(bleeding)).toEqual([]);
+    // Every edge, not just the two a widget can "start" past: something at x = -200 with w = 100
+    // ends before the left edge and is just as invisible.
+    const invisible = [
+      ui.rect({ x: ui.W + 10, y: 10, w: 100, h: 40, fill: "ink" }),
+      ui.rect({ x: 10, y: ui.H + 10, w: 100, h: 40, fill: "ink" }),
+      ui.rect({ x: -200, y: 10, w: 100, h: 40, fill: "ink" }),
+      ui.rect({ x: 10, y: -200, w: 100, h: 100, fill: "ink" }),
+    ];
+    for (const w of invisible) {
+      const r = ui.validate({ spec_version: 1 as const, id: "off", widgets: [w] });
+      expect(r.length, `${JSON.stringify(w)} was accepted`).toBe(1);
+      expect(r[0]!.message).toContain("can never be seen");
+    }
+    // A widget that overlaps an edge is clipped, which is sometimes deliberate.
+    for (const w of [
+      ui.rect({ x: 0, y: ui.H - 8, w: ui.W, h: 200, fill: "ink" }),
+      ui.rect({ x: -40, y: 10, w: 100, h: 40, fill: "ink" }),
+      ui.rect({ x: 10, y: -40, w: 100, h: 100, fill: "ink" }),
+    ]) {
+      expect(ui.validate({ spec_version: 1 as const, id: "bleed", widgets: [w] }), `${JSON.stringify(w)} was rejected`).toEqual([]);
+    }
     // Grid children are resolved through their cell before being judged.
     const grid = ui.tileGrid({ x: ui.margin, y: ui.H - 40, w: ui.contentW, h: 400 }, {
       cols: 2, rows: 4, tiles: Array.from({ length: 8 }, (_, i) => ({ label: `T${i}` })),

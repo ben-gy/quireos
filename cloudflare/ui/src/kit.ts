@@ -367,34 +367,63 @@ export class Kit {
   }
 
   /**
-   * Widgets that begin past the edge of the panel. A widget that starts inside and runs over is
-   * clipped, which is sometimes deliberate (a fill bleeding off an edge); one that starts outside
-   * can never be seen at all, so it is always a mistake.
+   * Widgets that cannot intersect the panel at all.
+   *
+   * A widget that overlaps an edge is clipped, which is sometimes deliberate — a fill bleeding off
+   * the bottom, the toast band. One that cannot touch the panel under any condition can never be
+   * seen, so it is always a mistake. Checking "starts beyond an edge" is not enough: a widget at
+   * x = -200 with w = 100 ends before the left edge and would slip through.
+   *
+   * Where a dimension is unknown the check stays quiet on that axis rather than guessing, so it
+   * never reports a widget that might in fact be visible.
    */
   private offGlass(screen: Screen): Problem[] {
     const out: Problem[] = [];
-    const check = (path: string, x: number, y: number) => {
-      if (y >= this.H) out.push({ path, message: `starts ${y - this.H + 1} px below the bottom of the ${this.H} px panel, so it can never be seen` });
-      else if (x >= this.W) out.push({ path, message: `starts past the right edge of the ${this.W} px panel, so it can never be seen` });
+    const iconPx = (w: { size?: unknown }): number | undefined => {
+      const size = typeof w.size === "string" ? w.size : "md";
+      return size === "sm" || size === "md" || size === "lg" ? this.t.icon[size] : undefined;
+    };
+    const check = (path: string, x: number, y: number, w?: number, h?: number) => {
+      const off = x >= this.W ? "past the right edge"
+        : y >= this.H ? "below the bottom"
+        : w !== undefined && x + w <= 0 ? "past the left edge"
+        : h !== undefined && h > 0 && y + h <= 0 ? "above the top"
+        : null;
+      if (off) out.push({ path, message: `lies ${off} of the ${this.W}x${this.H} panel, so it can never be seen` });
+    };
+    const measure = (c: Widget, dw?: number, dh?: number): [number | undefined, number | undefined] => {
+      if (c.type === "icon") { const px = iconPx(c); return [c.w ?? px ?? dw, c.h ?? px ?? dh]; }
+      if (c.type === "text") {
+        const size = typeof c.size === "string" ? c.size : "md";
+        const lh = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "digits"].includes(size) ? this.lh(size as TextSize) : undefined;
+        return [c.w ?? dw, c.h ?? (lh !== undefined ? lh * (c.lines ?? 1) : dh)];
+      }
+      return [c.w ?? dw, c.h ?? dh];
     };
     screen.widgets.forEach((w, i) => {
       const p = `/widgets/${i}`;
-      if (w.type === "line") { check(p, Math.min(w.x1, w.x2), Math.min(w.y1, w.y2)); return; }
-      check(p, w.x ?? 0, w.y ?? 0);
-      if (w.type !== "grid") return;
-      w.children.forEach((c, j) => {
-        const cell = Array.isArray(c.cell) ? c.cell[1]! * w.cols + c.cell[0]! : c.cell;
-        const cx = w.x + (cell % w.cols) * (w.cell_w + w.gap);
-        const cy = w.y + Math.floor(cell / w.cols) * (w.cell_h + w.gap);
-        const cp = `${p}/children/${j}`;
-        if (c.type === "line") check(cp, cx + Math.min(c.x1, c.x2), cy + Math.min(c.y1, c.y2));
-        else check(cp, cx + (c.x ?? 0), cy + (c.y ?? 0));
-      });
+      if (w.type === "line") {
+        check(p, Math.min(w.x1, w.x2), Math.min(w.y1, w.y2), Math.abs(w.x2 - w.x1) + 1, Math.abs(w.y2 - w.y1) + 1);
+        return;
+      }
+      if (w.type === "grid") {
+        check(p, w.x, w.y, w.cols * w.cell_w + (w.cols - 1) * w.gap, w.rows * w.cell_h + (w.rows - 1) * w.gap);
+        w.children.forEach((c, j) => {
+          const cell = Array.isArray(c.cell) ? c.cell[1]! * w.cols + c.cell[0]! : c.cell;
+          const cx = w.x + (cell % w.cols) * (w.cell_w + w.gap);
+          const cy = w.y + Math.floor(cell / w.cols) * (w.cell_h + w.gap);
+          const cp = `${p}/children/${j}`;
+          // A grid child that omits w/h fills its cell, so the dimension is known here (SPEC §6.2).
+          if (c.type === "line") check(cp, cx + Math.min(c.x1, c.x2), cy + Math.min(c.y1, c.y2), Math.abs(c.x2 - c.x1) + 1, Math.abs(c.y2 - c.y1) + 1);
+          else { const [cw, ch] = measure(c as Widget, w.cell_w, w.cell_h); check(cp, cx + (c.x ?? 0), cy + (c.y ?? 0), cw, ch); }
+        });
+        return;
+      }
+      const [ww, wh] = measure(w);
+      check(p, w.x ?? 0, w.y ?? 0, ww, wh);
     });
     return out;
   }
-  /** Strong ETag over the canonical JSON (SDK). */
-  etag(screen: Screen): Promise<string> { return sdkEtag(canonicalJson(screen)); }
 
   // -------------------------------------------------------------------------- components ---
   navBar = (o: chrome.NavBarOptions) => chrome.navBar(this, o);
